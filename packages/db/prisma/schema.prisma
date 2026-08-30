@@ -189,7 +189,8 @@ model User {
   id           String       @id @default(cuid())
   tenantId     String       @map("tenant_id")
   nome         String
-  email        String
+  /// Globalmente único (login por e-mail); a app não suporta o mesmo usuário em duas corretoras.
+  email        String       @unique
   senhaHash    String       @map("senha_hash")
   papel        PapelUsuario @default(CORRETOR)
   ativo        Boolean      @default(true)

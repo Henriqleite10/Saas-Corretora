@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@radar/core", "@radar/ui"],
+  transpilePackages: ["@radar/ui"],
 };
 
 export default nextConfig;

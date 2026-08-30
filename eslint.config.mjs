@@ -23,4 +23,12 @@ export default tseslint.config(
       "@typescript-eslint/consistent-type-imports": "error",
     },
   },
+  {
+    // NestJS injeta dependências pelo metadata de tipos do construtor
+    // (emitDecoratorMetadata): `import type` apagaria a classe do runtime.
+    files: ["apps/api/**"],
+    rules: {
+      "@typescript-eslint/consistent-type-imports": "off",
+    },
+  },
 );

@@ -7,11 +7,11 @@
  */
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { PrismaClient, RamoSeguro } from "@prisma/client";
-import { carregarEnvDeTeste } from "./test/env.js";
+import { carregarEnvRaiz } from "./env.js";
 import { clienteDoTenant, comTenant } from "./tenant.js";
 import { gerarDek } from "./crypto/envelope.js";
 
-carregarEnvDeTeste();
+carregarEnvRaiz();
 
 const temBanco = Boolean(process.env.DATABASE_URL && process.env.DATABASE_URL_APP);
 
