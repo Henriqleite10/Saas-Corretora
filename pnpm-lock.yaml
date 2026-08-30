@@ -180,10 +180,16 @@ importers:
       ioredis:
         specifier: ^5.4.2
         version: 5.11.1
+      nodemailer:
+        specifier: ^6.9.16
+        version: 6.10.1
     devDependencies:
       "@types/node":
         specifier: ^22.10.0
         version: 22.20.1
+      "@types/nodemailer":
+        specifier: ^6.4.17
+        version: 6.4.24
       tsup:
         specifier: ^8.3.5
         version: 8.5.1(@swc/core@1.16.1)(jiti@2.7.0)(postcss@8.5.26)(tsx@4.23.13)(typescript@5.9.3)
@@ -2313,6 +2319,12 @@ packages:
         integrity: sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==,
       }
 
+  "@types/nodemailer@6.4.24":
+    resolution:
+      {
+        integrity: sha512-Ww4u0rT9wQNXh4JiQaIwx3QWdcOFXzOjQA2zc+jtFYNmQiT4mIUqcDin51bDFdkzKubFnQCZNK7FIHlPKQ/q9w==,
+      }
+
   "@types/pdfkit@0.13.9":
     resolution:
       {
@@ -4361,6 +4373,13 @@ packages:
         integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==,
       }
     hasBin: true
+
+  nodemailer@6.10.1:
+    resolution:
+      {
+        integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==,
+      }
+    engines: { node: ">=6.0.0" }
 
   nypm@0.6.9:
     resolution:
@@ -6449,6 +6468,10 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
+  "@types/nodemailer@6.4.24":
+    dependencies:
+      "@types/node": 22.20.1
+
   "@types/pdfkit@0.13.9":
     dependencies:
       "@types/node": 22.20.1
@@ -7740,6 +7763,8 @@ snapshots:
     optional: true
 
   node-gyp-build@4.8.4: {}
+
+  nodemailer@6.10.1: {}
 
   nypm@0.6.9:
     dependencies:

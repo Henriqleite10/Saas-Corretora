@@ -6,6 +6,7 @@ import { PiiModule } from "./pii/pii.module";
 import { AuthModule } from "./auth/auth.module";
 import { AuditModule } from "./audit/audit.module";
 import { CarteiraModule } from "./carteira/carteira.module";
+import { CobrancasModule } from "./cobrancas/cobrancas.module";
 import { ExtratosModule } from "./extratos/extratos.module";
 import { FilaModule } from "./fila/fila.module";
 import { RadarModule } from "./radar/radar.module";
@@ -22,6 +23,7 @@ import { PapeisGuard } from "./auth/papeis.guard";
     FilaModule,
     AuthModule,
     CarteiraModule,
+    CobrancasModule,
     ExtratosModule,
     RadarModule,
     SeguradorasModule,

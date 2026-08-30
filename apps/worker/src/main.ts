@@ -7,12 +7,15 @@ import {
   RedatorCobranca,
   criarClienteAnthropic,
 } from "@radar/ai";
-import { FILA_IA, FILA_PARSING, FILA_REGUA, conexaoRedis } from "./filas.js";
+import { FILA_IA, FILA_NOTIFICACOES, FILA_PARSING, FILA_REGUA, conexaoRedis } from "./filas.js";
 import type { JobParsing } from "./filas.js";
 import { processarExtrato } from "./processors/parsing.js";
 import { processarReguaTenant, processarReguaTodosTenants } from "./processors/regua.js";
 import { criarMedidorUso, processarDraftStep } from "./processors/drafts.js";
 import type { JobDraft } from "./processors/drafts.js";
+import { processarEnvioMensagem } from "./processors/envio.js";
+import type { JobEnvio } from "./processors/envio.js";
+import { WhatsAppStubProvider, provedorEmailDoAmbiente } from "./notificacoes/provedores.js";
 
 carregarEnvRaiz();
 
@@ -79,6 +82,29 @@ ia.on("failed", (job, erro) => {
   console.error(`[ia] job ${job?.id} falhou:`, erro.message);
 });
 
+const filaNotificacoes = new Queue(FILA_NOTIFICACOES, { connection: conexaoRedis() });
+const notificacoes = new Worker<JobEnvio>(
+  FILA_NOTIFICACOES,
+  async (job) => {
+    console.log(`[notificacoes] enviando mensagem ${job.data.messageId}`);
+    await processarEnvioMensagem(job.data, app, {
+      email: provedorEmailDoAmbiente(),
+      whatsapp: new WhatsAppStubProvider(),
+      reagendar: async (dados, delayMs) => {
+        await filaNotificacoes.add("envio", dados, {
+          delay: delayMs,
+          jobId: `envio-${dados.messageId}-${Date.now()}`,
+        });
+      },
+    });
+  },
+  { connection: conexaoRedis(), concurrency: 2 },
+);
+
+notificacoes.on("failed", (job, erro) => {
+  console.error(`[notificacoes] job ${job?.id} falhou:`, erro.message);
+});
+
 regua.on("failed", (job, erro) => {
   console.error(`[regua] job ${job?.id} falhou:`, erro.message);
 });
@@ -94,17 +120,17 @@ await filaRegua.upsertJobScheduler(
   },
 );
 
-console.log("Worker no ar — filas: parsing, regua, ia");
-
-// TODO(Etapa 8): consumidor da fila "notificacoes" (envio de e-mail aprovado)
+console.log("Worker no ar — filas: parsing, regua, ia, notificacoes");
 
 async function encerrar(): Promise<void> {
   await Promise.all([
     parsing.close(),
     regua.close(),
     ia.close(),
+    notificacoes.close(),
     filaRegua.close(),
     filaIa.close(),
+    filaNotificacoes.close(),
   ]);
   await Promise.all([app.$disconnect(), sistema.$disconnect()]);
   process.exit(0);

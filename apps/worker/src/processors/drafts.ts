@@ -112,9 +112,47 @@ export async function processarDraftStep(
   const tenant = await comTenant(app, tenantId, (tx) =>
     tx.tenant.findUniqueOrThrow({
       where: { id: tenantId },
-      select: { nome: true, tomCobranca: true, limiteMensalTokensIa: true },
+      select: {
+        nome: true,
+        tomCobranca: true,
+        limiteMensalTokensIa: true,
+        maxContatosPorSeguradoPorSemana: true,
+      },
     }),
   );
+
+  // Limite de frequência de contato por segurado: nem redige se a semana já
+  // atingiu o teto (economiza tokens; a etapa tenta de novo no próximo ciclo).
+  const seguradoHash = await comTenant(app, tenantId, (tx) =>
+    tx.policy.findUniqueOrThrow({
+      where: { id: policy.id },
+      select: { seguradoDocHash: true },
+    }),
+  );
+  const enviadasNaSemana = await comTenant(app, tenantId, (tx) =>
+    tx.agentMessage.count({
+      where: {
+        statusAprovacao: "ENVIADA",
+        enviadaEm: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) },
+        conversation: { policy: { seguradoDocHash: seguradoHash.seguradoDocHash } },
+      },
+    }),
+  );
+  if (enviadasNaSemana >= tenant.maxContatosPorSeguradoPorSemana) {
+    await comTenant(app, tenantId, (tx) =>
+      tx.auditLog.create({
+        data: {
+          tenantId,
+          userId: null,
+          acao: "frequencia_contato_atingida",
+          entidade: "RecoveryStep",
+          entidadeId: stepId,
+          detalhes: { enviadasNaSemana, limite: tenant.maxContatosPorSeguradoPorSemana },
+        },
+      }),
+    );
+    return;
+  }
 
   // Limite de custo de IA por tenant: atingiu → não gasta; tenta de novo amanhã.
   if (tenant.limiteMensalTokensIa) {
