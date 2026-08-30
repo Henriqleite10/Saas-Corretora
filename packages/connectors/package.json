@@ -27,5 +27,8 @@
         "default": "./dist/index.cjs"
       }
     }
+  },
+  "dependencies": {
+    "@radar/core": "workspace:*"
   }
 }

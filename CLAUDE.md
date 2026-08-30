@@ -39,7 +39,12 @@ pnpm workspaces + Turborepo · NestJS (API) · Next.js App Router + Tailwind + s
 - **Prompts de IA**: versionados em `packages/ai/prompts/*.md` com frontmatter; versão gravada em `AgentMessage.promptVersao`.
 - **Guardrails do agente**: regras determinísticas primeiro, depois modelo juiz (CDC art. 42/71), structured output; só então fila de aprovação.
 - **Filas BullMQ**: `parsing`, `regua`, `ia`, `notificacoes`, `agendamentos`; jobs idempotentes com chave natural.
-- **Sem OCR** (limitação documentada): PDF escaneado é rejeitado com orientação.
+- **Sem OCR** (limitação documentada): PDF escaneado é rejeitado com orientação (detecção: PDF sem camada de texto → `FormatoNaoReconhecidoError` → extrato FALHOU com motivo).
+- **PDF: pdfjs-dist, não pdf-parse** — o pdf-parse embute um pdf.js de 2018 e falhou de forma instável com PDFs modernos ("bad XRef entry" dependente do estado do processo). `extrairTextoPdf` usa `pdfjs-dist/legacy` com import dinâmico (o pacote é ESM-only e @radar/parsers publica CJS+ESM) e reconstrói linhas visuais pela coordenada Y.
+- **Parsers multi-linha em PDF**: lançamentos quebrados pelo wrap do PDF são reagrupados (registro começa em "APOLICE" e absorve linhas seguintes) — PDFs reais quebram linhas.
+- **Fixtures sintéticas geradas** (não commitadas): `@radar/parsers/fixtures` (subpath export) gera XLSX (Porto v1/v2, Tokio) e PDF (Bradesco, escaneado) em memória; `pnpm --filter @radar/parsers gerar-fixtures` grava em `packages/parsers/fixtures/` para teste manual da UI. Toda fixture inclui linhas ruins de propósito.
+- **UI**: componentes estilo shadcn/ui copy-in em `packages/ui` (source-only, via `transpilePackages`; imports internos SEM extensão — webpack não resolve `./x.js`→`.tsx`). Tailwind v4 com `@source` apontando para `packages/ui/src`. Sessão no front: accessToken em localStorage + renovação via cookie httpOnly em 401.
+- **Storage de uploads**: disco local (`STORAGE_DIR`, default `./uploads`), S3-ready pela indireção de `arquivoPath`; dedup por SHA-256 (`arquivoHash` unique por tenant).
 - **Marca não hardcoded**: nome comercial via `PRODUCT_NAME` (env); "radar-corretoras" é só nome de trabalho.
 
 ## Convenções
@@ -57,9 +62,9 @@ pnpm workspaces + Turborepo · NestJS (API) · Next.js App Router + Tailwind + s
 - [x] PLANO.md aprovado pelo Henrique
 - [x] **Etapa 1** — fundação do monorepo (workspaces, Turbo, TS, ESLint, Vitest, docker-compose, CI, esqueletos; Fases 1/2 só como TODOs)
 - [x] **Etapa 2** — banco + multi-tenancy: schema Prisma completo (16 modelos), migrations (inicial + RLS), envelope encryption (`LocalKeyProvider`, KMS-ready), `hashDocumento` HMAC, `comTenant`/`clienteDoTenant`, seed de seguradoras, 19 testes (8 provam isolamento A/B via RLS contra Postgres real)
-- [ ] Etapa 3 — API base (auth, onboarding, RBAC, rate limit)
-- [ ] Etapa 4 — carteira + importação por planilha
-- [ ] Etapa 5 — parsers Porto/Tokio/Bradesco + fila + UI upload
+- [x] **Etapa 3** — API NestJS: registro de corretora, login Argon2id + JWT/refresh httpOnly com rotação, guards globais (throttler → JWT → papéis), Zod pipes, AuditService; 11 testes e2e. Decisão: packages compartilhados buildam com tsup (Nest exige emitDecoratorMetadata; testes da API via unplugin-swc); e-mail globalmente único.
+- [x] **Etapa 4** — carteira: vínculos tenant↔seguradora, CRUD de apólices/parcelas com PII cifrada e mascarada (revelação só ADMIN/FINANCEIRO com auditoria), pagamento de parcela, importação XLSX/CSV com relatório linha a linha; 9 testes e2e.
+- [x] **Etapa 5** — parsers + fila + UI: schema canônico (`EntradaCanonica` em @radar/core), RegistroParsers com detecção automática de formatVersion, parsers Porto (xlsx v1+v2), Tokio (xlsx), Bradesco (pdf), UploadConnector, worker BullMQ (fila `parsing`, idempotente), endpoints /extratos (upload+dedup+reprocessar), web app (login/registro, shell, Extratos com fila de linhas rejeitadas, Carteira com importação, Configurações com vínculos). 11 testes de parser + 4 de worker + 4 e2e; smoke real API+Redis+worker validado.
 - [ ] Etapa 6 — Módulo A (radar de inadimplência)
 - [ ] Etapa 7 — Módulo C (drafter + guardrails)
 - [ ] Etapa 8 — Módulo C (fila de aprovação + envio e-mail)
