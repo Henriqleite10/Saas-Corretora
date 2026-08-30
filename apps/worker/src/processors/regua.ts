@@ -21,8 +21,19 @@ export async function processarReguaTenant(
   tenantId: string,
   app: PrismaClient,
   hoje: Date = new Date(),
-): Promise<{ parcelasMarcadas: number; flowsAbertos: number; flowsEncerrados: number }> {
-  const resultado = { parcelasMarcadas: 0, flowsAbertos: 0, flowsEncerrados: 0 };
+  enfileirarDraft?: (stepId: string, tenantId: string) => Promise<void>,
+): Promise<{
+  parcelasMarcadas: number;
+  flowsAbertos: number;
+  flowsEncerrados: number;
+  draftsEnfileirados: number;
+}> {
+  const resultado = {
+    parcelasMarcadas: 0,
+    flowsAbertos: 0,
+    flowsEncerrados: 0,
+    draftsEnfileirados: 0,
+  };
 
   // 1. Atualiza atraso das parcelas vencidas não pagas.
   await comTenant(app, tenantId, async (tx) => {
@@ -91,6 +102,24 @@ export async function processarReguaTenant(
     }
   });
 
+  // 2.5. Etapas vencidas de flows em andamento → job de redação (Módulo C, Etapa 7).
+  if (enfileirarDraft) {
+    const devidas = await comTenant(app, tenantId, (tx) =>
+      tx.recoveryStep.findMany({
+        where: {
+          status: "AGENDADA",
+          agendadaPara: { lte: hoje },
+          flow: { desfecho: "EM_ANDAMENTO" },
+        },
+        select: { id: true },
+      }),
+    );
+    for (const step of devidas) {
+      await enfileirarDraft(step.id, tenantId);
+      resultado.draftsEnfileirados += 1;
+    }
+  }
+
   // 3. Encerra flows resolvidos.
   await comTenant(app, tenantId, async (tx) => {
     const abertos = await tx.recoveryFlow.findMany({
@@ -140,11 +169,12 @@ export async function processarReguaTodosTenants(
   sistema: PrismaClient,
   app: PrismaClient,
   hoje: Date = new Date(),
+  enfileirarDraft?: (stepId: string, tenantId: string) => Promise<void>,
 ): Promise<void> {
   const tenants = await sistema.tenant.findMany({ select: { id: true } });
   for (const tenant of tenants) {
     try {
-      await processarReguaTenant(tenant.id, app, hoje);
+      await processarReguaTenant(tenant.id, app, hoje, enfileirarDraft);
     } catch (erro) {
       console.error(`[regua] falha no tenant ${tenant.id}:`, (erro as Error).message);
     }

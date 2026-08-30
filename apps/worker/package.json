@@ -15,7 +15,8 @@
     "@radar/db": "workspace:*",
     "@radar/parsers": "workspace:*",
     "bullmq": "^5.34.0",
-    "ioredis": "^5.4.2"
+    "ioredis": "^5.4.2",
+    "@radar/ai": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

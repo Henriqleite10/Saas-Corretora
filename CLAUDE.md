@@ -37,7 +37,10 @@ pnpm workspaces + Turborepo · NestJS (API) · Next.js App Router + Tailwind + s
 - **Configs compartilhadas na raiz** (`tsconfig.base.json`, `eslint.config.mjs` flat, `.prettierrc`) em vez de um package `config` — menos indireção. Lint roda na raiz sobre o repo todo; typecheck/test por package via Turbo.
 - **TS estrito**: `strict` + `noUncheckedIndexedAccess` + `verbatimModuleSyntax` (desligado só em `apps/web` por atrito com arquivos gerados pelo Next). `exactOptionalPropertyTypes` ficou de fora (atrito com libs de terceiros).
 - **Prompts de IA**: versionados em `packages/ai/prompts/*.md` com frontmatter; versão gravada em `AgentMessage.promptVersao`.
-- **Guardrails do agente**: regras determinísticas primeiro, depois modelo juiz (CDC art. 42/71), structured output; só então fila de aprovação.
+- **Guardrails do agente**: regras determinísticas primeiro (barram sem custo de tokens; lista de padrões CDC coberta por testes adversariais), depois modelo juiz; mensagem reprovada vira `DESCARTADA` + step `FALHOU` e NUNCA entra na fila de aprovação. Falha de parse do juiz nunca aprova por omissão.
+- **IA — saída estruturada**: `client.messages.parse` + `zodOutputFormat` (`output_config.format`), não tool-forcing (conflita com thinking). Schemas do package ai importam de `zod/v4` (exigência do helper do SDK). Modelo default `claude-sonnet-5` (env `AI_MODEL`); SEM `temperature` (removido nos modelos atuais). Prompt de sistema com `cache_control: ephemeral`.
+- **Contexto do drafter tem PII mínima**: nome do segurado + dados da parcela; nunca CPF/e-mail/telefone (testado).
+- **Custo de IA**: cada chamada grava `AiUsage`; `Tenant.limiteMensalTokensIa` barra novas redações quando estourado (audit `limite_ia_atingido`, step continua AGENDADA e tenta no ciclo seguinte).
 - **Filas BullMQ**: `parsing`, `regua`, `ia`, `notificacoes`, `agendamentos`; jobs idempotentes com chave natural.
 - **Sem OCR** (limitação documentada): PDF escaneado é rejeitado com orientação (detecção: PDF sem camada de texto → `FormatoNaoReconhecidoError` → extrato FALHOU com motivo).
 - **PDF: pdfjs-dist, não pdf-parse** — o pdf-parse embute um pdf.js de 2018 e falhou de forma instável com PDFs modernos ("bad XRef entry" dependente do estado do processo). `extrairTextoPdf` usa `pdfjs-dist/legacy` com import dinâmico (o pacote é ESM-only e @radar/parsers publica CJS+ESM) e reconstrói linhas visuais pela coordenada Y.
@@ -65,8 +68,8 @@ pnpm workspaces + Turborepo · NestJS (API) · Next.js App Router + Tailwind + s
 - [x] **Etapa 3** — API NestJS: registro de corretora, login Argon2id + JWT/refresh httpOnly com rotação, guards globais (throttler → JWT → papéis), Zod pipes, AuditService; 11 testes e2e. Decisão: packages compartilhados buildam com tsup (Nest exige emitDecoratorMetadata; testes da API via unplugin-swc); e-mail globalmente único.
 - [x] **Etapa 4** — carteira: vínculos tenant↔seguradora, CRUD de apólices/parcelas com PII cifrada e mascarada (revelação só ADMIN/FINANCEIRO com auditoria), pagamento de parcela, importação XLSX/CSV com relatório linha a linha; 9 testes e2e.
 - [x] **Etapa 5** — parsers + fila + UI: schema canônico (`EntradaCanonica` em @radar/core), RegistroParsers com detecção automática de formatVersion, parsers Porto (xlsx v1+v2), Tokio (xlsx), Bradesco (pdf), UploadConnector, worker BullMQ (fila `parsing`, idempotente), endpoints /extratos (upload+dedup+reprocessar), web app (login/registro, shell, Extratos com fila de linhas rejeitadas, Carteira com importação, Configurações com vínculos). 11 testes de parser + 4 de worker + 4 e2e; smoke real API+Redis+worker validado.
-- [ ] Etapa 6 — Módulo A (radar de inadimplência)
-- [ ] Etapa 7 — Módulo C (drafter + guardrails)
+- [x] **Etapa 6** — Módulo A: job diário da régua (marca atraso → abre flows+etapas → encerra PAGOU/PERDIDO), scheduler BullMQ 09h UTC, API /radar (resumo + atrasadas + executar), painel web com cards de resultado.
+- [x] **Etapa 7** — Módulo C (drafter+guardrails): `RedatorCobranca` + `JuizConformidade` + `PipelineGuardrails` em @radar/ai (prompts versionados `cobranca-drafter@1.0.0` / `cobranca-juiz@1.0.0`), worker fila `ia` (régua enfileira etapas vencidas → draft → guardrails → AGUARDANDO_APROVACAO), medidor AiUsage + limite por tenant. 21 testes no ai (fixtures adversariais) + 5 de integração no worker.
 - [ ] Etapa 8 — Módulo C (fila de aprovação + envio e-mail)
 - [ ] Etapa 9 — polimento e fechamento da Fase 0
 
