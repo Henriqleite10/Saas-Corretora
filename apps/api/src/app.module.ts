@@ -2,8 +2,11 @@ import { Module } from "@nestjs/common";
 import { APP_GUARD } from "@nestjs/core";
 import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { PrismaModule } from "./prisma/prisma.module";
+import { PiiModule } from "./pii/pii.module";
 import { AuthModule } from "./auth/auth.module";
 import { AuditModule } from "./audit/audit.module";
+import { CarteiraModule } from "./carteira/carteira.module";
+import { SeguradorasModule } from "./seguradoras/seguradoras.module";
 import { JwtAuthGuard } from "./auth/jwt-auth.guard";
 import { PapeisGuard } from "./auth/papeis.guard";
 
@@ -11,8 +14,11 @@ import { PapeisGuard } from "./auth/papeis.guard";
   imports: [
     ThrottlerModule.forRoot([{ ttl: 60000, limit: 100 }]),
     PrismaModule,
+    PiiModule,
     AuditModule,
     AuthModule,
+    CarteiraModule,
+    SeguradorasModule,
   ],
   providers: [
     // Ordem importa: rate limit → autenticação → papéis

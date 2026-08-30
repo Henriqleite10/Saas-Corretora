@@ -1,12 +1,12 @@
 import { BadRequestException } from "@nestjs/common";
 import type { PipeTransform } from "@nestjs/common";
-import type { ZodType } from "zod";
+import type { ZodTypeAny, z } from "zod";
 
 /** Validação Zod em toda borda da API (requisito seção 8 do briefing). */
-export class ZodPipe<T> implements PipeTransform<unknown, T> {
-  constructor(private readonly schema: ZodType<T>) {}
+export class ZodPipe<S extends ZodTypeAny> implements PipeTransform<unknown, z.output<S>> {
+  constructor(private readonly schema: S) {}
 
-  transform(value: unknown): T {
+  transform(value: unknown): z.output<S> {
     const resultado = this.schema.safeParse(value);
     if (!resultado.success) {
       throw new BadRequestException({
@@ -17,6 +17,6 @@ export class ZodPipe<T> implements PipeTransform<unknown, T> {
         })),
       });
     }
-    return resultado.data;
+    return resultado.data as z.output<S>;
   }
 }
