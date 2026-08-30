@@ -29,7 +29,8 @@ pnpm workspaces + Turborepo · NestJS (API) · Next.js App Router + Tailwind + s
 ## Decisões de arquitetura tomadas
 
 - **Auth própria** na API (Argon2id + JWT curto + refresh httpOnly) — sem SaaS de auth. Aprovado no plano.
-- **Multi-tenancy em duas camadas**: `tenantId` em toda tabela tenant-scoped + RLS (`SET LOCAL app.tenant_id` via extensão do Prisma Client; role da app sem BYPASSRLS). `Insurer` é a única tabela global.
+- **Multi-tenancy em duas camadas**: `tenantId` em toda tabela tenant-scoped + RLS (`set_config('app.tenant_id', ..., true)` em transação, via `comTenant`/`clienteDoTenant` de `@radar/db`). `Insurer` é a única tabela global (leitura liberada, escrita só owner).
+- **Duas conexões de banco**: `DATABASE_URL` (owner `radar` — migrations, seed, onboarding, login por e-mail, enumeração de tenants em jobs; NÃO passa por RLS) e `DATABASE_URL_APP` (role `radar_app`, sujeita a RLS — todo acesso em nome de um tenant). A migration de RLS cria a role `radar_app` (senha local/CI apenas; produção provisiona fora). Dev/CI: o usuário `radar` precisa de `CREATEROLE` (shadow database do Prisma).
 - **PII cifrada**: envelope encryption AES-256-GCM (DEK por tenant embrulhada por `MASTER_KEY` em env; interface `KeyProvider` KMS-ready). CPF/CNPJ também vira `docHash` (HMAC com `DOC_HASH_KEY`) para busca/matching sem descriptografar. UI mascara por padrão; logs sem PII em claro.
 - **Dinheiro**: `Decimal(12,2)`, nunca float. IDs: `cuid()`.
 - **Packages são source-only**: `main` aponta para `src/index.ts`; `apps/web` usa `transpilePackages`; api/worker rodarão via tsx (dev) e bundle (prod). Sem etapa de build por package.
@@ -55,7 +56,7 @@ pnpm workspaces + Turborepo · NestJS (API) · Next.js App Router + Tailwind + s
 
 - [x] PLANO.md aprovado pelo Henrique
 - [x] **Etapa 1** — fundação do monorepo (workspaces, Turbo, TS, ESLint, Vitest, docker-compose, CI, esqueletos; Fases 1/2 só como TODOs)
-- [ ] Etapa 2 — banco + multi-tenancy (Prisma, RLS, crypto, testes de isolamento)
+- [x] **Etapa 2** — banco + multi-tenancy: schema Prisma completo (16 modelos), migrations (inicial + RLS), envelope encryption (`LocalKeyProvider`, KMS-ready), `hashDocumento` HMAC, `comTenant`/`clienteDoTenant`, seed de seguradoras, 19 testes (8 provam isolamento A/B via RLS contra Postgres real)
 - [ ] Etapa 3 — API base (auth, onboarding, RBAC, rate limit)
 - [ ] Etapa 4 — carteira + importação por planilha
 - [ ] Etapa 5 — parsers Porto/Tokio/Bradesco + fila + UI upload

@@ -1,0 +1,554 @@
+// Modelo de dados canônico do produto (ver PLANO.md, seção 4).
+//
+// Convenções:
+// - Toda tabela tenant-scoped tem `tenantId` + índices começando por tenantId
+//   + política RLS (migration SQL manual — Prisma não gera policies).
+// - Campos cifrados (envelope AES-256-GCM, DEK por tenant) têm sufixo `Enc`;
+//   quando buscáveis, ganham uma coluna de hash HMAC companion.
+// - Dinheiro é sempre Decimal, nunca float.
+// - `Insurer` é o único catálogo global (sem tenantId, sem RLS).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============ ENUMS ============
+
+enum PapelUsuario {
+  ADMIN
+  CORRETOR
+  FINANCEIRO
+}
+
+enum PlanoTenant {
+  TRIAL
+  ESSENCIAL
+  PRO
+}
+
+enum RamoSeguro {
+  AUTO
+  VIDA
+  SAUDE
+  RESIDENCIAL
+  EMPRESARIAL
+  OUTROS
+}
+
+enum StatusApolice {
+  ATIVA
+  CANCELADA
+  SUSPENSA
+  VENCIDA
+}
+
+enum StatusParcela {
+  EM_DIA
+  ATRASADA
+  PAGA
+  CANCELADA
+}
+
+enum StatusProcessamentoExtrato {
+  RECEBIDO
+  PROCESSANDO
+  PROCESSADO
+  PROCESSADO_COM_ERROS
+  FALHOU
+}
+
+enum TipoDivergencia {
+  OK
+  COMISSAO_NAO_PAGA
+  PERCENTUAL_DIVERGENTE
+  VALOR_DIVERGENTE
+  PARCELA_AUSENTE
+  SEM_APOLICE_CORRESPONDENTE
+}
+
+enum StatusDisputa {
+  NAO_APLICAVEL
+  ABERTA
+  EM_ANDAMENTO
+  RESOLVIDA
+  PERDIDA
+}
+
+enum StatusEtapaRegua {
+  AGENDADA
+  AGUARDANDO_APROVACAO
+  APROVADA
+  ENVIADA
+  RESPONDIDA
+  CONCLUIDA
+  CANCELADA
+  FALHOU
+}
+
+enum CanalContato {
+  EMAIL
+  WHATSAPP
+}
+
+enum DesfechoRecuperacao {
+  EM_ANDAMENTO
+  PAGOU
+  NEGOCIOU
+  ESCALADO
+  PERDIDO
+  OPT_OUT
+}
+
+enum PapelMensagemAgente {
+  AGENTE
+  SEGURADO
+  CORRETOR
+  SISTEMA
+}
+
+enum StatusAprovacaoMensagem {
+  RASCUNHO
+  AGUARDANDO_APROVACAO
+  APROVADA
+  EDITADA_E_APROVADA
+  DESCARTADA
+  ENVIADA
+}
+
+enum VereditoGuardrail {
+  APROVADA
+  REPROVADA
+}
+
+enum CategoriaInsight {
+  INADIMPLENCIA
+  CONCILIACAO
+  CARTEIRA
+  OPERACIONAL
+}
+
+enum StatusInsight {
+  NOVO
+  ACEITO
+  DISPENSADO
+  CONCLUIDO
+}
+
+enum ModuloIa {
+  COBRANCA
+  INSIGHTS
+  CONCILIACAO
+}
+
+// ============ TENANT / IDENTIDADE ============
+
+model Tenant {
+  id       String      @id @default(cuid())
+  nome     String
+  cnpjEnc  Bytes?      @map("cnpj_enc")
+  cnpjHash String?     @unique @map("cnpj_hash")
+  plano    PlanoTenant @default(TRIAL)
+
+  // Configurações de régua e autonomia da IA (validadas por Zod na aplicação)
+  configRegua                     Json    @map("config_regua")
+  tomCobranca                     String  @default("cordial") @map("tom_cobranca")
+  maxContatosPorSeguradoPorSemana Int     @default(2) @map("max_contatos_por_segurado_por_semana")
+  autonomiaIaHabilitada           Boolean @default(false) @map("autonomia_ia_habilitada")
+  limiteMensalTokensIa            Int?    @map("limite_mensal_tokens_ia")
+
+  // DEK do tenant embrulhada pela KEK mestre (envelope encryption)
+  dekEnc Bytes @map("dek_enc")
+
+  criadoEm     DateTime @default(now()) @map("criado_em")
+  atualizadoEm DateTime @updatedAt @map("atualizado_em")
+
+  users               User[]
+  insurerAccounts     InsurerAccount[]
+  policies            Policy[]
+  installments        Installment[]
+  statements          CommissionStatement[]
+  entries             CommissionEntry[]
+  reconciliations     ReconciliationResult[]
+  recoveryFlows       RecoveryFlow[]
+  recoverySteps       RecoveryStep[]
+  agentConversations  AgentConversation[]
+  agentMessages       AgentMessage[]
+  insights            Insight[]
+  auditLogs           AuditLog[]
+  aiUsages            AiUsage[]
+
+  @@map("tenants")
+}
+
+model User {
+  id           String       @id @default(cuid())
+  tenantId     String       @map("tenant_id")
+  nome         String
+  email        String
+  senhaHash    String       @map("senha_hash")
+  papel        PapelUsuario @default(CORRETOR)
+  ativo        Boolean      @default(true)
+  criadoEm     DateTime     @default(now()) @map("criado_em")
+  atualizadoEm DateTime     @updatedAt @map("atualizado_em")
+
+  tenant              Tenant         @relation(fields: [tenantId], references: [id])
+  mensagensAprovadas  AgentMessage[] @relation("aprovadaPor")
+
+  @@unique([tenantId, email])
+  @@index([tenantId])
+  @@map("users")
+}
+
+// ============ SEGURADORAS ============
+
+/// Catálogo GLOBAL de seguradoras — sem tenantId, sem RLS.
+model Insurer {
+  id    String  @id @default(cuid())
+  slug  String  @unique
+  nome  String
+  ativo Boolean @default(true)
+
+  accounts   InsurerAccount[]
+  policies   Policy[]
+  statements CommissionStatement[]
+  entries    CommissionEntry[]
+
+  @@map("insurers")
+}
+
+/// Vínculo tenant ↔ seguradora (código SUSEP do corretor na cia; credenciais só na Fase 2).
+model InsurerAccount {
+  id             String  @id @default(cuid())
+  tenantId       String  @map("tenant_id")
+  insurerId      String  @map("insurer_id")
+  codigoSusep    String? @map("codigo_susep")
+  credenciaisEnc Bytes?  @map("credenciais_enc")
+  ativo          Boolean @default(true)
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id])
+  insurer Insurer @relation(fields: [insurerId], references: [id])
+
+  @@unique([tenantId, insurerId])
+  @@index([tenantId])
+  @@map("insurer_accounts")
+}
+
+// ============ CARTEIRA ============
+
+model Policy {
+  id     String        @id @default(cuid())
+  tenantId  String     @map("tenant_id")
+  insurerId String     @map("insurer_id")
+  numero String
+  ramo   RamoSeguro
+  status StatusApolice @default(ATIVA)
+
+  // Segurado (PII cifrada; docHash = HMAC para matching/busca sem descriptografar)
+  seguradoNome     String  @map("segurado_nome")
+  seguradoDocEnc   Bytes   @map("segurado_doc_enc")
+  seguradoDocHash  String  @map("segurado_doc_hash")
+  seguradoEmailEnc Bytes?  @map("segurado_email_enc")
+  seguradoFoneEnc  Bytes?  @map("segurado_fone_enc")
+  seguradoOptOut   Boolean @default(false) @map("segurado_opt_out")
+
+  inicioVigencia          DateTime @map("inicio_vigencia")
+  fimVigencia             DateTime @map("fim_vigencia")
+  premioTotal             Decimal  @map("premio_total") @db.Decimal(12, 2)
+  percentComissaoEsperado Decimal  @map("percent_comissao_esperado") @db.Decimal(5, 2)
+
+  criadoEm     DateTime @default(now()) @map("criado_em")
+  atualizadoEm DateTime @updatedAt @map("atualizado_em")
+
+  tenant        Tenant                 @relation(fields: [tenantId], references: [id])
+  insurer       Insurer                @relation(fields: [insurerId], references: [id])
+  installments  Installment[]
+  conversations AgentConversation[]
+  matches       ReconciliationResult[]
+
+  @@unique([tenantId, insurerId, numero])
+  @@index([tenantId, status])
+  @@index([tenantId, seguradoDocHash])
+  @@map("policies")
+}
+
+model Installment {
+  id       String        @id @default(cuid())
+  tenantId String        @map("tenant_id")
+  policyId String        @map("policy_id")
+  numero   Int
+  valor    Decimal       @db.Decimal(12, 2)
+  vencimento DateTime
+  status   StatusParcela @default(EM_DIA)
+  pagaEm   DateTime?     @map("paga_em")
+  diasAtraso Int         @default(0) @map("dias_atraso")
+
+  criadoEm     DateTime @default(now()) @map("criado_em")
+  atualizadoEm DateTime @updatedAt @map("atualizado_em")
+
+  tenant       Tenant                 @relation(fields: [tenantId], references: [id])
+  policy       Policy                 @relation(fields: [policyId], references: [id])
+  recoveryFlow RecoveryFlow?
+  matches      ReconciliationResult[]
+
+  @@unique([tenantId, policyId, numero])
+  @@index([tenantId, status, vencimento])
+  @@map("installments")
+}
+
+// ============ EXTRATOS / CONCILIAÇÃO ============
+
+model CommissionStatement {
+  id          String @id @default(cuid())
+  tenantId    String @map("tenant_id")
+  insurerId   String @map("insurer_id")
+  competencia String // "2026-08"
+
+  arquivoNome   String  @map("arquivo_nome")
+  arquivoPath   String  @map("arquivo_path")
+  arquivoHash   String  @map("arquivo_hash")
+  formatVersion String? @map("format_version")
+
+  status           StatusProcessamentoExtrato @default(RECEBIDO)
+  linhasTotais     Int?                       @map("linhas_totais")
+  /// [{linha, motivo, conteudoBruto}] — vira fila revisável na UI, nunca falha silenciosa
+  linhasRejeitadas Json?                      @map("linhas_rejeitadas")
+  processadoEm     DateTime?                  @map("processado_em")
+
+  criadoEm DateTime @default(now()) @map("criado_em")
+
+  tenant  Tenant            @relation(fields: [tenantId], references: [id])
+  insurer Insurer           @relation(fields: [insurerId], references: [id])
+  entries CommissionEntry[]
+
+  @@unique([tenantId, arquivoHash])
+  @@index([tenantId, insurerId, competencia])
+  @@map("commission_statements")
+}
+
+/// SCHEMA CANÔNICO — linha de extrato normalizada, independente da seguradora de origem.
+model CommissionEntry {
+  id          String @id @default(cuid())
+  tenantId    String @map("tenant_id")
+  statementId String @map("statement_id")
+  insurerId   String @map("insurer_id")
+
+  numeroApolice   String  @map("numero_apolice")
+  numeroParcela   Int?    @map("numero_parcela")
+  seguradoNome    String? @map("segurado_nome")
+  seguradoDocHash String? @map("segurado_doc_hash")
+  competencia     String
+
+  premioParcela   Decimal?  @map("premio_parcela") @db.Decimal(12, 2)
+  valorComissao   Decimal   @map("valor_comissao") @db.Decimal(12, 2)
+  percentComissao Decimal?  @map("percent_comissao") @db.Decimal(5, 2)
+  dataPagamento   DateTime? @map("data_pagamento")
+
+  linhaOrigem Int  @map("linha_origem")
+  dadosBrutos Json @map("dados_brutos")
+
+  criadoEm DateTime @default(now()) @map("criado_em")
+
+  tenant    Tenant                @relation(fields: [tenantId], references: [id])
+  statement CommissionStatement   @relation(fields: [statementId], references: [id])
+  insurer   Insurer               @relation(fields: [insurerId], references: [id])
+  match     ReconciliationResult?
+
+  @@index([tenantId, statementId])
+  @@index([tenantId, numeroApolice])
+  @@map("commission_entries")
+}
+
+/// Fase 1 — tabela criada agora, motor de matching depois.
+model ReconciliationResult {
+  id            String  @id @default(cuid())
+  tenantId      String  @map("tenant_id")
+  entryId       String? @unique @map("entry_id")
+  policyId      String? @map("policy_id")
+  installmentId String? @map("installment_id")
+
+  tipo           TipoDivergencia
+  scoreConfianca Decimal?        @map("score_confianca") @db.Decimal(4, 3)
+  valorEsperado  Decimal?        @map("valor_esperado") @db.Decimal(12, 2)
+  valorRecebido  Decimal?        @map("valor_recebido") @db.Decimal(12, 2)
+  diferenca      Decimal?        @db.Decimal(12, 2)
+  statusDisputa  StatusDisputa   @default(NAO_APLICAVEL) @map("status_disputa")
+
+  criadoEm     DateTime @default(now()) @map("criado_em")
+  atualizadoEm DateTime @updatedAt @map("atualizado_em")
+
+  tenant      Tenant           @relation(fields: [tenantId], references: [id])
+  entry       CommissionEntry? @relation(fields: [entryId], references: [id])
+  policy      Policy?          @relation(fields: [policyId], references: [id])
+  installment Installment?     @relation(fields: [installmentId], references: [id])
+
+  @@index([tenantId, tipo, statusDisputa])
+  @@map("reconciliation_results")
+}
+
+// ============ RÉGUA DE RECUPERAÇÃO ============
+
+model RecoveryFlow {
+  id            String              @id @default(cuid())
+  tenantId      String              @map("tenant_id")
+  installmentId String              @unique @map("installment_id")
+  desfecho      DesfechoRecuperacao @default(EM_ANDAMENTO)
+
+  /// Comissão futura em risco — alimenta o painel "R$ preservados"
+  valorComissaoEmRisco Decimal @map("valor_comissao_em_risco") @db.Decimal(12, 2)
+
+  iniciadoEm  DateTime  @default(now()) @map("iniciado_em")
+  encerradoEm DateTime? @map("encerrado_em")
+
+  tenant        Tenant              @relation(fields: [tenantId], references: [id])
+  installment   Installment         @relation(fields: [installmentId], references: [id])
+  steps         RecoveryStep[]
+  conversations AgentConversation[]
+
+  @@index([tenantId, desfecho])
+  @@map("recovery_flows")
+}
+
+model RecoveryStep {
+  id           String           @id @default(cuid())
+  tenantId     String           @map("tenant_id")
+  flowId       String           @map("flow_id")
+  ordem        Int
+  canal        CanalContato
+  agendadaPara DateTime         @map("agendada_para")
+  status       StatusEtapaRegua @default(AGENDADA)
+  executadaEm  DateTime?        @map("executada_em")
+
+  tenant   Tenant         @relation(fields: [tenantId], references: [id])
+  flow     RecoveryFlow   @relation(fields: [flowId], references: [id])
+  messages AgentMessage[]
+
+  @@unique([tenantId, flowId, ordem])
+  @@index([tenantId, status, agendadaPara])
+  @@map("recovery_steps")
+}
+
+// ============ AGENTE DE COBRANÇA ============
+
+model AgentConversation {
+  id       String       @id @default(cuid())
+  tenantId String       @map("tenant_id")
+  flowId   String       @map("flow_id")
+  policyId String       @map("policy_id")
+  canal    CanalContato
+
+  desfecho            DesfechoRecuperacao @default(EM_ANDAMENTO)
+  escaladaEm          DateTime?           @map("escalada_em")
+  motivoEscalonamento String?             @map("motivo_escalonamento")
+
+  criadoEm DateTime @default(now()) @map("criado_em")
+
+  tenant   Tenant         @relation(fields: [tenantId], references: [id])
+  flow     RecoveryFlow   @relation(fields: [flowId], references: [id])
+  policy   Policy         @relation(fields: [policyId], references: [id])
+  messages AgentMessage[]
+
+  @@index([tenantId, desfecho])
+  @@map("agent_conversations")
+}
+
+/// Histórico de mensagens do agente — ativo estratégico: edições dos corretores
+/// e desfechos alimentam a calibração dos prompts.
+model AgentMessage {
+  id             String              @id @default(cuid())
+  tenantId       String              @map("tenant_id")
+  conversationId String              @map("conversation_id")
+  stepId         String?             @map("step_id")
+  papel          PapelMensagemAgente
+
+  assunto       String?
+  corpoGerado   String? @map("corpo_gerado")
+  corpoFinal    String? @map("corpo_final")
+  /// Justificativa da abordagem, visível ao corretor
+  justificativa String?
+
+  editadaPeloCorretor Boolean                 @default(false) @map("editada_pelo_corretor")
+  statusAprovacao     StatusAprovacaoMensagem @default(RASCUNHO) @map("status_aprovacao")
+  aprovadaPorId       String?                 @map("aprovada_por_id")
+
+  guardrailVeredito VereditoGuardrail? @map("guardrail_veredito")
+  guardrailDetalhes Json?              @map("guardrail_detalhes")
+  promptVersao      String?            @map("prompt_versao")
+
+  enviadaEm DateTime? @map("enviada_em")
+  criadoEm  DateTime  @default(now()) @map("criado_em")
+
+  tenant       Tenant            @relation(fields: [tenantId], references: [id])
+  conversation AgentConversation @relation(fields: [conversationId], references: [id])
+  step         RecoveryStep?     @relation(fields: [stepId], references: [id])
+  aprovadaPor  User?             @relation("aprovadaPor", fields: [aprovadaPorId], references: [id])
+
+  @@index([tenantId, statusAprovacao])
+  @@index([tenantId, conversationId])
+  @@map("agent_messages")
+}
+
+// ============ INSIGHTS (Fase 1 — tabela criada agora) ============
+
+model Insight {
+  id        String           @id @default(cuid())
+  tenantId  String           @map("tenant_id")
+  categoria CategoriaInsight
+  titulo    String
+  corpo     String
+
+  /// {ferramentasChamadas: [{nome, params, resultado}]} — regra anti-alucinação:
+  /// toda recomendação persiste com as queries e números que a fundamentam.
+  dadosSuporte    Json          @map("dados_suporte")
+  impactoEstimado Decimal?      @map("impacto_estimado") @db.Decimal(12, 2)
+  prioridade      Int
+  status          StatusInsight @default(NOVO)
+
+  criadoEm DateTime @default(now()) @map("criado_em")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId, status, prioridade])
+  @@map("insights")
+}
+
+// ============ OBSERVABILIDADE ============
+
+model AuditLog {
+  id         String  @id @default(cuid())
+  tenantId   String  @map("tenant_id")
+  userId     String? @map("user_id")
+  acao       String
+  entidade   String
+  entidadeId String  @map("entidade_id")
+  /// SEM PII em claro — política aplicada na escrita
+  detalhes   Json
+
+  criadoEm DateTime @default(now()) @map("criado_em")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId, criadoEm])
+  @@index([tenantId, entidade, entidadeId])
+  @@map("audit_logs")
+}
+
+/// Custo de IA por tenant/módulo — limites configuráveis em Tenant.
+model AiUsage {
+  id           String   @id @default(cuid())
+  tenantId     String   @map("tenant_id")
+  modulo       ModuloIa
+  modelo       String
+  tokensInput  Int      @map("tokens_input")
+  tokensOutput Int      @map("tokens_output")
+  criadoEm     DateTime @default(now()) @map("criado_em")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId, modulo, criadoEm])
+  @@map("ai_usage")
+}

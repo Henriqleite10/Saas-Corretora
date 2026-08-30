@@ -9,6 +9,39 @@ jobs:
   verificar:
     name: Lint, typecheck e testes
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: radar
+          POSTGRES_PASSWORD: radar
+          POSTGRES_DB: radar_corretoras
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U radar -d radar_corretoras"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+
+    env:
+      DATABASE_URL: postgresql://radar:radar@localhost:5432/radar_corretoras
+      DATABASE_URL_APP: postgresql://radar_app:radar_app@localhost:5432/radar_corretoras
+      REDIS_URL: redis://localhost:6379
+      # Chaves exclusivas de CI — nunca usar em produção
+      MASTER_KEY: MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=
+      DOC_HASH_KEY: ZmVkY2JhOTg3NjU0MzIxMGZlZGNiYTk4NzY1NDMyMTA=
+
     steps:
       - uses: actions/checkout@v4
 
@@ -21,6 +54,15 @@ jobs:
 
       - name: Instalar dependências
         run: pnpm install --frozen-lockfile
+
+      - name: Habilitar CREATEROLE para migrations (a migration de RLS cria a role radar_app)
+        run: PGPASSWORD=radar psql -h localhost -U radar -d postgres -c "ALTER ROLE radar CREATEROLE;" || true
+
+      - name: Gerar Prisma Client
+        run: pnpm --filter @radar/db generate
+
+      - name: Aplicar migrations
+        run: pnpm --filter @radar/db migrate:deploy
 
       - name: Lint
         run: pnpm lint
