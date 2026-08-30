@@ -127,6 +127,30 @@ describe.skipIf(!temBanco)("processarReguaTenant (integração)", () => {
     expect(await sistema.recoveryFlow.count({ where: { tenantId } })).toBe(1);
   });
 
+  it("com várias etapas já vencidas, redige só a mais recente e pula as anteriores", async () => {
+    // parcela venceu 2026-08-20; régua padrão: +3 (23/08) e +12 (01/09), +25 (14/09).
+    // Em 05/09, etapas 1 e 2 estão vencidas → só a 2 vai para redação.
+    const enfileirados: string[] = [];
+    const resultado = await processarReguaTenant(
+      tenantId,
+      app,
+      new Date("2026-09-05T12:00:00Z"),
+      async (stepId) => {
+        enfileirados.push(stepId);
+      },
+    );
+    expect(resultado.draftsEnfileirados).toBe(1);
+    expect(enfileirados).toHaveLength(1);
+
+    const steps = await sistema.recoveryStep.findMany({
+      where: { tenantId, flow: { installmentId: parcelaAtrasadaId } },
+      orderBy: { ordem: "asc" },
+    });
+    expect(steps[0]!.status).toBe("CANCELADA"); // pulada
+    expect(steps[1]!.id).toBe(enfileirados[0]); // a mais recente vencida
+    expect(steps[2]!.status).toBe("AGENDADA"); // futura segue agendada
+  });
+
   it("pagamento encerra o flow como PAGOU e cancela etapas pendentes", async () => {
     await sistema.installment.update({
       where: { id: parcelaAtrasadaId },

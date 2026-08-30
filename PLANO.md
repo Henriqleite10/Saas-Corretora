@@ -1,6 +1,6 @@
 # PLANO.md — radar-corretoras
 
-> Plano de arquitetura e implementação da Fase 0. Produzido antes de qualquer código, conforme o fluxo de trabalho acordado. **Aguardando aprovação para iniciar a implementação.**
+> Plano de arquitetura e implementação da Fase 0. Aprovado pelo Henrique em 30/08/2026; **Fase 0 implementada** — estado atual em CLAUDE.md.
 
 ---
 

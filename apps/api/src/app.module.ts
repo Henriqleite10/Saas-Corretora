@@ -7,6 +7,7 @@ import { AuthModule } from "./auth/auth.module";
 import { AuditModule } from "./audit/audit.module";
 import { CarteiraModule } from "./carteira/carteira.module";
 import { CobrancasModule } from "./cobrancas/cobrancas.module";
+import { ConfiguracoesModule } from "./configuracoes/configuracoes.module";
 import { ExtratosModule } from "./extratos/extratos.module";
 import { FilaModule } from "./fila/fila.module";
 import { RadarModule } from "./radar/radar.module";
@@ -24,6 +25,7 @@ import { PapeisGuard } from "./auth/papeis.guard";
     AuthModule,
     CarteiraModule,
     CobrancasModule,
+    ConfiguracoesModule,
     ExtratosModule,
     RadarModule,
     SeguradorasModule,

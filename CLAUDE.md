@@ -71,6 +71,14 @@ pnpm workspaces + Turborepo · NestJS (API) · Next.js App Router + Tailwind + s
 - [x] **Etapa 6** — Módulo A: job diário da régua (marca atraso → abre flows+etapas → encerra PAGOU/PERDIDO), scheduler BullMQ 09h UTC, API /radar (resumo + atrasadas + executar), painel web com cards de resultado.
 - [x] **Etapa 7** — Módulo C (drafter+guardrails): `RedatorCobranca` + `JuizConformidade` + `PipelineGuardrails` em @radar/ai (prompts versionados `cobranca-drafter@1.0.0` / `cobranca-juiz@1.0.0`), worker fila `ia` (régua enfileira etapas vencidas → draft → guardrails → AGUARDANDO_APROVACAO), medidor AiUsage + limite por tenant. 21 testes no ai (fixtures adversariais) + 5 de integração no worker.
 - [x] **Etapa 8** — Módulo C (fila de aprovação + envio): API /cobrancas (aprovações com contexto+justificativa, aprovar com edição → `EDITADA_E_APROVADA`+`corpoFinal` como dado de calibração, descartar, histórico), worker fila `notificacoes` (decifra e-mail com DEK, envia via `EmailProvider` — Resend ou SMTP/nodemailer —, WhatsApp stub atrás de `FEATURE_WHATSAPP`), reforços no envio: opt-out até o último instante, limite de frequência semanal por segurado (docHash, checado no draft E no envio; envio excedente é reagendado +24h), audit `mensagem_ia_enviada` com destinatário mascarado. UI da fila de aprovação com edição inline. 5 testes de envio + 5 e2e.
-- [ ] Etapa 9 — polimento e fechamento da Fase 0
+- [x] **Etapa 9** — fechamento: API/UI de configurações (régua, tom, frequência, limite de tokens — PATCH só ADMIN; autonomia IA travada em false na Fase 0), onboarding guiado no painel (checklist some quando completo), gestão de equipe na UI, README com setup e fluxo de demonstração, refinamento da régua (apólice que entra atrasada redige só a etapa vencida mais recente; anteriores viram CANCELADA), smoke ponta a ponta com filas reais validado.
 
-Fases 1 e 2: **não implementar** — apenas estrutura/interfaces/TODOs já contemplados.
+**FASE 0 COMPLETA.** Totais: ~150 testes (core 12 · db 19 · parsers 11 · ai 21 · worker 18 · api 37 + web build). CI roda tudo com Postgres+Redis.
+
+## Próximos passos (Fase 1 — não iniciar sem OK)
+
+- Módulo B: motor de matching extrato↔apólice/parcela (determinístico por `seguradoDocHash`+numeroApolice+parcela; fuzzy fallback com score em `ReconciliationResult.scoreConfianca`), relatório de divergências + fila de disputa (tabelas prontas).
+- Módulo D: relatório mensal por job + chat com tools de consulta pré-aprovadas (`tenant_id` SEMPRE do contexto autenticado, nunca do input do modelo); persistir todo insight com queries de suporte (`Insight.dadosSuporte`).
+- Pendências conhecidas da Fase 0: e-mail de verificação/reset de senha; revogação de refresh token (hoje só expira); UI de detalhe de apólice; baixa de pagamento em massa via reimportação.
+
+Fase 2: **não implementar** — interfaces reservadas em `packages/connectors/src/fase2/`.

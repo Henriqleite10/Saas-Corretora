@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { Badge, Button, Card, CardTitulo } from "@radar/ui";
 import { api } from "../../../lib/api";
 
@@ -36,6 +37,65 @@ interface ParcelaAtrasada {
 
 function brl(valor: string | number): string {
   return Number(valor).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+/** Onboarding guiado: some sozinho quando os três passos estão completos. */
+function CartaoOnboarding() {
+  const [passos, setPassos] = useState<{ vinculos: boolean; carteira: boolean } | null>(null);
+
+  useEffect(() => {
+    void Promise.all([
+      api<unknown[]>("/seguradoras/vinculos"),
+      api<{ total: number }>("/carteira/apolices?porPagina=1"),
+    ]).then(([vinculos, apolices]) => {
+      setPassos({ vinculos: vinculos.length > 0, carteira: apolices.total > 0 });
+    });
+  }, []);
+
+  if (!passos || (passos.vinculos && passos.carteira)) return null;
+
+  const itens = [
+    {
+      feito: passos.vinculos,
+      rotulo: "Vincule as seguradoras com que você trabalha",
+      href: "/configuracoes",
+    },
+    {
+      feito: passos.carteira,
+      rotulo: "Importe sua carteira de apólices (planilha)",
+      href: "/carteira",
+    },
+    {
+      feito: false,
+      rotulo: "Revise a régua de recuperação e o tom das mensagens",
+      href: "/configuracoes",
+    },
+  ];
+
+  return (
+    <Card className="border-blue-200 bg-blue-50">
+      <CardTitulo className="text-blue-900">Primeiros passos</CardTitulo>
+      <ol className="space-y-2">
+        {itens.map((item, i) => (
+          <li key={i} className="flex items-center gap-3 text-sm">
+            <span
+              className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
+                item.feito ? "bg-emerald-500 text-white" : "bg-white text-blue-900"
+              }`}
+            >
+              {item.feito ? "✓" : i + 1}
+            </span>
+            <Link
+              href={item.href}
+              className={item.feito ? "text-slate-400 line-through" : "text-blue-900 underline"}
+            >
+              {item.rotulo}
+            </Link>
+          </li>
+        ))}
+      </ol>
+    </Card>
+  );
 }
 
 function proximaEtapa(regua: ParcelaAtrasada["regua"]): string {
@@ -84,6 +144,8 @@ export default function PainelPage() {
           {atualizando ? "Atualizando..." : "Atualizar radar"}
         </Button>
       </div>
+
+      <CartaoOnboarding />
 
       {resumo && (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

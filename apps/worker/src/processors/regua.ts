@@ -102,7 +102,10 @@ export async function processarReguaTenant(
     }
   });
 
-  // 2.5. Etapas vencidas de flows em andamento → job de redação (Módulo C, Etapa 7).
+  // 2.5. Etapas vencidas de flows em andamento → job de redação (Módulo C).
+  // Se a apólice entrou atrasada na régua com várias etapas já vencidas,
+  // redige apenas a MAIS RECENTE; as anteriores são puladas (CANCELADA) —
+  // ninguém recebe três cobranças de uma vez.
   if (enfileirarDraft) {
     const devidas = await comTenant(app, tenantId, (tx) =>
       tx.recoveryStep.findMany({
@@ -111,10 +114,24 @@ export async function processarReguaTenant(
           agendadaPara: { lte: hoje },
           flow: { desfecho: "EM_ANDAMENTO" },
         },
-        select: { id: true },
+        select: { id: true, flowId: true, ordem: true },
+        orderBy: { ordem: "asc" },
       }),
     );
+    const maisRecentePorFlow = new Map<string, { id: string; ordem: number }>();
     for (const step of devidas) {
+      maisRecentePorFlow.set(step.flowId, { id: step.id, ordem: step.ordem });
+    }
+    const puladas = devidas.filter((s) => maisRecentePorFlow.get(s.flowId)!.id !== s.id);
+    if (puladas.length > 0) {
+      await comTenant(app, tenantId, (tx) =>
+        tx.recoveryStep.updateMany({
+          where: { id: { in: puladas.map((s) => s.id) } },
+          data: { status: "CANCELADA" },
+        }),
+      );
+    }
+    for (const step of maisRecentePorFlow.values()) {
       await enfileirarDraft(step.id, tenantId);
       resultado.draftsEnfileirados += 1;
     }
