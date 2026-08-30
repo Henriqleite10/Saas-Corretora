@@ -8,6 +8,7 @@ import { AuditModule } from "./audit/audit.module";
 import { CarteiraModule } from "./carteira/carteira.module";
 import { ExtratosModule } from "./extratos/extratos.module";
 import { FilaModule } from "./fila/fila.module";
+import { RadarModule } from "./radar/radar.module";
 import { SeguradorasModule } from "./seguradoras/seguradoras.module";
 import { JwtAuthGuard } from "./auth/jwt-auth.guard";
 import { PapeisGuard } from "./auth/papeis.guard";
@@ -22,6 +23,7 @@ import { PapeisGuard } from "./auth/papeis.guard";
     AuthModule,
     CarteiraModule,
     ExtratosModule,
+    RadarModule,
     SeguradorasModule,
   ],
   providers: [

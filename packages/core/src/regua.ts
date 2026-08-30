@@ -32,3 +32,34 @@ export const CONFIG_REGUA_PADRAO: ConfigRegua = [
 
 export const TONS_COBRANCA = ["cordial", "formal", "proximo"] as const;
 export type TomCobranca = (typeof TONS_COBRANCA)[number];
+
+const MS_POR_DIA = 24 * 60 * 60 * 1000;
+
+export interface EtapaAgendada {
+  ordem: number;
+  canal: EtapaRegua["canal"];
+  agendadaPara: Date;
+}
+
+/** Projeta as etapas da régua a partir do vencimento da parcela. */
+export function agendarEtapasRegua(config: ConfigRegua, vencimento: Date): EtapaAgendada[] {
+  return config.map((etapa, i) => ({
+    ordem: i + 1,
+    canal: etapa.canal,
+    agendadaPara: new Date(vencimento.getTime() + etapa.diasAposVencimento * MS_POR_DIA),
+  }));
+}
+
+/**
+ * Comissão futura em risco se a apólice for cancelada por inadimplência:
+ * soma das parcelas ainda não pagas × % de comissão esperado.
+ */
+export function calcularComissaoEmRisco(
+  parcelas: { valor: number; status: string }[],
+  percentComissao: number,
+): number {
+  const aReceber = parcelas
+    .filter((p) => p.status === "EM_DIA" || p.status === "ATRASADA")
+    .reduce((soma, p) => soma + p.valor, 0);
+  return Math.round(aReceber * percentComissao) / 100;
+}
