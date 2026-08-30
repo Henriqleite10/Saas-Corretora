@@ -90,25 +90,25 @@ Job diário "detect-overdue" → marca Installments atrasadas → cria/avança R
 
 ## 3. Decisões de arquitetura (registradas)
 
-| Tema | Decisão | Racional |
-|---|---|---|
-| Auth | E-mail + senha (Argon2) com sessão JWT curta + refresh token httpOnly, implementado na API NestJS | Sem dependência de SaaS de auth; multi-tenant nativo; simples de testar |
-| Multi-tenancy | `tenant_id` em toda tabela tenant-scoped + RLS no Postgres (`SET app.tenant_id` por request/job via extensão do Prisma Client) | Duas camadas independentes; RLS protege contra bug de aplicação |
-| RBAC | Papéis `ADMIN`, `CORRETOR`, `FINANCEIRO` como enum em `User` + guard NestJS | Suficiente para PME; granularidade fina fica para depois |
-| IDs | `cuid()` em todas as PKs | Não sequencial (não vaza volume), ordenável, gerado no client |
-| Dinheiro | `Decimal(12,2)` no Prisma, nunca float | Produto financeiro |
-| Criptografia de PII | Envelope encryption AES-256-GCM: DEK por tenant, embrulhada por KEK em env (`MASTER_KEY`); interface `KeyProvider` KMS-ready | Requisito da seção 8; troca por KMS sem tocar no domínio |
-| CPF/CNPJ | Armazenado cifrado + coluna `documentoHash` (HMAC-SHA256) para busca/matching exato; UI mascara por padrão; logs só com hash/últimos 3 dígitos | Busca sem descriptografar; LGPD |
-| Parsers | Detecção de formato em duas etapas: sniff da seguradora (nome no cabeçalho/estrutura) → `formatVersion` por heurística declarada no parser | Seguradoras mudam layout sem avisar |
-| Fila | BullMQ; filas: `parsing`, `regua`, `ia`, `notificacoes`, `agendamentos`; jobs idempotentes com chave natural | Retry seguro |
-| IA | `@anthropic-ai/sdk`; modelo por env (`AI_MODEL`, default Sonnet mais recente); prompts versionados em `packages/ai/prompts/*.md` com frontmatter (versão, data); prompt caching no system prompt; structured outputs p/ classificação do juiz | Requisito fechado da stack |
-| Guardrails | Pipeline: (1) regras determinísticas (lista de padrões proibidos, presença de identificação da corretora, limite de frequência) → (2) modelo juiz (CDC art. 42/71) com saída JSON → só então mensagem entra na fila de aprovação | Duas camadas; testável com fixtures |
-| Custo de IA | Tabela `AiUsage` (tenant, módulo, tokens in/out, timestamp) + limite configurável por tenant com corte suave (alerta) e duro (bloqueio) | Requisito seção 8 |
-| Notificações | Adapter `NotificationProvider`: `EmailProvider` (Resend se `RESEND_API_KEY`, senão SMTP) implementado; `WhatsAppProvider` interface + stub atrás de `FEATURE_WHATSAPP` | Requisito |
-| Validação | Zod em todas as bordas (API DTOs, payloads de jobs, arquivos importados, saídas estruturadas da IA) | Requisito |
-| Rate limiting | `@nestjs/throttler` por IP + por tenant | Requisito |
-| OCR | Fora de escopo: PDFs escaneados são rejeitados com mensagem clara e viram item revisável | Limitação documentada |
-| i18n | UI hardcoded pt-BR (sem framework de i18n por ora); marca não hardcoded (nome do produto via env/config) | Nome comercial indefinido |
+| Tema                | Decisão                                                                                                                                                                                                                                       | Racional                                                                |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Auth                | E-mail + senha (Argon2) com sessão JWT curta + refresh token httpOnly, implementado na API NestJS                                                                                                                                             | Sem dependência de SaaS de auth; multi-tenant nativo; simples de testar |
+| Multi-tenancy       | `tenant_id` em toda tabela tenant-scoped + RLS no Postgres (`SET app.tenant_id` por request/job via extensão do Prisma Client)                                                                                                                | Duas camadas independentes; RLS protege contra bug de aplicação         |
+| RBAC                | Papéis `ADMIN`, `CORRETOR`, `FINANCEIRO` como enum em `User` + guard NestJS                                                                                                                                                                   | Suficiente para PME; granularidade fina fica para depois                |
+| IDs                 | `cuid()` em todas as PKs                                                                                                                                                                                                                      | Não sequencial (não vaza volume), ordenável, gerado no client           |
+| Dinheiro            | `Decimal(12,2)` no Prisma, nunca float                                                                                                                                                                                                        | Produto financeiro                                                      |
+| Criptografia de PII | Envelope encryption AES-256-GCM: DEK por tenant, embrulhada por KEK em env (`MASTER_KEY`); interface `KeyProvider` KMS-ready                                                                                                                  | Requisito da seção 8; troca por KMS sem tocar no domínio                |
+| CPF/CNPJ            | Armazenado cifrado + coluna `documentoHash` (HMAC-SHA256) para busca/matching exato; UI mascara por padrão; logs só com hash/últimos 3 dígitos                                                                                                | Busca sem descriptografar; LGPD                                         |
+| Parsers             | Detecção de formato em duas etapas: sniff da seguradora (nome no cabeçalho/estrutura) → `formatVersion` por heurística declarada no parser                                                                                                    | Seguradoras mudam layout sem avisar                                     |
+| Fila                | BullMQ; filas: `parsing`, `regua`, `ia`, `notificacoes`, `agendamentos`; jobs idempotentes com chave natural                                                                                                                                  | Retry seguro                                                            |
+| IA                  | `@anthropic-ai/sdk`; modelo por env (`AI_MODEL`, default Sonnet mais recente); prompts versionados em `packages/ai/prompts/*.md` com frontmatter (versão, data); prompt caching no system prompt; structured outputs p/ classificação do juiz | Requisito fechado da stack                                              |
+| Guardrails          | Pipeline: (1) regras determinísticas (lista de padrões proibidos, presença de identificação da corretora, limite de frequência) → (2) modelo juiz (CDC art. 42/71) com saída JSON → só então mensagem entra na fila de aprovação              | Duas camadas; testável com fixtures                                     |
+| Custo de IA         | Tabela `AiUsage` (tenant, módulo, tokens in/out, timestamp) + limite configurável por tenant com corte suave (alerta) e duro (bloqueio)                                                                                                       | Requisito seção 8                                                       |
+| Notificações        | Adapter `NotificationProvider`: `EmailProvider` (Resend se `RESEND_API_KEY`, senão SMTP) implementado; `WhatsAppProvider` interface + stub atrás de `FEATURE_WHATSAPP`                                                                        | Requisito                                                               |
+| Validação           | Zod em todas as bordas (API DTOs, payloads de jobs, arquivos importados, saídas estruturadas da IA)                                                                                                                                           | Requisito                                                               |
+| Rate limiting       | `@nestjs/throttler` por IP + por tenant                                                                                                                                                                                                       | Requisito                                                               |
+| OCR                 | Fora de escopo: PDFs escaneados são rejeitados com mensagem clara e viram item revisável                                                                                                                                                      | Limitação documentada                                                   |
+| i18n                | UI hardcoded pt-BR (sem framework de i18n por ora); marca não hardcoded (nome do produto via env/config)                                                                                                                                      | Nome comercial indefinido                                               |
 
 ---
 
@@ -411,9 +411,12 @@ interface StatementParser {
   readonly insurerSlug: string;
   readonly formatVersion: string;
   detect(file: RawFile): number; // score 0..1 — detecção automática de versão
-  parse(file: RawFile, meta: StatementMeta): Promise<{
-    entries: CanonicalCommissionEntry[];   // Zod-validado
-    rejectedRows: RejectedRow[];           // nunca falhe silenciosamente
+  parse(
+    file: RawFile,
+    meta: StatementMeta,
+  ): Promise<{
+    entries: CanonicalCommissionEntry[]; // Zod-validado
+    rejectedRows: RejectedRow[]; // nunca falhe silenciosamente
   }>;
 }
 // Registro: ParserRegistry.resolve(insurerSlug, file) → maior score de detect() vence.
@@ -439,17 +442,17 @@ interface GuardrailPipeline {
 
 Cada etapa termina com lint + typecheck + testes verdes, commit(s) pequenos em português, e resumo do feito/próximo.
 
-| # | Etapa | Conteúdo | Critério de pronto |
-|---|---|---|---|
-| 1 | **Fundação do monorepo** | pnpm workspaces, Turborepo, TS estrito, ESLint/Prettier, Vitest, docker-compose (Postgres+Redis), CI GitHub Actions, `CLAUDE.md` inicial, esqueleto de todas as pastas (Fases 1/2 com TODOs) | `pnpm lint && pnpm typecheck && pnpm test` verdes no CI |
-| 2 | **Banco + multi-tenancy** | Schema Prisma completo (seção 4), migrations, migration RLS manual, extensão de tenant-context do client, crypto (envelope AES-GCM + KeyProvider), seed de `Insurer` | Testes de isolamento: tenant A nunca lê B (via app E via SQL direto com role da app); round-trip de criptografia |
-| 3 | **API base: auth + tenants** | NestJS bootstrap, registro de corretora (onboarding), login (Argon2 + JWT/refresh), RBAC guard, rate limiting, Zod pipes, AuditLog service | Testes e2e de auth e escopo de tenant |
-| 4 | **Carteira** | CRUD de apólices/parcelas, importação via planilha modelo (XLSX/CSV) com relatório de erros linha a linha, mascaramento de PII na leitura | Importa fixture de carteira com linhas boas e ruins; erros viram relatório |
-| 5 | **Framework de parsers + 3 seguradoras** | Interfaces, registry com detecção de versão, gerador de fixtures sintéticas (XLSX + PDF texto) p/ Porto, Tokio e Bradesco, parsers, fila `parsing` no worker, UI de upload + fila de linhas rejeitadas | Cobertura alta nos parsers; arquivo com linhas inválidas produz entries + rejeições, nunca exceção silenciosa |
-| 6 | **Módulo A: radar de inadimplência** | Job diário `detect-overdue`, criação/avanço de `RecoveryFlow`/`RecoverySteps` a partir da config de régua do tenant, dashboard de parcelas em atraso (filtros por ramo/seguradora/dias), painel "X apólices salvas / R$ Y preservados" | Job idempotente testado; dashboard funcional com dados de seed |
-| 7 | **Módulo C: drafter + guardrails** | `MessageDrafter` com prompts versionados em `packages/ai/prompts/`, prompt caching, structured outputs, pipeline de guardrails (regras + juiz), contadores `AiUsage` com limite por tenant, defesa de prompt injection (conteúdo do segurado sempre como dado) | Suite de guardrails com fixtures adversariais (ameaça, urgência falsa, tom vexatório → REPROVADA); mensagens válidas passam |
-| 8 | **Módulo C: fila de aprovação + envio** | UI da fila (mensagem + justificativa, editar/aprovar/descartar), gravação de edições, `EmailProvider` (Resend/SMTP), `WhatsAppProvider` stub atrás de `FEATURE_WHATSAPP`, limites de frequência, opt-out imediato e persistido, AuditLog de todo envio | E2e: parcela atrasada → draft → aprovação → e-mail enviado (mailhog/captura) → desfecho registrado no painel |
-| 9 | **Polimento e fechamento da Fase 0** | Onboarding guiado (cadastro → seguradoras → importar carteira → configurar régua), telas de configuração (tom, frequência, régua), revisão de segurança (headers, CORS, masking), README, `CLAUDE.md` atualizado | Fluxo completo demonstrável do zero: cadastrar corretora → importar carteira → parcela atrasada → mensagem aprovada → enviada → resultado no painel |
+| #   | Etapa                                    | Conteúdo                                                                                                                                                                                                                                                       | Critério de pronto                                                                                                                                  |
+| --- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Fundação do monorepo**                 | pnpm workspaces, Turborepo, TS estrito, ESLint/Prettier, Vitest, docker-compose (Postgres+Redis), CI GitHub Actions, `CLAUDE.md` inicial, esqueleto de todas as pastas (Fases 1/2 com TODOs)                                                                   | `pnpm lint && pnpm typecheck && pnpm test` verdes no CI                                                                                             |
+| 2   | **Banco + multi-tenancy**                | Schema Prisma completo (seção 4), migrations, migration RLS manual, extensão de tenant-context do client, crypto (envelope AES-GCM + KeyProvider), seed de `Insurer`                                                                                           | Testes de isolamento: tenant A nunca lê B (via app E via SQL direto com role da app); round-trip de criptografia                                    |
+| 3   | **API base: auth + tenants**             | NestJS bootstrap, registro de corretora (onboarding), login (Argon2 + JWT/refresh), RBAC guard, rate limiting, Zod pipes, AuditLog service                                                                                                                     | Testes e2e de auth e escopo de tenant                                                                                                               |
+| 4   | **Carteira**                             | CRUD de apólices/parcelas, importação via planilha modelo (XLSX/CSV) com relatório de erros linha a linha, mascaramento de PII na leitura                                                                                                                      | Importa fixture de carteira com linhas boas e ruins; erros viram relatório                                                                          |
+| 5   | **Framework de parsers + 3 seguradoras** | Interfaces, registry com detecção de versão, gerador de fixtures sintéticas (XLSX + PDF texto) p/ Porto, Tokio e Bradesco, parsers, fila `parsing` no worker, UI de upload + fila de linhas rejeitadas                                                         | Cobertura alta nos parsers; arquivo com linhas inválidas produz entries + rejeições, nunca exceção silenciosa                                       |
+| 6   | **Módulo A: radar de inadimplência**     | Job diário `detect-overdue`, criação/avanço de `RecoveryFlow`/`RecoverySteps` a partir da config de régua do tenant, dashboard de parcelas em atraso (filtros por ramo/seguradora/dias), painel "X apólices salvas / R$ Y preservados"                         | Job idempotente testado; dashboard funcional com dados de seed                                                                                      |
+| 7   | **Módulo C: drafter + guardrails**       | `MessageDrafter` com prompts versionados em `packages/ai/prompts/`, prompt caching, structured outputs, pipeline de guardrails (regras + juiz), contadores `AiUsage` com limite por tenant, defesa de prompt injection (conteúdo do segurado sempre como dado) | Suite de guardrails com fixtures adversariais (ameaça, urgência falsa, tom vexatório → REPROVADA); mensagens válidas passam                         |
+| 8   | **Módulo C: fila de aprovação + envio**  | UI da fila (mensagem + justificativa, editar/aprovar/descartar), gravação de edições, `EmailProvider` (Resend/SMTP), `WhatsAppProvider` stub atrás de `FEATURE_WHATSAPP`, limites de frequência, opt-out imediato e persistido, AuditLog de todo envio         | E2e: parcela atrasada → draft → aprovação → e-mail enviado (mailhog/captura) → desfecho registrado no painel                                        |
+| 9   | **Polimento e fechamento da Fase 0**     | Onboarding guiado (cadastro → seguradoras → importar carteira → configurar régua), telas de configuração (tom, frequência, régua), revisão de segurança (headers, CORS, masking), README, `CLAUDE.md` atualizado                                               | Fluxo completo demonstrável do zero: cadastrar corretora → importar carteira → parcela atrasada → mensagem aprovada → enviada → resultado no painel |
 
 **Fases 1 e 2 nesta entrega:** apenas pastas, interfaces (`ReconciliationEngine`, `ConversationAgent`, `PortalScraperConnector`, `ApiConnector`, ferramentas de insight), tabelas já no schema e TODOs documentados. Nenhuma implementação.
 
@@ -474,4 +477,4 @@ Cada etapa termina com lint + typecheck + testes verdes, commit(s) pequenos em p
 
 ---
 
-*Aguardando OK para iniciar a Etapa 1.*
+_Aguardando OK para iniciar a Etapa 1._
