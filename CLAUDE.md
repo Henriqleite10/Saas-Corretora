@@ -82,3 +82,53 @@ pnpm workspaces + Turborepo · NestJS (API) · Next.js App Router + Tailwind + s
 - Pendências conhecidas da Fase 0: e-mail de verificação/reset de senha; revogação de refresh token (hoje só expira); UI de detalhe de apólice; baixa de pagamento em massa via reimportação.
 
 Fase 2: **não implementar** — interfaces reservadas em `packages/connectors/src/fase2/`.
+
+---
+
+# Funil 2 da NID (projeto paralelo neste repositório)
+
+Este repositório também hospeda o **Funil 2 da NID (Núcleo de Inteligência Digital)**. Tudo acima pertence ao radar-corretoras e não muda. Esta seção é o resumo de retomada do Funil 2. A fonte da verdade é `docs/00-brief-mestre.md`: todo agente lê o brief antes de produzir qualquer coisa. Mantenha o "Estado dos sprints" atualizado ao fim de cada sprint.
+
+## Contexto em uma página
+
+- **NID** é uma Consultoria de Performance Comercial (nunca "agência", nunca "software house", nunca "infoprodutora"). Vende para empresas geração de demanda (tráfego pago), automação comercial com IA e terceirização de BDR/SDR/closer. Isso é o **Funil 1**, que já roda e não muda. Desenhar, apresentar e fechar projetos é o core da NID.
+- **Funil 2** empacota esse método em produtos de venda direta para um público diferente: **vendedores, SDRs, closers e consultores** que precisam desenhar e apresentar projetos para vender.
+- **Esteira** (nesta ordem): 1) Playbook, R$ 29,90 (PDF + templates de fluxo, entrada); 2) Mini curso, R$ 147 (vídeo-aulas gravadas pelo Henrique; order bump no checkout do playbook e degrau 2); 3) **NIDflow**, R$ 29,90/mês (ferramenta própria, HTML único, já existe; única receita recorrente; só oferta e onboarding); 4) **Plataforma NID**, R$ 980/ano (ambiente estilo Finclass + comunidade, minicursos inclusos e bloqueados, agenda de encontros; lançamento interno para a base).
+- **Segmentação após a esteira**: Gatilho A (comprador com empresa ou decisor) → sessão de arquitetura gratuita do Funil 1. Gatilho B (vende bem e domina o método) → banco de talentos da vertical de terceirização.
+- **Aquisição (mecânica ATA)**: conteúdo orgânico com CTA em todo post, tráfego pago direto para a página do playbook, agente de IA respondendo no direct e no WhatsApp. Campanha, verba e métricas separadas do Funil 1 (prefixo `F2`).
+- **Método NID de Desenho de Projetos**: arco **dor → solução → arquitetura → valor**. Toda proposta, página, aula e criativo segue esse arco.
+
+## Regras inegociáveis
+
+- Português do Brasil com ortografia e acentuação perfeitas. **Nunca travessão (—)**.
+- Outputs prontos para uso (copiar, publicar, gravar). Nada de rascunho ou "exemplo de". Único placeholder permitido: `[DEPOIMENTO REAL]` / `[NÚMERO REAL]`; prova social nunca é inventada.
+- Estrutura sempre como sistema (arco dor → solução → arquitetura → valor), nunca ideias soltas.
+- Identidade: laranja `#F26522`, cinza escuro `#373737`, Arial (em web, tipografia da skill `nid-pages` com a mesma paleta).
+- **Henrique nunca é mentor, guru ou infoprodutor.** O produto é o método e a ferramenta da NID; Henrique aparece como sócio da NID que aplica o método. Assinatura sempre NID.
+- Léxico proibido e regras de voz completas no brief (seção 10).
+- Skills a usar (instaladas em `~/.claude/skills/synced/*/`): `mnt-skills-user-copywriting`, `nid-pages`, `nid-apresentacoes`, `article-writing`, `brand-voice`, `nid-contratos`, além de `pdf`, `pptx`, `claude-api` quando couber.
+
+## Time de agentes (`.claude/agents/`, um por responsabilidade)
+
+| Agente | Responsabilidade única | Pasta |
+|---|---|---|
+| `metodo` | Playbook (método, templates de fluxo, PDF final); guardião da definição canônica do método | `produtos/playbook/` |
+| `roteiro` | Grade, roteiro palavra por palavra e slides do mini curso | `produtos/mini-curso/` |
+| `copy` | Página do playbook, order bump, checkout, sequências de e-mail e WhatsApp, página da Plataforma | `produtos/*/pagina-de-vendas.md`, `automacoes/sequencias/` |
+| `trafego` | Ângulos, criativos, calendário de posts com CTA, plano de verba, métricas | `campanhas/` |
+| `automacao` | Agente de IA no direct/WhatsApp, entrega pós-compra, oferta do NIDflow em D+7, gatilhos A/B, integrações | `automacoes/` |
+| `nidflow` | Plano de assinatura, onboarding, interno vs produto, backlog técnico | `produtos/nidflow/` |
+| `plataforma` | Estrutura, catálogo de minicursos, comunidade e encontros, lançamento interno | `produtos/plataforma/` |
+
+O coordenador (sessão principal) despacha, revisa a coerência entre as peças e leva ao Henrique só o que precisa de aprovação. Cada agente termina com um "Relatório ao coordenador" (arquivos, decisões fora do brief, pontos para aprovação, dependências, pendências). Henrique aprova ao fim de cada sprint e grava o mini curso; todo o resto é do time.
+
+## Sprints e estado
+
+- [ ] **Sprint 1 · Fundação**: `docs/00-brief-mestre.md` (posicionamento, promessa, ICP, nomes finais, ofertas, preços, regras de voz). **Entregue, aguardando aprovação do Henrique.** Decisões pendentes listadas na seção 12 do brief.
+- [ ] **Sprint 2 · Playbook** completo (conteúdo + PDF). Para e pede aprovação.
+- [ ] **Sprint 3 · Mini curso** (roteiro) + página de vendas + checkout com order bump. Para e pede aprovação. Henrique grava.
+- [ ] **Sprint 4 · Automações** + oferta e onboarding do NIDflow. (Pré-requisito: arquivo HTML do NIDflow no repositório ou caminho indicado.)
+- [ ] **Sprint 5 · Tráfego** + conteúdo de lançamento.
+- [ ] **Sprint 6 · Plataforma**.
+
+Branch de trabalho do Funil 2: `claude/vigilant-fermat-raaslm`. Commits em português (`tipo: descrição`).
