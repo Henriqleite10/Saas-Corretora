@@ -119,8 +119,16 @@ Este repositório também hospeda o **Funil 2 da NID (Núcleo de Inteligência D
 | `automacao` | Agente de IA no direct/WhatsApp, entrega pós-compra, oferta do NIDflow em D+7, gatilhos A/B, integrações | `automacoes/` |
 | `nidflow` | Plano de assinatura, onboarding, interno vs produto, backlog técnico | `produtos/nidflow/` |
 | `plataforma` | Estrutura, catálogo de minicursos, comunidade e encontros, lançamento interno | `produtos/plataforma/` |
+| `estrategia` | Estrategista-chefe e validador de coerência: pesquisa tendências de venda direta, conhece a NID por inteiro, emite pareceres com veredito (APROVADO / AJUSTAR / BLOQUEAR) sobre estratégia e sobre cada peça, propõe caminhos diferentes com fundamento. Não produz peças. | `docs/01-parecer-estrategico.md`, `docs/02-revisao-de-coerencia.md` |
 
-O coordenador (sessão principal) despacha, revisa a coerência entre as peças e leva ao Henrique só o que precisa de aprovação. Cada agente termina com um "Relatório ao coordenador" (arquivos, decisões fora do brief, pontos para aprovação, dependências, pendências). Henrique aprova ao fim de cada sprint e grava o mini curso; todo o resto é do time.
+O coordenador (sessão principal) despacha, consolida os pareceres do `estrategia`, revisa a coerência entre as peças e leva ao Henrique só o que precisa de aprovação. Toda peça passa pelo `estrategia` antes de ser dada como pronta. Cada agente termina com um "Relatório ao coordenador" (arquivos, decisões fora do brief, pontos para aprovação, dependências, pendências). Henrique aprova ao fim de cada sprint e grava o mini curso; todo o resto é do time.
+
+## Ordem de execução (ondas paralelas, respeitando dependências)
+
+1. Onda 1: `estrategia` (parecer do brief) · `metodo` (playbook) · `nidflow` (plano, onboarding, backlog).
+2. Onda 2: `roteiro` (mini curso, lê o playbook) · `copy` A (página do playbook, checkout e bump, página do mini curso) · `automacao` (fluxos com rascunhos funcionais) · `plataforma` · `trafego` (lê a página do playbook).
+3. Onda 3: `copy` B (sequências de e-mail e WhatsApp a partir dos fluxos, oferta do NIDflow, página da Plataforma, mensagens de lançamento) · `estrategia` (revisão de coerência de tudo).
+4. Fechamento pelo coordenador: correções despachadas, `docs/03-mapa-de-execucao.md` + `docs/mapa-de-execucao.html` (fluxograma do que está pronto e do que falta) e lista mínima de ações do Henrique.
 
 ## Sprints e estado
 
