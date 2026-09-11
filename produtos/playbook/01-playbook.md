@@ -743,7 +743,7 @@ Uma proposta que começa por "quem somos" pede ao cliente que se interesse por v
 
 ## O que nunca aparece antes do valor
 
-- **O preço.** Em nenhuma forma: nem número, nem faixa, nem "a partir de". Se o cliente pular para o fim, é problema dele; o seu é não facilitar o atalho colocando o número no início.
+- **O preço.** Em nenhuma forma: nem número, nem faixa, nem "a partir de". Se o cliente pular para o fim, é problema dele; o seu é não abrir o atalho colocando o número no início.
 - **A lista de funcionalidades do seu produto.** Módulos, recursos, tecnologias, horas. Elas aparecem como componentes da arquitetura, dentro da etapa em que resolvem alguma coisa.
 - **A sua empresa.** Histórico, missão, equipe, prêmios. Se entrar, entra depois do próximo passo, em uma página, com o que sustenta o projeto.
 - **Comparações com concorrentes.** A proposta compara custo com valor, não você com os outros.

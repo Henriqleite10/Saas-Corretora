@@ -464,7 +464,7 @@ def build_playbook(toc_pages=None):
 # ----------------------------------------------------------------------------
 
 TPL_CSS = CSS + r"""
-@page{ @bottom-left{content:"Templates de fluxo · Método NID de Desenho de Projetos"} }
+@page{margin:15mm 16mm 18mm 16mm; @bottom-left{content:"Templates de fluxo · Método NID de Desenho de Projetos"} }
 @page land{size:A4 landscape;margin:16mm 16mm 18mm 16mm; @bottom-left{content:"Templates de fluxo · Método NID de Desenho de Projetos";font-family:'Liberation Sans',Arial,sans-serif;font-size:8pt;color:#6B6B6B;} @bottom-right{content:counter(page);font-family:'Liberation Sans',Arial,sans-serif;font-size:8.5pt;font-weight:700;color:#373737;}}
 .land{page:land;}
 .tplHead{background:var(--escuro);color:#fff;border-radius:4mm;padding:7mm 9mm 6mm;margin-bottom:5mm;position:relative;overflow:hidden;}
@@ -552,7 +552,7 @@ STAGE_OF = {
 HEIGHTS = {
     # template: {campo_prefixo: classe de altura}
     "1": {"1.": "h0", "2.": "h15", "3.": "h15", "4.": "h2", "5.": "h1", "6.": "h15"},
-    "2": {"1.": "h15", "2.": "h1", "3.": "h15", "4.": "h2", "5.": "h1", "6.": "h15"},
+    "2": {"1.": "h1", "2.": "h1", "3.": "h15", "4.": "h2", "5.": "h1", "6.": "h15"},
     "4": {"1.": "h2", "2.": "h1", "3.": "h3", "4.": "h2", "5.": "h3", "6.": "h3", "7.": "h2", "8.": "h2"},
 }
 
