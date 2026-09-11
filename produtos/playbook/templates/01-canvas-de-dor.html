@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Template 1 · Canvas de dor · Método NID</title>
+<style>
+:root{--laranja:#F26522;--laranja2:#FF8A4C;--escuro:#373737;--escuro2:#2A2A2A;--cinza:#6B6B6B;--off:#F5F4F2;--branco:#FFFFFF;--linha:#E4E2DE;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{font-family:'Liberation Sans',Arial,Helvetica,sans-serif;color:var(--escuro);background:#fff;-webkit-font-smoothing:antialiased;font-size:10.5pt;line-height:1.5;}
+@page{size:A4;margin:20mm 18mm 22mm 18mm;
+  @bottom-left{content:"Playbook NID · Desenhe para Vender";font-family:'Liberation Sans',Arial,sans-serif;font-size:8pt;letter-spacing:.4px;color:#6B6B6B;}
+  @bottom-right{content:counter(page);font-family:'Liberation Sans',Arial,sans-serif;font-size:8.5pt;font-weight:700;color:#373737;}
+}
+@page full{margin:0; @bottom-left{content:none} @bottom-right{content:none}}
+.full{page:full;width:210mm;height:297mm;overflow:hidden;position:relative;page-break-after:always;background:var(--escuro);color:#fff;}
+.full.last{page-break-after:auto;}
+.glow{position:absolute;border-radius:50%;filter:blur(6px);}
+.g1{width:150mm;height:150mm;right:-45mm;top:-50mm;background:radial-gradient(circle,rgba(242,101,34,.55),transparent 65%);}
+.g2{width:120mm;height:120mm;left:-40mm;bottom:-45mm;background:radial-gradient(circle,rgba(242,101,34,.30),transparent 65%);}
+.cover .inner{position:absolute;left:22mm;right:22mm;top:24mm;bottom:22mm;}
+.logoImg{height:15mm;width:auto;display:block;}
+.logoRow{display:flex;align-items:center;gap:5mm;}
+.logoDiv{width:1px;height:11mm;background:rgba(255,255,255,.22);}
+.txt2{font-size:7.5pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9C9C9C;line-height:1.45;}
+.cover .label{font-size:9.5pt;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--laranja2);margin-bottom:8mm;}
+.cover h1{font-size:44pt;line-height:1.02;font-weight:800;letter-spacing:-1.5pt;max-width:150mm;}
+.cover h1 .or{color:var(--laranja2);}
+.cover .sub{margin-top:9mm;font-size:14pt;color:#C9C9C9;max-width:130mm;line-height:1.45;}
+.cover .title{position:absolute;top:62mm;left:0;}
+.cover .desc{position:absolute;top:150mm;left:0;max-width:135mm;font-size:10.5pt;color:#BDBDBD;line-height:1.55;}
+.cover .desc b{color:#fff;}
+.cover .bottom{position:absolute;left:0;bottom:0;display:flex;align-items:center;gap:5mm;}
+.cover .bottom .ln{width:14mm;height:3px;background:var(--laranja);}
+.cover .bottom .who small{display:block;font-size:8pt;letter-spacing:2px;text-transform:uppercase;color:#9C9C9C;margin-bottom:1mm;}
+.cover .bottom .who b{font-size:13pt;font-weight:800;color:#fff;display:block;}
+.cover .bottom .who span{font-size:9.5pt;color:#BDBDBD;}
+.cover .steps{position:absolute;top:108mm;left:0;display:flex;gap:3mm;}
+.cover .steps .s{flex:1;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);border-radius:3mm;padding:3.5mm 3.5mm 3mm;min-width:36mm;}
+.cover .steps .s .n{font-size:8pt;letter-spacing:2px;color:var(--laranja2);font-weight:700;text-transform:uppercase;}
+.cover .steps .s .t{font-size:13pt;font-weight:800;margin-top:1mm;}
+.cover .steps .arrow{align-self:center;color:var(--laranja2);font-size:14pt;font-weight:800;}
+
+/* sumário */
+.toc h2{font-size:24pt;font-weight:800;letter-spacing:-.8pt;margin-bottom:8mm;}
+.toc .kick{display:inline-block;font-size:8.5pt;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--laranja);margin-bottom:3mm;}
+.toc ol{list-style:none;}
+.toc li{display:flex;align-items:baseline;gap:3mm;padding:2.6mm 0;border-bottom:1px solid var(--linha);font-size:10.5pt;}
+.toc li .k{flex:0 0 34mm;font-size:8pt;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--laranja);}
+.toc li .t{flex:1;font-weight:700;color:var(--escuro);}
+.toc li .pg{font-weight:700;color:var(--cinza);font-variant-numeric:tabular-nums;}
+.toc .note{margin-top:8mm;padding:5mm 6mm;background:var(--off);border:1px solid var(--linha);border-radius:3mm;color:var(--cinza);font-size:9.5pt;}
+.toc .note b{color:var(--escuro);}
+
+/* capítulo */
+.chapter{page-break-before:always;}
+.chapHead{background:var(--escuro);color:#fff;border-radius:4mm;padding:10mm 10mm 9mm;margin-bottom:8mm;position:relative;overflow:hidden;}
+.chapHead .bar{position:absolute;left:0;top:0;height:2.2mm;width:100%;background:linear-gradient(90deg,var(--laranja),var(--laranja2));}
+.chapHead .kick{font-size:8.5pt;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--laranja2);margin-bottom:3mm;display:block;}
+.chapHead h1{font-size:24pt;line-height:1.08;font-weight:800;letter-spacing:-.8pt;color:#fff;}
+.chapHead .num{position:absolute;right:8mm;top:6mm;font-size:52pt;font-weight:800;color:rgba(255,255,255,.07);letter-spacing:-2pt;line-height:1;}
+
+h2{font-size:14.5pt;font-weight:800;letter-spacing:-.3pt;margin:7mm 0 2.5mm;color:var(--escuro);page-break-after:avoid;}
+h3{font-size:11pt;font-weight:700;margin:5mm 0 1.5mm;color:var(--escuro);page-break-after:avoid;}
+p{margin:0 0 3mm;}
+ul,ol{margin:0 0 3.5mm 5.5mm;}
+li{margin-bottom:1.4mm;}
+li::marker{color:var(--laranja);font-weight:700;}
+strong{font-weight:700;color:var(--escuro);}
+code{font-family:'Liberation Mono',Menlo,monospace;font-size:9pt;background:var(--off);padding:0 1mm;border-radius:1mm;}
+
+.tb{width:100%;border-collapse:collapse;margin:2mm 0 5mm;font-size:8.6pt;line-height:1.35;page-break-inside:auto;}
+.tb th{background:var(--escuro);color:#fff;text-align:left;padding:2.2mm 2.4mm;font-size:8pt;letter-spacing:.3px;vertical-align:bottom;}
+.tb td{padding:2.2mm 2.4mm;border-bottom:1px solid var(--linha);vertical-align:top;}
+.tb tbody tr:nth-child(even) td{background:#FAF9F7;}
+.tb tr{page-break-inside:avoid;}
+.tb td:first-child{font-weight:700;color:var(--escuro);}
+.tb.cols2 td:first-child{width:34%;}
+.tb.cols3 td:first-child{width:22%;}
+.tb.cols4 td:first-child{width:16%;}
+.tb.cols5{font-size:8pt;}
+.tb.cols6,.tb.cols7{font-size:7.6pt;}
+.tb.cols6 td,.tb.cols7 td,.tb.cols6 th,.tb.cols7 th{padding:1.8mm 1.6mm;}
+
+/* blocos especiais */
+.callout{border-radius:3mm;padding:5mm 6mm;margin:3mm 0 5mm;page-break-inside:auto;}
+.guide{page-break-inside:avoid;}
+.keep{page-break-inside:avoid;}
+p,li{orphans:3;widows:3;}
+.ctaFlow{border:1px solid var(--linha);border-left:2.5mm solid var(--laranja);background:var(--off);border-radius:3mm;padding:4.5mm 6mm 4.5mm;margin:4mm 0 5mm;page-break-inside:avoid;}
+.ctaFlow .lab{display:block;font-size:8pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--laranja);margin-bottom:1.5mm;}
+.ctaFlow p{margin-bottom:3mm;}
+.ctaFlow .btn{display:inline-block;background:var(--laranja);color:#fff;font-weight:700;font-size:9.5pt;padding:2.6mm 5mm;border-radius:2mm;}
+.callout .lab{display:block;font-size:8pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:2mm;}
+.callout p:last-child{margin-bottom:0;}
+.guide{background:linear-gradient(135deg,var(--laranja),#E2571A);color:#fff;}
+.guide .lab{color:#fff;opacity:.85;}
+.guide p{font-size:14pt;font-weight:800;line-height:1.3;letter-spacing:-.2pt;color:#fff;}
+.saida{background:var(--off);border:1px solid var(--linha);}
+.saida .lab{color:var(--laranja);}
+.erro{border:1px solid var(--linha);border-left:2.5mm solid var(--escuro);background:#fff;}
+.erro .lab{color:var(--escuro);}
+.erro p, .saida p{margin-bottom:2.5mm;}
+.erro ul, .saida ul, .saida ol{margin-bottom:1mm;}
+.frase{background:var(--off);border-left:2.5mm solid var(--laranja);padding:4mm 5mm;margin:2mm 0 4mm;font-weight:700;color:var(--escuro);page-break-inside:avoid;}
+.tpl{border:1px solid var(--linha);border-radius:3mm;padding:5mm 6mm 3mm;margin:3mm 0 4mm;background:#fff;page-break-inside:avoid;}
+.tpl .lab{display:block;font-size:8pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:2mm;color:var(--laranja);}
+
+ul.check{list-style:none;margin-left:0;}
+ul.check li{display:flex;gap:3mm;align-items:flex-start;margin-bottom:2mm;}
+ul.check .box{flex:0 0 4.2mm;height:4.2mm;border:1.5px solid var(--escuro);border-radius:1mm;margin-top:1mm;}
+
+.stepsRow{display:flex;gap:2.5mm;margin:4mm 0 6mm;}
+.stepsRow .s{flex:1;background:var(--off);border:1px solid var(--linha);border-radius:3mm;padding:4mm 3.5mm;position:relative;}
+.stepsRow .s .n{width:8mm;height:8mm;border-radius:2mm;background:linear-gradient(135deg,var(--laranja),var(--laranja2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11pt;margin-bottom:2.5mm;}
+.stepsRow .s .t{font-weight:800;font-size:11.5pt;margin-bottom:1mm;}
+.stepsRow .s .d{font-size:8.5pt;color:var(--cinza);line-height:1.4;}
+
+/* contracapa */
+.back .inner{position:absolute;left:22mm;right:22mm;top:30mm;bottom:22mm;}
+.back .big{font-size:24pt;font-weight:800;letter-spacing:-.8pt;line-height:1.15;margin-top:14mm;max-width:150mm;}
+.back .big .or{color:var(--laranja2);}
+.back .ficha{position:absolute;left:0;bottom:0;font-size:8.5pt;color:#BDBDBD;line-height:1.55;max-width:160mm;}
+.back .ficha b{color:#fff;}
+.back .ficha p{margin-bottom:2.5mm;}
+.back .slogan{margin-top:10mm;font-size:12pt;color:#C9C9C9;}
+
+@page{ @bottom-left{content:"Templates de fluxo · Método NID de Desenho de Projetos"} }
+@page land{size:A4 landscape;margin:16mm 16mm 18mm 16mm; @bottom-left{content:"Templates de fluxo · Método NID de Desenho de Projetos";font-family:'Liberation Sans',Arial,sans-serif;font-size:8pt;color:#6B6B6B;} @bottom-right{content:counter(page);font-family:'Liberation Sans',Arial,sans-serif;font-size:8.5pt;font-weight:700;color:#373737;}}
+.land{page:land;}
+.tplHead{background:var(--escuro);color:#fff;border-radius:4mm;padding:7mm 9mm 6mm;margin-bottom:5mm;position:relative;overflow:hidden;}
+.tplHead .bar{position:absolute;left:0;top:0;height:2.2mm;width:100%;background:linear-gradient(90deg,var(--laranja),var(--laranja2));}
+.tplHead .kick{font-size:8.5pt;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--laranja2);display:block;margin-bottom:2mm;}
+.tplHead h1{font-size:20pt;font-weight:800;letter-spacing:-.6pt;line-height:1.1;}
+.tplHead .brand{position:absolute;right:9mm;top:8mm;font-size:8pt;letter-spacing:2px;text-transform:uppercase;color:#9C9C9C;font-weight:700;}
+.tplHead .brand b{color:#fff;}
+.meta{display:flex;gap:4mm;margin-bottom:4mm;}
+.meta .m{flex:1;border:1px solid var(--linha);border-radius:2.5mm;padding:2.5mm 3.5mm;font-size:8.5pt;color:var(--cinza);}
+.meta .m b{display:block;font-size:7.5pt;letter-spacing:2px;text-transform:uppercase;color:var(--laranja);margin-bottom:1mm;}
+.meta .m .line{border-bottom:1px solid var(--escuro);height:5mm;}
+.field{border:1px solid var(--escuro);border-radius:2.5mm;padding:2.2mm 3.5mm 2.5mm;margin-bottom:3mm;page-break-inside:avoid;}
+.field .fl{font-weight:800;font-size:10.5pt;}
+.field .fh{font-size:8.3pt;color:var(--cinza);line-height:1.35;margin-top:.5mm;}
+.field .fa{margin-top:1.5mm;background:repeating-linear-gradient(to bottom,transparent 0,transparent 6.5mm,var(--linha) 6.5mm,var(--linha) calc(6.5mm + 1px));}
+.h0{height:7mm}.h1{height:14mm}.h2{height:20mm}.h3{height:27mm}.h4{height:34mm}.h5{height:41mm}
+.grid td.r19{height:18.5mm;}
+.grid{width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:4mm;}
+.grid th{background:var(--escuro);color:#fff;padding:2mm 2mm;text-align:left;font-size:7.8pt;vertical-align:bottom;}
+.grid td{border:1px solid var(--escuro);padding:2mm;vertical-align:top;height:22mm;}
+.grid td.lab{font-weight:800;background:var(--off);width:18mm;}
+.grid td .hint{font-size:7pt;color:var(--cinza);line-height:1.3;}
+.two{display:flex;gap:5mm;}
+.two > div{flex:1;}
+.exemplo h2{margin-top:5mm;}
+.exemplo .tb{font-size:8pt;}
+.exTitle{display:inline-block;font-size:8pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--laranja);margin-bottom:1mm;}
+</style>
+</head>
+<body class="">
+<div class="tplHead"><div class="bar"></div><span class="kick">Template 1 · Etapa 1 · Dor</span><h1>Canvas de dor</h1><div class="brand"><b>NID</b> · Método NID</div></div><div class="meta">
+      <div class="m"><b>Cliente</b><div class="line"></div></div>
+      <div class="m"><b>Projeto</b><div class="line"></div></div>
+      <div class="m"><b>Data</b><div class="line"></div></div>
+      <div class="m"><b>Preenchido por</b><div class="line"></div></div>
+    </div><div class="field"><div class="fl">1. Cliente e interlocutor</div><div class="fh">Empresa (por segmento, se confidencial), pessoa, cargo e papel dela na decisão (decide sozinha, decide com sócio, leva para comitê)</div><div class="fa h0"></div></div><div class="field"><div class="fl">2. Situação atual</div><div class="fh">Como funciona hoje, do começo ao fim, com os verbos que o cliente usou</div><div class="fa h2"></div></div><div class="field"><div class="fl">3. Sintoma</div><div class="fh">Onde trava, o que incomoda, o que ele gostaria que fosse diferente. Frases literais, entre aspas</div><div class="fa h2"></div></div><div class="field"><div class="fl">4. Custo</div><div class="fh">A conta com as premissas visíveis: frequência × perda por ocorrência × valor unitário = custo por período</div><div class="fa h3"></div></div><div class="field"><div class="fl">5. Consequência</div><div class="fh">O que acontece se nada mudar, e em quanto tempo. Metas, pessoas e decisões afetadas</div><div class="fa h1"></div></div><div class="field"><div class="fl">6. Diagnóstico em uma frase</div><div class="fh">"Hoje, [o que acontece], o que custa [número ou consequência] por [período], e se continuar assim [consequência no tempo]."</div><div class="fa h2"></div></div><section class="chapter"><h2 style="margin-top:0">Para que serve</h2><p>Registrar a etapa 1 do método: o problema do cliente, nas palavras dele, com custo e consequência. É preenchido durante ou logo depois da conversa de diagnóstico. Sua saída é o diagnóstico em uma frase, que abre a proposta.</p><h2>Instruções de preenchimento</h2><ol><li>Preencha os campos 1 a 3 durante a conversa, anotando literalmente. Não traduza "não sobra tempo" para "baixa produtividade".</li><li>Faça a conta do campo 4 em voz alta, com o cliente. Os números têm que ser dele; se ele não tem, construa uma estimativa com ele e anote que é estimativa.</li><li>Pergunte "se nada mudar nos próximos seis meses, o que acontece?" para o campo 5. Anote quem é afetado (meta, sócio, time).</li><li>Escreva o campo 6 só depois dos cinco anteriores. Se não conseguir escrever a frase, a conversa não acabou: volte ao cliente.</li><li>Nenhum campo recebe uma palavra sobre o seu produto, serviço ou empresa.</li></ol></section>
+<section class="chapter exemplo"><span class="exTitle">Exemplo preenchido · caso conduzido do playbook</span><h2 style="margin-top:0">Canvas de dor · projeto de automação comercial com IA para uma empresa de serviços de manutenção predial</h2><p style="color:var(--cinza);font-size:9pt">Os números do exemplo são os que o cliente trouxe na conversa de diagnóstico, simplificados para o exercício; nenhum deles é resultado prometido.</p><p><strong>1. Cliente e interlocutor.</strong> Empresa de serviços de manutenção predial para condomínios e prédios comerciais, doze anos de mercado, nove técnicos de campo. Interlocutor: o dono, que também faz as visitas técnicas e envia os orçamentos. Decide sozinho.</p><p><strong>2. Situação atual.</strong> "O síndico manda mensagem ou preenche o site. A Luciana responde quando consegue, pergunta o que é, pede endereço e foto. Aí me passa. Eu ligo, marco a visita, vou lá, meço, e mando o orçamento em um ou dois dias. Se o síndico responder, a gente agenda o serviço. Se não responder, fica por isso mesmo."</p><p><strong>3. Sintoma.</strong> "Trava em dois lugares. Primeiro, na resposta: a Luciana está fazendo dez coisas e às vezes responde no dia seguinte, e quem responde primeiro leva a visita. Segundo, depois do orçamento: eu mando e não cobro." O que ele quer: "Que todo mundo que pedisse orçamento fosse respondido na hora, com as perguntas certas, e que eu só entrasse para marcar a visita. E que alguém cobrasse os orçamentos por mim."</p><p><strong>4. Custo.</strong> Pedidos por mês: cerca de 150. Respondidos só no dia seguinte ou depois: cerca de 50. Visitas perdidas por atraso (metade dos 50): 25. Fechamento por visita realizada: um terço. Serviço médio: R$ 4.500. Conta 1: 25 × 1/3 × R$ 4.500 = cerca de R$ 37.500 por mês. Orçamentos enviados por mês: cerca de 60; sem resposta: 20; sem follow-up: 20. Estimativa do dono de fechamentos perdidos por falta de cobrança: 5. Conta 2: 5 × R$ 4.500 = R$ 22.500 por mês. Total: cerca de R$ 60.000 por mês em serviços que não acontecem.</p><p><strong>5. Consequência.</strong> Dois técnicos contratados no início do ano ficam parados se a entrada de serviços não crescer. O dono segue como gargalo entre visita e cobrança. Prazo que ele mesmo deu: seis meses.</p><p><strong>6. Diagnóstico em uma frase.</strong> "Hoje os pedidos de orçamento chegam pelo WhatsApp e pelo site e são respondidos quando a assistente consegue, e os orçamentos enviados não são cobrados, o que deixa cerca de 25 visitas e 5 fechamentos por mês sem acontecer (algo perto de R$ 60 mil em serviços não realizados), e se continuar assim os dois técnicos contratados ficam parados e o dono segue como gargalo."</p><div class="ctaFlow"><span class="lab">NIDflow</span><p><strong>Preencha este template no NIDflow.</strong> O canvas de dor já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.</p><span class="btn">Quero desenhar meu próximo projeto no NIDflow</span></div></section>
+</body>
+</html>

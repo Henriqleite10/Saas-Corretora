@@ -3,10 +3,10 @@
 | Campo | Valor |
 |---|---|
 | Objetivo | Levar o assinante do e-mail de acesso ao primeiro projeto desenhado e apresentado em menos de 15 minutos |
-| Versão | 1.0 (Sprint 4) |
+| Versão | 1.1 (Sprint 4, com os ajustes do coordenador a partir do `docs/01-parecer-estrategico.md`) |
 | Status | Entregue ao coordenador |
 | Seção 5 (mensagens) | **Rascunho funcional** para o agente `copy` finalizar. As demais seções são especificação de produto |
-| Dependências | Itens B-02, B-03, B-05, B-06, B-08 e B-11 do `04-backlog-tecnico.md`; templates finais do agente `metodo` em `produtos/playbook/02-templates-fluxo.md` (ainda não publicado; este documento usa a definição canônica da seção 7 do brief) |
+| Dependências | Itens B-01, B-03, B-04, B-05, B-07 e B-08 do `04-backlog-tecnico.md`; templates finais do agente `metodo` em `produtos/playbook/02-templates-fluxo.md` (ainda não publicado; este documento usa a definição canônica da seção 7 do brief) |
 
 Princípio: o onboarding não é um tour de funcionalidades. É o primeiro projeto. Cada tela pede uma decisão do assinante sobre o projeto dele, nunca "veja o que a ferramenta faz".
 
@@ -20,13 +20,31 @@ Todo assinante do NIDflow vem do playbook ou do mini curso (oferta em D+7). Logo
 - Já viu os cinco templates no papel: canvas de dor, mapa de solução, fluxo de arquitetura, tabela de valor e roteiro de proposta.
 - Provavelmente tem uma proposta em andamento (é o que a sequência D0 a D+6 pede: "preencha o primeiro template").
 
-O onboarding aproveita isso: em vez de ensinar o método, pede o projeto real que a pessoa está tentando vender agora. A pergunta de abertura é "qual proposta você precisa apresentar esta semana?".
+O onboarding aproveita isso: em vez de ensinar o método, pede o projeto real que a pessoa está tentando vender agora. E, por decisão do coordenador (parecer estratégico, seção 6, item 4), o playbook terá um CTA para o NIDflow ao fim de cada template. Logo, boa parte dos assinantes chega sabendo qual template quer preencher. O primeiro passo depois do login é, por isso, "escolha o template", com o template do CTA já selecionado quando a pessoa veio por ele.
+
+### 1.1 Entrada pelo CTA do playbook
+
+Especificação do link que o agente `metodo` coloca ao fim de cada template (o texto do CTA é do `metodo` com o `copy`; a mecânica é esta):
+
+| Template do playbook | Parâmetro do link | O que acontece no NIDflow |
+|---|---|---|
+| Canvas de dor | `?template=canvas-de-dor` | Primeiro projeto abre no canvas de dor (caminho padrão) |
+| Mapa de solução | `?template=mapa-de-solucao` | Primeiro projeto abre no mapa de solução; o campo "dor" fica vazio e editável |
+| Fluxo de arquitetura | `?template=fluxo-de-arquitetura` | Primeiro projeto abre no fluxo, pedindo o resultado final antes dos blocos |
+| Tabela de valor | `?template=tabela-de-valor` | Primeiro projeto abre na tabela de valor; "dor em número" fica vazio e editável |
+| Roteiro de proposta | `?template=roteiro-de-proposta` | Primeiro projeto abre no roteiro, mostrando as nove páginas e de qual template cada uma se alimenta |
+
+Regras:
+
+- O link aponta para o domínio do NIDflow. Quem já assina entra e cai no passo 2 com o template selecionado. Quem não assina vê a página da oferta (a mesma da oferta em D+7) e, ao assinar, o NIDflow recupera o parâmetro no primeiro login (guardado no navegador na página da oferta). Se a compra acontecer em outro navegador, a pessoa escolhe na tela; nada se perde.
+- Começar por um template que não é o canvas de dor não quebra a ordem do método: a navegação continua fixa e, antes de "Apresentar", o guia leva a pessoa às etapas que ficaram vazias.
+- O parâmetro é gravado no evento `template_escolhido` para medir por qual template os compradores entram (B-08).
 
 ---
 
 ## 2. Os cinco templates dentro do NIDflow
 
-Estrutura de cada template como requisito da ferramenta (B-05). Os campos abaixo são os que o agente `metodo` publicou em `produtos/playbook/01-playbook.md` (capítulos 3 a 6 e 8). As instruções de preenchimento e os exemplos preenchidos virão do `02-templates-fluxo.md`, ainda não publicado; quando sair, os textos da ferramenta são copiados de lá palavra por palavra.
+Estrutura de cada template como requisito da ferramenta (B-04). Os campos abaixo são os que o agente `metodo` publicou em `produtos/playbook/01-playbook.md` (capítulos 3 a 6 e 8). As instruções de preenchimento e os exemplos preenchidos virão do `02-templates-fluxo.md`, ainda não publicado; quando sair, os textos da ferramenta são copiados de lá palavra por palavra.
 
 | Template | Etapa do método | Campos na tela (iguais aos do playbook) | Saída que o assinante vê |
 |---|---|---|---|
@@ -49,32 +67,32 @@ Regras de produto para os templates:
 
 ## 3. Passo a passo do primeiro acesso ao primeiro projeto
 
-Tempo-alvo total: 14 minutos (soma dos passos 1 a 8). Cada passo tem o tempo previsto, o que aparece na tela e o evento de telemetria gravado (B-11).
+Tempo-alvo total: 14 minutos (soma dos passos 1 a 7). Cada passo tem o tempo previsto, o que aparece na tela e o evento de telemetria gravado (B-08).
 
 | Passo | Tempo | O que acontece | Tela | Evento |
 |---|---|---|---|---|
 | 0. E-mail de acesso | 0 min (chega em até 2 min após o pagamento) | Assinante recebe o e-mail "Seu acesso ao NIDflow" com link mágico. WhatsApp de boas-vindas em paralelo | Fora da ferramenta | `acesso_enviado` |
 | 1. Entrar | 1 min | Clica no link, entra sem senha. Tela pede: defina uma senha (opcional, pode pular) | Tela única, um campo | `primeiro_login` |
-| 2. Sobre você | 0,5 min | Três perguntas, uma por tela, resposta em um clique: (a) "Você vende para a sua própria empresa ou para a empresa de outra pessoa?"; (b) "Você decide contratações de marketing ou vendas na sua empresa?" (só se respondeu "própria empresa"); (c) "O que você vende?" (serviço, software, projeto sob medida, consultoria, outro). As perguntas (a) e (b) são as do Gatilho A (seção 8.2 do brief) e vão para a base via evento | Wizard, um campo por tela, barra de progresso | `perfil_respondido` (com as respostas) |
-| 3. Qual proposta você precisa apresentar esta semana? | 0,5 min | Dois campos: cliente e interlocutor (ou "ainda não sei") e o que você vai vender para ele em uma linha. O primeiro já preenche o campo "cliente e interlocutor" do canvas de dor. Botão: "Desenhar este projeto". Alternativa discreta abaixo: "Prefiro ver o projeto de exemplo primeiro" | Tela única | `projeto_criado` |
-| 4. Canvas de dor | 3 min | O projeto abre na etapa 1 com os seis campos do canvas; no primeiro projeto, situação, custo, consequência e diagnóstico são os obrigatórios. Cada campo tem a pergunta-guia e um exemplo em cinza (do caso do playbook). O campo de custo tem a conta guiada (frequência × perda por ocorrência × valor unitário). Ao preencher os obrigatórios, o diagnóstico em uma frase aparece montado. Botão: "Seguir para a Solução" | Etapa 1 de 4, indicador no topo | `etapa_preenchida` (dor) |
-| 5. Mapa de solução | 2 min | A dor já vem copiada do canvas. Campo principal: a frase de solução no formato do playbook. Abaixo, as premissas (3 a 5, uma por linha). Causa, concordância e "o que a tese não é" ficam visíveis e opcionais. Botão: "Seguir para a Arquitetura" | Etapa 2 de 4 | `etapa_preenchida` (solucao) |
-| 6. Fluxo de arquitetura | 4 min | O desenho. A tela abre pedindo o resultado final em uma linha (campo geral do fluxo, escrito antes de tudo) e mostra três blocos vazios já ligados em sequência (1, 2, 3). O assinante preenche nome, objetivo e marco de cada bloco; entra, componentes, responsável e prazo ficam disponíveis no bloco, opcionais no primeiro projeto. Adiciona ou remove blocos. Dica única na tela, que some ao primeiro clique: "Nomeie o primeiro bloco. Comece pelo primeiro dia do projeto". Botão: "Seguir para o Valor" (habilita com 3 blocos com nome e marco) | Etapa 3 de 4, canvas visual | `etapa_preenchida` (arquitetura), `arquitetura_min_3_etapas` |
-| 7. Tabela de valor | 2 min | A dor em número já vem copiada do canvas. Obrigatórios no primeiro projeto: o que muda com o projeto (na unidade da dor), investimento e próximo passo (sugestão: "Reunião de aprovação em [data]"). Unidade de medida, conta de equivalência, incluso e não incluso e comparação em uma frase ficam visíveis e opcionais. Botão: "Apresentar o projeto" | Etapa 4 de 4 | `etapa_preenchida` (valor) |
-| 8. Apresentar | 1 min | Modo de apresentação abre em tela cheia nas nove páginas do roteiro de proposta (capa, dor, solução, arquitetura em três páginas, valor, investimento, próximo passo); páginas com template opcional vazio são puladas. O assinante avança com setas e vê o projeto inteiro como o cliente vai ver. Ao sair, tela de conclusão: "Seu primeiro projeto está desenhado. Ele fica salvo aqui e você pode abrir em qualquer dispositivo" com dois botões: "Exportar em PDF" e "Voltar ao projeto" | Modo de apresentação | `apresentacao_aberta`; `pdf_exportado` se clicar |
+| 2. Escolha o template | 1 min | Tela única com os cinco templates na ordem do método, canvas de dor pré-selecionado. Se a pessoa veio pelo CTA do playbook, o template do link já está selecionado e a tela só confirma. Na mesma tela, dois campos: cliente e interlocutor (ou "ainda não sei") e o que você vai vender para ele em uma linha (o primeiro já preenche o campo "cliente e interlocutor" do canvas de dor). Botão: "Desenhar este projeto". Alternativa discreta abaixo: "Prefiro ver o projeto de exemplo primeiro" | Tela única | `template_escolhido` (com o slug), `projeto_criado` |
+| 3. Canvas de dor | 3 min | Caminho padrão (quem veio por outro template começa nele e o guia segue a partir dali). O projeto abre na etapa 1 com os seis campos do canvas; no primeiro projeto, situação, custo, consequência e diagnóstico são os obrigatórios. Cada campo tem a pergunta-guia e um exemplo em cinza (do caso do playbook). O campo de custo tem a conta guiada (frequência × perda por ocorrência × valor unitário). Ao preencher os obrigatórios, o diagnóstico em uma frase aparece montado. Botão: "Seguir para a Solução" | Etapa 1 de 4, indicador no topo | `etapa_preenchida` (dor) |
+| 4. Mapa de solução | 2 min | A dor já vem copiada do canvas. Campo principal: a frase de solução no formato do playbook. Abaixo, as premissas (3 a 5, uma por linha). Causa, concordância e "o que a tese não é" ficam visíveis e opcionais. Botão: "Seguir para a Arquitetura" | Etapa 2 de 4 | `etapa_preenchida` (solucao) |
+| 5. Fluxo de arquitetura | 4 min | O desenho. A tela abre pedindo o resultado final em uma linha (campo geral do fluxo, escrito antes de tudo) e mostra três blocos vazios já ligados em sequência (1, 2, 3). O assinante preenche nome, objetivo e marco de cada bloco; entra, componentes, responsável e prazo ficam disponíveis no bloco, opcionais no primeiro projeto. Adiciona ou remove blocos. Dica única na tela, que some ao primeiro clique: "Nomeie o primeiro bloco. Comece pelo primeiro dia do projeto". Botão: "Seguir para o Valor" (habilita com 3 blocos com nome e marco) | Etapa 3 de 4, canvas visual | `etapa_preenchida` (arquitetura), `arquitetura_min_3_etapas` |
+| 6. Tabela de valor | 2 min | A dor em número já vem copiada do canvas. Obrigatórios no primeiro projeto: o que muda com o projeto (na unidade da dor), investimento e próximo passo (sugestão: "Reunião de aprovação em [data]"). Unidade de medida, conta de equivalência, incluso e não incluso e comparação em uma frase ficam visíveis e opcionais. Botão: "Apresentar o projeto" | Etapa 4 de 4 | `etapa_preenchida` (valor) |
+| 7. Apresentar | 1 min | Modo de apresentação abre em tela cheia nas nove páginas do roteiro de proposta (capa, dor, solução, arquitetura em três páginas, valor, investimento, próximo passo); páginas com template opcional vazio são puladas. O assinante avança com setas e vê o projeto inteiro como o cliente vai ver. Ao sair, tela de conclusão: "Seu primeiro projeto está desenhado. Ele fica salvo aqui e você pode abrir em qualquer dispositivo" com dois botões: "Exportar em PDF" e "Voltar ao projeto". Abaixo, três perguntas opcionais de um clique: (a) "Você vende para a sua própria empresa ou para a empresa de outra pessoa?"; (b) "Você decide contratações de marketing ou vendas na sua empresa?" (só se respondeu "própria empresa"); (c) "O que você vende?" (serviço, software, projeto sob medida, consultoria, outro). As perguntas (a) e (b) são as do Gatilho A (seção 8.2 do brief) e vão para a base via evento | Modo de apresentação e tela de conclusão | `apresentacao_aberta`; `pdf_exportado` se clicar; `perfil_respondido` (com as respostas) |
 
 Regras da experiência:
 
 - Tudo é salvo automaticamente a cada alteração (B-03). Nunca existe botão "Salvar" no onboarding.
 - O assinante pode sair em qualquer passo. Ao voltar, o NIDflow abre no ponto em que parou, com o mesmo projeto.
 - Nenhum passo tem vídeo obrigatório. Existe um vídeo de 90 segundos (o mesmo da oferta em D+7) acessível pelo ícone de ajuda, nunca em pop-up.
-- Depois do primeiro projeto, o onboarding some. Projetos seguintes abrem direto na etapa 1 com os templates.
+- As perguntas de qualificação ficam na tela de conclusão, e não antes do projeto, para não colocar formulário entre a pessoa e o desenho. Quem não chega à conclusão é perguntado pelo `automacao` no pós-compra, como o brief já prevê.
+- Depois do primeiro projeto, o onboarding some. Projetos seguintes abrem direto na escolha do template.
 
 ---
 
 ## 4. Marcos de ativação
 
-O que a NID mede para saber se o assinante está usando o que pagou. Gravado por telemetria mínima (B-11), sem ler o conteúdo dos projetos.
+O que a NID mede para saber se o assinante está usando o que pagou. Gravado por telemetria mínima (B-08), sem ler o conteúdo dos projetos.
 
 | Marco | Definição | Prazo esperado | Evento |
 |---|---|---|---|
@@ -90,7 +108,7 @@ Metas iniciais (hipóteses, revisadas com 30 dias de dados, nunca citadas em pe�
 
 Sinais para os gatilhos do brief (registrados na base pelo `automacao`):
 
-- Respostas do passo 2 alimentam o Gatilho A.
+- Respostas da tela de conclusão (passo 7) alimentam o Gatilho A.
 - `projeto_completo` e `apresentacao_aberta` atendem o critério "desenhou pelo menos um projeto no NIDflow" do Gatilho B.
 
 ---
@@ -119,7 +137,7 @@ Cada gatilho dispara uma vez. Se o assinante avança, a sequência para.
 |---|---|---|---|---|---|---|
 | R1 | Não fez o primeiro login (M1 não atingido) | 24 h após A1 | E-mail + WhatsApp | "Seu acesso ao NIDflow está esperando" | O link continua válido (renova o link mágico). Leva 15 minutos. Pergunta se o e-mail caiu em outra pasta | "Entrar agora" |
 | R1b | Ainda sem login | 72 h após A1 | WhatsApp | "Precisa de ajuda para entrar?" | Uma pergunta direta. Oferece resolver por ali (o agente de IA responde; se for problema de acesso, encaminha para humano) | Responder a mensagem |
-| R2 | Entrou, mas não criou projeto (M2 não atingido) | 48 h após M1 | E-mail | "Qual proposta você precisa apresentar esta semana?" | Repete a pergunta de abertura do onboarding. Sugere começar pelo canvas de dor do projeto que já está na mesa. Lembra que dá para começar pelo projeto de exemplo | "Desenhar este projeto" (abre direto no passo 3) |
+| R2 | Entrou, mas não criou projeto (M2 não atingido) | 48 h após M1 | E-mail | "Qual proposta você precisa apresentar esta semana?" | Repete a pergunta de abertura do onboarding. Sugere começar pelo template que a pessoa já preencheu no papel (ou pelo canvas de dor) do projeto que já está na mesa. Lembra que dá para começar pelo projeto de exemplo | "Desenhar este projeto" (abre direto no passo 2, com o canvas de dor selecionado) |
 | R3 | Criou projeto, mas a arquitetura está vazia (M3 não atingido) | 72 h após M2 | E-mail | "O desenho é a parte que o cliente vê" | O ponto em que a maioria trava é o fluxo. Dica prática em três linhas: escreva o resultado final primeiro; o primeiro bloco é o primeiro dia do projeto; o meio é o caminho até o resultado. Três blocos bastam para a primeira versão | "Abrir o fluxo de arquitetura" (link direto no projeto) |
 | R4 | Projeto completo, mas nunca apresentou nem exportou (M4 não atingido) | 5 dias após M3 | E-mail | "Seu projeto está pronto para a reunião" | O modo de apresentação mostra o projeto na ordem do método, sem montar slide. Sugere ensaiar uma vez sozinho antes da reunião | "Abrir o modo de apresentação" |
 | R5 | Sem login há 14 dias (risco de cancelamento) | 14 dias após o último login | E-mail | "Sua próxima proposta já tem template" | Sem culpa. Lembra que os projetos estão salvos e que um projeto novo começa em 15 minutos. Mostra uma situação concreta do ICP ("o cliente pediu proposta até sexta") | "Desenhar o próximo projeto" |
@@ -132,8 +150,8 @@ Regra para o `copy`: nenhuma mensagem de resgate usa culpa ("você não usou"), 
 
 Para o agente `automacao` incluir na base do agente:
 
-- "Não recebi o acesso": reenvia o link mágico pelo próprio fluxo (chamada à função do B-04) após confirmar o e-mail da compra.
-- "Como começo?": responde com o passo 3 (qual proposta você precisa apresentar) e manda o link direto.
+- "Não recebi o acesso": reenvia o link mágico pelo próprio fluxo (chamada à função do B-01) após confirmar o e-mail da compra.
+- "Como começo?": responde com o passo 2 (escolha o template e diga qual proposta você precisa apresentar) e manda o link direto, com o template que a pessoa citar no parâmetro.
 - "Onde estão os templates?": explica que todo projeto novo já abre com os cinco templates na ordem do método.
 - "Perdi meu projeto": pede o e-mail, orienta a entrar de novo (projetos ficam salvos na conta). Se persistir, abre ticket para humano.
 - Qualquer pergunta sobre cobrança, reembolso ou nota fiscal: humano.
@@ -142,7 +160,7 @@ Para o agente `automacao` incluir na base do agente:
 
 ## 6. O que acontece quando alguém trava dentro da ferramenta
 
-Além das mensagens, a própria tela reage (B-06):
+Além das mensagens, a própria tela reage (B-05):
 
 | Situação na tela | Reação |
 |---|---|

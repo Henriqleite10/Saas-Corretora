@@ -4,7 +4,7 @@
 |---|---|
 | Produto | NIDflow, a ferramenta da NID para desenhar e apresentar projetos |
 | Preço | R$ 29,90 por mês |
-| Versão deste documento | 1.0 (Sprint 4) |
+| Versão deste documento | 1.1 (Sprint 4, com os ajustes do coordenador a partir do `docs/01-parecer-estrategico.md`) |
 | Status | Entregue ao coordenador, aguardando aprovação do Henrique nos pontos marcados |
 | Fonte da verdade | `docs/00-brief-mestre.md` (seções 5, 6.4, 8, 10, 12) |
 | Dependência | Auditoria do HTML atual (item B-00 do `04-backlog-tecnico.md`) antes de qualquer promessa sobre o que a ferramenta faz hoje |
@@ -42,13 +42,13 @@ Frase-padrão do plano (para páginas, e-mails e agente de IA): "R$ 29,90 por m�
 | # | Incluso | Estado | Observação |
 |---|---|---|---|
 | 1 | Acesso ao NIDflow no navegador, sem instalação | Existe (brief) | HTML único, roda em qualquer navegador moderno. Confirmar na auditoria se há dependência de recurso local (arquivo, extensão) |
-| 2 | Os cinco templates do Método NID prontos dentro da ferramenta: canvas de dor, mapa de solução, fluxo de arquitetura, tabela de valor e roteiro de proposta | Backlog (B-05) | Bloqueia a venda. O comprador desenha no papel com o playbook e precisa encontrar o mesmo template na tela |
+| 2 | Os cinco templates do Método NID prontos dentro da ferramenta: canvas de dor, mapa de solução, fluxo de arquitetura, tabela de valor e roteiro de proposta | Backlog (B-04) | Bloqueia a venda. O comprador desenha no papel com o playbook e precisa encontrar o mesmo template na tela |
 | 3 | Desenho do projeto em fluxo visual: etapas, componentes, ligações | Existe (brief) | É o core da ferramenta segundo o brief (seção 7, regra 4) |
 | 4 | Modo de apresentação: o mesmo desenho vira a apresentação, sem exportar para outro programa | Existe (brief) | Confirmar na auditoria como funciona (tela cheia, navegação por etapa) |
 | 5 | Projetos ilimitados | Recomendado, a confirmar (B-00) | Ver seção 3 |
 | 6 | Projetos salvos na nuvem, acessíveis de qualquer dispositivo | Backlog (B-03) | Bloqueia a venda. Hoje, se o HTML salva só no navegador (a auditar), o assinante perde tudo ao limpar o cache |
-| 7 | Exportação do projeto em PDF | Backlog (B-08) | Bloqueia a venda por causa da política de cancelamento (seção 6) |
-| 8 | Onboarding guiado até o primeiro projeto desenhado em menos de 15 minutos | Backlog (B-06) | Descrito em `02-onboarding.md` |
+| 7 | Exportação do projeto em PDF | Backlog (B-07) | Bloqueia a venda por causa da política de cancelamento (seção 6) |
+| 8 | Onboarding guiado até o primeiro projeto desenhado em menos de 15 minutos | Backlog (B-05) | Descrito em `02-onboarding.md` |
 | 9 | Suporte por e-mail e WhatsApp em dias úteis, resposta em até 1 dia útil | Decisão deste documento | Ver seção 11 |
 | 10 | Atualizações da ferramenta sem custo adicional | Decisão deste documento | Todo assinante ativo recebe o que for lançado no plano único |
 
@@ -87,6 +87,8 @@ Decisão 4 do brief: a oferta em D+7 é direta, a R$ 29,90, com garantia de 7 di
 
 Regra para todas as peças: nunca escrever "teste grátis", "experimente sem compromisso" ou "7 dias grátis". O que existe é "7 dias de garantia, reembolso sem pergunta".
 
+Registro do parecer estratégico: a decisão é por lógica, não por benchmark. Se a conversão da oferta em D+7 ficar abaixo de 3% após 30 dias de dados, o coordenador reavalia o período gratuito. Até lá, nenhuma peça o menciona.
+
 ---
 
 ## 5. Garantia de 7 dias
@@ -114,7 +116,7 @@ Cancelar é livre e imediato. O que muda é só a próxima cobrança.
 | 90 dias após o fim do período | Projetos e dados pessoais excluídos de forma definitiva (LGPD, princípio da necessidade). E-mail de aviso em D+60 e D+83 |
 | Reativação | Em qualquer momento antes dos 90 dias, uma nova assinatura reativa a mesma conta com todos os projetos. Depois dos 90 dias, a conta começa do zero |
 
-Recomendação registrada: **exportação em PDF liberada por 30 dias** após o fim do acesso. É o que faz o cancelamento ser de fato "sem pegadinha" e sustenta a promessa de cancelamento livre. Depende do item B-08 (exportação em PDF), por isso ele bloqueia a venda.
+Recomendação registrada: **exportação em PDF liberada por 30 dias** após o fim do acesso. É o que faz o cancelamento ser de fato "sem pegadinha" e sustenta a promessa de cancelamento livre. Depende do item B-07 (exportação em PDF), por isso ele bloqueia a venda.
 
 Quem cancela recebe uma pergunta única, opcional, de um clique (motivo do cancelamento), para alimentar a retenção. Nunca uma tela de "tem certeza?" em cascata, nunca desconto de retenção (o brief proíbe desconto fora dele).
 
@@ -141,14 +143,18 @@ Regra: **nunca bloquear a leitura no primeiro dia de recusa**. O assinante pode 
 
 ## 8. Relação com a Plataforma NID
 
-Decisão 3 do brief: o NIDflow está incluso na Plataforma NID (R$ 980 por ano).
+Decisão 3 do brief, aprovada no parecer estratégico: o NIDflow está incluso na Plataforma NID (R$ 980 por ano). Regra operacional aprovada pelo coordenador, transcrita:
+
+> Assinante ativo do NIDflow que entra na Plataforma tem a assinatura mensal encerrada no ciclo seguinte, sem cobrança dupla; ao fim do ano da Plataforma sem renovação, volta a ser oferecido o NIDflow mensal.
+
+Como a regra se aplica:
 
 | Situação | Regra |
 |---|---|
-| Comprou a Plataforma NID sem ter o NIDflow | O webhook da Plataforma cria a conta do NIDflow com status `ativa_via_plataforma`, válida enquanto a anuidade estiver ativa. Mesmo e-mail de acesso |
-| Já assinava o NIDflow e comprou a Plataforma NID | A NID cancela a assinatura mensal do NIDflow no dia da compra da Plataforma (rotina manual do suporte no lançamento; automatizável depois). A conta continua a mesma, com todos os projetos. Nenhum reembolso proporcional do mês em curso (o mês já pago segue valendo). O assinante recebe um e-mail explicando |
-| Anuidade da Plataforma não renovou | NIDflow entra no regime da seção 6 (modo leitura, PDF por 30 dias, exclusão em 90). O assinante pode assinar o NIDflow avulso por R$ 29,90 por mês e manter tudo |
-| Reembolso da Plataforma dentro dos 7 dias | O NIDflow incluso é encerrado junto. Se a pessoa tinha assinatura mensal cancelada por causa da Plataforma, o suporte reativa a mensal sem novo período de garantia |
+| Comprou a Plataforma NID sem ter o NIDflow | O webhook da Plataforma cria a conta do NIDflow com `origem = plataforma_nid`, válida enquanto a anuidade estiver ativa. Mesmo e-mail de acesso, mesmo onboarding |
+| Já assinava o NIDflow e comprou a Plataforma NID | A assinatura mensal é encerrada no ciclo seguinte: o mês já pago segue valendo até o fim, nenhuma cobrança mensal nova acontece, nenhum reembolso proporcional. A conta continua a mesma, com todos os projetos, agora com `origem = plataforma_nid`. No lançamento, o encerramento da mensal é rotina do suporte (cancelar a recorrência na plataforma de checkout no mesmo dia); automatizável depois (B-13). O assinante recebe um e-mail explicando que não haverá cobrança dupla |
+| Anuidade da Plataforma chegou ao fim sem renovação | A conta entra no regime da seção 6 (modo leitura, PDF por 30 dias, exclusão em 90) e o `automacao` volta a oferecer o NIDflow mensal por R$ 29,90. Ao assinar, a mesma conta reativa com todos os projetos |
+| Reembolso da Plataforma dentro dos 7 dias | O NIDflow incluso é encerrado junto. Se a pessoa tinha a mensal encerrada por causa da Plataforma, o suporte reativa a mensal sem novo período de garantia |
 
 Consequência para a comunicação: em toda peça da Plataforma NID, o NIDflow aparece como item incluso, com o valor anual de referência de R$ 358,80 (12 vezes R$ 29,90) na ancoragem. O agente `plataforma` usa esse número.
 
@@ -181,21 +187,18 @@ Pesquisa feita em 11/09/2026 por busca na web. Os sites oficiais das cinco empre
 
 ### 9.3 Recomendação
 
-**Cobrar o NIDflow na mesma plataforma do checkout do playbook. Entre as três plataformas de checkout de produtos digitais avaliadas, a recomendação para essa escolha é a Cakto.**
+**Uma única plataforma para os quatro produtos (playbook, mini curso, NIDflow e Plataforma NID): Cakto primeiro, Kiwify como reserva.** É a recomendação do parecer estratégico (decisão 5, com os critérios ampliados) e este documento se alinha a ela sem divergência. O que o comparativo acima acrescenta é o custo específico da recorrência de R$ 29,90:
 
-Por quê:
+- Em um ticket de R$ 29,90, a taxa fixa decide. Cakto (R$ 0,50) custa R$ 3,04 por cobrança; Kiwify (R$ 2,49) custa R$ 5,18. Em 500 assinantes, a diferença é de R$ 1.070 por mês. Esse é o preço da reserva, caso a validação da Cakto (a cargo do `automacao`, em uma semana) reprove.
+- Pix automático em assinatura (Cakto) reduz a inadimplência de cartão, que é a principal perda de receita recorrente em ticket baixo.
+- As duas cobrem os critérios 1 a 5 (assinatura nativa, webhooks de compra aprovada, renovada, atrasada e cancelada, área do comprador, order bump). Nota fiscal: confirmar a integração na contratação.
+- Hotmart só se o Henrique já a usa e prefere não migrar (é a mais cara sobre R$ 29,90 e tem o prazo de recebimento mais longo).
 
-- Em um ticket de R$ 29,90, a taxa fixa decide. Cakto (R$ 0,50) custa R$ 3,04 por cobrança; Kiwify (R$ 2,49) custa R$ 5,18; Hotmart fica no meio hoje e pode chegar a R$ 5,45 se a mudança de taxa fixa se confirmar. Em 500 assinantes, a diferença entre Cakto e Kiwify é de R$ 1.070 por mês.
-- Pix automático em assinatura (Cakto) reduz inadimplência de cartão, que é a principal perda de receita recorrente em ticket baixo.
-- Order bump nativo, área de membros para o mini curso e webhooks resolvem os critérios 1 a 4 sem desenvolvimento.
+Descartados para o NIDflow: **Asaas** e **Stripe**. Têm a menor taxa, mas exigem checkout, order bump, área do comprador e reembolso construídos pela NID, e quebram a regra da plataforma única. Ficam como referência de custo, não como opção.
 
-Plano B: **Asaas**, se o agente `automacao` e o coordenador decidirem por checkout próprio (página de checkout construída pela NID). Menor taxa, nota fiscal integrada, webhooks completos. Custo: construir e manter checkout, order bump, área do comprador e régua de reembolso. Não recomendado para o lançamento.
+O que independe da plataforma (parecer, decisão 5): o NIDflow em HTML único precisa de controle de acesso próprio ligado ao webhook de assinatura. A área de membros da plataforma hospeda um arquivo, mas não impede cópia nem encerra o acesso ao expirar. Esse controle é o item B-01 do `04-backlog-tecnico.md`, bloqueante, logo após a auditoria.
 
-Descartado: **Stripe**. Boa taxa, mas exige a mesma construção do plano B, sem Pix garantido para empresas no Brasil e sem nota fiscal.
-
-Se o `automacao` escolher Hotmart ou Kiwify para o playbook, o NIDflow vai junto assim mesmo. A diferença de taxa (de R$ 0,92 a R$ 2,41 por assinante por mês) não paga a complexidade de manter duas plataformas.
-
-**Ponto para aprovação do Henrique**: a plataforma de checkout (decisão 5 do brief). Este documento recomenda Cakto; a recomendação final é do coordenador após a avaliação do `automacao`.
+**Ponto para aprovação do Henrique**: a plataforma de checkout (decisão 5 do brief), com a recomendação Cakto primeiro, Kiwify reserva, após a validação do `automacao`.
 
 ### 9.4 Fontes consultadas (11/09/2026)
 
@@ -210,7 +213,7 @@ Se o `automacao` escolher Hotmart ou Kiwify para o playbook, o NIDflow vai junto
 
 ## 10. Como o acesso é liberado
 
-Fluxo padrão, independente da plataforma escolhida. Detalhes técnicos em `04-backlog-tecnico.md` (itens B-02 e B-04).
+Fluxo padrão, independente da plataforma escolhida. Detalhes técnicos em `04-backlog-tecnico.md` (item B-01).
 
 ```
 Assinante paga no checkout
@@ -220,7 +223,7 @@ Plataforma de checkout envia webhook "assinatura ativa"
 (e-mail, nome, id da assinatura, produto, status)
         │
         ▼
-Função do NIDflow valida a assinatura do webhook (segredo compartilhado)
+Função do NIDflow valida a assinatura do webhook (chave compartilhada)
         │
         ├── e-mail já tem conta → marca assinatura como ativa, reativa se estava em leitura
         │
@@ -252,7 +255,7 @@ Regras:
 | Prazo de primeira resposta | Até 1 dia útil |
 | O que o suporte resolve | Acesso, cobrança, reembolso, dúvida de uso, bug |
 | O que o suporte não faz | Desenhar o projeto pelo assinante, revisar proposta, consultoria. Esses pedidos são tratados como sinal de Gatilho A ou B e encaminhados conforme a seção 8.2 do brief |
-| Base de ajuda | Página única de perguntas frequentes dentro do NIDflow (B-10), com as dez dúvidas mais comuns, atualizada mensalmente com base nos tickets |
+| Base de ajuda | Página única de perguntas frequentes dentro do NIDflow (B-11), com as dez dúvidas mais comuns, atualizada mensalmente com base nos tickets |
 
 ---
 
@@ -276,6 +279,6 @@ Texto jurídico completo é do coordenador com apoio da skill `nid-contratos`. O
 1. Preço sempre "R$ 29,90 por mês". Nunca "R$ 29,90/mês" em texto corrido de página ou e-mail (a barra fica só em tabelas e documentos internos).
 2. Nunca "teste grátis". Sempre "7 dias de garantia, reembolso sem pergunta" e "cancela quando quiser".
 3. Nunca prometer link público de apresentação, colaboração, IA, aplicativo ou integração.
-4. O que dizer sobre exportação em PDF depende do item B-08 estar entregue no lançamento. Se não estiver, a política de cancelamento é comunicada como "seus projetos ficam guardados por 90 dias para você reativar".
+4. O que dizer sobre exportação em PDF depende do item B-07 estar entregue no lançamento. Se não estiver, a política de cancelamento é comunicada como "seus projetos ficam guardados por 90 dias para você reativar".
 5. Nenhum desconto, cupom ou plano anual do NIDflow. O único "anual" que inclui o NIDflow é a Plataforma NID.
 6. O NIDflow é "a ferramenta da NID para desenhar e apresentar projetos". Nunca "software", "app", "plataforma" ou "sistema".

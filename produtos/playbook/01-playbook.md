@@ -264,6 +264,10 @@ O canvas de dor tem seis campos e cabe em uma página. Ele é preenchido durante
 
 Instruções de preenchimento e a versão para imprimir estão no arquivo de templates. Regra de ouro do canvas: se um campo estiver em branco, a conversa de diagnóstico ainda não acabou.
 
+**Preencha este template no NIDflow.** O canvas de dor já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
+
 ---
 
 # Capítulo 4 · Etapa 2 · Solução
@@ -358,6 +362,10 @@ O mapa de solução liga a dor à tese em uma página, com as premissas e a conc
 | O que a tese não é | Os entregáveis que você está segurando para a arquitetura (para não escapar antes da hora) |
 
 O último campo existe por um motivo prático: escrever o que você não vai dizer ainda ajuda a não dizer.
+
+**Preencha este template no NIDflow.** O mapa de solução já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
 
 ---
 
@@ -465,6 +473,10 @@ O fluxo de arquitetura é o desenho do projeto em uma página, com os blocos em 
 
 Campos gerais do fluxo: resultado final (escrito antes de tudo), primeiro resultado visível (etapa e semana) e riscos do cliente respondidos (o que ele disse que já tentou e qual componente responde).
 
+**Preencha este template no NIDflow.** O fluxo de arquitetura já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
+
 ---
 
 # Capítulo 6 · Etapa 4 · Valor
@@ -554,6 +566,10 @@ A tabela de valor liga a dor ao investimento em uma página, com o próximo pass
 | Incluso e não incluso | O que cada parte do investimento cobre e o que fica fora |
 | Comparação em uma frase | Investimento perto do custo da dor (fração, percentual ou "se paga com X unidades") |
 | Próximo passo | Ação de aprovação, data de início proposta, primeira responsabilidade do cliente |
+
+**Preencha este template no NIDflow.** A tabela de valor já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
 
 ---
 
@@ -708,6 +724,10 @@ A proposta segue o roteiro abaixo. A ordem é fixa; o número de páginas varia 
 | 9. Próximo passo | O que aprovar, data de início, primeira responsabilidade do cliente | Tabela de valor | Com data. Sem "fico à disposição" |
 
 Páginas opcionais, sempre depois do próximo passo: quem é a sua empresa (uma página, com o que sustenta a arquitetura, não um histórico), casos por segmento (só com dado real e autorizado), termos e condições.
+
+**Preencha este template no NIDflow.** O roteiro de proposta já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
 
 ## A ordem das páginas explica a decisão
 

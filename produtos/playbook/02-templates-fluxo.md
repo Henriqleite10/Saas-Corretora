@@ -47,6 +47,10 @@ Registrar a etapa 1 do método: o problema do cliente, nas palavras dele, com cu
 
 **6. Diagnóstico em uma frase.** "Hoje os pedidos de orçamento chegam pelo WhatsApp e pelo site e são respondidos quando a assistente consegue, e os orçamentos enviados não são cobrados, o que deixa cerca de 25 visitas e 5 fechamentos por mês sem acontecer (algo perto de R$ 60 mil em serviços não realizados), e se continuar assim os dois técnicos contratados ficam parados e o dono segue como gargalo."
 
+**Preencha este template no NIDflow.** O canvas de dor já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
+
 ---
 
 # Template 2 · Mapa de solução
@@ -88,6 +92,10 @@ Registrar a etapa 2 do método: a tese, o que precisa existir para a dor parar, 
 **5. Concordância.** "Perfeito. Só não quero uma coisa robótica que o síndico perceba que não é gente e desista." Concordou na própria sessão de diagnóstico, com a ressalva registrada como premissa.
 
 **6. O que a tese não é (ainda).** Agente de IA no WhatsApp e no site. Integração com a agenda. Base de conhecimento com os serviços. Régua de follow-up de orçamento. Painel de acompanhamento.
+
+**Preencha este template no NIDflow.** O mapa de solução já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
 
 ---
 
@@ -145,6 +153,10 @@ Registrar a etapa 3 do método: o projeto desenhado, com etapas em sequência, o
 
 **Lista de entregáveis por etapa.** Etapa 1: roteiro de qualificação e lista de serviços. Etapa 2: agente de IA no WhatsApp e no site, com base de conhecimento da empresa. Etapa 3: integração com a agenda e régua de follow-up configurada. Etapa 4: duas semanas de operação assistida com relatório diário e roteiro ajustado. Etapa 5: operação contínua, painel e reunião mensal de revisão.
 
+**Preencha este template no NIDflow.** O fluxo de arquitetura já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
+
 ---
 
 # Template 4 · Tabela de valor
@@ -193,6 +205,10 @@ Registrar a etapa 4 do método: o que o cliente ganha, na régua da dor, e só e
 **7. Comparação em uma frase.** "Perto dos R$ 60 mil por mês que a gente calculou, a operação mensal se paga com poucas visitas recuperadas."
 
 **8. Próximo passo.** Aprovação da proposta e agendamento da sessão de mapa do atendimento (etapa 1) para a semana seguinte. Primeira responsabilidade do cliente: duas horas do dono e da assistente, e o histórico do WhatsApp exportado.
+
+**Preencha este template no NIDflow.** A tabela de valor já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**
 
 ---
 
@@ -247,3 +263,7 @@ Transformar as quatro saídas do método em um documento na ordem que conduz a d
 **8. Investimento.** Setup das etapas 1 a 3: [valor]. Operação das etapas 4 e 5: [valor] por mês, prazo mínimo de [prazo]. Incluso e não incluso conforme a tabela de valor. Comparação: "Perto dos R$ 60 mil por mês, a operação mensal se paga com poucas visitas recuperadas."
 
 **9. Próximo passo.** Aprovação da proposta e sessão de mapa do atendimento na semana seguinte. A NID precisa de duas horas do dono e da assistente e do histórico do WhatsApp exportado.
+
+**Preencha este template no NIDflow.** O roteiro de proposta já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
+
+**Quero desenhar meu próximo projeto no NIDflow**

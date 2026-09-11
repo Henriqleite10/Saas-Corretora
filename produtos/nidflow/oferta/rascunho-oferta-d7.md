@@ -8,7 +8,7 @@
 | O que oferece | NIDflow por R$ 29,90 por mês, cancela quando quiser, 7 dias de garantia |
 | CTA oficial | "Quero desenhar meu próximo projeto no NIDflow" |
 | Regra do brief | A oferta mostra a ferramenta em uso, não uma lista de funcionalidades |
-| Pré-condição | Itens que bloqueiam a venda no `04-backlog-tecnico.md` entregues. A oferta só cita exportação em PDF se B-08 estiver no ar |
+| Pré-condição | Itens que bloqueiam a venda no `04-backlog-tecnico.md` entregues. A oferta só cita exportação em PDF se B-07 estiver no ar |
 
 ---
 
@@ -51,7 +51,7 @@ Só o que existe ou está no backlog que bloqueia a venda, em linguagem de uso, 
 1. Você abre um projeto novo e ele já vem com o canvas de dor, o mapa de solução, o fluxo de arquitetura, a tabela de valor e o roteiro de proposta, na ordem do método.
 2. Preenche a dor e a solução, desenha o fluxo com as etapas e os componentes, monta a tabela de valor.
 3. Aperta "Apresentar" e o mesmo desenho vira a apresentação, na ordem certa: o investimento só aparece depois do valor.
-4. Os projetos ficam salvos na sua conta, abrem em qualquer computador, e você exporta em PDF quando precisar mandar por e-mail (citar só com B-08 entregue).
+4. Os projetos ficam salvos na sua conta, abrem em qualquer computador, e você exporta em PDF quando precisar mandar por e-mail (citar só com B-07 entregue).
 5. O primeiro projeto sai em menos de 15 minutos: o onboarding pergunta qual proposta você precisa apresentar esta semana e leva você até o modo de apresentação.
 6. Projetos ilimitados. Uma conta por pessoa.
 
@@ -109,7 +109,7 @@ O vídeo é o mesmo que fica na ajuda do onboarding (seção 3 do `02-onboarding
 2. **O fluxo desenhado**: captura do fluxo de arquitetura do projeto de exemplo, sem interface em volta, só o desenho.
 3. **O modo de apresentação**: captura da tela de valor no modo de apresentação, mostrando a ancoragem acima do investimento.
 
-Nenhuma imagem mostra menu, barra de ferramentas ou lista de recursos. Nenhuma imagem é mockup inventado: todas saem da ferramenta pronta (após B-05 e B-07).
+Nenhuma imagem mostra menu, barra de ferramentas ou lista de recursos. Nenhuma imagem é mockup inventado: todas saem da ferramenta pronta (após B-04 e B-06).
 
 ---
 
@@ -129,7 +129,7 @@ Quem assina sai da sequência na hora. Quem comprou o mini curso vê o mesmo CTA
 
 - [ ] Preço "R$ 29,90 por mês" em toda peça; nenhum desconto.
 - [ ] CTA oficial, sem variação.
-- [ ] Nenhuma promessa fora da seção "Arquitetura" acima; PDF só com B-08 no ar.
+- [ ] Nenhuma promessa fora da seção "Arquitetura" acima; PDF só com B-07 no ar.
 - [ ] Nenhum item do léxico proibido (seção 10.4 do brief); "ferramenta", nunca "software" ou "app".
 - [ ] Henrique não aparece na oferta do NIDflow. Assina a NID.
 - [ ] Sem travessão, sem emoji em e-mail, no máximo um em WhatsApp.
