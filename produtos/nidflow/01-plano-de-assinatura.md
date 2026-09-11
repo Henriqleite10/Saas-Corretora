@@ -174,14 +174,14 @@ Pesquisa feita em 11/09/2026 por busca na web. Os sites oficiais das cinco empre
 | Plataforma | Taxa informada | Custo em uma cobrança de R$ 29,90 | Líquido por assinante por mês | Recorrência | Prazo de recebimento (cartão) | Observações |
 |---|---|---|---|---|---|---|
 | **Cakto** | 8,5% + R$ 0,50 por venda; Pix 0%; Pix automático para assinaturas | R$ 3,04 (10,2%) | R$ 26,86 | Nativa (cartão e Pix automático) | Até 15 dias; 2 dias com antecipação | Fontes divergem sobre a taxa de saque (uma diz gratuita, outra cita R$ 4,59 por saque). Confirmar |
-| **Hotmart** | 9,9% + R$ 1,00 por venda. Uma fonte informa que a partir de 21/09/2026 a taxa fixa passa a R$ 2,49 por transação | R$ 3,96 (13,2%); R$ 5,45 (18,2%) se a fixa for R$ 2,49 | R$ 25,94 ou R$ 24,45 | Nativa | 30 dias corridos; antecipação de 2,19% (14 dias) a 4,79% (flexível) | Maior ecossistema de afiliados. Prazo de 30 dias pesa no caixa |
+| **Hotmart** | 9,9% + R$ 1,00 por venda. Uma fonte informa que a partir de 21/09/2026 a taxa fixa passa a R$ 2,49 por transação | R$ 3,96 (13,2%); R$ 5,45 (18,2%) se a fixa for R$ 2,49 | R$ 25,94 ou R$ 24,45 | Nativa | 30 dias corridos; antecipação de 2,19% (14 dias) a 4,79% (flexível) | Maior rede de afiliados. Prazo de 30 dias pesa no caixa |
 | **Kiwify** | 8,99% + R$ 2,49 por venda aprovada | R$ 5,18 (17,3%) | R$ 24,72 | Nativa | 15 dias corridos; Pix e boleto em 2 dias | Taxa de saque de R$ 3,67. A taxa fixa de R$ 2,49 é a mais pesada sobre R$ 29,90 |
 | **Stripe** | Cartão nacional 3,99% + R$ 0,39; Stripe Billing 0,4% (Starter) a 0,5% (Plus) por fatura paga; Pix 1,19% | Cerca de R$ 1,70 (5,7%) | Cerca de R$ 28,20 | Nativa (Billing), só cartão | 2 dias úteis | Não tem checkout com order bump nem área de membros; exige construir checkout e emissão de nota fiscal por fora; Pix para empresas no Brasil restrito a convite segundo a fonte |
-| **Asaas** | Cartão em assinatura: 1,99% + R$ 0,49 (fonte cita 2,99% como percentual padrão fora da promoção de 3 meses); Pix R$ 1,99 por cobrança (100 grátis por mês); boleto R$ 3,49; sem mensalidade | R$ 1,09 (3,6%) a R$ 1,38 (4,6%) | R$ 28,52 a R$ 28,81 | Nativa (assinatura no cartão; Pix por cobrança mensal enviada ao cliente, não automática) | A confirmar na página oficial | Emissão de nota fiscal integrada. Não tem checkout de infoproduto (order bump, área de membros, afiliados). Exige construir a página de checkout |
+| **Asaas** | Cartão em assinatura: 1,99% + R$ 0,49 (fonte cita 2,99% como percentual padrão fora da promoção de 3 meses); Pix R$ 1,99 por cobrança (100 grátis por mês); boleto R$ 3,49; sem mensalidade | R$ 1,09 (3,6%) a R$ 1,38 (4,6%) | R$ 28,52 a R$ 28,81 | Nativa (assinatura no cartão; Pix por cobrança mensal enviada ao cliente, não automática) | A confirmar na página oficial | Emissão de nota fiscal integrada. Não tem checkout de produtos digitais (order bump, área de membros, afiliados). Exige construir a página de checkout |
 
 ### 9.3 Recomendação
 
-**Cobrar o NIDflow na mesma plataforma do checkout do playbook. Entre as três plataformas de infoproduto avaliadas, a recomendação para essa escolha é a Cakto.**
+**Cobrar o NIDflow na mesma plataforma do checkout do playbook. Entre as três plataformas de checkout de produtos digitais avaliadas, a recomendação para essa escolha é a Cakto.**
 
 Por quê:
 

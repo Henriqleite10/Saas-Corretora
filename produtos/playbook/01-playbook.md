@@ -555,3 +555,333 @@ A tabela de valor liga a dor ao investimento em uma página, com o próximo pass
 | Comparação em uma frase | Investimento perto do custo da dor (fração, percentual ou "se paga com X unidades") |
 | Próximo passo | Ação de aprovação, data de início proposta, primeira responsabilidade do cliente |
 
+---
+
+# Capítulo 7 · Caso conduzido: um projeto do início ao fim
+
+Os capítulos anteriores usaram projetos diferentes para mostrar cada etapa. Este capítulo conduz um único projeto pelas quatro etapas, da primeira conversa à proposta pronta, para você ver o método inteiro em movimento.
+
+O projeto é de automação comercial com IA, do tipo que a NID desenha e vende, para uma empresa de serviços de manutenção predial que atende condomínios e prédios comerciais. O cliente é descrito por segmento. Os números que aparecem são os que o cliente traz na conversa de diagnóstico, simplificados e arredondados para o exercício; eles servem para mostrar a conta, e nenhum deles é resultado prometido ou obtido. O que importa aqui é a mecânica: o que se pergunta, o que se escreve, o que se desenha e em que ordem se apresenta.
+
+## A situação
+
+A empresa tem doze anos, uma equipe de campo com nove técnicos, um gerente operacional e o dono, que também é o vendedor. Os pedidos de orçamento chegam pelo WhatsApp da empresa, pelo formulário do site e por indicação de síndicos. Quem recebe as mensagens é a assistente administrativa, que também cuida de notas fiscais, compras e escala dos técnicos. O dono faz as visitas técnicas e envia os orçamentos.
+
+O contato inicial veio de um sócio da NID que apresentou a frente de automação comercial em uma conversa breve. O dono topou uma sessão de diagnóstico de uma hora.
+
+## Etapa 1 · Dor
+
+**Bloco 1, situação.** "Me conta como funciona hoje, do começo ao fim."
+
+Nas palavras do dono: "O síndico manda mensagem ou preenche o site. A Luciana responde quando consegue, pergunta o que é, pede endereço e foto. Aí me passa. Eu ligo, marco a visita, vou lá, meço, e mando o orçamento em um ou dois dias. Se o síndico responder, a gente agenda o serviço. Se não responder, fica por isso mesmo, porque eu não tenho tempo de ficar cobrando."
+
+**Bloco 2, sintoma.** "Onde esse processo trava?"
+
+"Trava em dois lugares. Primeiro, na resposta. A Luciana está fazendo dez coisas e às vezes responde no dia seguinte. Síndico que pede orçamento manda para três empresas, e quem responde primeiro leva a visita. Segundo, depois do orçamento. Eu mando e não cobro. Tenho certeza de que perco serviço que o síndico até queria fechar, mas esqueceu."
+
+"O que você gostaria que fosse diferente?" "Que todo mundo que pedisse orçamento fosse respondido na hora, com as perguntas certas, e que eu só entrasse quando fosse para marcar a visita. E que alguém cobrasse os orçamentos por mim."
+
+**Bloco 3, custo.** Feito em voz alta, com o dono, com os números que ele tinha de cabeça e conferiu no celular.
+
+- Pedidos de orçamento por mês: cerca de 150, somando WhatsApp, site e indicação.
+- Tempo médio de primeira resposta: "no mesmo dia se der, senão no dia seguinte". Ele estimou que um terço dos pedidos, uns 50 por mês, só recebe resposta no dia seguinte ou depois.
+- Desses 50, quantos viram visita? "Poucos. Quando eu respondo tarde, o síndico já marcou com outro." Ele chutou que perde a visita em metade dos casos: 25 visitas por mês que não acontecem por atraso.
+- Orçamentos enviados por mês: cerca de 60. Sem resposta: cerca de 20. Sem follow-up: todos os 20.
+- Valor médio de um serviço fechado: em torno de R$ 4.500.
+- Taxa de fechamento das visitas realizadas: ele estima um terço.
+
+A conta, feita com ele: 25 visitas perdidas por atraso × um terço de fechamento × R$ 4.500 dá cerca de R$ 37.500 por mês em serviços que não acontecem por demora na resposta. Dos 20 orçamentos sem follow-up, ele acredita que "uns cinco fechariam se alguém insistisse": 5 × R$ 4.500, mais R$ 22.500. Somando, algo perto de R$ 60 mil por mês em serviços que não acontecem por resposta atrasada e orçamento sem cobrança.
+
+O dono parou quando viu a soma. "Eu sabia que era ruim, mas não tinha feito essa conta."
+
+**Bloco 4, consequência.** "Se nada mudar nos próximos seis meses, o que acontece?"
+
+"Eu contratei dois técnicos no começo do ano contando com mais serviço. Se a entrada não crescer, vou ter técnico parado. E eu continuo sendo o gargalo: não consigo fazer visita e cobrar orçamento ao mesmo tempo."
+
+**Diagnóstico em uma frase (saída da etapa 1):**
+
+"Hoje os pedidos de orçamento chegam pelo WhatsApp e pelo site e são respondidos quando a assistente consegue, e os orçamentos enviados não são cobrados, o que deixa cerca de 25 visitas e 5 fechamentos por mês sem acontecer (algo perto de R$ 60 mil em serviços não realizados), e se continuar assim os dois técnicos contratados ficam parados e o dono segue como gargalo."
+
+## Etapa 2 · Solução
+
+**Recapitulação.** O sócio da NID repetiu a frase. O dono confirmou: "É isso. E é pior nos dias de chuva, quando chegam trinta pedidos de infiltração de uma vez."
+
+**Causa nomeada.** "Pelo que você descreveu, o problema não é a Luciana nem a sua agenda. É que a primeira resposta e a cobrança dos orçamentos dependem de duas pessoas que já estão ocupadas com outra coisa, e o volume não avisa quando vai chegar."
+
+**Tese proposta.** "Então o que precisa existir é um atendimento que responda todo pedido na hora, com as perguntas certas, e que cobre todo orçamento enviado, sem depender do tempo de vocês dois, de modo que você só entre quando for para fazer a visita."
+
+**Concordância.** "Perfeito. Só não quero uma coisa robótica que o síndico perceba que não é gente e desista."
+
+A ressalva do dono virou premissa e, mais tarde, componente da arquitetura.
+
+**Frase de solução registrada (saída da etapa 2):**
+
+"Para os pedidos de orçamento deixarem de esperar e os orçamentos enviados deixarem de morrer sem cobrança, precisa existir um atendimento que responda na hora, qualifique com as perguntas certas e faça o follow-up de todo orçamento, sem depender da assistente nem do dono, de modo que o dono só entre para fazer a visita e fechar."
+
+**Premissas anotadas.**
+
+- O atendimento fala em nome da empresa, com o tom dela, e nunca finge ser uma pessoa quando perguntado.
+- As perguntas de qualificação são as que o dono já faz de cabeça (tipo de serviço, endereço, urgência, fotos, se o síndico decide sozinho ou leva para assembleia).
+- A agenda de visitas do dono passa a ter horários abertos para marcação.
+- A assistente continua no processo, como quem revisa e assume os casos fora do padrão.
+
+**O que a tese não é (ainda).** Agente de IA no WhatsApp, integração com a agenda, base de conhecimento com os serviços, régua de follow-up. Tudo isso é arquitetura.
+
+## Etapa 3 · Arquitetura
+
+Desenhada na mesa da NID, de trás para a frente.
+
+**Resultado final.** Todo pedido respondido em minutos, qualificado, com visita marcada na agenda do dono; todo orçamento enviado com follow-up automático até resposta; dono e assistente recebendo só o que exige gente.
+
+**As etapas, de trás para a frente e depois reordenadas.**
+
+| Etapa | Objetivo | Entra | Sai (marco) | Responsável | Prazo |
+|---|---|---|---|---|---|
+| 1. Mapa do atendimento | Saber exatamente o que se pergunta, o que se responde e o que faz um pedido virar visita | Duas horas com o dono e a assistente; histórico de conversas do WhatsApp dos últimos 90 dias | Roteiro de qualificação escrito (perguntas, ordem, critérios de urgência) e lista dos serviços com o que o síndico costuma perguntar | NID conduz; dono e assistente participam | Semana 1 e 2 |
+| 2. Construção do agente | Fazer o atendimento existir | Roteiro e lista de serviços aprovados | Agente de IA respondendo no WhatsApp e no formulário do site, com tom da empresa, qualificação completa e regra de passagem para humano | NID constrói; dono aprova o tom em uma rodada de testes | Semana 3 e 4 |
+| 3. Agenda e follow-up | Ligar o atendimento ao que acontece depois | Agente aprovado; acesso à agenda do dono; modelo de orçamento atual | Marcação de visita direto na agenda do dono; régua de follow-up de orçamento (três contatos em dez dias, com passagem para a assistente se não houver resposta) | NID configura; dono libera a agenda e define os horários de visita | Semana 5 |
+| 4. Operação assistida | Colocar para rodar com gente olhando | Tudo configurado | Duas semanas de operação em que a assistente revisa as conversas do dia e ajusta o roteiro com a NID; relatório diário de pedidos, qualificados e visitas marcadas | NID acompanha diariamente; assistente revisa | Semana 6 e 7 |
+| 5. Operação e revisão mensal | Deixar rodando e melhorar todo mês | Operação assistida concluída | Agente em operação contínua; painel de pedidos, visitas e orçamentos em follow-up; reunião mensal de revisão com ajuste de roteiro e de régua | NID opera e revisa; dono participa da reunião mensal | A partir da semana 8, contínuo |
+
+**Primeiro resultado visível.** Ao fim da semana 2, o dono recebe o roteiro de qualificação escrito e a lista de serviços com as perguntas frequentes. É a primeira vez que o atendimento da empresa está no papel, e isso acontece antes de qualquer tecnologia.
+
+**Componentes que respondem ao que o cliente disse.**
+
+- "Não quero uma coisa robótica." Resposta: rodada de testes de tom com o dono na etapa 2; regra de que o agente se identifica como atendimento da empresa e nunca finge ser humano quando perguntado; passagem imediata para a assistente em qualquer situação fora do roteiro.
+- "Nos dias de chuva chegam trinta de uma vez." Resposta: o agente responde todos ao mesmo tempo; o roteiro tem critério de urgência (infiltração ativa vai para o topo da fila de visita).
+- "Eu não tenho tempo de ficar cobrando." Resposta: régua de follow-up de orçamento com três contatos em dez dias, e passagem para a assistente só quando a régua acaba sem resposta.
+
+**Responsabilidades do cliente.** Duas horas do dono e da assistente na semana 1; histórico do WhatsApp na semana 1; aprovação do tom na semana 4; agenda liberada com horários de visita na semana 5; revisão diária das conversas pela assistente nas semanas 6 e 7; presença do dono na reunião mensal.
+
+**Lista de entregáveis por etapa.** Roteiro de qualificação e lista de serviços (etapa 1). Agente de IA no WhatsApp e no site, com base de conhecimento da empresa (etapa 2). Integração com a agenda e régua de follow-up configurada (etapa 3). Duas semanas de operação assistida com relatório diário e roteiro ajustado (etapa 4). Operação contínua, painel e reunião mensal de revisão (etapa 5).
+
+Na proposta, a arquitetura ocupa uma página: cinco blocos com setas, o marco embaixo de cada um, o responsável e a semana. A lista de entregáveis aparece na página seguinte, agrupada por etapa.
+
+## Etapa 4 · Valor
+
+**Ancoragem.** "Na primeira conversa a gente chegou a cerca de R$ 60 mil por mês em serviços que não acontecem: 25 visitas perdidas por resposta atrasada e 5 fechamentos perdidos por orçamento sem cobrança. O projeto ataca exatamente esses dois pontos: nenhum pedido espera e nenhum orçamento fica sem follow-up. Pela sua conta, cada visita que volta a acontecer vale, na média, um terço de R$ 4.500, ou seja, R$ 1.500. E cada orçamento que fecha por causa da cobrança vale R$ 4.500. Quantos vão voltar depende do seu preço e da sua concorrência, mas a régua é essa."
+
+**Investimento, na estrutura do desenho.** "O projeto tem a estrutura que você viu. Setup das etapas 1 a 3, pago uma vez: [valor]. Ele entrega o roteiro, o agente construído com o tom da empresa e a integração com a agenda e o follow-up; o roteiro e a base de conhecimento ficam seus. Operação das etapas 4 e 5: [valor] por mês, com a operação assistida, o painel, a reunião mensal e os ajustes de roteiro, com prazo mínimo de [prazo]. Fora do escopo: o número de WhatsApp da empresa e o custo da conta de mensagens, que continuam em seu nome."
+
+(Os valores são definidos pela NID em cada proposta e não entram neste playbook. O formato é o que interessa: setup separado da mensalidade, cada parte ligada aos blocos do desenho, com o que fica e o que não fica incluso.)
+
+**Comparação em uma frase.** "Perto dos R$ 60 mil por mês que a gente calculou, a operação mensal se paga com poucas visitas recuperadas."
+
+**Próximo passo.** "Se fizer sentido, o próximo passo é a aprovação desta proposta e a sessão de mapa do atendimento, que é a etapa 1. Preciso de duas horas suas e da Luciana, e do histórico do WhatsApp exportado. Consigo agendar a sessão para a semana que vem?"
+
+## A proposta que saiu disso
+
+Nove páginas, na ordem do método:
+
+1. Capa: nome da empresa (por segmento, no caso deste playbook), título do projeto, NID.
+2. Dor: o diagnóstico em uma frase, com a conta do custo aberta em três linhas.
+3. Solução: a frase de solução e as quatro premissas.
+4. Arquitetura, o desenho: as cinco etapas em fluxo, com marco, responsável e prazo.
+5. Arquitetura, os entregáveis: a lista por etapa.
+6. Arquitetura, as respostas: os três componentes que respondem ao que o dono disse.
+7. Valor: a ancoragem, com a régua da dor.
+8. Investimento: setup e mensalidade, o que está incluso, o que fica fora, condições.
+9. Próximo passo: o que aprovar, a data proposta, o que a NID precisa do cliente na semana 1.
+
+Nenhuma página "quem é a NID" antes da dor. Nenhuma lista de funcionalidades do agente. Nenhum preço antes da página 8. O dono recebeu o PDF, enviou para o gerente operacional e para o contador, e os dois entenderam o projeto sem ninguém da NID na sala. É para isso que o desenho existe.
+
+---
+
+# Capítulo 8 · Do desenho à proposta
+
+O projeto desenhado é a proposta. Este capítulo mostra como transformar as quatro saídas do método (canvas de dor, mapa de solução, fluxo de arquitetura e tabela de valor) em um documento que conduz o cliente até a decisão, sem você na sala.
+
+## O roteiro de proposta
+
+A proposta segue o roteiro abaixo. A ordem é fixa; o número de páginas varia com o tamanho do projeto.
+
+| Página | Conteúdo | De onde vem | Regra |
+|---|---|---|---|
+| 1. Capa | Nome do cliente, título do projeto (com a solução no nome, não o serviço), quem apresenta, data | Mapa de solução | O título fala do que muda para o cliente, não do que você vende |
+| 2. Dor | O diagnóstico em uma frase, com a conta do custo aberta | Canvas de dor | Nas palavras do cliente. Nada sobre você |
+| 3. Solução | A frase de solução e as premissas | Mapa de solução | Sem entregável. O cliente precisa concordar com esta página antes de virar |
+| 4. Arquitetura (desenho) | O fluxo em uma página: etapas, setas, marcos, responsáveis, prazos | Fluxo de arquitetura | Visual. Se está em texto corrido, ainda não é desenho |
+| 5. Arquitetura (entregáveis) | O que o cliente recebe em cada etapa | Fluxo de arquitetura | Agrupado por etapa, nunca lista solta |
+| 6. Arquitetura (respostas) | Os componentes que respondem ao que o cliente disse que já tentou ou teme | Fluxo de arquitetura | Uma linha por preocupação do cliente, com o componente que responde |
+| 7. Valor | A ancoragem na régua da dor | Tabela de valor | Mesma unidade da dor. Sem promessa de número |
+| 8. Investimento | Preço na estrutura da arquitetura, incluso, não incluso, condições | Tabela de valor | Nunca antes da página 7 |
+| 9. Próximo passo | O que aprovar, data de início, primeira responsabilidade do cliente | Tabela de valor | Com data. Sem "fico à disposição" |
+
+Páginas opcionais, sempre depois do próximo passo: quem é a sua empresa (uma página, com o que sustenta a arquitetura, não um histórico), casos por segmento (só com dado real e autorizado), termos e condições.
+
+## A ordem das páginas explica a decisão
+
+Repare que a proposta reproduz a ordem em que qualquer decisor decide:
+
+1. Ele reconhece o problema como dele (dor). Se não reconhece, nada do que vem depois importa.
+2. Ele concorda com o que precisa mudar (solução). Se discorda, a arquitetura parece arbitrária.
+3. Ele vê como funciona e onde entra (arquitetura). Aqui ele entende o que está comprando.
+4. Ele compara o que ganha com o que paga (valor). Aqui ele decide.
+5. Ele sabe o que fazer a seguir (próximo passo). Aqui ele age.
+
+Uma proposta que começa por "quem somos" pede ao cliente que se interesse por você antes de você ter demonstrado interesse por ele. Uma proposta que mostra o preço na página 2 pede ao cliente que julgue um número antes de entender o que ele compra. As duas terminam em "vou pensar".
+
+## O que nunca aparece antes do valor
+
+- **O preço.** Em nenhuma forma: nem número, nem faixa, nem "a partir de". Se o cliente pular para o fim, é problema dele; o seu é não facilitar o atalho colocando o número no início.
+- **A lista de funcionalidades do seu produto.** Módulos, recursos, tecnologias, horas. Elas aparecem como componentes da arquitetura, dentro da etapa em que resolvem alguma coisa.
+- **A sua empresa.** Histórico, missão, equipe, prêmios. Se entrar, entra depois do próximo passo, em uma página, com o que sustenta o projeto.
+- **Comparações com concorrentes.** A proposta compara custo com valor, não você com os outros.
+- **Depoimentos genéricos.** "Excelente parceiro." Se houver prova, ela é específica, real e autorizada, e entra na página de valor como evidência do mecanismo.
+
+## Como apresentar a proposta
+
+A apresentação segue as páginas. Uma regra por página:
+
+- **Dor**: leia a frase e pergunte "continua sendo isso?". O cliente precisa dizer sim de novo.
+- **Solução**: leia a frase e pergunte "faz sentido?". Segundo sim.
+- **Arquitetura**: conte a sequência, bloco a bloco, com uma frase por bloco. Não leia os componentes; responda perguntas com eles.
+- **Valor**: volte à conta feita com o cliente. Mostre a régua. Não prometa.
+- **Investimento**: apresente na estrutura do desenho. Pare de falar depois do número.
+- **Próximo passo**: proponha a data. Silêncio.
+
+Como conduzir essa reunião, a sequência dos slides, as objeções e o fechamento são o assunto do Mini curso NID · Apresente para Fechar. Este playbook termina com a proposta pronta; o mini curso começa com ela na mão.
+
+---
+
+# Capítulo 9 · Checklist: proposta pronta para apresentar
+
+Passe a proposta por esta lista antes de enviar ou apresentar. Se um item falhar, volte à etapa correspondente. A proposta só está pronta com todos os itens marcados.
+
+## Dor
+
+- [ ] O diagnóstico está em uma frase, nas palavras do cliente, sem termo seu.
+- [ ] A frase tem número ou consequência concreta, com a conta aberta e as premissas visíveis.
+- [ ] A conta foi feita com o cliente, e ele reconhece os números como dele.
+- [ ] Não há uma palavra sobre o seu produto, serviço ou empresa nesta página.
+
+## Solução
+
+- [ ] A frase de solução responde à causa, não ao sintoma.
+- [ ] A frase não contém entregável: não dá para colocar preço nela.
+- [ ] O cliente já concordou com a tese, e a versão escrita é a que ele reformulou.
+- [ ] As premissas estão listadas, e cada uma tem um componente na arquitetura.
+
+## Arquitetura
+
+- [ ] O projeto está desenhado como fluxo visual, em uma página, com três a seis etapas.
+- [ ] Cada etapa tem objetivo, o que entra, o que sai (marco verificável), responsável e prazo.
+- [ ] Existe um primeiro resultado visível para o cliente cedo no projeto, e a página diz quando.
+- [ ] O cliente tem responsabilidades explícitas, nomeadas por etapa.
+- [ ] Tudo o que o cliente disse que já tentou, teme ou não quer tem um componente que responde.
+- [ ] Os entregáveis aparecem agrupados por etapa, nunca como lista solta.
+- [ ] O que você vende aparece como componente dentro do fluxo, não como abertura.
+
+## Valor
+
+- [ ] A ancoragem usa a mesma unidade de medida da dor.
+- [ ] A conta de equivalência (quanto vale cada unidade recuperada) usa os números do cliente.
+- [ ] Não há promessa de resultado sem dado real e autorizado.
+- [ ] O investimento está na estrutura da arquitetura (setup, mensalidade, fases), com incluso e não incluso.
+- [ ] Existe uma comparação em uma frase entre o investimento e o custo da dor.
+- [ ] O preço não aparece em nenhuma página antes da página de valor.
+
+## Próximo passo
+
+- [ ] A última página diz o que o cliente aprova, quando o projeto começa e o que ele precisa fazer na primeira semana.
+- [ ] Existe uma data proposta.
+- [ ] Não existe "fico à disposição", "qualquer dúvida" ou "aguardo retorno" no fechamento.
+
+## Documento
+
+- [ ] A ordem das páginas é a do roteiro: dor, solução, arquitetura, valor, investimento, próximo passo.
+- [ ] O título da proposta fala do que muda para o cliente.
+- [ ] A proposta faz sentido para alguém que não estava na reunião (teste: mostre para um colega que não conhece o cliente e peça para ele explicar o projeto).
+- [ ] Ortografia e nomes revisados; nome do cliente certo em todas as páginas.
+
+---
+
+# Capítulo 10 · Adaptações por perfil
+
+O método é o mesmo para quem vende qualquer coisa que precise ser explicada. O que muda é onde cada perfil costuma travar e qual etapa exige mais cuidado. Uma página por perfil.
+
+## Vendedor B2B de serviços ou tecnologia
+
+**Onde trava.** A proposta vira orçamento porque a empresa tem um modelo de proposta e o modelo começa por "quem somos" e termina em tabela de preço. O vendedor preenche o modelo em vez de desenhar o projeto. Na reunião, apresenta o produto porque é o que domina.
+
+**A etapa que exige mais cuidado: Dor.** O vendedor B2B costuma ter a conversa de diagnóstico e não quantificar. Ele sai da reunião com "o cliente quer melhorar o processo" e monta a proposta em cima disso. Sem número, não há valor, e o preço fica sozinho. A correção é simples e desconfortável: perguntar "quanto" até ter a conta feita com o cliente, mesmo que aproximada.
+
+**Como usar o método dentro do modelo da empresa.** Se o modelo de proposta é obrigatório, use-o como formatação e coloque o conteúdo do método dentro dele: a seção "contexto" recebe o diagnóstico em uma frase; a seção "objetivo" recebe a frase de solução; a seção "escopo" recebe o fluxo desenhado com os entregáveis por etapa; a seção "investimento" recebe a ancoragem antes do preço. Se o modelo tem "quem somos" no início, mova para o fim ou reduza a uma linha na capa.
+
+**O que muda na prática.** O ciclo de semanas passa a ter um marco claro: a segunda reunião é a apresentação do projeto desenhado, não o envio de um PDF. Você passa a pedir a segunda reunião com a frase "na próxima eu te mostro o projeto desenhado com o investimento", e a segunda reunião vira o momento da decisão.
+
+## SDR ou BDR que quer virar closer
+
+**Onde trava.** Ninguém ensina o SDR a estruturar uma oferta, só a agendar. Quando surge a chance de conduzir uma conta, ele repete o discurso de prospecção (dor e gancho) e não sabe o que vem depois. O closer que recebe a oportunidade perde, e o SDR pensa "se fosse eu, fecharia", mas não tem um método para provar.
+
+**A etapa que exige mais cuidado: Solução.** O SDR já é bom em dor: prospecta com ela todos os dias. O salto para closer está em transformar a dor em tese e pedir concordância antes de falar de escopo. É o momento em que a conversa deixa de ser qualificação e vira condução. Treine a sequência do capítulo 4 (recapitular, nomear a causa, propor a tese, pedir concordância) nas próprias ligações de qualificação: você vai entregar oportunidades melhores para o closer e aprender a etapa sem precisar de permissão.
+
+**Como usar o método antes de ser promovido.** Escolha uma oportunidade que você qualificou e desenhe o projeto inteiro, com os quatro templates, como se fosse apresentar. Entregue o desenho ao closer junto com a passagem. Faça isso por um mês. Você vai ter um portfólio de projetos desenhados, e o gerente vai ter um motivo concreto para te dar uma conta.
+
+**O que muda na prática.** A conversa "quero virar closer" deixa de ser sobre vontade e passa a ser sobre método: "Nos últimos trinta dias eu desenhei estes seis projetos para as oportunidades que passei. Quero conduzir a próxima."
+
+## Closer ou executivo de contas
+
+**Onde trava.** A apresentação é o PowerPoint da empresa, igual ao do concorrente. Nos contratos médios e grandes, a decisão acontece em comitê, com gente que não estava na reunião, e o PowerPoint não sobrevive sem quem apresenta. O closer perde no comitê sem saber por quê.
+
+**A etapa que exige mais cuidado: Arquitetura.** O closer tende a ter o diagnóstico bom e a proposta fraca no desenho: sabe explicar o projeto falando, mas o documento não mostra o fluxo. É exatamente o que falha no comitê. A correção é desenhar o fluxo em uma página, com marcos, responsáveis e prazos, e acrescentar a página de "respostas" (o que o cliente disse que teme e qual componente responde). O decisor ausente lê essa página e entende por que o projeto é diferente.
+
+**Como lidar com "já tenho meu jeito".** Mantenha o seu jeito na condução da reunião. Use o método no documento. O que muda é o que fica na mesa do cliente depois que você sai: em vez de um PowerPoint institucional, um projeto desenhado que o comitê consegue percorrer sozinho. Teste em uma conta: apresente do seu jeito e deixe o desenho. Compare com a conta anterior.
+
+**O que muda na prática.** Ticket maior por projeto, porque a arquitetura com etapas e marcos sustenta um escopo maior do que uma lista de entregáveis. E menos perda no comitê, porque o documento conduz sem você.
+
+## Consultor, freelancer ou dono de serviço
+
+**Onde trava.** Cobra por hora porque não sabe mostrar o valor do projeto inteiro. A proposta parece uma lista de tarefas, e lista de tarefas tem preço por tarefa, então o cliente pede desconto. "Não sou vendedor, sou técnico" é o argumento que mantém tudo assim.
+
+**A etapa que exige mais cuidado: Valor.** O consultor costuma ser bom em arquitetura (é o trabalho dele) e fraco em ancoragem: apresenta o projeto e coloca o preço sem régua. A correção é quantificar a dor na primeira conversa e montar a tabela de valor antes de definir o preço. Quando o preço aparece ao lado do custo da dor, na estrutura do projeto, ele deixa de ser "quanto custa a sua hora" e passa a ser "quanto custa resolver isto".
+
+**Como sair da hora.** Desenhe o projeto em etapas com marcos e precifique por etapa ou por fase, nunca por hora. A hora é um insumo seu; o cliente compra o marco. Se ele pedir desconto, a resposta é o desenho: "Posso tirar a etapa 4, mas aí a rotina não pega, e foi por isso que o CRM anterior de vocês não funcionou." Desconto sem tirar etapa não existe; tirar etapa quebra o fluxo. O cliente entende.
+
+**"Meu mercado é diferente."** O mercado é diferente; a decisão não. Todo decisor quer saber qual é o problema, o que precisa mudar, como funciona e quanto vale perto do custo. Jurídico, financeiro, design, automação, marketing: o método é o mesmo; os componentes da arquitetura é que mudam.
+
+**O que muda na prática.** Você passa a vender projeto fechado, com valor claro, e a proposta deixa de ser negociada tarefa por tarefa.
+
+---
+
+# Capítulo 11 · Próximo passo
+
+Você terminou o playbook com o método inteiro, os templates e um caso conduzido. O que vem agora depende de uma coisa: a próxima proposta. Pegue um cliente real, preencha o canvas de dor com o que você já sabe, marque a conversa de diagnóstico para completar o que falta e desenhe o projeto. O método só existe quando é aplicado.
+
+Depois disso, há dois degraus.
+
+## Apresentar e vender o projeto desenhado
+
+Desenhar o projeto resolve metade da venda. A outra metade é a reunião: a sequência dos slides, o que dizer em cada página, como responder "está caro", "vou pensar", "preciso levar para o comitê", e como fechar com data.
+
+O Mini curso NID · Apresente para Fechar é o degrau seguinte. São vídeo-aulas gravadas por Henrique Leite, sócio da NID, mostrando como a NID apresenta e vende o projeto desenhado, com os slides de cada aula, o roteiro de apresentação de projeto, o checklist de reunião e o modelo de proposta. O mini curso começa exatamente onde este playbook termina: com a proposta pronta na mão. Investimento: R$ 147, com 7 dias de garantia e reembolso sem pergunta.
+
+## Desenhar e apresentar na mesma tela
+
+Os templates deste playbook funcionam no papel, no Canva ou no PowerPoint. O que a gente percebeu vendendo projeto todos os dias é que o desenho no papel leva horas, sai diferente a cada vez e a apresentação não conversa com o desenho: o fluxo fica em uma ferramenta e os slides em outra.
+
+O NIDflow é a ferramenta que a NID usa para desenhar e apresentar projetos, com os templates do Método NID já dentro. Você preenche o canvas de dor, o mapa de solução, o fluxo de arquitetura e a tabela de valor na mesma tela, e apresenta a partir dali, no modo de apresentação, na ordem do método. Onboarding guiado até o primeiro projeto. Investimento: R$ 29,90 por mês, com cancelamento a qualquer momento e 7 dias de garantia.
+
+Você vai receber a apresentação do NIDflow nos próximos dias, por e-mail e WhatsApp, com a ferramenta em uso em um projeto real.
+
+## Uma última coisa
+
+Se você tem empresa própria com time comercial, ou decide contratações de marketing e vendas onde trabalha, o método que você acabou de ler é o mesmo que a NID usa para desenhar o projeto comercial dos clientes dela: geração de demanda, automação comercial com IA e terceirização de BDR, SDR e closer. Quem desenha projeto para os clientes também pode ter o próprio projeto comercial desenhado pela NID. Responda ao e-mail de entrega deste playbook e a gente conversa.
+
+Quem desenha o projeto, conduz a venda. Desenhe o próximo.
+
+NID · Consultoria de Performance Comercial
+
+---
+
+## Ficha técnica
+
+Playbook NID · Desenhe para Vender. Como desenhar qualquer projeto para vender.
+
+Método NID de Desenho de Projetos: Dor, Solução, Arquitetura, Valor.
+
+Acompanham este playbook os templates de fluxo (canvas de dor, mapa de solução, fluxo de arquitetura, tabela de valor e roteiro de proposta), com instruções e exemplo preenchido, e o checklist "proposta pronta para apresentar".
+
+NID - Núcleo de Inteligência Digital LTDA. CNPJ 11.698.721/0001-33. Rua José Versolato, 101, Centro, São Bernardo do Campo, SP, CEP 09750-730.
+
+Este material é de uso pessoal do comprador. A reprodução e a distribuição sem autorização da NID não são permitidas.
