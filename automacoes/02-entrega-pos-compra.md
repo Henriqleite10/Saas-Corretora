@@ -53,7 +53,7 @@ Três variantes de compra e dois caminhos de não compra:
 
 | Passo | Responsável | Tempo | O que acontece | Se falhar |
 |---|---|---|---|---|
-| 1. Webhook | Plataforma de checkout → orquestrador | Até 1 min após a aprovação | `purchase_approved` com id do pedido, e-mail, nome, telefone, produtos, valor, UTMs do checkout. O orquestrador valida o segredo do webhook e é idempotente por id do pedido + tipo de evento | Webhook não chega em 5 min: rotina de conciliação consulta a API da plataforma a cada 15 min e processa pedidos aprovados sem evento. Alerta ao coordenador se houver mais de 3 por dia |
+| 1. Webhook | Plataforma de checkout → orquestrador | Até 1 min após a aprovação | `purchase_approved` com id do pedido, e-mail, nome, telefone, produtos, valor, UTMs do checkout. O orquestrador valida a chave do webhook e é idempotente por id do pedido + tipo de evento | Webhook não chega em 5 min: rotina de conciliação consulta a API da plataforma a cada 15 min e processa pedidos aprovados sem evento. Alerta ao coordenador se houver mais de 3 por dia |
 | 2. Base | Orquestrador | Imediato | Cria ou atualiza o contato (chave: e-mail; telefone como chave secundária), grava origem e UTMs, aplica `F2-comprador-playbook` e, se houver, `F2-bump`. Une com o registro do direct ou do WhatsApp quando o e-mail ou o telefone bate | |
 | 3. Página de obrigado | Plataforma redireciona para a página da NID | Imediato | A plataforma redireciona para a página de obrigado construída pela NID (skill `nid-pages`), com o id do pedido na URL. A página mostra: confirmação da compra, aviso de que o acesso já está chegando por e-mail e WhatsApp, e as **duas perguntas de qualificação** (seção 3) | Se a plataforma não permitir redirecionar com o id do pedido, a página identifica pelo e-mail digitado em um campo único. Se a pessoa fechar a página sem responder, as perguntas voltam no e-mail D+1 e no agente (seção 3.3) |
 | 4. [CONDICIONAL] Oferta de um clique | Plataforma | Imediato, antes da página de obrigado | **[CONDICIONAL: aguarda aprovação do Henrique]** Só para quem recusou o bump: página de upsell nativa da plataforma com o mini curso a R$ 97, aceito com um clique (cartão já salvo) ou com Pix novo. Aceite gera `purchase_approved` do mini curso e o contato entra no ramo B. Recusa leva à página de obrigado. Sem a aprovação, o passo não existe e a plataforma redireciona direto para a página de obrigado | Se o pagamento do upsell for recusado, nada muda: a pessoa segue no ramo A e recebe a oferta do mini curso a R$ 147 pela sequência |
@@ -101,7 +101,7 @@ Decisão 1 do coordenador: as duas perguntas do Gatilho A são feitas no D0, ant
 |---|---|---|---|
 | 1 | E-mail D+1 (E1) | E-mail | Dois botões de um clique dentro do e-mail para a pergunta 1 (cada botão é um link que grava a resposta e abre uma página com a pergunta 2). Só aparece para quem está `nao_respondeu` |
 | 2 | Agente de IA | Direct ou WhatsApp | Sempre que o comprador conversar com o agente e a base estiver `nao_respondeu`, o agente pergunta (seção 4.3 do `01`) |
-| 3 | Onboarding do NIDflow | NIDflow | Passo 2 do onboarding (`02-onboarding.md` do `nidflow`) faz as mesmas perguntas para quem assinar |
+| 3 | Onboarding do NIDflow | NIDflow | A tela de conclusão do primeiro projeto (passo 7 do onboarding, `02-onboarding.md` do `nidflow`) faz as mesmas perguntas para quem assinar e ainda está `nao_respondeu` |
 | 4 | E-mail D+5 (E5) | E-mail | Última tentativa automática, com os mesmos botões. Depois disso, fica `nao_respondeu` até uma interação futura |
 
 Nunca se supõe a resposta. Sem resposta registrada, não há Gatilho A.
@@ -130,7 +130,7 @@ Saídas do ramo A:
 
 | Evento | O que acontece |
 |---|---|
-| `purchase_approved` do mini curso | Cancela E3 a E6 pendentes; aplica `F2-minicurso`; entra no ramo B no dia da compra (B1 no dia seguinte). O D+7 do NIDflow não muda |
+| `purchase_approved` do mini curso | Cancela E3, W4, E5 e E6 pendentes; aplica `F2-minicurso`; entra no ramo B no dia da compra (B1 no dia seguinte). O D+7 do NIDflow não muda |
 | `refund` (Kiwify: `compra_reembolsada`) ou `chargeback` do playbook | Cancela tudo; aplica `F2-reembolso`; nenhuma mensagem automática além da confirmação do reembolso enviada pela plataforma. Tarefa `F2 · Financeiro` para conferir |
 | Opt-out de e-mail | Cancela os e-mails; WhatsApp continua se não houver opt-out do WhatsApp |
 | Opt-out de WhatsApp | Cancela os WhatsApps; e-mails continuam |
@@ -218,7 +218,7 @@ Depois de N2 sem compra: mesmo destino do abandono.
 
 - [ ] Compra de teste (playbook sem bump) na plataforma em modo de teste: webhook chega, contato criado com etiqueta, página de obrigado abre com o id do pedido, resposta às perguntas grava na base, E0 e W0 chegam em menos de 2 minutos.
 - [ ] Compra de teste com bump: `F2-bump` aplicada, ramo B agendado, sem E3 a E6.
-- [ ] Compra do mini curso em D+3 por quem estava no ramo A: E4 a E6 cancelados, ramo B iniciado, D+7 do NIDflow mantido.
+- [ ] Compra do mini curso em D+3 por quem estava no ramo A: W4, E5 e E6 cancelados, ramo B iniciado, D+7 do NIDflow mantido.
 - [ ] Reembolso de teste: todas as mensagens pendentes canceladas, `F2-reembolso` aplicada, tarefa financeira criada.
 - [ ] Abandono de teste: R1, R2 e R3 nos tempos certos; compra no meio cancela o restante.
 - [ ] Opt-out nos dois canais com efeito imediato.

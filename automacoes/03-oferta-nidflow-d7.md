@@ -5,9 +5,9 @@
 | Versão | 1.0 (Sprint 4) |
 | Autor | Agente `automacao` |
 | Status | Entregue ao coordenador |
-| Fonte da verdade | `docs/00-brief-mestre.md` (seções 5, 6.4, 8.1, 12 decisões 3 e 4); `produtos/nidflow/01-plano-de-assinatura.md` (seções 5 a 10); `produtos/nidflow/02-onboarding.md` (seções 4 e 5); `produtos/nidflow/04-backlog-tecnico.md` (B-04, B-11); `produtos/nidflow/oferta/rascunho-oferta-d7.md`; decisão 4 do coordenador (controle de acesso próprio ligado ao webhook de assinatura) |
+| Fonte da verdade | `docs/00-brief-mestre.md` (seções 5, 6.4, 8.1, 12 decisões 3 e 4); `produtos/nidflow/01-plano-de-assinatura.md` (seções 5 a 10); `produtos/nidflow/02-onboarding.md` (seções 4 e 5); `produtos/nidflow/04-backlog-tecnico.md` (B-01, B-07, B-08, B-13); `produtos/nidflow/oferta/rascunho-oferta-d7.md`; decisão 4 do coordenador (controle de acesso próprio ligado ao webhook de assinatura) |
 | Mensagens | Todas as mensagens deste arquivo são **rascunho funcional**. O argumento de cada toque vem do `rascunho-oferta-d7.md` do agente `nidflow`; a versão final é do agente `copy` |
-| Pré-condição | Itens que bloqueiam a venda no backlog do NIDflow entregues (B-00 a B-08, B-11, B-13). Sem isso, a sequência fica desligada e o D+7 não dispara |
+| Pré-condição | Itens que bloqueiam a venda no backlog do NIDflow entregues (B-00 a B-09). Sem isso, a sequência fica desligada e o D+7 não dispara |
 
 ---
 
@@ -21,7 +21,7 @@
 | Quando | D+7 contado da **primeira compra** (playbook ou mini curso), em dias corridos, às 10h do horário de Brasília. Se D+7 cair no domingo, vai para segunda às 10h e os lembretes mantêm a distância (D+10 e D+14 contados do novo D+7) |
 | Segunda compra antes de D+7 | Não reinicia a contagem. Quem comprou o playbook em D0 e o mini curso em D+3 recebe a oferta em D+7 da compra do playbook |
 | Flag de produto | A sequência só dispara com `nidflow_venda_liberada = sim` no orquestrador (o coordenador liga depois do checklist do backlog). Enquanto `nao`, os contatos que chegam a D+7 ficam em fila e recebem a oferta no dia em que a flag ligar, respeitando a ordem de chegada e o limite de envios diários |
-| PDF | O texto menciona exportação em PDF só com `nidflow_pdf_disponivel = sim` (B-08 no ar). O `copy` entrega duas versões do toque principal (com e sem a linha do PDF) |
+| PDF | O texto menciona exportação em PDF só com `nidflow_pdf_disponivel = sim` (B-07 no ar). O `copy` entrega duas versões do toque principal (com e sem a linha do PDF) |
 
 ### 1.2 Saída (a qualquer momento, cancela os toques pendentes)
 
@@ -70,15 +70,15 @@ O NIDflow em HTML único tem controle de acesso próprio, ligado ao webhook de a
 | `subscription_created` (Kiwify: `compra_aprovada` em produto de assinatura, primeira cobrança) | `ativa`, `periodo_fim` = data da próxima cobrança | Completo | Cria a conta se não existir (Supabase Auth, mesmo e-mail da compra); dispara o e-mail de acesso A1 com link mágico válido por 24 h; dispara o WhatsApp A1w; grava `conta_criada`; cancela a oferta D+7 pendente; agenda as mensagens de ativação e resgate do `02-onboarding.md` | `F2-nidflow-ativo` |
 | `subscription_renewed` (Kiwify: `subscription_renewed`) | `ativa`, `periodo_fim` avança um mês | Completo | Nada visível. Grava evento. Se estava em `recusada` ou `inadimplente`, volta a `ativa` e cancela R6 pendentes | Mantém |
 | `subscription_renewal_refused` (Kiwify: `subscription_late`, primeiro aviso) | `recusada` | Completo (regra do plano: nunca bloquear leitura no primeiro dia de recusa) | Dispara R6 (e-mail + WhatsApp "não conseguimos renovar") com link para atualizar o cartão na área do comprador; segundo aviso em D+3; último em D+6 | `F2-nidflow-recusada` |
-| Retentativas esgotadas (Cakto: após as 3 tentativas, sem `subscription_renewed`; Kiwify: `subscription_late` mantido por 7 dias). Detecção: `recusada` há 7 dias sem renovação | `inadimplente` → `leitura`, `leitura_ate` = hoje + 30 dias | **Modo leitura**: abre, vê os projetos, exporta em PDF; não cria nem edita. Faixa na tela com "Atualizar pagamento" | E-mail R6c "Seu NIDflow entrou em modo leitura" com o prazo de exportação | `F2-nidflow-leitura` |
-| `subscription_canceled` (Kiwify: `subscription_canceled`) | `cancelada` até `periodo_fim`; depois, `leitura` por 30 dias | Completo até o fim do período pago; depois, modo leitura com exportação em PDF por 30 dias | E-mail R7 "Seu NIDflow foi cancelado" no dia (sem insistência, sem desconto, pergunta opcional de motivo); e-mail R7b no dia em que entra em leitura, com a data limite da exportação; e-mails de aviso de exclusão em D+60 e D+83 após o fim do período (rotina do B-04) | `F2-nidflow-cancelado` |
+| Retentativas esgotadas (Cakto: até 3 tentativas em 3 dias consecutivos, segundo a central de ajuda, resumo de busca de 11/09/2026; se após elas a Cakto emitir `subscription_canceled`, esse evento é o gatilho. Kiwify: `subscription_late` mantido por 7 dias). Detecção de segurança, independente da plataforma: `recusada` há 7 dias sem `subscription_renewed` | `inadimplente` → `leitura`, `leitura_ate` = hoje + 30 dias | **Modo leitura**: abre, vê os projetos, exporta em PDF; não cria nem edita. Faixa na tela com "Atualizar pagamento" | E-mail R6c "Seu NIDflow entrou em modo leitura" com o prazo de exportação | `F2-nidflow-leitura` |
+| `subscription_canceled` (Kiwify: `subscription_canceled`) | `cancelada` até `periodo_fim`; depois, `leitura` por 30 dias | Completo até o fim do período pago; depois, modo leitura com exportação em PDF por 30 dias | E-mail R7 "Seu NIDflow foi cancelado" no dia (sem insistência, sem desconto, pergunta opcional de motivo); e-mail R7b no dia em que entra em leitura, com a data limite da exportação; e-mails de aviso de exclusão em D+60 e D+83 após o fim do período (rotina diária do B-01) | `F2-nidflow-cancelado` |
 | `refund` de assinatura (Kiwify: `compra_reembolsada`) dentro dos 7 dias | `reembolsada` → `leitura` por 30 dias | Modo leitura imediato (exportação liberada) | Confirmação de reembolso é da plataforma; o orquestrador manda só o R7b com o prazo de exportação | `F2-nidflow-cancelado` + `F2-reembolso` |
 | `chargeback` de assinatura | `reembolsada` (mesmo regime) | Modo leitura | Tarefa `F2 · Financeiro` | Idem |
 | Nova assinatura com e-mail que já tem conta (reativação em até 90 dias) | `ativa` | Completo, com todos os projetos | Não cria conta; reativa; e-mail A1 (link mágico) | `F2-nidflow-ativo` |
-| Compra da Plataforma NID (Sprint 6, B-14) | `ativa` com `origem = plataforma_nid` | Completo | Se havia assinatura mensal, cancela na plataforma no mesmo dia e envia e-mail explicando (regra de não cobrança dupla do parecer, decisão 3) | `F2-plataforma-ativo` |
+| Compra da Plataforma NID (Sprint 6, B-13) | `ativa` com `origem = plataforma_nid` | Completo | Se havia assinatura mensal, cancela na plataforma no mesmo dia e envia e-mail explicando (regra de não cobrança dupla do parecer, decisão 3) | `F2-plataforma-ativo` |
 | Fim da anuidade da Plataforma sem renovação | `leitura` por 30 dias | Modo leitura | Oferta do NIDflow mensal avulso (uma vez, por e-mail) | `F2-nidflow-leitura` |
 
-Regras técnicas do webhook (B-04): validação do segredo em toda chamada; idempotência por `id_externo` + tipo de evento (evento duplicado não cria conta nem e-mail duplicado); todo evento passa pela mesma função e muda só o campo `status`; o NIDflow lê o status ao abrir e a política de RLS nega escrita fora de `ativa`; webhook com assinatura inválida é rejeitado e registrado. Prazo entre pagamento e e-mail de acesso: menos de 2 minutos; se falhar, a fila da plataforma tenta de novo e o suporte recebe alerta.
+Regras técnicas do webhook (B-01): validação da chave em toda chamada; idempotência por `id_externo` + tipo de evento (evento duplicado não cria conta nem e-mail duplicado); todo evento passa pela mesma função e muda só o campo `status`; o NIDflow lê o status ao abrir e a política de RLS nega escrita fora de `ativa`; webhook com assinatura inválida é rejeitado e registrado. Prazo entre pagamento e e-mail de acesso: menos de 2 minutos; se falhar, a fila da plataforma tenta de novo e o suporte recebe alerta.
 
 ### 3.2 Fluxo de acesso (do webhook ao primeiro projeto)
 
@@ -88,8 +88,8 @@ Regras técnicas do webhook (B-04): validação do segredo em toda chamada; idem
 | 2 | Função `webhook-checkout` | Imediato | Conta criada ou reativada; `assinaturas.status = ativa`; evento `conta_criada`; chamada ao webhook do orquestrador | Erro na criação: nova tentativa em 1 min (3 vezes); depois, alerta ao suporte e tarefa `F2 · Suporte` |
 | 3 | NIDflow (função de e-mail) | Até 2 min após o pagamento | E-mail A1 "Seu acesso ao NIDflow" com link mágico (24 h). Remetente "NID" | Bounce: WhatsApp pede e-mail correto; humano corrige |
 | 4 | Orquestrador | Até 2 min | WhatsApp A1w "Seu NIDflow está pronto" com o link | Sem telefone: nada |
-| 5 | Assinante | Até 24 h esperado (marco M1) | Clica, entra sem senha, define senha opcional, responde o passo 2 (perguntas do Gatilho A, se ainda não respondidas na base) e cai no passo 3 (qual proposta você precisa apresentar esta semana) | 24 h sem login: R1 (e-mail + WhatsApp, link mágico renovado). 72 h: R1b (WhatsApp, o agente responde). Depois, R5 aos 14 dias sem login |
-| 6 | NIDflow (telemetria B-11) → orquestrador | Até 1 min por evento | Marcos M1 a M5 chegam por webhook; o orquestrador dispara A2, A3, A4 e R2 a R5 conforme o `02-onboarding.md` (seção 5) | Sem evento, nenhum resgate dispara (regra: nunca supor) |
+| 5 | Assinante | Até 24 h esperado (marco M1) | Clica, entra sem senha, define senha opcional e cai no passo 2 (escolha do template e qual proposta você precisa apresentar esta semana). As perguntas do Gatilho A aparecem na tela de conclusão do primeiro projeto (passo 7), só se a base ainda estiver `nao_respondeu` | 24 h sem login: R1 (e-mail + WhatsApp, link mágico renovado). 72 h: R1b (WhatsApp, o agente responde). Depois, R5 aos 14 dias sem login |
+| 6 | NIDflow (telemetria B-08) → orquestrador | Até 1 min por evento | Marcos M1 a M5 chegam por webhook; o orquestrador dispara A2, A3, A4 e R2 a R5 conforme o `02-onboarding.md` (seção 5) | Sem evento, nenhum resgate dispara (regra: nunca supor) |
 
 Os textos de A1 a A4 e R1 a R7 estão especificados pelo agente `nidflow` (`02-onboarding.md`, seção 5) e são finalizados pelo `copy`. O orquestrador é o responsável pelo disparo, pelas condições e pela saída (cancelamento encerra toda sequência no mesmo dia).
 
@@ -104,7 +104,7 @@ Os textos de A1 a A4 e R1 a R7 estão especificados pelo agente `nidflow` (`02-o
 | R8 | D+60 após o fim do acesso | 10h | E-mail | Assunto "Seus projetos serão excluídos em 30 dias". Uma linha com a data e a opção de reativar | "Reativar meu NIDflow" |
 | R9 | D+83 após o fim do acesso | 10h | E-mail | Assunto "Última semana antes da exclusão". Idem, com a data exata | "Reativar meu NIDflow" |
 
-Se B-08 (exportação em PDF) não estiver no ar no lançamento, R7b e R6c trocam a linha de exportação por "seus projetos ficam guardados por 90 dias para você reativar" (regra 4 da seção 13 do `01-plano-de-assinatura.md`).
+Se B-07 (exportação em PDF) não estiver no ar no lançamento, R7b e R6c trocam a linha de exportação por "seus projetos ficam guardados por 90 dias para você reativar" (regra 4 da seção 13 do `01-plano-de-assinatura.md`).
 
 ---
 

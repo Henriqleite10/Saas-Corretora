@@ -208,7 +208,7 @@ O agente só afirma o que está aqui. O orquestrador injeta esta base no prompt 
 ### 6.4 NIDflow (R$ 29,90 por mês)
 
 - A ferramenta que a NID usa para desenhar e apresentar projetos, com os cinco templates do método já dentro; o projeto novo já abre na ordem do método; o mesmo desenho vira a apresentação (o investimento só aparece depois do valor); projetos salvos na conta, abrem em qualquer computador; onboarding até o primeiro projeto em menos de 15 minutos; projetos ilimitados; uma conta por pessoa.
-- Exportação em PDF: citar só quando o item B-08 do backlog estiver no ar (o orquestrador liga a flag `nidflow_pdf_disponivel`).
+- Exportação em PDF: citar só quando o item B-07 do backlog estiver no ar (o orquestrador liga a flag `nidflow_pdf_disponivel`).
 - R$ 29,90 por mês, cancela quando quiser, 7 dias de garantia. Sem período grátis. Sem plano anual avulso (o NIDflow está incluso na Plataforma NID).
 - Oferecido 7 dias após a compra do playbook ou do mini curso. Se um lead sem compra pergunta, o agente explica o que é e aponta para o playbook (a oferta chega depois). Se um comprador pergunta antes de D+7, o agente entrega o link da oferta (a página existe desde o lançamento).
 - Não existe: link público de apresentação, colaboração, IA dentro da ferramenta, aplicativo, integração com CRM ou slides. O agente diz "hoje não" sem prometer data.
@@ -490,7 +490,7 @@ Regras da integração:
 | Refusal | Se `stop_reason` for `refusal` ou `parsed_output` for nulo, o orquestrador não envia nada gerado; envia o fallback e cria tarefa humana |
 | Histórico | Últimas 20 mensagens. Conversas mais longas não são resumidas por IA; cortam-se as mais antigas |
 | Versão | `BASE_VERSAO` (por exemplo `base-conhecimento-agente@1.0.0`) e a versão do bloco 1 (`agente-f2-sistema@1.0.0`) gravadas em toda interação, no mesmo padrão dos prompts versionados do radar-corretoras |
-| Segurança | Chave da API, tokens da Meta e segredos de webhook só em variáveis de ambiente. Nada no repositório |
+| Segurança | Chave da API, tokens da Meta e chaves de webhook só em variáveis de ambiente. Nada no repositório |
 
 ---
 
