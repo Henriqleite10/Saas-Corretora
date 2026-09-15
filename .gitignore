@@ -11,3 +11,4 @@ coverage/
 .DS_Store
 uploads/
 dump.rdb
+__pycache__/
