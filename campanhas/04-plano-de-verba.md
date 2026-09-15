@@ -26,7 +26,7 @@
 | 9 | Verba de teste de R$ 9.000 aprovada pelo Henrique, à parte da verba do Funil 1 | Henrique | Registro no relatório do coordenador |
 | 10 | Pelo menos duas semanas de calendário orgânico publicadas (o perfil precisa ter conteúdo quando o anúncio trouxer gente) | `trafego` | Dias 1 a 10 de `03-calendario-organico.md` no ar |
 
-Enquanto o item 1 não estiver pronto, o funil roda só com orgânico. Motivo (parecer, risco 5): sem o bump, cada venda deixa R$ 21,73 líquidos, o que não paga tráfego em nenhum cenário.
+**Regra fixa deste plano: nenhuma mídia paga antes de o mini curso estar gravado e publicado (item 1) e de o checkout do playbook estar no ar com a oferta adicional do mini curso a R$ 97 (item 2).** Enquanto os dois não estiverem cumpridos, o funil roda só com orgânico (`03-calendario-organico.md`, regra 4). Motivo (parecer, risco 5): sem a oferta adicional, cada venda deixa R$ 21,73 líquidos antes do custo de entrega, o que não paga tráfego em nenhum cenário. A verba de teste aprovada fica reservada e não é gasta em nenhum outro objetivo (alcance, engajamento, seguidores) enquanto espera.
 
 ---
 
@@ -42,7 +42,7 @@ Enquanto o item 1 não estiver pronto, o funil roda só com orgânico. Motivo (p
 | Página do Facebook e perfil do Instagram | Os da NID (Cenário 1). No Cenário 2 (whitelisting), o perfil do Henrique é adicionado como parceiro de anúncio com permissão só para a conta `F2` |
 | Públicos personalizados | Prefixo `F2-` em todos. Nenhum público do Funil 1 é usado, nem como semente de semelhante |
 | Relatórios | Relatório salvo `F2 · Diário` e `F2 · Criativos` no Gerenciador, com as colunas da seção 7. Planilha de acompanhamento própria (seção 7) |
-| UTMs | Prefixo `F2` em `utm_campaign`, `utm_content` e `utm_term` (seção 6) |
+| UTMs | Convenção da seção 8.3 de `automacoes/05-integracoes.md`, aplicada na seção 6 deste plano: `utm_campaign=F2-playbook` e `utm_content` com o id do anúncio no padrão `F2-` |
 | Etiquetas na base | `F2-` em tudo, conforme o `automacao` |
 
 ### 1.2 Nomenclatura
@@ -52,10 +52,11 @@ Enquanto o item 1 não estiver pronto, o funil roda só com orgânico. Motivo (p
 | Campanha | `F2-PB-<FASE>` | `F2-PB-TESTE`, `F2-PB-ESCALA`, `F2-PB-RMKT` |
 | Conjunto | `F2-CJ-<nn>-<PUBLICO>` | `F2-CJ-01-AMPLO`, `F2-CJ-02-INTERESSES`, `F2-CJ-03-CARGOS`, `F2-CJ-04-RMKT` |
 | Anúncio | `F2-C<nn>-<Formato>-<gancho>` | `F2-C01-Vtela-A`, `F2-C03-Vrosto-B`, `F2-C08-E-A` |
+| Vídeo e arte (arquivo) | Mesmo nome do anúncio, com o corte no fim | `F2-C01-Vtela-A-9x16.mp4`, `F2-C08-E-A-4x5.png` |
 | Público personalizado | `F2-PUB-<origem>-<janela>` | `F2-PUB-engajou-ig-90d`, `F2-PUB-visitou-pagina-30d`, `F2-PUB-compradores-180d` |
 | Público semelhante | `F2-LAL-<semente>-<pct>` | `F2-LAL-compradores-1pct` |
 
-PB é "playbook". Quando houver campanha do mini curso avulso ou da Plataforma NID, o código muda (`F2-MC`, `F2-PN`) e o restante do padrão se mantém.
+PB é "playbook". Quando houver campanha do mini curso avulso ou da Plataforma NID, o código muda (`F2-MC`, `F2-PN`) e o restante do padrão se mantém. O nome do conjunto é único dentro da conta (o número `nn` nunca se repete entre campanhas: `01` a `09` na campanha de teste e de validação, `10` a `19` no remarketing, `20` em diante na escala), porque ele entra na UTM e identifica o público sem precisar do nome da campanha.
 
 ### 1.3 Checklist de separação (antes de ligar)
 
@@ -63,7 +64,7 @@ PB é "playbook". Quando houver campanha do mini curso avulso ou da Plataforma N
 - [ ] Conjunto de dados `F2 · Pixel Playbook` criado e instalado só nas páginas do Funil 2.
 - [ ] Domínio verificado e prioridade de eventos configurada (seção 5.3).
 - [ ] Nenhum público, pixel, catálogo ou relatório do Funil 1 vinculado à conta `F2`.
-- [ ] UTMs conferidas em um clique de teste (a URL final contém `F2-` nos três parâmetros).
+- [ ] UTMs conferidas em um clique de teste (a URL final chega com `utm_campaign=F2-playbook` e `utm_content` com os três segmentos da seção 6.1, e o orquestrador grava a compra de teste com eles).
 - [ ] Planilha de acompanhamento criada com as colunas da seção 7.
 
 ---
@@ -135,7 +136,7 @@ Máximo de 6 anúncios ativos por conjunto. Cada anúncio precisa de pelo menos 
 
 ### 3.5 `F2-PB-ESCALA` (a partir da validação)
 
-- Campanha Advantage+ de vendas (a Meta cita CPA cerca de 32% menor que campanhas manuais; indício, parecer 2.4), CBO, público amplo com exclusão de compradores.
+- Campanha Advantage+ de vendas (a Meta cita CPA cerca de 32% menor que campanhas manuais; indício, parecer 2.4), CBO, um único conjunto `F2-CJ-20-AMPLO-ADV` com público amplo e exclusão de compradores.
 - Entram só anúncios com CPA F2 (fatura) abaixo de R$ 32 por 7 dias seguidos na campanha de teste e com pelo menos 15 compras.
 - Orçamento inicial: o mesmo gasto que os vencedores tinham na campanha de teste. A campanha de teste continua com verba menor (30% do total) para testar criativos novos toda semana; a escala nunca fica sem esteira de criativo.
 
@@ -152,6 +153,21 @@ Frequência máxima de 3 por semana por conjunto. Sem urgência falsa, sem "últ
 ---
 
 ## 4. Verba por fase e regras de decisão
+
+### 4.0 A conta que sustenta os tetos: receita líquida por comprador
+
+Toda regra deste plano compara o CPA F2 (em valor de fatura) com o que **sobra** de cada comprador depois de três descontos: a taxa da plataforma de checkout, os impostos sobre a receita (10%, hipótese do parecer até a NID informar o regime) e o **custo variável de entrega e atendimento**, que é o que o `automacao` gasta para entregar o playbook e conduzir a sequência de cada comprador pelo WhatsApp.
+
+| Linha (por comprador do playbook) | Pessimista | Base | Otimista | Origem |
+|---|---|---|---|---|
+| Ticket médio bruto do checkout | R$ 37,66 | R$ 44,45 | R$ 54,15 | Parecer 3.2 (aceite da oferta adicional de 8%, 15% e 25%) |
+| Receita líquida no checkout (após taxa e impostos) | R$ 28,02 | R$ 33,52 | R$ 41,38 | Parecer 3.2 |
+| Custo variável do WhatsApp por comprador | R$ 1,40 | R$ 1,40 | R$ 1,40 | Estimativa do `automacao` (`05-integracoes.md`, componente F5): cerca de 1.200 mensagens de utilidade e 4.000 de marketing por 1.000 compradores, R$ 1.460 no total, contando a recuperação de checkout. Arredondado para R$ 1,40; a confirmar na tabela oficial da Meta, que muda a cobrança em 01/10/2026 |
+| Custo de tokens do agente de IA por comprador | `[NÚMERO REAL]` | `[NÚMERO REAL]` | `[NÚMERO REAL]` | Registro de tokens do orquestrador; a estimativa do `automacao` (cerca de 6 mil tokens de entrada, a maior parte em cache, e 300 de saída por resposta) aponta para centavos por comprador. Entra na conta assim que houver 30 dias de registro |
+| **Receita líquida por comprador no checkout, já com o custo variável** | **R$ 26,62** | **R$ 32,12** | **R$ 39,98** | Linha 2 menos linha 3 (menos linha 4 quando houver número) |
+| Com o upsell de um clique a R$ 97, se aprovado | R$ 28,72 | R$ 35,35 | R$ 44,54 | Parecer 3.2 (R$ 30,12, R$ 36,75 e R$ 45,94) menos R$ 1,40 |
+
+Leitura: no cenário base, cada comprador deixa R$ 32,12 depois de tudo. É esse número, arredondado para baixo, que define o **teto de escala de R$ 32**: acima dele, o front-end deixa de pagar a mídia. O **teto de teste de R$ 40** fica acima da receita líquida de propósito, porque o objetivo dos 30 dias de teste é aprender qual criativo e qual público chegam ao teto de escala (parecer 3.5). Os dois tetos são hipóteses até 30 dias de dados. Quando o `automacao` confirmar a plataforma de checkout e o custo real do WhatsApp, a linha 5 é recalculada e o teto de escala acompanha (decisão do coordenador, registrada aqui).
 
 ### 4.1 Fases
 
@@ -185,7 +201,7 @@ Hipóteses do que a verba compra (parecer 3.1): no cenário base (CPA R$ 32), R$
 | Teto mensal | Verba mensal de R$ 30.000 atingida | Só passa com aprovação do Henrique, com o relatório da seção 4.4 atualizado |
 | Esteira de criativo | Semana sem criativo novo em teste | A campanha de teste recebe pelo menos dois anúncios novos por semana (variações dos ângulos vencedores ou ângulo ainda não testado) |
 
-Por que R$ 32: é a receita líquida média por comprador no checkout no cenário base (parecer 3.2: R$ 33,52, arredondado para baixo). Acima disso, o front-end deixa de pagar a mídia e o lucro do NIDflow, da Plataforma NID e do Gatilho A passa a pagar a aquisição. Se o upsell de um clique a R$ 97 for aprovado, a receita líquida sobe para R$ 36,75 e o teto de escala pode ser revisto para R$ 36 depois de 30 dias de dados do upsell (decisão do coordenador, não deste plano).
+Por que R$ 32: é a receita líquida por comprador no checkout no cenário base, já descontado o custo variável do WhatsApp (seção 4.0: R$ 33,52 menos R$ 1,40, igual a R$ 32,12, arredondado para baixo). Acima disso, o front-end deixa de pagar a mídia e o lucro do NIDflow, da Plataforma NID e do Gatilho A passa a pagar a aquisição. Se o upsell de um clique a R$ 97 for aprovado, a receita líquida sobe para R$ 35,35 e o teto de escala pode ser revisto para R$ 35 depois de 30 dias de dados do upsell (decisão do coordenador, não deste plano).
 
 ### 4.4 Relatório de 30 dias (obrigatório antes de entrar na validação)
 
@@ -219,10 +235,12 @@ Por que R$ 32: é a receita líquida média por comprador no checkout no cenári
 | `ViewContent` | Página do playbook, ao carregar | `content_name=F2 Playbook`, `content_ids=["F2-playbook"]`, `value=29.90`, `currency=BRL` | Público `F2-PUB-visitou-pagina`, taxa de conversão da página |
 | `InitiateCheckout` | Clique no CTA "Quero o playbook por R$ 29,90" na página e carregamento da página de checkout (pixel da plataforma de checkout no mesmo conjunto de dados) | `content_ids=["F2-playbook"]`, `value=29.90`, `currency=BRL` | Público `F2-CJ-11-CHECKOUT`, taxa de início de checkout |
 | `AddPaymentInfo` | Página de checkout, ao preencher pagamento (se a plataforma de checkout emitir) | | Diagnóstico de atrito no checkout |
-| `Purchase` | Página de obrigado (navegador) **e** webhook `purchase_approved` → API de Conversões (servidor), com o mesmo `event_id` (id do pedido) para deduplicação | `value` = total pago (R$ 29,90 ou R$ 126,90), `currency=BRL`, `content_ids=["F2-playbook"]` ou `["F2-playbook","F2-minicurso-bump"]`, `num_items` | Otimização de todas as campanhas; público de exclusão `F2-PUB-compradores-180d`; ROAS |
-| `F2_BumpAceito` (personalizado) | Só pela API de Conversões, quando a base aplica `F2-bump` | `value=97.00` | Leitura do aceite do bump por criativo e por público |
+| `Purchase` | Webhook `purchase_approved` → API de Conversões (servidor), sempre. Pelo navegador (pixel da plataforma de checkout na página de obrigado) **só se a plataforma permitir configurar o `event_id`** com o id do pedido; se não permitir, a API de Conversões é a única fonte e o pixel do checkout fica desligado para este evento (`05-integracoes.md`, seção 8.2) | `value` = total pago (R$ 29,90 ou R$ 126,90), `currency=BRL`, `content_ids=["F2-playbook"]` ou `["F2-playbook","F2-minicurso"]`, `content_type=product`, `num_items` | Otimização de todas as campanhas; público de exclusão `F2-PUB-compradores-180d`; ROAS |
+| `F2_Bump` (personalizado) | Só pela API de Conversões, quando a base aplica `F2-bump` | `value=97.00` | Leitura do aceite do bump por criativo e por público |
 | `F2_GatilhoA` (personalizado) | Só pela API de Conversões, quando a base aplica `F2-gatilho-A` | | Semente futura de público semelhante de decisores (só com mais de 100 eventos) |
 | `Contact` | Clique no botão de WhatsApp da página do playbook (código `PG01`) | | Diagnóstico: quantos preferem perguntar antes de comprar |
+
+Os nomes `Purchase`, `InitiateCheckout`, `F2_Bump` e `F2_GatilhoA` são os da seção 8.2 de `automacoes/05-integracoes.md`. `PageView`, `ViewContent`, `AddPaymentInfo` e `Contact` são eventos só de navegador, definidos aqui para públicos e diagnóstico; o `automacao` os acrescenta à tabela 8.2 como "só navegador", sem envio pela API de Conversões.
 
 Toda compra do mini curso avulso (sequência D0 a D+6) e do NIDflow (D+7) também chega pela API de Conversões como `Purchase` com `content_ids` próprios (`F2-minicurso`, `F2-nidflow`), para que o ROAS de 30 e 90 dias seja lido dentro do Gerenciador por campanha de origem. O `automacao` envia o `fbc`/`fbp` gravado na compra original.
 
@@ -239,7 +257,7 @@ Na configuração de eventos agregados do domínio, a ordem é: 1. `Purchase`; 2
 ### 5.4 Testes antes de ligar
 
 - [ ] Compra de teste gera um único `Purchase` no Gerenciador de Eventos (deduplicado), com valor certo.
-- [ ] Compra com bump gera `Purchase` com `value=126.90` e `F2_BumpAceito`.
+- [ ] Compra com bump gera `Purchase` com `value=126.90` e `F2_Bump`.
 - [ ] Resposta "própria" e "sim" na página de obrigado gera `F2_GatilhoA`.
 - [ ] Qualidade de correspondência do evento `Purchase` acima de 6 no Gerenciador de Eventos.
 
@@ -249,25 +267,28 @@ Na configuração de eventos agregados do domínio, a ordem é: 1. `Purchase`; 2
 
 ### 6.1 Esquema
 
-| Parâmetro | Pago (Meta Ads) | Orgânico Instagram (via agente no direct) | Stories | LinkedIn | E-mail e WhatsApp (sequências do `automacao`) |
-|---|---|---|---|---|---|
-| `utm_source` | `meta` | `instagram` | `instagram` | `linkedin` | `email` ou `whatsapp` |
-| `utm_medium` | `paid` | `direct` | `stories` | `organic` | `sequencia` |
-| `utm_campaign` | `{{campaign.name}}` (vem `F2-PB-TESTE` etc.) | `F2-playbook` | `F2-playbook` | `F2-playbook` | `F2-nidflow-d7`, `F2-minicurso-d0d6` (definidos pelo `automacao`) |
-| `utm_content` | `{{ad.name}}` (vem `F2-C01-Vtela-A`) | `F2-org-d<dia>` (id do post) | `F2-st-s<semana>` | `F2-li-d<dia>` | `d7`, `d10`, `e3` etc. |
-| `utm_term` | `{{adset.name}}` (vem `F2-CJ-01-AMPLO`) | `F2-kw-<palavra>` | vazio | vazio | vazio |
+Os valores seguem a convenção `F2` da seção 8.3 de `automacoes/05-integracoes.md` (fonte única; este plano não cria valor novo). Regra da convenção: `utm_source` é o canal, `utm_medium` é o mecanismo, `utm_campaign` leva o prefixo `F2-` e nomeia o produto, `utm_content` identifica a peça, `utm_term` só existe no fluxo comentário → direct.
 
-URL final dos anúncios (campo "parâmetros de URL" do anúncio):
+| Parâmetro | Pago (Meta Ads) | Orgânico Instagram (via agente no direct) | Stories | Link da bio | LinkedIn | E-mail e WhatsApp (sequências do `automacao`) |
+|---|---|---|---|---|---|---|
+| `utm_source` | `{{site_source_name}}` (a Meta preenche `ig` ou `fb`; o orquestrador grava `instagram` ou `facebook`) | `instagram` | `instagram` | `instagram` | `linkedin` | `email` ou `whatsapp` |
+| `utm_medium` | `paid` | `direct` | `story` | `bio` | `post` | `sequencia` |
+| `utm_campaign` | `F2-playbook` (fixo; a campanha, o conjunto e o anúncio vão em `utm_content`) | `F2-playbook` | `F2-playbook` | `F2-playbook` | `F2-playbook` | `F2-nidflow-d7`, `F2-minicurso` (definidos pelo `automacao`) |
+| `utm_content` | `{{campaign.name}}__{{adset.name}}__{{ad.name}}` (vem `F2-PB-TESTE__F2-CJ-01-AMPLO__F2-C01-Vtela-A`) | `F2-org-d<dia>` (id do post) | `F2-st-s<semana>` | `F2-bio` | `F2-li-d<dia>` | `d7`, `d10`, `e3` etc. |
+| `utm_term` | vazio | `F2-kw-<palavra>` | vazio | vazio | vazio | vazio |
 
-`utm_source=meta&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&utm_term={{adset.name}}`
+URL final dos anúncios (campo "parâmetros de URL" do anúncio, igual em todos):
 
-Como a nomenclatura da seção 1.2 já leva `F2`, os três parâmetros chegam com o prefixo sem digitação manual.
+`utm_source={{site_source_name}}&utm_medium=paid&utm_campaign=F2-playbook&utm_content={{campaign.name}}__{{adset.name}}__{{ad.name}}`
+
+Como ler o `utm_content` pago: três segmentos separados por dois sublinhados, na ordem campanha, conjunto, anúncio. O relatório de CPA por criativo agrupa pelo terceiro segmento (e, dentro dele, pelo código `C<nn>` para somar as variações de gancho A e B); o de CPA por público agrupa pelo segundo; o de fase, pelo primeiro. Como a nomenclatura da seção 1.2 já leva `F2`, os três segmentos chegam com o prefixo sem digitação manual. Duas coisas que o `automacao` faz do lado do orquestrador: converter `ig`, `fb`, `msg` e `an` de `utm_source` em `instagram` ou `facebook` antes de gravar, e separar os três segmentos de `utm_content` em `compras.utms` (campanha, conjunto, anúncio) para o relatório de CPA por criativo.
 
 ### 6.2 Onde as UTMs são lidas
 
 - A página do playbook grava as UTMs e passa para o checkout (parâmetro na URL ou campo oculto, conforme a plataforma de checkout).
 - O webhook `purchase_approved` traz as UTMs do checkout; o orquestrador grava no contato (`automacao`, seção 2 do arquivo de entrega). É assim que a receita líquida em 30 e 90 dias volta para o criativo e o público que originaram a compra.
-- O agente do direct usa o link com `utm_content=<id do post>` e `utm_term=F2-kw-<palavra>` (já definido pelo `automacao`).
+- O agente do direct usa o link com `utm_content=<id do post>` e `utm_term=F2-kw-<palavra>` (já definido pelo `automacao`, seção 3.2 do arquivo do agente).
+- Links do WhatsApp (LinkedIn, orgânico, página): sem UTM; a origem vai no texto pré-preenchido (`PB01` post, `AD01` anúncio, `PG01` página, `NF01` NIDflow), que o orquestrador lê e apaga. O link do checkout que o agente entrega no WhatsApp leva `utm_source=whatsapp&utm_medium=agente&utm_campaign=F2-playbook&utm_content=<código de origem>`.
 
 ---
 
@@ -277,15 +298,15 @@ Uma linha por dia na aba diária; uma linha por criativo na aba de criativos; um
 
 ### 7.1 Aba diária · `F2 · Diário`
 
-| Dia | Data | Verba (fatura) | Impressões | Alcance | Frequência | CPM | Cliques no link | CTR link | CPC | Visitas (`ViewContent`) | Checkouts (`InitiateCheckout`) | Taxa de checkout | Compras (`Purchase`) | Conv. da página | CPA F2 (fatura) | Compras com bump | Aceite do bump | Ticket médio bruto | Receita bruta | Receita líquida por comprador | Receita líquida total | Saldo do dia (rec. líquida menos verba) | Decisores etiquetados | Reembolsos |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | | | | | | | | | | | | | | | | | | | | | | | | |
-| 2 | | | | | | | | | | | | | | | | | | | | | | | | |
-| ... | | | | | | | | | | | | | | | | | | | | | | | | |
-| 30 | | | | | | | | | | | | | | | | | | | | | | | | |
-| **Total 30 dias** | | | | | | | | | | | | | | | | | | | | | | | | |
+| Dia | Data | Verba (fatura) | Impressões | Alcance | Frequência | CPM | Cliques no link | CTR link | CPC | Visitas (`ViewContent`) | Checkouts (`InitiateCheckout`) | Taxa de checkout | Compras (`Purchase`) | Conv. da página | CPA F2 (fatura) | Compras com bump | Aceite do bump | Ticket médio bruto | Receita bruta | Custo variável (WhatsApp e agente) | Receita líquida por comprador | Receita líquida total | Saldo do dia (rec. líquida menos verba) | Decisores etiquetados | Reembolsos |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | | | | | | | | | | | | | | | | | | | | | | | | | |
+| 2 | | | | | | | | | | | | | | | | | | | | | | | | | |
+| ... | | | | | | | | | | | | | | | | | | | | | | | | | |
+| 30 | | | | | | | | | | | | | | | | | | | | | | | | | |
+| **Total 30 dias** | | | | | | | | | | | | | | | | | | | | | | | | | |
 
-Fórmulas: CTR link = cliques ÷ impressões. Taxa de checkout = checkouts ÷ visitas. Conversão da página = compras ÷ visitas. CPA F2 = verba ÷ compras. Aceite do bump = compras com bump ÷ compras. Ticket médio bruto = receita bruta ÷ compras. Receita líquida por comprador = (compras sem bump × R$ 21,73 + compras com bump × R$ 100,31) ÷ compras, com os valores unitários da plataforma de checkout escolhida (os de referência são do parecer, seção 3.1; o `automacao` atualiza quando a plataforma for confirmada). Saldo do dia = receita líquida total menos verba.
+Fórmulas: CTR link = cliques ÷ impressões. Taxa de checkout = checkouts ÷ visitas. Conversão da página = compras ÷ visitas. CPA F2 = verba ÷ compras. Aceite do bump = compras com bump ÷ compras. Ticket médio bruto = receita bruta ÷ compras. Custo variável = compras × R$ 1,40 (WhatsApp, estimativa do `automacao`) mais o custo de tokens do dia registrado pelo orquestrador (`[NÚMERO REAL]` até haver registro). Receita líquida por comprador = (compras sem bump × R$ 21,73 + compras com bump × R$ 100,31 menos custo variável) ÷ compras, com os valores unitários da plataforma de checkout escolhida (os de referência são do parecer, seção 3.1; o `automacao` atualiza quando a plataforma for confirmada). Saldo do dia = receita líquida total menos verba.
 
 ### 7.2 Aba de criativos · `F2 · Criativos`
 
@@ -293,6 +314,9 @@ Fórmulas: CTR link = cliques ÷ impressões. Taxa de checkout = checkouts ÷ vi
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | F2-C01-Vtela-A | A1 | V-tela | | | | | | | | | | | | | | |
 | F2-C01-Vtela-B | A1 | V-tela | | | | | | | | | | | | | | |
+| F2-C03-Vrosto-B | A2 | V-rosto | | | | | | | | | | | | | | |
+| F2-C05-Vtela-B | A3 | V-tela | | | | | | | | | | | | | | |
+| F2-C07-Vrosto-B | A4 | V-rosto | | | | | | | | | | | | | | |
 | F2-C02-E-A | A1 | Estático | | | | | | | | | | | | | | |
 | F2-C03-Vrosto-A | A2 | V-rosto | | | | | | | | | | | | | | |
 | F2-C04-Vtela-A | A2 | V-tela | | | | | | | | | | | | | | |
@@ -343,4 +367,13 @@ Fórmulas: CTR link = cliques ÷ impressões. Taxa de checkout = checkouts ÷ vi
 
 ## 9. Custos fora da verba de mídia (para o coordenador registrar)
 
-Não entram nos R$ 9.000 e precisam de previsão à parte: mensagens de modelo do WhatsApp (categoria marketing e utilidade, cobradas por conversa), tokens do agente de IA (estimativa do `automacao`: cerca de 6 mil tokens de entrada, a maior parte em cache, e 300 de saída por resposta), taxa da plataforma de checkout (já descontada na receita líquida), ferramenta de legendagem e edição dos vídeos, e o tempo de gravação do Henrique (rodada 1: quatro vídeos de rosto e a narração de quatro vídeos de tela, uma manhã).
+Não entram nos R$ 9.000 de mídia e precisam de previsão à parte:
+
+| Custo | Como entra na conta | Previsão para os 30 dias de teste |
+|---|---|---|
+| Mensagens de modelo do WhatsApp (marketing e utilidade) | Já descontado na receita líquida por comprador (seção 4.0, R$ 1,40 por comprador) | Cerca de R$ 400 para 280 compradores no cenário base; R$ 630 no otimista (450 compradores) |
+| Tokens do agente de IA (direct e WhatsApp) | Entra na receita líquida assim que o orquestrador tiver 30 dias de registro; até lá, `[NÚMERO REAL]` | Estimativa do `automacao`: cerca de 6 mil tokens de entrada, a maior parte em cache, e 300 de saída por resposta; ordem de centavos por conversa |
+| Taxa da plataforma de checkout | Já descontada na receita líquida (valores unitários do parecer 3.1) | Nenhuma previsão à parte |
+| Plano de e-mail transacional (Resend Pro, `05-integracoes.md`) | Custo fixo mensal do `automacao`, fora deste plano | US$ 20 por mês |
+| Legendagem e edição dos vídeos | Custo fixo de produção, fora deste plano | Uma ferramenta de legenda automática e a edição dos 8 vídeos da rodada 1 e das variações |
+| Tempo de gravação do Henrique | Não é caixa; é agenda | Rodada 1: quatro vídeos de rosto (C03, C07, C11, C13) e a narração de quatro vídeos de tela (C01, C04, C05, C09), uma manhã; os Reels novos do calendário (Dias 5, 7, 11 e 19) na mesma sessão |

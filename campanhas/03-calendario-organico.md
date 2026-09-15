@@ -14,10 +14,10 @@
 
 ## 0. Regras do calendário
 
-1. **Todo post tem CTA.** Não existe post "de valor" sem CTA. O CTA padrão é o comentário com palavra-chave, que aciona o agente no direct (Instagram). Nos Stories, o CTA é o sticker de link para a página do playbook. No LinkedIn, o CTA é o link da página do playbook ou o link do WhatsApp com o código `PB01`.
+1. **Todo post tem CTA.** Não existe post "de valor" sem CTA. O CTA padrão é o comentário com palavra-chave, que aciona o agente no direct (Instagram). Nos Stories, o CTA é o sticker de link para a página do playbook (`utm_medium=story`). No LinkedIn, o CTA é o link da página do playbook (`utm_medium=post`) ou o link do WhatsApp com o código `PB01` no texto pré-preenchido. O link da bio do Instagram aponta para a página do playbook com `utm_medium=bio`. Todos os valores de UTM vêm da seção 8.3 de `automacoes/05-integracoes.md` (tabela na seção 6 deste arquivo).
 2. **Uma palavra-chave por post.** Lista fechada, registrada em `automacoes/01-agente-direct-whatsapp.md`, seção 3.1: `PROJETO` (método e playbook), `DESENHO` (fluxo de arquitetura e NIDflow em uso), `PROPOSTA` (proposta-orçamento e "vou pensar"), `TEMPLATE` (um dos cinco templates). Nenhuma palavra-chave nova sem registro naquele arquivo.
 3. **Frase do CTA no Instagram**: "Comente [PALAVRA-CHAVE] e a gente manda o link do playbook no seu direct." Descreve o que acontece depois (regra 6 do brief). A resposta pública fixa do orquestrador ("Enviamos no seu direct") é do `automacao`.
-4. **Data relativa.** Dia 1 é a primeira segunda-feira depois de três condições cumpridas: página e checkout do playbook no ar (mesmo sem o order bump), agente do direct ligado com as quatro palavras-chave cadastradas e testadas, e entrega pós-compra funcionando. O orgânico pode começar antes do mini curso gravado; a mídia paga, não.
+4. **Data relativa.** Dia 1 é a primeira segunda-feira depois de três condições cumpridas: página e checkout do playbook no ar (mesmo sem o order bump), agente do direct ligado com as quatro palavras-chave cadastradas e testadas, e entrega pós-compra funcionando. O orgânico pode começar antes do mini curso gravado; a mídia paga, não: nenhum anúncio sobe antes de o mini curso estar gravado e de o checkout estar no ar com a oferta adicional a R$ 97 (`04-plano-de-verba.md`, seção 0). Enquanto isso, este calendário é a única aquisição do Funil 2, e os Dias 1 a 10 precisam estar publicados antes do primeiro anúncio.
 5. **Horários** (horário de Brasília): Reels às 12h; carrossel e estático às 8h; Stories ao longo do dia (primeiro frame às 9h, último às 19h); LinkedIn às 8h30 de terça e quinta.
 6. **Voz**: a NID, em "a gente". Henrique aparece nos Reels de rosto como "Henrique Leite, sócio da NID". Sem emoji. No máximo três hashtags, no fim: `#vendasb2b #propostacomercial #metodonid` (ou as variações indicadas no post).
 7. **Preço e garantia** em toda legenda: "R$ 29,90, 7 dias de garantia".
@@ -134,7 +134,7 @@
 
   O link do playbook está no primeiro comentário. R$ 29,90, 7 dias de garantia, reembolso sem pergunta.
 
-  Primeiro comentário: "Playbook NID · Desenhe para Vender, R$ 29,90: [link da página com utm_source=linkedin]".
+  Primeiro comentário: "Playbook NID · Desenhe para Vender, R$ 29,90: [link da página com `utm_source=linkedin&utm_medium=post&utm_campaign=F2-playbook&utm_content=F2-li-d02`]". O mesmo padrão vale para os outros dias de LinkedIn (`F2-li-d04`, `F2-li-d06`, `F2-li-d08`, `F2-li-d12`, `F2-li-d14`, `F2-li-d16`).
 
 ### Dia 3 (quarta) · Instagram Reel · C03 "'Vou pensar' não é objeção"
 
@@ -772,4 +772,5 @@ Na sexta, o frame 2 é substituído por uma caixa de perguntas: "Manda a sua dú
 | Palavras-chave por post | Tabela da seção 1. O orquestrador cadastra cada post publicado com o id do post, a palavra-chave e o `utm_content=F2-org-d<dia>` |
 | `{assunto_do_post}` da mensagem M1 | Por dia: 1 "a proposta que vira orçamento"; 2 "as três caras do mesmo problema"; 3 "o 'vou pensar'"; 4 "a ordem fixa do método"; 5 "as correções que não corrigem"; 6 "o canvas de dor"; 7 "o mapa de solução"; 8 "o fluxo de arquitetura"; 9 "a tabela de valor"; 10 "o erro comum de cada etapa"; 11 "o caso do início ao fim"; 12 "as nove páginas da proposta"; 13 "a proposta que o comitê entende"; 14 "o checklist da proposta pronta"; 15 "a página de próximo passo"; 16 "o capítulo por perfil"; 17 "o portfólio do SDR"; 18 "o preço por etapa"; 19 "o desenho na mesma tela"; 20 "o que vem no playbook" |
 | Dúvidas coletadas nos Stories | Caixa de perguntas das sextas (semana 1) e da semana 4: as perguntas recorrentes entram na tabela de objeções do agente (seção 5 do arquivo do `automacao`) |
-| Links de Stories e LinkedIn | Página do playbook com `utm_source=instagram&utm_medium=stories` e `utm_source=linkedin&utm_medium=organic`, conforme `04-plano-de-verba.md`, seção 6 |
+| Links de Stories, bio e LinkedIn | Stories: `utm_source=instagram&utm_medium=story&utm_campaign=F2-playbook&utm_content=F2-st-s<semana>`. Bio do Instagram: `utm_source=instagram&utm_medium=bio&utm_campaign=F2-playbook&utm_content=F2-bio`. LinkedIn: `utm_source=linkedin&utm_medium=post&utm_campaign=F2-playbook&utm_content=F2-li-d<dia>`. Valores da convenção 8.3 de `05-integracoes.md`, consolidados em `04-plano-de-verba.md`, seção 6 |
+| Link do WhatsApp no LinkedIn | Link do número da NID com o texto pré-preenchido "Quero o playbook · PB01"; o orquestrador lê o código e apaga. Usado só quando o post do LinkedIn pede conversa em vez de link direto (nenhum dos 7 posts deste ciclo usa; fica cadastrado para os repostes) |

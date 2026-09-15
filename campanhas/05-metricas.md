@@ -14,7 +14,7 @@
 ## 0. Princípios
 
 1. **Custo sempre em valor de fatura** (Gerenciador × 1,1215, seção 2 de `04-plano-de-verba.md`).
-2. **Receita sempre líquida** quando comparada com custo: bruta menos taxa da plataforma de checkout menos impostos (10%, hipótese do parecer até a NID informar o regime). Valores unitários de referência (parecer 3.1, plataforma de referência Kiwify; o `automacao` atualiza quando a plataforma for confirmada): playbook sozinho R$ 21,73; pedido com bump R$ 100,31; mini curso avulso R$ 116,59; NIDflow R$ 21,73 por mês; Plataforma NID R$ 791,41; upsell de um clique a R$ 97 (se aprovado) R$ 76,09.
+2. **Receita sempre líquida** quando comparada com custo: bruta menos taxa da plataforma de checkout menos impostos (10%, hipótese do parecer até a NID informar o regime) **menos o custo variável de entrega e atendimento** (WhatsApp: R$ 1,40 por comprador, estimativa do `automacao` em `05-integracoes.md`, componente F5; tokens do agente: `[NÚMERO REAL]` até haver 30 dias de registro). Valores unitários de referência antes do custo variável (parecer 3.1, plataforma de referência Kiwify; o `automacao` atualiza quando a plataforma for confirmada): playbook sozinho R$ 21,73; pedido com bump R$ 100,31; mini curso avulso R$ 116,59; NIDflow R$ 21,73 por mês; Plataforma NID R$ 791,41; upsell de um clique a R$ 97 (se aprovado) R$ 76,09. A conta completa está na seção 4.0 de `04-plano-de-verba.md`.
 3. **Uma fonte por métrica.** Quando duas fontes discordam (Gerenciador e base, por exemplo), vale a base da NID para compras e a fatura da Meta para custo. O Gerenciador serve para otimização, não para contabilidade.
 4. **Leitura por coorte.** Receita em 30 e 90 dias é lida pela semana de compra, nunca pelo mês calendário.
 5. **Etiqueta `F2-` em tudo.** Contato sem etiqueta `F2-` não entra em nenhuma conta deste painel.
@@ -26,17 +26,17 @@
 | Métrica | Definição | Fórmula | Fonte | Meta inicial (hipótese) |
 |---|---|---|---|---|
 | Verba F2 | O que a NID paga à Meta, com impostos | Gasto do Gerenciador × 1,1215 | Fatura da Meta; Gerenciador | R$ 9.000 nos 30 dias de teste |
-| CPM | Custo por mil impressões | Verba ÷ impressões × 1.000 | Gerenciador | Leitura, sem meta. Referência de mercado para infoproduto no Brasil em 2026 não confiável; registra-se o observado |
+| CPM | Custo por mil impressões | Verba ÷ impressões × 1.000 | Gerenciador | Leitura, sem meta. Referência de mercado para produto digital de entrada no Brasil em 2026 não confiável; registra-se o observado |
 | CTR de link | Cliques no link ÷ impressões | | Gerenciador | Acima de 1% (criativo de resposta direta); pausa abaixo de 0,8% |
-| CPC | Verba ÷ cliques no link | | Gerenciador | Leitura. O parecer cita R$ 3,20 a R$ 8,00 como CPC médio de infoproduto (indício); operações de entrada trabalham abaixo do piso |
+| CPC | Verba ÷ cliques no link | | Gerenciador | Leitura. O parecer cita R$ 3,20 a R$ 8,00 como CPC médio de produto digital (indício); operações de entrada trabalham abaixo do piso |
 | Retenção de 3 segundos (gancho) | Reproduções de 3 s ÷ impressões (vídeo) | | Gerenciador | Acima de 25%; pausa abaixo de 20% |
 | Retenção de 50% do vídeo | Reproduções até 50% ÷ reproduções | | Gerenciador | Acima de 20% |
 | Visitas à página | `ViewContent` | | Pixel | Leitura |
 | Taxa de início de checkout | `InitiateCheckout` ÷ `ViewContent` | | Pixel | Acima de 8% |
 | Conversão da página | Compras ÷ `ViewContent` | | Base (compras) e pixel (visitas) | 2% a 5% (parecer 2.1, indício); tarefa para o `copy` abaixo de 1,5% com CTR acima de 1% |
 | **CPA F2** | Custo por compra do playbook, com impostos da mídia | Verba F2 ÷ compras do playbook originadas por mídia paga (UTM `utm_medium=paid`) | Fatura + base | **Até R$ 40 no teste; até R$ 32 na escala.** Cenários do parecer: R$ 55 pessimista, R$ 32 base, R$ 20 otimista |
-| CPA F2 por criativo | Idem, por `utm_content` | | Fatura + base | Idem; um criativo vai para a escala só abaixo de R$ 32 por 7 dias com 15 compras |
-| CPA F2 por conjunto | Idem, por `utm_term` | | Fatura + base | Idem |
+| CPA F2 por criativo | Idem, pelo terceiro segmento de `utm_content` (o id do anúncio, `F2-C<nn>-...`; as variações A e B somam no mesmo `C<nn>`) | | Fatura + base | Idem; um criativo vai para a escala só abaixo de R$ 32 por 7 dias com 15 compras |
+| CPA F2 por conjunto | Idem, pelo segundo segmento de `utm_content` (o conjunto, `F2-CJ-<nn>-...`) | | Fatura + base | Idem |
 | Frequência | Impressões ÷ alcance, por conjunto, em 7 dias | | Gerenciador | Abaixo de 3 |
 | Taxa de reembolso | Reembolsos em 7 dias ÷ compras | | Base (`F2-reembolso`) | Abaixo de 5%. Acima disso, o anúncio promete mais do que o playbook entrega |
 
@@ -50,12 +50,13 @@
 | **Aceite do order bump** | Compradores que levaram o mini curso a R$ 97 no checkout | `F2-bump` ÷ `F2-comprador-playbook` | Base | 8% a 15%; **10% é o mínimo** (abaixo disso após 300 checkouts, teste de formato, parecer 6.8). Cenários: 8% / 15% / 25% |
 | Aceite do upsell de um clique (se aprovado) | Compradores sem bump que aceitaram os R$ 97 na página seguinte | Compras do upsell ÷ compras sem bump | Base | 3% / 5% / 8% |
 | Ticket médio bruto do checkout | Receita bruta ÷ compras | (compras sem bump × 29,90 + compras com bump × 126,90) ÷ compras | Base | R$ 44,45 no cenário base (15% de bump); R$ 37,66 pessimista; R$ 54,15 otimista |
-| **Receita líquida por comprador no checkout** | O que sobra por comprador depois de taxa e impostos | (compras sem bump × 21,73 + compras com bump × 100,31) ÷ compras | Base + valores unitários da seção 0 | **R$ 33,52** no cenário base (é o teto de escala); R$ 28,02 pessimista; R$ 41,38 otimista; R$ 36,75 com upsell aprovado |
+| Custo variável de entrega e atendimento por comprador | O que o `automacao` gasta para entregar e conduzir cada comprador | (mensagens de modelo do WhatsApp da coorte × preço por categoria + tokens do agente da coorte) ÷ compras | Orquestrador (`envios` com `modelo_whatsapp`; registro de tokens) + fatura da Meta do WhatsApp | **R$ 1,40** (hipótese do `automacao`: R$ 1.460 por 1.000 compradores em WhatsApp) mais tokens `[NÚMERO REAL]`. Acima de R$ 3,00, revisar a quantidade de mensagens de marketing da sequência |
+| **Receita líquida por comprador no checkout** | O que sobra por comprador depois de taxa, impostos e custo variável | (compras sem bump × 21,73 + compras com bump × 100,31) ÷ compras, menos o custo variável por comprador | Base + valores unitários da seção 0 | **R$ 32,12** no cenário base (33,52 menos 1,40; é o teto de escala, arredondado para baixo); R$ 26,62 pessimista; R$ 39,98 otimista; R$ 35,35 com upsell aprovado |
 | Front-end paga a mídia? | Saldo entre receita líquida do checkout e verba | Receita líquida do checkout menos verba F2 | Planilha | Zero ou positivo. Negativo por 14 dias seguidos aciona a regra de pausa |
 | Mini curso avulso pela sequência | Compras a R$ 147 nos 6 dias seguintes | Compras do mini curso avulso ÷ compradores sem bump | Base (`F2-minicurso` sem `F2-bump`) | 2% / 3% / 4% |
-| **Receita líquida por comprador em 30 dias** | Checkout + mini curso avulso + primeira mensalidade do NIDflow | Receita líquida no checkout + (taxa de mini curso avulso × 116,59) + (taxa de assinatura em D+7 × 21,73), lida por coorte em D+30 | Base, por coorte de semana de compra | **R$ 38,32** no cenário base (33,52 + 3,50 + 1,30) |
-| **Receita líquida por comprador em 90 dias** | Idem, com três mensalidades do NIDflow descontado o churn | Receita líquida no checkout + mini curso avulso + (taxa de assinatura × 21,73 × (1 + (1 menos churn) + (1 menos churn)²)), lida por coorte em D+90 | Base, por coorte | **R$ 40,63** no cenário base (33,52 + 3,50 + 3,61, com 6% de assinatura e 8% de churn) |
-| Retorno líquido em 30 e 90 dias | Receita líquida da coorte ÷ verba que a originou | | Planilha de coortes | Acima de 1,0 em 30 dias no cenário base (38,32 ÷ 32 = 1,20); acima de 1,25 em 90 dias |
+| **Receita líquida por comprador em 30 dias** | Checkout (já com o custo variável) + mini curso avulso + primeira mensalidade do NIDflow | Receita líquida no checkout + (taxa de mini curso avulso × 116,59) + (taxa de assinatura em D+7 × 21,73), lida por coorte em D+30 | Base, por coorte de semana de compra | **R$ 36,92** no cenário base (32,12 + 3,50 + 1,30) |
+| **Receita líquida por comprador em 90 dias** | Idem, com três mensalidades do NIDflow descontado o churn | Receita líquida no checkout + mini curso avulso + (taxa de assinatura × 21,73 × (1 + (1 menos churn) + (1 menos churn)²)), lida por coorte em D+90 | Base, por coorte | **R$ 39,23** no cenário base (32,12 + 3,50 + 3,61, com 6% de assinatura e 8% de churn) |
+| Retorno líquido em 30 e 90 dias | Receita líquida da coorte ÷ verba que a originou | | Planilha de coortes | Acima de 1,0 em 30 dias no cenário base (36,92 ÷ 32 = 1,15); acima de 1,2 em 90 dias (39,23 ÷ 32 = 1,23) |
 
 ---
 
@@ -82,7 +83,7 @@
 | Taxa de M1 entregue | M1 enviadas ÷ comentários com palavra-chave | | Orquestrador | Acima de 95% (limite de respostas privadas e permissões) |
 | Taxa de clique no direct | Cliques no link (UTM `utm_medium=direct`) ÷ M1 enviadas | | Orquestrador + página | Acima de 40% (indício do parecer 2.8: DMs automatizadas com 50% a 60% de resposta) |
 | Compras por post | Compras com `utm_content=F2-org-d<dia>` | | Base | Leitura; compara com a mídia: o parecer cita fluxo comentário → direct convertendo 3 a 5 vezes mais que link na bio (dado de fornecedor) |
-| Compras orgânicas no total | Compras com `utm_medium` em `direct`, `stories`, `organic` | | Base | Leitura; sem meta antes de 30 dias |
+| Compras orgânicas no total | Compras com `utm_medium` em `direct`, `story`, `bio`, `post` ou `agente` (convenção 8.3 de `05-integracoes.md`) | | Base | Leitura; sem meta antes de 30 dias |
 | Custo por compra orgânica | Custo do agente (tokens) e das mensagens ÷ compras orgânicas | | Orquestrador (registro de tokens) + base | Leitura; serve para comparar com o CPA F2 pago |
 | Qualificação respondida no direct | Conversas em que a pergunta 1 do Gatilho A foi respondida ÷ conversas com M1 | | Orquestrador (`qualificacao.vende_para` diferente de `nao_respondeu`) | Acima de 30% |
 | Encaminhamentos para humano | Conversas em S8 ÷ conversas | | Orquestrador | Leitura; Gatilho A à parte (seção 5) |
@@ -128,7 +129,9 @@ Cenário base do parecer, para o leitor conferir se os números da operação es
 |---|---|
 | Verba F2 (CPA R$ 32) | R$ 32.000 |
 | Compras com bump (15%) | 150 |
-| Receita líquida no checkout | R$ 33.519 (saldo de R$ 1.519 sobre a mídia) |
+| Receita líquida no checkout, antes do custo variável | R$ 33.519 |
+| Custo variável do WhatsApp (R$ 1,40 × 1.000) | R$ 1.400 (tokens do agente `[NÚMERO REAL]` à parte) |
+| Receita líquida no checkout, já com o custo variável | R$ 32.119 (saldo de R$ 119 sobre a mídia: o front-end empata) |
 | Mini curso avulso pela sequência (3% dos 850 sem bump, em torno de 24 vendas) | R$ 2.825 |
 | NIDflow (6% assinam; 60 assinantes × LTV R$ 272) | R$ 16.299 |
 | Plataforma NID (3% da base, 30 vendas) | R$ 23.742 |
@@ -139,7 +142,7 @@ Cenário base do parecer, para o leitor conferir se os números da operação es
 | Receita bruta do Funil 1 originada (R$ 20.000 por contrato, `[NÚMERO REAL]` a informar pelo Henrique) | R$ 105.000 |
 | Custo por decisor · por sessão · por contrato | R$ 457 · R$ 1.524 · R$ 6.095 |
 
-Leitura: se o CPA F2 real ficar em R$ 32, o front-end empata e todo o resultado vem do NIDflow, da Plataforma NID e do Gatilho A. Se ficar em R$ 40, o front-end perde cerca de R$ 6.500 por 1.000 compradores e o Gatilho A ainda paga a conta no cenário base. Se ficar acima de R$ 40 por 14 dias, a mídia pausa (regra da seção 4.2 do plano de verba).
+Leitura: se o CPA F2 real ficar em R$ 32, o front-end empata e todo o resultado vem do NIDflow, da Plataforma NID e do Gatilho A. Se ficar em R$ 40, o front-end perde cerca de R$ 7.900 por 1.000 compradores e o Gatilho A ainda paga a conta no cenário base. Se ficar acima de R$ 40 por 14 dias, a mídia pausa (regra da seção 4.2 do plano de verba).
 
 ---
 

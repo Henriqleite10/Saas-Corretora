@@ -5,8 +5,8 @@
 | Documento | `campanhas/02-criativos.md` |
 | Autor | Agente `trafego` |
 | Sprint | 5 |
-| Status | Entregue ao coordenador; passa pelo `estrategia` antes de ser dado como pronto. **Conferir contra a headline final de `produtos/playbook/pagina-de-vendas.md` quando o `copy` entregar** (a página não existia quando estes criativos foram escritos; o anúncio promete o que a página entrega) |
-| Fonte da verdade | `docs/00-brief-mestre.md` (seções 3, 5, 6.1, 10) e `campanhas/01-angulos.md` |
+| Status | Entregue ao coordenador; passa pelo `estrategia` antes de ser dado como pronto. Conferido contra a página de vendas final (`produtos/playbook/pagina-de-vendas.md`, headline "Pare de mandar orçamento. Comece a apresentar projeto."): a correspondência anúncio → página está na seção 0.5 |
+| Fonte da verdade | `docs/00-brief-mestre.md` (seções 3, 5, 6.1, 10), `campanhas/01-angulos.md` e `produtos/playbook/pagina-de-vendas.md` (o anúncio promete o que a página entrega) |
 | Destino de todo anúncio | Página do playbook, com UTMs da seção 6 de `04-plano-de-verba.md` |
 
 ---
@@ -43,6 +43,26 @@
 
 - Os V-tela precisam da versão do NIDflow com os cinco templates do método dentro (item B-04 do `produtos/nidflow/04-backlog-tecnico.md`). Enquanto B-04 não estiver no ar, gravar só o fluxo de arquitetura (que existe segundo o brief) e deixar o canvas de dor e a tabela de valor como quadros estáticos sobrepostos. Marcar no vídeo qual versão foi usada.
 - Os números do caso (150 pedidos por mês, 25 visitas perdidas, R$ 60 mil por mês) são os do capítulo 7 do playbook: a conta feita com o cliente do caso, simplificada para o exercício. Aparecem na tela como conta do cliente, nunca como resultado. Se o Henrique preferir um projeto real, `[CASO REAL A CONFIRMAR COM HENRIQUE]`, descrito por segmento e sem valor de contrato.
+
+### 0.5 Correspondência entre o anúncio e a página de vendas
+
+O anúncio é a primeira tela; a página é a segunda. A pessoa que clica precisa reconhecer na página o que a fez clicar. A tabela abaixo prende cada promessa dos criativos ao lugar da página em que ela é cumprida. Se a página mudar, esta tabela é revista antes de qualquer anúncio subir.
+
+| O que o anúncio diz | Onde a página cumpre | Criativos |
+|---|---|---|
+| "Sua proposta virou orçamento" · "Proposta-orçamento se compara por preço" | Headline "Pare de mandar orçamento. Comece a apresentar projeto." e card de dor 1 ("Minha proposta vira um orçamento. O cliente compara preço e some.") | C01, C02 |
+| "'Vou pensar' não é objeção" · "Reunião que termina com data" | Seção 2 (a cena do "manda a proposta" e do silêncio), card de dor 2, seção 4 (saída da etapa Valor: próximo passo com data) | C03, C04 |
+| "O cliente saiu sabendo tudo sobre o seu produto" · "Catálogo não aprova investimento" | Seção 2 ("Explicou melhor na reunião"), seção 4 (erro que o playbook corrige na etapa Dor: descrever o próprio produto antes do problema; produto entra na Arquitetura) | C05, C06 |
+| "A ordem é fixa. O preço só entra na página 8." · "O preço nunca antes do valor" | Seção 4 (texto de fechamento: "nunca se apresenta preço antes de valor") e seção 5, item 4 (o roteiro de proposta em nove páginas; o preço aparece na página 8) | C07, C08 |
+| "Lista de tarefas pede desconto" · "Saia da hora" | Card de dor 4 ("Cobro por hora porque não sei mostrar o valor do projeto inteiro"), seção 7 (consultor, freelancer ou dono de serviço), pergunta "Não sou vendedor, sou técnico" | C09, C10 |
+| "Se fosse eu, fechava" · "De SDR a quem conduz a conta" | Seção 7 (SDR ou BDR), pergunta "Isso é coisa de gerente, não de SDR" (capítulo de adaptação, portfólio de projetos desenhados em um mês) | C11 |
+| "Uma reunião em que você não está" · "A proposta que o comitê entende sem você" | Card de dor 3, seção 3 ("sobrevive sem você na sala"), pergunta "Já tenho meu jeito de apresentar" | C12 |
+| "Não é curso de vendas" · "O método que uma consultoria usa" | Pergunta "Isso é um curso de vendas?", seção 8 (quem escreve), linha de assinatura "Henrique Leite, sócio da NID" | C13, C14 |
+| Arquitetura do produto: quatro etapas, cinco templates de fluxo, caso conduzido, checklist, acesso imediato por e-mail e WhatsApp | Subheadline e seção 5 (os seis itens inclusos: PDF de onze capítulos, caso conduzido, cinco templates, roteiro de proposta em nove páginas, checklist de 28 itens, acesso em até dois minutos) | Todos |
+| Valor: R$ 29,90, 7 dias de garantia, reembolso sem pergunta | Seção 9 (bloco de oferta), seção 10 (garantia), linha sob o CTA | Todos |
+| CTA "Quero o playbook por R$ 29,90" | CTA oficial da página, nas seções 1, 9 e 12 | Todos |
+
+Regra de mensagem única: nenhum criativo promete coisa que não esteja nesta tabela. Quando um número real de compradores ou um depoimento real entrar na página (seções 1 e 6), o `trafego` cria a variação de gancho C dos criativos com essa prova; até lá, a prova nos anúncios é a prática da NID e a garantia.
 
 ---
 
@@ -117,7 +137,7 @@
 
   #vendasb2b #propostacomercial #metodonid
 
-**Variação Stories (pago e orgânico)**: corte de 15 segundos (0 a 9 s + 19 a 25 s). Texto na tela em duas caixas Arial sobre faixa `#373737`: no topo, "Sua proposta virou orçamento."; no rodapé, "Playbook NID · R$ 29,90 · 7 dias de garantia". Sticker de link (pago: página do playbook; orgânico: página do playbook com UTM de stories) com o texto "Quero o playbook por R$ 29,90". Sem palavra-chave no story (não há comentário).
+**Variação Stories (pago e orgânico)**: corte de 15 segundos (0 a 9 s + 19 a 25 s). Texto na tela em duas caixas Arial sobre faixa `#373737`: no topo, "Sua proposta virou orçamento."; no rodapé, "Playbook NID · R$ 29,90 · 7 dias de garantia". Sticker de link (pago: página do playbook com a UTM do anúncio; orgânico: página do playbook com `utm_medium=story` e `utm_content=F2-st-s<semana>`) com o texto "Quero o playbook por R$ 29,90". Sem palavra-chave no story (não há comentário).
 
 **Cenário 2**: idêntico; a voz pode abrir com "Aqui é o Henrique, sócio da NID" antes de "a gente vende projeto". CTA só link.
 
@@ -642,7 +662,7 @@
 
 ### C13 · A8 · Vídeo de rosto · "Isso não é curso de vendas"
 
-**Gravação**: Henrique Leite, sócio da NID, mesma cena. 26 segundos. Este criativo responde a quem desconfia de guru; por isso é o mais seco de todos. Sem trilha.
+**Gravação**: Henrique Leite, sócio da NID, mesma cena. 26 segundos. Este criativo responde a quem desconfia de curso de vendas e de promessa; por isso é o mais seco de todos. Sem trilha.
 
 | Tempo | Fala integral | Texto na tela |
 |---|---|---|
@@ -757,4 +777,5 @@ Para a fase de teste (`04-plano-de-verba.md`, seção 4), cada criativo entra co
 - [ ] Nenhum travessão. Revisão ortográfica dupla.
 - [ ] Legenda queimada em Arial; identidade visual conferida (paleta da seção 0.1).
 - [ ] Nome do arquivo e do anúncio no padrão `F2-C01-Vtela-A` (criativo, formato, variação de gancho).
-- [ ] Conferido contra a headline final de `produtos/playbook/pagina-de-vendas.md`.
+- [ ] Conferido contra a página de vendas final pela tabela da seção 0.5 (headline "Pare de mandar orçamento. Comece a apresentar projeto."); nenhuma promessa fora da tabela.
+- [ ] UTM do anúncio no padrão da seção 6 de `04-plano-de-verba.md` (`utm_campaign=F2-playbook`, `utm_content` com campanha, conjunto e anúncio).
