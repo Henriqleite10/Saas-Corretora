@@ -132,11 +132,15 @@ O coordenador (sessão principal) despacha, consolida os pareceres do `estrategi
 
 ## Sprints e estado
 
-- [ ] **Sprint 1 · Fundação**: `docs/00-brief-mestre.md` (posicionamento, promessa, ICP, nomes finais, ofertas, preços, regras de voz). **Entregue, aguardando aprovação do Henrique.** Decisões pendentes listadas na seção 12 do brief.
-- [ ] **Sprint 2 · Playbook** completo (conteúdo + PDF). Para e pede aprovação.
-- [ ] **Sprint 3 · Mini curso** (roteiro) + página de vendas + checkout com order bump. Para e pede aprovação. Henrique grava.
-- [ ] **Sprint 4 · Automações** + oferta e onboarding do NIDflow. (Pré-requisito: arquivo HTML do NIDflow no repositório ou caminho indicado.)
-- [ ] **Sprint 5 · Tráfego** + conteúdo de lançamento.
-- [ ] **Sprint 6 · Plataforma**.
+Todos os seis sprints foram produzidos, revisados pelo `estrategia` (`docs/02-revisao-de-coerencia.md`: 109 aprovados, 36 ajustes aplicados, 1 bloqueio respeitado) e estão no repositório. O que falta é decisão e gravação do Henrique e implantação técnica. Mapa completo em `docs/03-mapa-de-execucao.md` e `docs/mapa-de-execucao.html`.
+
+- [x] **Sprint 1 · Fundação**: brief v1.0 (`docs/00-brief-mestre.md`) + parecer estratégico + revisão de coerência. Aguarda aprovação do Henrique (seção 12 do brief + mudanças do parecer).
+- [x] **Sprint 2 · Playbook**: texto, 5 templates, PDF de 42 páginas, página, checkout, obrigado, upsell condicional. Aguarda aprovação do caso conduzido.
+- [x] **Sprint 3 · Mini curso**: grade, 8 roteiros, 73 slides, 5 materiais, guia de gravação, página. Aguarda gravação.
+- [x] **Sprint 4 · Automações e NIDflow**: 5 fluxos, 9 sequências, plano, onboarding, oferta D+7, backlog técnico (B-00 a B-09). Aguarda o HTML do NIDflow e implantação.
+- [x] **Sprint 5 · Tráfego**: 8 ângulos, 14 criativos, calendário, verba, métricas. Aguarda aprovação da verba e gravação; mídia paga só com mini curso e checkout no ar.
+- [x] **Sprint 6 · Plataforma**: estrutura, catálogo, comunidade, lançamento, retenção, página, sequências 08 e 09, textos do ambiente. Abertura só com base ≥ 1.500 compradores.
+
+Pré-requisito operacional pendente: arquivo HTML do NIDflow em `produtos/nidflow/` (nada do backlog técnico anda sem ele).
 
 Branch de trabalho do Funil 2: `claude/vigilant-fermat-raaslm`. Commits em português (`tipo: descrição`).
