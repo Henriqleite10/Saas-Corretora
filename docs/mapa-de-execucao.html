@@ -1,0 +1,302 @@
+<title>Mapa de Execução do Funil 2</title>
+<style>
+  :root{
+    --laranja:#F26522; --laranja-claro:#FF8A4C; --cinza:#373737; --cinza2:#6B6B6B;
+    --fundo:#F5F4F2; --papel:#FFFFFF; --linha:#E4E2DE; --texto:#2B2B2B;
+    --pronto:#1F7A4D; --pronto-bg:#E4F3EA; --henrique:#F26522; --henrique-bg:#FDEBDF;
+    --tecnico:#4A5A8A; --tecnico-bg:#E6EAF5; --espera:#8A7A2E; --espera-bg:#F6F0D6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --fundo:#1E1E1E; --papel:#2A2A2A; --linha:#3E3E3E; --texto:#EDEDED; --cinza:#F0F0F0; --cinza2:#B5B5B5;
+      --pronto:#7FD9A6; --pronto-bg:#1E3A2B; --henrique:#FF8A4C; --henrique-bg:#4A2A18; --tecnico:#A9B8F0; --tecnico-bg:#242C48; --espera:#E6D27A; --espera-bg:#3D3719;
+    }
+  }
+  :root[data-theme="dark"]{
+    --fundo:#1E1E1E; --papel:#2A2A2A; --linha:#3E3E3E; --texto:#EDEDED; --cinza:#F0F0F0; --cinza2:#B5B5B5;
+    --pronto:#7FD9A6; --pronto-bg:#1E3A2B; --henrique:#FF8A4C; --henrique-bg:#4A2A18; --tecnico:#A9B8F0; --tecnico-bg:#242C48; --espera:#E6D27A; --espera-bg:#3D3719;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fundo);color:var(--texto);font-family:Arial,"Liberation Sans",Helvetica,sans-serif;font-size:15px;line-height:1.5;padding-inline:20px;padding-block:0 48px}
+  .wrap{max-width:1180px;margin:0 auto}
+  header{padding-block:36px 20px;border-bottom:3px solid var(--laranja);margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);font-weight:700}
+  h1{font-size:30px;margin:6px 0 4px;color:var(--cinza);font-weight:800;text-wrap:balance}
+  h2{font-size:20px;margin:36px 0 12px;color:var(--cinza);font-weight:800}
+  h3{font-size:15px;margin:0 0 6px;color:var(--cinza)}
+  .lead{color:var(--cinza2);max-width:70ch;margin:0}
+  .legenda{display:flex;flex-wrap:wrap;gap:10px 18px;margin:14px 0 0;font-size:13px}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+  .chip::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+  .c-pronto{background:var(--pronto-bg);color:var(--pronto)}
+  .c-henrique{background:var(--henrique-bg);color:var(--henrique)}
+  .c-tecnico{background:var(--tecnico-bg);color:var(--tecnico)}
+  .c-espera{background:var(--espera-bg);color:var(--espera)}
+  figure{margin:0;background:var(--papel);border:1px solid var(--linha);padding:16px;overflow-x:auto}
+  figure svg{display:block;min-width:900px;max-width:100%;height:auto}
+  figcaption{font-size:13px;color:var(--cinza2);margin-top:10px}
+  .placar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 8px}
+  .tile{background:var(--papel);border:1px solid var(--linha);padding:14px 16px}
+  .tile .n{font-size:30px;font-weight:800;color:var(--cinza);font-variant-numeric:tabular-nums;line-height:1}
+  .tile .l{font-size:12px;color:var(--cinza2);margin-top:6px;text-transform:uppercase;letter-spacing:.06em}
+  .sprints{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+  .sprint{background:var(--papel);border:1px solid var(--linha);padding:16px 18px;border-top:4px solid var(--laranja)}
+  .sprint .st{font-size:12px;color:var(--cinza2);text-transform:uppercase;letter-spacing:.08em}
+  .sprint ul{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+  .sprint li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;font-size:14px;border-top:1px solid var(--linha);padding-top:8px}
+  .sprint li span.p{color:var(--cinza2);font-size:12px;display:block}
+  ol.acoes{list-style:none;counter-reset:a;padding:0;margin:0;display:grid;gap:10px}
+  ol.acoes li{counter-increment:a;display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:start;background:var(--papel);border:1px solid var(--linha);padding:14px 16px}
+  ol.acoes li::before{content:counter(a);font-size:22px;font-weight:800;color:var(--laranja);font-variant-numeric:tabular-nums;line-height:1.1}
+  ol.acoes li .t{font-weight:700;color:var(--cinza)}
+  ol.acoes li .d{color:var(--cinza2);font-size:13.5px;margin-top:3px}
+  ol.acoes li .tempo{font-size:12px;color:var(--cinza2);white-space:nowrap;text-align:right}
+  ol.acoes li .tempo b{display:block;font-size:15px;color:var(--cinza)}
+  .fase{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--laranja);font-weight:700;margin:22px 0 8px}
+  table{width:100%;border-collapse:collapse;background:var(--papel);border:1px solid var(--linha);font-size:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--linha);vertical-align:top}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--cinza2);background:var(--fundo)}
+  .tabela{overflow-x:auto}
+  .nota{background:var(--papel);border-left:4px solid var(--laranja);padding:12px 16px;margin:14px 0;font-size:14px}
+  footer{margin-top:40px;font-size:12px;color:var(--cinza2);border-top:1px solid var(--linha);padding-top:14px}
+  @media (max-width:520px){ol.acoes li{grid-template-columns:36px 1fr} ol.acoes li .tempo{grid-column:2;text-align:left} .sprint li{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion: no-preference){.chip{transition:opacity .2s}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="kicker">NID · Núcleo de Inteligência Digital · Funil 2</div>
+  <h1>Mapa de Execução do Funil 2</h1>
+  <p class="lead">O que já está pronto, o que depende do Henrique e o que é execução técnica para colocar a esteira no ar. Atualizado em 15/09/2026, após os seis sprints e a revisão de coerência.</p>
+  <div class="legenda">
+    <span class="chip c-pronto">Pronto</span>
+    <span class="chip c-henrique">Ação do Henrique</span>
+    <span class="chip c-tecnico">Execução técnica</span>
+    <span class="chip c-espera">Espera condição</span>
+  </div>
+</header>
+
+<div class="placar">
+  <div class="tile"><div class="n">6/6</div><div class="l">Sprints produzidos</div></div>
+  <div class="tile"><div class="n">62</div><div class="l">Entregáveis em disco</div></div>
+  <div class="tile"><div class="n">9</div><div class="l">Ações do Henrique</div></div>
+  <div class="tile"><div class="n">4</div><div class="l">Frentes técnicas</div></div>
+</div>
+
+<h2>1. A esteira e onde cada parte está</h2>
+<figure>
+<svg viewBox="0 0 1180 470" role="img" aria-label="Fluxograma da esteira do Funil 2: aquisição (orgânico, tráfego pago, agente de IA) leva à página do playbook; o checkout tem a oferta adicional do mini curso; a página de obrigado faz as perguntas do Gatilho A; a entrega leva ao mini curso, à oferta do NIDflow em D+7 e à Plataforma NID por lançamento interno; os gatilhos A e B levam à sessão de arquitetura do Funil 1 e ao banco de talentos. Cada caixa mostra o status.">
+  <defs>
+    <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+  </defs>
+  <g font-family="Arial, Liberation Sans, sans-serif" fill="currentColor" style="color:var(--texto)">
+    <!-- faixa aquisição -->
+    <text x="20" y="28" font-size="11" font-weight="700" letter-spacing="1.5" fill="#F26522">AQUISIÇÃO · MECÂNICA ATA</text>
+    <g>
+      <rect x="20" y="40" width="200" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="20" y="40" width="6" height="56" fill="#1F7A4D"/>
+      <text x="36" y="62" font-size="13" font-weight="700">Conteúdo orgânico</text>
+      <text x="36" y="80" font-size="11" fill="var(--cinza2)">20 posts · CTA "comente"</text>
+    </g>
+    <g>
+      <rect x="20" y="108" width="200" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="20" y="108" width="6" height="56" fill="#8A7A2E"/>
+      <text x="36" y="130" font-size="13" font-weight="700">Tráfego pago (Meta)</text>
+      <text x="36" y="148" font-size="11" fill="var(--cinza2)">14 criativos · só após gravar</text>
+    </g>
+    <g>
+      <rect x="20" y="176" width="200" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="20" y="176" width="6" height="56" fill="#4A5A8A"/>
+      <text x="36" y="198" font-size="13" font-weight="700">Agente de IA no direct</text>
+      <text x="36" y="216" font-size="11" fill="var(--cinza2)">fluxo e textos prontos · implantar</text>
+    </g>
+    <!-- setas aquisição → página -->
+    <path d="M220 68 L270 68 L270 136 L300 136" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <path d="M220 136 L300 136" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <path d="M220 204 L270 204 L270 136" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="232" y="126" font-size="10" fill="var(--cinza2)">link direto</text>
+
+    <!-- esteira -->
+    <text x="300" y="28" font-size="11" font-weight="700" letter-spacing="1.5" fill="#F26522">ESTEIRA</text>
+    <g>
+      <rect x="300" y="108" width="190" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="300" y="108" width="6" height="56" fill="#4A5A8A"/>
+      <text x="316" y="130" font-size="13" font-weight="700">Página do playbook</text>
+      <text x="316" y="148" font-size="11" fill="var(--cinza2)">copy pronta · implementar</text>
+    </g>
+    <path d="M490 136 L530 136" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <g>
+      <rect x="530" y="108" width="190" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="530" y="108" width="6" height="56" fill="#F26522"/>
+      <text x="546" y="130" font-size="13" font-weight="700">Checkout R$ 29,90</text>
+      <text x="546" y="148" font-size="11" fill="var(--cinza2)">+ oferta adicional R$ 97 · conta Cakto</text>
+    </g>
+    <path d="M720 136 L760 136" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <g>
+      <rect x="760" y="108" width="190" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="760" y="108" width="6" height="56" fill="#4A5A8A"/>
+      <text x="776" y="130" font-size="13" font-weight="700">Página de obrigado</text>
+      <text x="776" y="148" font-size="11" fill="var(--cinza2)">2 perguntas do Gatilho A</text>
+    </g>
+    <path d="M950 136 L990 136" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <g>
+      <rect x="990" y="108" width="170" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="990" y="108" width="6" height="56" fill="#1F7A4D"/>
+      <text x="1006" y="130" font-size="13" font-weight="700">Playbook (PDF)</text>
+      <text x="1006" y="148" font-size="11" fill="var(--cinza2)">42 páginas · 5 templates</text>
+    </g>
+
+    <!-- degraus abaixo -->
+    <path d="M625 164 L625 230" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <text x="633" y="200" font-size="10" fill="var(--cinza2)">bump aceito ou R$ 147 depois</text>
+    <g>
+      <rect x="530" y="230" width="190" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="530" y="230" width="6" height="56" fill="#F26522"/>
+      <text x="546" y="252" font-size="13" font-weight="700">Mini curso (8 aulas)</text>
+      <text x="546" y="270" font-size="11" fill="var(--cinza2)">roteiros e slides prontos · gravar</text>
+    </g>
+
+    <path d="M1075 164 L1075 230" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <text x="1083" y="200" font-size="10" fill="var(--cinza2)">D+7</text>
+    <g>
+      <rect x="990" y="230" width="170" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="990" y="230" width="6" height="56" fill="#4A5A8A"/>
+      <text x="1006" y="252" font-size="13" font-weight="700">NIDflow R$ 29,90/mês</text>
+      <text x="1006" y="270" font-size="11" fill="var(--cinza2)">oferta pronta · login e cobrança</text>
+    </g>
+    <path d="M720 258 L990 258" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#seta)"/>
+    <text x="800" y="250" font-size="10" fill="var(--cinza2)">CTA ao fim da aula 8</text>
+
+    <path d="M1075 286 L1075 352" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <text x="1083" y="322" font-size="10" fill="var(--cinza2)">base ≥ 1.500</text>
+    <g>
+      <rect x="930" y="352" width="230" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="930" y="352" width="6" height="56" fill="#8A7A2E"/>
+      <text x="946" y="374" font-size="13" font-weight="700">Plataforma NID R$ 980/ano</text>
+      <text x="946" y="392" font-size="11" fill="var(--cinza2)">lançamento interno · espera a base</text>
+    </g>
+
+    <!-- gatilhos -->
+    <text x="300" y="330" font-size="11" font-weight="700" letter-spacing="1.5" fill="#F26522">SEGMENTAÇÃO DA BASE</text>
+    <path d="M855 164 L855 380 L740 380" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <text x="862" y="300" font-size="10" fill="var(--cinza2)">decisor</text>
+    <g>
+      <rect x="530" y="352" width="210" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="530" y="352" width="6" height="56" fill="#F26522"/>
+      <text x="546" y="374" font-size="13" font-weight="700">Gatilho A → Funil 1</text>
+      <text x="546" y="392" font-size="11" fill="var(--cinza2)">convite em 24 h · quem envia?</text>
+    </g>
+    <path d="M625 286 L625 320 L410 320 L410 352" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+    <text x="418" y="336" font-size="10" fill="var(--cinza2)">concluiu + desenhou + fecha</text>
+    <g>
+      <rect x="300" y="352" width="210" height="56" rx="4" fill="var(--papel)" stroke="var(--linha)"/>
+      <rect x="300" y="352" width="6" height="56" fill="#1F7A4D"/>
+      <text x="316" y="374" font-size="13" font-weight="700">Gatilho B → talentos</text>
+      <text x="316" y="392" font-size="11" fill="var(--cinza2)">critérios, formulário e LGPD prontos</text>
+    </g>
+
+    <!-- legenda cores -->
+    <g font-size="11">
+      <rect x="20" y="430" width="10" height="10" fill="#1F7A4D"/><text x="36" y="439">pronto</text>
+      <rect x="100" y="430" width="10" height="10" fill="#F26522"/><text x="116" y="439">ação do Henrique</text>
+      <rect x="230" y="430" width="10" height="10" fill="#4A5A8A"/><text x="246" y="439">execução técnica</text>
+      <rect x="360" y="430" width="10" height="10" fill="#8A7A2E"/><text x="376" y="439">espera condição</text>
+    </g>
+  </g>
+</svg>
+<figcaption>A barra colorida à esquerda de cada caixa mostra o que falta naquele ponto da esteira. O conteúdo de todas as caixas está pronto; o que separa o funil da primeira venda são ações do Henrique (laranja) e implantação técnica (azul).</figcaption>
+</figure>
+
+<h2>2. Estado por sprint</h2>
+<div class="sprints">
+  <div class="sprint"><div class="st">Sprint 1 · Fundação</div><h3>Brief-mestre</h3>
+    <ul>
+      <li><div>docs/00-brief-mestre.md <span class="p">13 seções · v1.0</span></div><span class="chip c-henrique">Aprovar (com 6 ajustes)</span></li>
+      <li><div>docs/01-parecer-estrategico.md <span class="p">pesquisa, economia do funil, vereditos</span></div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>docs/02-revisao-de-coerencia.md <span class="p">vereditos de todas as peças</span></div><span class="chip c-pronto">Pronto</span></li>
+    </ul></div>
+  <div class="sprint"><div class="st">Sprint 2 · Playbook</div><h3>Playbook NID · Desenhe para Vender</h3>
+    <ul>
+      <li><div>Texto integral <span class="p">13.881 palavras · 11 capítulos</span></div><span class="chip c-henrique">Aprovar</span></li>
+      <li><div>PDF diagramado A4 <span class="p">42 páginas, identidade NID</span></div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>5 templates de fluxo <span class="p">MD + HTML + PDF, CTA do NIDflow</span></div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>Página de vendas, checkout, oferta adicional, obrigado, upsell <span class="p">copy integral + spec nid-pages</span></div><span class="chip c-tecnico">Implementar</span></li>
+    </ul></div>
+  <div class="sprint"><div class="st">Sprint 3 · Mini curso</div><h3>Mini curso NID · Apresente para Fechar</h3>
+    <ul>
+      <li><div>Grade + 8 roteiros palavra por palavra <span class="p">cerca de 108 min</span></div><span class="chip c-henrique">Gravar</span></li>
+      <li><div>Slides de apoio <span class="p">73 slides em 8 PDFs 16:9</span></div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>5 materiais do aluno <span class="p">inclui modelo de proposta em PDF</span></div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>Guia de gravação + página de vendas R$ 147</div><span class="chip c-pronto">Pronto</span></li>
+    </ul></div>
+  <div class="sprint"><div class="st">Sprint 4 · Automações e NIDflow</div><h3>Fluxos, sequências e produto NIDflow</h3>
+    <ul>
+      <li><div>5 fluxos (agente, entrega, D+7, gatilhos, integrações)</div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>9 sequências de e-mail e WhatsApp <span class="p">texto final, códigos e UTMs</span></div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>NIDflow: plano, onboarding, oferta D+7, mensagens</div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>NIDflow: auditoria do HTML + login e cobrança (B-00 a B-09) <span class="p">16 a 22 dias de dev</span></div><span class="chip c-tecnico">Implementar</span></li>
+      <li><div>Orquestrador, webhooks Cakto, WhatsApp API, agente no direct</div><span class="chip c-tecnico">Implementar</span></li>
+    </ul></div>
+  <div class="sprint"><div class="st">Sprint 5 · Tráfego</div><h3>Campanhas F2</h3>
+    <ul>
+      <li><div>8 ângulos · 14 criativos · calendário de 4 semanas</div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>Plano de verba (R$ 9.000 em 30 dias, tetos R$ 40 / R$ 32) e métricas</div><span class="chip c-henrique">Aprovar verba</span></li>
+      <li><div>Gravação da rodada 1 de criativos <span class="p">uma manhã</span></div><span class="chip c-henrique">Gravar</span></li>
+      <li><div>Início da mídia paga <span class="p">só com mini curso gravado e checkout no ar</span></div><span class="chip c-espera">Espera</span></li>
+    </ul></div>
+  <div class="sprint"><div class="st">Sprint 6 · Plataforma</div><h3>Plataforma NID</h3>
+    <ul>
+      <li><div>Estrutura, catálogo (7 inclusos, 4 avançados), comunidade, lançamento, retenção</div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>Página de vendas (3 modos), 19 mensagens de lançamento, régua de renovação</div><span class="chip c-pronto">Pronto</span></li>
+      <li><div>Gravação de I-01, I-02, I-03 e A-01 <span class="p">21 aulas antes da abertura</span></div><span class="chip c-henrique">Gravar (depois)</span></li>
+      <li><div>Primeira abertura <span class="p">base ≥ 1.500 compradores</span></div><span class="chip c-espera">Espera</span></li>
+    </ul></div>
+</div>
+
+<h2>3. Ações do Henrique, em ordem</h2>
+<p class="lead">Só o que ninguém mais pode fazer. Tudo o que não está aqui é do time ou de execução técnica.</p>
+<div class="fase">Fase 1 · destrava tudo (uma tarde)</div>
+<ol class="acoes">
+  <li><div><div class="t">Aprovar o brief com os 6 ajustes do parecer</div><div class="d">Nomes dos produtos, upsell de um clique a R$ 97, regra econômica em receita líquida, redação do ICP (perfil 4), catálogo da Plataforma, nome da "sessão de arquitetura". Vira o brief v1.1.</div></div><div class="tempo"><b>45 min</b>leitura da seção 12 e do resumo do parecer</div></li>
+  <li><div><div class="t">Ler e aprovar o playbook (PDF) e a grade do mini curso</div><div class="d">Único ponto de conteúdo a confirmar: o caso conduzido (manutenção predial, capítulo 7) reflete a prática da NID? Se não, o time troca o segmento.</div></div><div class="tempo"><b>2 h</b>leitura</div></li>
+  <li><div><div class="t">Enviar o arquivo HTML do NIDflow</div><div class="d">Colocar em produtos/nidflow/ ou indicar o caminho. Nada do backlog técnico anda sem ele.</div></div><div class="tempo"><b>5 min</b></div></li>
+  <li><div><div class="t">Abrir a conta na Cakto (Kiwify como reserva) e liberar acessos</div><div class="d">Conta da NID, dados fiscais, um usuário para o time validar os 12 itens do teste (oferta adicional, upsell, assinatura, webhooks, área de membros, nota fiscal).</div></div><div class="tempo"><b>40 min</b></div></li>
+  <li><div><div class="t">Decidir quem opera o Gatilho A e o WhatsApp</div><div class="d">Quem envia o convite pessoal em 24 h em seu nome e quem responde o humano do direct e do WhatsApp. Pode ser você ou alguém da NID.</div></div><div class="tempo"><b>10 min</b></div></li>
+</ol>
+<div class="fase">Fase 2 · produz o que só você produz (dois a três dias)</div>
+<ol class="acoes" start="6">
+  <li><div><div class="t">Gravar o mini curso</div><div class="d">8 aulas, cerca de 108 minutos de vídeo final, roteiro em teleprompter, três sessões conforme o guia de gravação. Ordem sugerida: aula 4 primeiro.</div></div><div class="tempo"><b>2 dias</b>gravação bruta</div></li>
+  <li><div><div class="t">Gravar a rodada 1 de criativos e o vídeo do NIDflow</div><div class="d">4 vídeos de rosto, 4 narrações de tela e o vídeo de 60 a 90 segundos da oferta do NIDflow. Roteiros prontos em campanhas/02-criativos.md.</div></div><div class="tempo"><b>1 manhã</b></div></li>
+</ol>
+<div class="fase">Fase 3 · liga (decisões de 15 minutos cada)</div>
+<ol class="acoes" start="8">
+  <li><div><div class="t">Aprovar a verba de teste e os tetos de CPA</div><div class="d">R$ 9.000 em 30 dias, teto R$ 40 no teste e R$ 32 na escala, conta de anúncios F2 separada, decisão sobre veicular a partir do seu perfil (whitelisting).</div></div><div class="tempo"><b>15 min</b></div></li>
+  <li><div><div class="t">Autorizar o início: orgânico primeiro, mídia paga quando o mini curso estiver publicado</div><div class="d">O calendário orgânico pode começar no dia seguinte à aprovação do brief; a mídia paga só com o checkout e as aulas no ar.</div></div><div class="tempo"><b>5 min</b></div></li>
+</ol>
+
+<h2>4. Frentes de execução técnica (time ou desenvolvedor)</h2>
+<div class="tabela"><table>
+  <tr><th>Frente</th><th>O que é</th><th>Fonte no repositório</th><th>Estimativa</th><th>Bloqueia</th></tr>
+  <tr><td>Páginas</td><td>Página do playbook, checkout na Cakto com oferta adicional, página de obrigado com Gatilho A, página do mini curso, página da oferta do NIDflow</td><td>produtos/*/pagina-*.md (copy + spec nid-pages)</td><td>5 a 8 dias</td><td>Primeira venda</td></tr>
+  <tr><td>NIDflow como produto</td><td>Auditoria do HTML, login, cobrança por webhook, templates do método dentro da ferramenta, exportação em PDF, telemetria</td><td>produtos/nidflow/04-backlog-tecnico.md (B-00 a B-09)</td><td>16 a 22 dias</td><td>Oferta em D+7 (fica em fila até ficar pronto)</td></tr>
+  <tr><td>Orquestrador e integrações</td><td>Webhooks da Cakto, base F2 com etiquetas, disparos (Resend), WhatsApp Cloud API, tarefas do Gatilho A, pixel e API de Conversões</td><td>automacoes/05-integracoes.md</td><td>8 a 12 dias</td><td>Entrega automática e Gatilho A</td></tr>
+  <tr><td>Agente de IA no direct e WhatsApp</td><td>Prompt de sistema, base de conhecimento, fluxo comentário → direct → checkout; revisão do app na Meta (2 a 6 semanas)</td><td>automacoes/01 + sequencias/06</td><td>5 a 8 dias + revisão da Meta</td><td>CTA "comente" do orgânico (até lá, link direto)</td></tr>
+</table></div>
+<div class="nota">Caminho mínimo para a primeira venda: ações 1 a 5 do Henrique + frente "Páginas" + webhooks básicos da Cakto (entrega por e-mail). O mini curso gravado é pré-requisito só da mídia paga e da oferta adicional funcionar de verdade; o orgânico pode começar antes com o playbook sozinho.</div>
+
+<h2>5. Decisões pendentes (consolidadas)</h2>
+<div class="tabela"><table>
+  <tr><th>#</th><th>Decisão</th><th>Recomendação do time</th><th>Bloqueia</th></tr>
+  <tr><td>1</td><td>Nomes finais dos degraus 1 e 2</td><td>"Playbook NID · Desenhe para Vender" e "Mini curso NID · Apresente para Fechar"</td><td>Primeira venda</td></tr>
+  <tr><td>2</td><td>Upsell de um clique do mini curso a R$ 97 após o pagamento</td><td>Aprovar (vale R$ 2.100 a R$ 4.600 líquidos por 1.000 compradores, hipótese)</td><td>Nada (página já escrita, marcada condicional)</td></tr>
+  <tr><td>3</td><td>Regra econômica em receita líquida, tetos de CPA e verba de teste</td><td>Aprovar (CPA ≤ R$ 32 na escala, R$ 40 no teste, R$ 9.000 em 30 dias)</td><td>Mídia paga</td></tr>
+  <tr><td>4</td><td>Plataforma de checkout</td><td>Cakto, após os 12 testes em conta de teste; Kiwify reserva</td><td>Primeira venda</td></tr>
+  <tr><td>5</td><td>Nome da primeira reunião do Funil 1</td><td>"Sessão de arquitetura" (troca em todas as peças se mudar)</td><td>Gatilho A</td></tr>
+  <tr><td>6</td><td>Whitelisting (anúncios a partir do seu perfil)</td><td>Sim, com a regra "o perfil veicula, o texto mostra o método e a NID"</td><td>Mídia paga (só o CPA)</td></tr>
+  <tr><td>7</td><td>Caso conduzido do playbook (manutenção predial)</td><td>Manter; trocar só se não refletir a prática</td><td>Aprovação do playbook</td></tr>
+  <tr><td>8</td><td>Quem envia o convite do Gatilho A e responde o humano</td><td>Alguém da NID em seu nome, com prazo de 24 h</td><td>Gatilho A</td></tr>
+  <tr><td>9</td><td>Parcelamento e condição de fundador da Plataforma</td><td>Comprador paga o acréscimo; fundador só na janela 1</td><td>Só o lançamento da Plataforma</td></tr>
+</table></div>
+
+<footer>Fonte da verdade: docs/00-brief-mestre.md · Parecer: docs/01-parecer-estrategico.md · Revisão de coerência: docs/02-revisao-de-coerencia.md · Branch claude/vigilant-fermat-raaslm.</footer>
+</div>
