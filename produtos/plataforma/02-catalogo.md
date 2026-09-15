@@ -344,7 +344,7 @@ Observação para o `automacao`: assinante que conclui A-03 e cumpre os critéri
 
 1. **Abertura de aula**: Henrique (ou o convidado da NID, apresentado por ele) abre com "Sou o Henrique, sócio da NID" ou "Sou [nome], da NID, e cuido de [frente]". Nunca "mentor", nunca "especialista que vai te ensinar".
 2. **Arco em cada aula**: dor específica da situação (1 a 2 minutos), o jeito NID (a maior parte), a estrutura (o que fica escrito ou desenhado), o valor para o assinante e o entregável.
-3. **Casos**: cada minicurso usa um caso novo, descrito por segmento (nunca nome de cliente sem autorização registrada), diferente do caso conduzido do playbook. Os segmentos citáveis são os do brief (educação, saúde, indústria, varejo, serviços) mais os confirmados no parecer (telecomunicações, associações setoriais).
+3. **Casos**: cada minicurso usa um caso novo, descrito por segmento (nunca nome de cliente sem autorização registrada), diferente do caso conduzido do playbook. Os segmentos citáveis são os cinco do brief (educação, saúde, indústria, varejo e serviços); outros só depois de autorização do Henrique (pendência P-12 da revisão de coerência).
 4. **Números**: os números dos casos são os que o cliente trouxe na conversa, simplificados. Nenhuma aula promete resultado. Nenhuma aula cita meta do Funil 2.
 5. **Entregável real**: todo entregável é feito no projeto real do assinante. Quem não tem projeto real usa o projeto de exemplo do NIDflow, mas o botão "Levar para a Mesa de Projetos" pede um projeto real.
 6. **Materiais**: PDF em A4 (Arial, paleta do brief) e texto, na biblioteca. Um material por aula no máximo; nenhum material sem função no entregável.

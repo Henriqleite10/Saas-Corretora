@@ -278,8 +278,16 @@ Etiquetas são fatos. Status de fluxo ficam em campos (`gatilho_a_status`, `gati
 | `F2-optout-email` | Pediu para não receber e-mails | Orquestrador | Descadastro, reclamação de spam ou pedido ao agente | A pedido explícito da pessoa, registrado por humano |
 | `F2-optout-whatsapp` | Pediu para não receber WhatsApp | Orquestrador | Palavra de saída, botão do modelo ou pedido ao agente | Idem |
 | `F2-humano` | Conversa ou tarefa humana aberta; WhatsApp automático pausado | Orquestrador | Estado S8 ou tarefa aberta | Ao encerrar a tarefa ou a conversa |
+| `F2-plataforma-fundador` | Comprou a Plataforma NID na primeira abertura (condição de fundador; Sprint 6) | Orquestrador | Compra na janela 1 | Nunca (histórico; a condição só vale com a anuidade ativa) |
+| `F2-plataforma-recusada` | Renovação da anuidade recusada, acesso mantido durante as retentativas (Sprint 6) | Orquestrador | Cobrança de renovação recusada | Ao renovar ou expirar |
+| `F2-plataforma-expirada` | Anuidade encerrada sem renovação, modo leitura (Sprint 6) | Orquestrador | Fim da anuidade sem renovação | Ao reativar |
+| `F2-plataforma-renovada` | Renovou a anuidade pelo menos uma vez (Sprint 6) | Orquestrador | Renovação aprovada | Nunca (histórico) |
+| `F2-plataforma-avancado-[código]` | Comprou o minicurso avançado de código X (`produtos/plataforma/02-catalogo.md`, seção 3; Sprint 6) | Orquestrador | Compra do avançado | Nunca |
+| `F2-plataforma-nao-comprou-j[n]` | Recebeu a sequência de uma janela inteira e não comprou, com o número da janela (Sprint 6) | Orquestrador | Fechamento da janela | Ao comprar a Plataforma |
 
 O agente de IA só pode sugerir etiquetas desta lista (`01`, seção 9); sugestão fora da lista é ignorada e registrada.
+
+Origem de decisor não é etiqueta. O link de decisor da página do playbook e o da página da Plataforma NID carregam os códigos de origem `PG02` e `PG03` no texto pré-preenchido do WhatsApp (`01`, seção 2); o agente abre em S7 e `F2-gatilho-A` só nasce de resposta registrada. As etiquetas `F2-pagina-playbook-decisor` e `F2-pagina-plataforma-decisor` não existem e não devem ser criadas.
 
 ---
 
@@ -289,12 +297,13 @@ O agente de IA só pode sugerir etiquetas desta lista (`01`, seção 9); sugest�
 
 | Grupo | Eventos |
 |---|---|
-| Aquisição | `F2_comentario_kw` (com a palavra-chave e o id do post), `F2_direct_iniciado`, `F2_whatsapp_iniciado` (com o código de origem PB01, AD01, PG01, NF01), `F2_link_checkout_enviado`, `F2_qualificacao_respondida` (com fonte) |
-| Compra | `F2_compra_playbook`, `F2_bump_aceito`, `F2_upsell_aceito` (condicional), `F2_compra_minicurso`, `F2_checkout_abandonado`, `F2_pix_pendente`, `F2_pagamento_recusado`, `F2_reembolso`, `F2_chargeback` |
+| Aquisição | `F2_comentario_kw` (com a palavra-chave e o id do post), `F2_direct_iniciado`, `F2_whatsapp_iniciado` (com o código de origem PB01, AD01, PG01, PG02, PG03, NF01), `F2_link_checkout_enviado`, `F2_qualificacao_respondida` (com fonte) |
+| Compra | `F2_compra_playbook`, `F2_bump_aceito`, `F2_pagina_obrigado_vista`, `F2_upsell_visto` (condicional), `F2_upsell_aceito` (condicional), `F2_upsell_recusado` (condicional), `F2_compra_minicurso`, `F2_checkout_abandonado`, `F2_pix_pendente`, `F2_pagamento_recusado`, `F2_reembolso`, `F2_chargeback` |
 | Entrega e ativação | `F2_entrega_enviada`, `F2_primeiro_acesso_membros`, `F2_aula_assistida` (com número), `F2_minicurso_concluido`, `F2_propostas_30d_respondido` |
 | NIDflow | `F2_nidflow_oferta_enviada` (com toque), `F2_nidflow_clique_oferta`, `F2_nidflow_assinatura`, `F2_nidflow_conta_criada`, `F2_nidflow_m1` a `F2_nidflow_m5`, `F2_nidflow_perfil_respondido`, `F2_nidflow_apresentacao_respondido`, `F2_nidflow_renovada`, `F2_nidflow_recusada`, `F2_nidflow_leitura`, `F2_nidflow_cancelada`, `F2_nidflow_reembolso`, `F2_nidflow_reativada`, `F2_nidflow_oferta_encerrada` |
 | Gatilhos | `F2_gatilho_a_aplicado` (com a regra), `F2_gatilho_a_tarefa_criada`, `F2_gatilho_a_convidado`, `F2_gatilho_a_agendado`, `F2_gatilho_a_resultado` (com o resultado), `F2_gatilho_b_candidato`, `F2_gatilho_b_aplicado`, `F2_projeto_avaliado`, `F2_banco_talentos_optin`, `F2_resposta_email_entrega` |
 | Agente e envios | `F2_agente_resposta` (com intenção, estado, confiança, tokens), `F2_agente_encaminhado_humano` (com motivo), `F2_agente_reprovado_verificacao`, `F2_envio` (com código e canal), `F2_optout_email`, `F2_optout_whatsapp` |
+| Plataforma (Sprint 6; fonte: `produtos/plataforma/01-estrutura.md`, seção 8, e `05-retencao-e-renovacao.md`) | `F2_plataforma_compra` (com janela e forma de pagamento), `F2_plataforma_primeiro_acesso`, `F2_plataforma_projeto_mesa`, `F2_plataforma_aula_assistida` (com minicurso e aula), `F2_plataforma_minicurso_concluido`, `F2_plataforma_encontro_reserva`, `F2_plataforma_encontro_presenca` (com tipo de encontro), `F2_plataforma_resposta_nid`, `F2_plataforma_marco` (M1 a M6), `F2_plataforma_avancado_compra`, `F2_plataforma_renovada`, `F2_plataforma_recusada`, `F2_plataforma_expirada`, `F2_plataforma_reembolso`, `F2_plataforma_janela_aberta`, `F2_plataforma_janela_fechada`, `F2_plataforma_proposta_apresentada`, `F2_plataforma_proposta_aprovada`, `F2_plataforma_reativada` |
 
 ### 8.2 Eventos enviados à Meta (CAPI, dataset F2)
 
@@ -306,6 +315,8 @@ O agente de IA só pode sugerir etiquetas desta lista (`01`, seção 9); sugest�
 | `F2_Bump` (personalizado) | Bump aceito | id do pedido + `bump` | `value = 97` | Só CAPI |
 | `F2_GatilhoA` (personalizado) | Etiqueta `F2-gatilho-A` aplicada | id do contato + data | Nenhum valor | Só CAPI; serve para público personalizado de decisores (uso definido pelo `trafego`) |
 
+Eventos só de navegador (pixel, sem CAPI), conforme `campanhas/04-plano-de-verba.md`, seção 5.1: `PageView`, `ViewContent`, `AddPaymentInfo`, `Contact`.
+
 Dados de correspondência enviados à Meta: e-mail e telefone com hash, `fbp` e `fbc` capturados na página do playbook e repassados ao checkout (se a plataforma aceitar parâmetros) e ao orquestrador pelo webhook.
 
 ### 8.3 Convenção de UTMs `F2`
@@ -313,12 +324,34 @@ Dados de correspondência enviados à Meta: e-mail e telefone com hash, `fbp` e 
 | Parâmetro | Valores | Regra |
 |---|---|---|
 | `utm_source` | `instagram`, `facebook`, `whatsapp`, `email`, `youtube`, `linkedin`, `nidflow`, `playbook` | Canal de origem, minúsculas |
-| `utm_medium` | `paid` (anúncio), `direct` (agente no direct), `agente` (agente no WhatsApp), `bio`, `post`, `story`, `sequencia` (e-mail ou WhatsApp automático), `cta-produto` (link dentro do playbook, das aulas ou do NIDflow) | Mecanismo, não canal |
-| `utm_campaign` | `F2-playbook`, `F2-minicurso`, `F2-nidflow-d7`, `F2-nidflow-cta`, `F2-plataforma-lancamento-AAAAMM` | Sempre com prefixo `F2-` |
-| `utm_content` | Anúncio: id do criativo conforme a nomenclatura do `trafego`. Orgânico: id do post. Sequência: código do toque (`e3`, `w4`, `d7`, `d10`, `d14`, `n16`). Produto: slug do template (`canvas-de-dor`, ...) | Identifica a peça |
-| `utm_term` | Palavra-chave do direct (`F2-kw-projeto`, `F2-kw-desenho`, `F2-kw-proposta`, `F2-kw-template`) ou vazio | Só no fluxo comentário → direct |
+| `utm_medium` | `paid` (anúncio), `direct` (agente no direct), `agente` (agente no WhatsApp), `bio`, `post`, `story`, `sequencia` (e-mail ou WhatsApp automático), `humano` (convite ou mensagem enviada por pessoa da NID: CA1e, CA2, CB1, CB3), `cta-produto` (link dentro do playbook, das aulas ou do NIDflow) | Mecanismo, não canal |
+| `utm_campaign` | `F2-playbook`, `F2-minicurso`, `F2-nidflow-d7`, `F2-nidflow-cta`, `F2-gatilho-a`, `F2-gatilho-b`, `F2-plataforma-lancamento-AAAAMM`, `F2-plataforma-reativacao` | Sempre com prefixo `F2-`. Conteúdo contínuo usa a campanha do produto do CTA (CC2 sai com `utm_campaign=F2-nidflow-cta` e `utm_medium=sequencia`) |
+| `utm_content` | Anúncio: id do criativo conforme a nomenclatura do `trafego`. Orgânico: id do post. Sequência: código do toque em minúsculas (`e3`, `e5`, `e6`, `w4`, `d7`, `d10`, `d14`, `n16`, `r1` a `r3`, `px1`, `px2`, `n1`, `n2`, `cc1` a `cc4`, `ca1e`, `ca2`, `ca3`, `cb0`, `cb1`, `cb2`, `cb3`; Plataforma: código da mensagem em minúsculas, `rl1`, `rl28`, `rlt1` a `rlt4`). Produto: slug do template (`canvas-de-dor`, ...) | Identifica a peça |
+| `utm_term` | Palavra-chave do direct (`F2-kw-projeto`, `F2-kw-desenho`, `F2-kw-proposta`, `F2-kw-template`; `F2-kw-mesa` só a partir do Sprint 6) ou vazio | Só no fluxo comentário → direct |
 
 Nomenclatura de campanha, conjunto e criativo no Meta Ads é do `trafego` (Sprint 5) e precisa carregar o prefixo `F2`. O orquestrador lê as UTMs do webhook de compra (se a plataforma entregar) ou da URL da página de obrigado; grava em `compras.utms` e em `contatos.origem_primeira`. Relatório de CPA por criativo cruza `compras.utms` com o gasto do `trafego`.
+
+### 8.4 Convenção de códigos de mensagem (fonte única)
+
+Regra mínima, em vigor desde já: **nenhum código novo repete um existente**, e toda referência cruzada cita o arquivo de origem. Convenção completa (`docs/02-revisao-de-coerencia.md`, seção 4.2): toda mensagem automática ou humana recebe um prefixo de fluxo; perguntas, regras e critérios deixam de usar letra e número soltos. Marcos de telemetria (`M1` a `M6`) e itens de backlog (`B-00` a `B-13`) ficam como estão, porque não são mensagens. A renomeação é substituição de texto, sem mudança de conteúdo; os planos da Plataforma (`produtos/plataforma/04` e `05`) já usam `PN-`; os demais arquivos aplicam a tabela ao gerar as versões finais ou na implementação, o que vier primeiro.
+
+| Fluxo | Prefixo | Exemplos (antes → depois) |
+|---|---|---|
+| Entrega e ativação do playbook | `PB-` | `E0-A` → `PB-E0-A`; `W2` → `PB-W2`; `B1` → `PB-B1` |
+| Oferta do mini curso | `MC-` | `E3` → `MC-E3`; `W4` → `MC-W4` |
+| Recuperação de checkout | `RC-` | `R1` → `RC-1`, `R2` → `RC-2`, `R3` → `RC-3` |
+| Pix ou boleto pendente | `PX-` | `P1` → `PX-1`, `P2` → `PX-2` |
+| Pagamento recusado | `PR-` | `N1` → `PR-1`, `N2` → `PR-2` |
+| Oferta e vida do NIDflow | `NF-` | `N7` → `NF-N7`; `A1` → `NF-A1`; `R1` → `NF-R1` |
+| Conteúdo contínuo | `CC-` | `CC1` → `CC-1` |
+| Gatilho A e Gatilho B | `GA-`, `GB-` | `CA1` → `GA-1`; `CB0` → `GB-0` |
+| Agente no direct e WhatsApp | `AG-` | `M1` → `AG-1` |
+| Plataforma NID | `PN-` | `LA1` → `PN-LA1`; `RN60` → `PN-RN60`; `RC0` → `PN-RC0` |
+| Perguntas de qualificação | `Q` | `P1` → `Q1` ... `P5` → `Q5` |
+| Regras de pontuação do Gatilho A | `GA-R` | `A1` → `GA-R1` ... `A7` → `GA-R7` |
+| Critérios do Gatilho B | `GB-C` | `B1` → `GB-C1` ... `B4` → `GB-C4` |
+
+Códigos que não são mensagem e permanecem: criativos `C01` a `C14` (`campanhas/02-criativos.md`), pontos de coleta `C1` a `C10` e ângulos `A1` a `A8`, além dos marcos e do backlog citados acima. Códigos de origem no WhatsApp: `PB01`, `AD01`, `PG01`, `PG02`, `PG03`, `NF01` (`01`, seção 2).
 
 ---
 

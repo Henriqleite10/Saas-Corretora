@@ -3,10 +3,10 @@
 | Campo | Valor |
 |---|---|
 | Fluxo de origem | `produtos/plataforma/04-lancamento-interno.md` (seções 3, 4, 5 e 6). Códigos, dias, horas, canais, públicos e objetivos são os do plano; este arquivo traz só o texto final. Disparos, condições e etiquetas são do agente `automacao` |
-| Códigos neste arquivo | Aquecimento: LA1, LA2. Pré-abertura: LP1, LP2, LP3, LP3w. Matrícula aberta: LD0i, LD0, LD0w, LD1, LD2, LD3, LD5, LD5w, LD6a, LD6b, LD6w. Pós-matrícula: LF1 (quem não comprou), LT1 (quem comprou). Dezenove mensagens |
-| Quem recebe | Contato com `F2-comprador-playbook` ou `F2-minicurso`, sem `F2-plataforma-ativo`, sem `F2-reembolso`, sem opt-out no canal do toque (seção 6.1 do plano). Quem compra durante a matrícula sai da sequência no ato e recebe LT1. Leads sem compra não recebem nada por e-mail ou WhatsApp |
+| Códigos neste arquivo | Aquecimento: PN-LA1, PN-LA2. Pré-abertura: PN-LP1, PN-LP2, PN-LP3, PN-LP3w. Matrícula aberta: PN-LD0i, PN-LD0, PN-LD0w, PN-LD1, PN-LD2, PN-LD3, PN-LD5, PN-LD5w, PN-LD6a, PN-LD6b, PN-LD6w. Pós-matrícula: PN-LF1 (quem não comprou), PN-LT1 (quem comprou). Dezenove mensagens. Todos os códigos levam o prefixo `PN-` (convenção da revisão de coerência, seção 4.2: toda mensagem da Plataforma NID é `PN-`, o mesmo código que o plano de verba reserva para a Plataforma); o plano `04-lancamento-interno.md` usa os códigos sem prefixo até o `plataforma` aplicar a mesma troca. `utm_content` fica em minúsculas com o mesmo prefixo (`pn-la1`) |
+| Quem recebe | Contato com `F2-comprador-playbook` ou `F2-minicurso`, sem `F2-plataforma-ativo`, sem `F2-reembolso`, sem opt-out no canal do toque (seção 6.1 do plano). Quem compra durante a matrícula sai da sequência no ato e recebe PN-LT1. Leads sem compra não recebem nada por e-mail ou WhatsApp |
 | O que oferece | Plataforma NID por R$ 980 por ano, Pix à vista ou em até 12 vezes no cartão, NIDflow incluso, 7 dias de garantia com reembolso sem pergunta. Bônus da primeira abertura: o avançado "Projeto de automação comercial com IA" incluso. Condição de fundador só na primeira turma. Nenhuma peça cita valor de parcela, "sem juros", desconto ou vagas |
-| Página de destino | `produtos/plataforma/pagina-de-vendas.md` (Modo A até D-1 e a partir de D+7; Modo B de D0 a D+6). Links de e-mail vão para a página, que preserva a UTM até o checkout; links de WhatsApp, LD0i e LD6b vão direto ao checkout |
+| Página de destino | `produtos/plataforma/pagina-de-vendas.md` (Modo A até D-1 e a partir de D+7; Modo B de D0 a D+6). Links de e-mail vão para a página, que preserva a UTM até o checkout; links de WhatsApp, PN-LD0i e PN-LD6b vão direto ao checkout |
 | Remetente | E-mail: "NID". WhatsApp: número oficial da NID, nome exibido "NID". Henrique aparece só no vídeo da oferta e na Mesa aberta, como sócio da NID |
 | Autor | Agente `copy` |
 | Status | Entregue ao coordenador. Passa pelo `estrategia` antes de ser dada como pronta |
@@ -26,33 +26,33 @@ UTM (conforme `05-integracoes.md`, seção 8.3, e seção 5 do plano): `utm_sour
 
 | Código | Dia e hora (Brasília) | Canal | Para quem | CTA único |
 |---|---|---|---|---|
-| LA1 | D-21, terça, 10h | E-mail | Todos os elegíveis | A pergunta de um clique |
-| LA2 | D-14, terça, 10h | E-mail | Todos os elegíveis | "Quero ser avisado da abertura" |
-| LP1 | D-7, terça, 10h | E-mail | Todos os elegíveis | "Ver o ambiente e a oferta" |
-| LP2 | D-5, quinta, 10h | E-mail | Todos os elegíveis | "Ver o calendário do trimestre" |
-| LP3 | D-1, segunda, 10h | E-mail | Todos os elegíveis (duas variantes) | "Quero ser avisado da abertura" ou "Ver o ambiente e a oferta" |
-| LP3w | D-1, segunda, 10h15 | WhatsApp | Elegíveis com autorização | Link da página |
-| LD0i | D0, terça, 9h | E-mail | `F2-interesse-plataforma` | "Quero praticar o método com a NID por R$ 980 por ano" |
-| LD0 | D0, terça, 10h | E-mail | Todos os elegíveis | CTA oficial |
-| LD0w | D0, terça, 10h15 | WhatsApp | Elegíveis com autorização | Link do checkout |
-| LD1 | D+1, quarta, 10h | E-mail | Elegíveis sem compra | CTA oficial |
-| LD2 | D+2, quinta, 10h | E-mail | Elegíveis sem compra | "Reservar meu lugar na Mesa aberta" |
-| LD3 | D+3, sexta, 10h | E-mail | Elegíveis sem compra | CTA oficial |
-| LD5 | D+5, domingo, 10h | E-mail | Elegíveis sem compra | CTA oficial |
-| LD5w | D+5, domingo, 10h15 | WhatsApp | Elegíveis com autorização, sem compra | Link do checkout |
-| LD6a | D+6, segunda, 9h | E-mail | Elegíveis sem compra | CTA oficial |
-| LD6b | D+6, segunda, 18h | E-mail | Elegíveis sem compra | CTA oficial |
-| LD6w | D+6, segunda, 20h | WhatsApp | Elegíveis com autorização, sem compra | Link do checkout |
-| LF1 | D+7, terça, 10h | E-mail | Elegíveis sem compra | "Quero ser avisado da próxima abertura" |
-| LT1 | D+7, terça, 10h | E-mail | Quem comprou | "Reservar meu lugar na Abertura de turma" |
+| PN-LA1 | D-21, terça, 10h | E-mail | Todos os elegíveis | A pergunta de um clique |
+| PN-LA2 | D-14, terça, 10h | E-mail | Todos os elegíveis | "Quero ser avisado da abertura" |
+| PN-LP1 | D-7, terça, 10h | E-mail | Todos os elegíveis | "Ver o ambiente e a oferta" |
+| PN-LP2 | D-5, quinta, 10h | E-mail | Todos os elegíveis | "Ver o calendário do trimestre" |
+| PN-LP3 | D-1, segunda, 10h | E-mail | Todos os elegíveis (duas variantes) | "Quero ser avisado da abertura" ou "Ver o ambiente e a oferta" |
+| PN-LP3w | D-1, segunda, 10h15 | WhatsApp | Elegíveis com autorização | Link da página |
+| PN-LD0i | D0, terça, 9h | E-mail | `F2-interesse-plataforma` | "Quero praticar o método com a NID por R$ 980 por ano" |
+| PN-LD0 | D0, terça, 10h | E-mail | Todos os elegíveis | CTA oficial |
+| PN-LD0w | D0, terça, 10h15 | WhatsApp | Elegíveis com autorização | Link do checkout |
+| PN-LD1 | D+1, quarta, 10h | E-mail | Elegíveis sem compra | CTA oficial |
+| PN-LD2 | D+2, quinta, 10h | E-mail | Elegíveis sem compra | "Reservar meu lugar na Mesa aberta" |
+| PN-LD3 | D+3, sexta, 10h | E-mail | Elegíveis sem compra | CTA oficial |
+| PN-LD5 | D+5, domingo, 10h | E-mail | Elegíveis sem compra | CTA oficial |
+| PN-LD5w | D+5, domingo, 10h15 | WhatsApp | Elegíveis com autorização, sem compra | Link do checkout |
+| PN-LD6a | D+6, segunda, 9h | E-mail | Elegíveis sem compra | CTA oficial |
+| PN-LD6b | D+6, segunda, 18h | E-mail | Elegíveis sem compra | CTA oficial |
+| PN-LD6w | D+6, segunda, 20h | WhatsApp | Elegíveis com autorização, sem compra | Link do checkout |
+| PN-LF1 | D+7, terça, 10h | E-mail | Elegíveis sem compra | "Quero ser avisado da próxima abertura" |
+| PN-LT1 | D+7, terça, 10h | E-mail | Quem comprou | "Reservar meu lugar na Abertura de turma" |
 
 ---
 
 ## Parte 1 · Aquecimento (D-21 a D-8)
 
-### LA1 · O que trava você depois do playbook?
+### PN-LA1 · O que trava você depois do playbook?
 
-**Código**: LA1
+**Código**: PN-LA1
 **Dia e hora**: D-21, terça-feira, 10h
 **Canal**: e-mail
 **Público**: todos os elegíveis
@@ -97,9 +97,9 @@ Texto: Sua resposta ficou registrada: {situacao_escolhida}. Nas próximas semana
 
 ---
 
-### LA2 · Um projeto na mesa, página por página
+### PN-LA2 · Um projeto na mesa, página por página
 
-**Código**: LA2
+**Código**: PN-LA2
 **Dia e hora**: D-14, terça-feira, 10h
 **Canal**: e-mail
 **Público**: todos os elegíveis
@@ -153,9 +153,9 @@ Texto: Você recebe a data da abertura por e-mail antes de todo mundo, e o link 
 
 ## Parte 2 · Pré-abertura (D-7 a D-1)
 
-### LP1 · A Plataforma NID abre terça-feira, {data_abertura}
+### PN-LP1 · A Plataforma NID abre terça-feira, {data_abertura}
 
-**Código**: LP1
+**Código**: PN-LP1
 **Dia e hora**: D-7, terça-feira, 10h
 **Canal**: e-mail
 **Público**: todos os elegíveis
@@ -172,7 +172,7 @@ A Plataforma NID, o ambiente em que a gente pratica o método com quem já leu o
 Antes de abrir, a gente mostra o ambiente. Henrique Leite, sócio da NID, gravou um vídeo dentro dele: as trilhas, a comunidade com um projeto na mesa e a resposta da NID, a agenda do trimestre, a Biblioteca e o NIDflow no mesmo login.
 
 [Imagem do vídeo, com link para a página]
-{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=lp1
+{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-lp1
 
 O que fica no seu acesso durante doze meses:
 
@@ -189,7 +189,7 @@ R$ 980 por ano. Pix à vista ou em até 12 vezes no cartão.
 Quem entrar nesta primeira turma recebe a condição de fundador: uma revisão por escrito de um projeto seu, página por página, nos primeiros 60 dias; voto com peso dobrado nos minicursos do ano seguinte; e o selo de fundador. Ela existe só na primeira turma, e a página explica por quê.
 
 [Botão] Ver o ambiente e a oferta
-{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=lp1
+{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-lp1
 
 Até terça, a página fica em modo "abre dia {data_abertura}", com a oferta completa e o botão de aviso. Quem pede o aviso recebe o link do checkout uma hora antes de a matrícula abrir para todo mundo.
 
@@ -201,9 +201,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LP2 · O que tem dentro e quando acontece
+### PN-LP2 · O que tem dentro e quando acontece
 
-**Código**: LP2
+**Código**: PN-LP2
 **Dia e hora**: D-5, quinta-feira, 10h
 **Canal**: e-mail
 **Público**: todos os elegíveis
@@ -247,7 +247,7 @@ Todos gravados, com a gravação publicada em até 2 dias úteis e índice por p
 Projetos na mesa (o projeto que precisa de revisão antes de ir para o cliente), Propostas apresentadas (o que aconteceu na reunião), Dúvidas do método, Encontros e Avisos da NID. Todo projeto na mesa e toda dúvida recebem comentário de alguém da NID em até 2 dias úteis. É um compromisso público, escrito nas regras da comunidade.
 
 [Botão] Ver o calendário do trimestre
-{link_pagina_plataforma_agenda}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=lp2
+{link_pagina_plataforma_agenda}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-lp2
 
 A matrícula abre na terça-feira, {data_abertura}, às 10h. R$ 980 por ano, 7 dias de garantia.
 
@@ -259,9 +259,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LP3 · Amanhã às 10h
+### PN-LP3 · Amanhã às 10h
 
-**Código**: LP3
+**Código**: PN-LP3
 **Dia e hora**: D-1, segunda-feira, 10h
 **Canal**: e-mail
 **Público**: todos os elegíveis. Variante A para quem não tem `F2-interesse-plataforma`; variante B para quem tem
@@ -299,7 +299,7 @@ Quem está na lista de aviso recebe o link do checkout amanhã às 9h, uma hora 
 Você está na lista de aviso: o link do checkout chega no seu e-mail amanhã às 9h, uma hora antes de abrir para todo mundo. Até lá, a página com o vídeo e a oferta completa:
 
 [Botão] Ver o ambiente e a oferta
-{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=lp3
+{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-lp3
 
 [Fim das variantes]
 
@@ -311,9 +311,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LP3w · Amanhã às 10h (WhatsApp)
+### PN-LP3w · Amanhã às 10h (WhatsApp)
 
-**Código**: LP3w
+**Código**: PN-LP3w
 **Dia e hora**: D-1, segunda-feira, 10h15
 **Canal**: WhatsApp (modelo de marketing aprovado)
 **Público**: elegíveis com telefone e sem `F2-optout-whatsapp`; sem conversa humana aberta
@@ -322,7 +322,7 @@ NID · Consultoria de Performance Comercial
 
 **Mensagem**
 
-Aqui é a NID. Amanhã às 10h abre a matrícula da Plataforma NID, o ambiente em que a gente pratica o método com quem já leu o playbook. Fecha segunda-feira, {data_fechamento}, às 23h59. A página com tudo: {link_pagina_plataforma}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=lp3w
+Aqui é a NID. Amanhã às 10h abre a matrícula da Plataforma NID, o ambiente em que a gente pratica o método com quem já leu o playbook. Fecha segunda-feira, {data_fechamento}, às 23h59. A página com tudo: {link_pagina_plataforma}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-lp3w
 
 **CTA único**: o link da página. Respostas vão para o agente com a base da Plataforma (seção 6.3 do plano).
 
@@ -330,9 +330,9 @@ Aqui é a NID. Amanhã às 10h abre a matrícula da Plataforma NID, o ambiente e
 
 ## Parte 3 · Matrícula aberta (D0 a D+6)
 
-### LD0i · Seu link, uma hora antes
+### PN-LD0i · Seu link, uma hora antes
 
-**Código**: LD0i
+**Código**: PN-LD0i
 **Dia e hora**: D0, terça-feira, 9h
 **Canal**: e-mail
 **Público**: `F2-interesse-plataforma`
@@ -355,7 +355,7 @@ Em cinco linhas:
 - 7 dias de garantia, reembolso sem pergunta. Matrícula até segunda-feira, {data_fechamento}, às 23h59.
 
 [Botão] Quero praticar o método com a NID por R$ 980 por ano
-{link_checkout_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld0i
+{link_checkout_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld0i
 
 Obrigado por ter respondido. A turma começa na quinta-feira, {data_abertura_turma}, às 19h.
 
@@ -367,9 +367,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LD0 · Aberto: a Plataforma NID
+### PN-LD0 · Aberto: a Plataforma NID
 
-**Código**: LD0
+**Código**: PN-LD0
 **Dia e hora**: D0, terça-feira, 10h
 **Canal**: e-mail
 **Público**: todos os elegíveis. Bloco adicional para `F2-nidflow-ativo`
@@ -408,7 +408,7 @@ R$ 980 por ano. Pix à vista ou em até 12 vezes no cartão. Dentro desse valor 
 Quem entra nesta primeira turma recebe a condição de fundador (revisão por escrito de um projeto seu, voto com peso dobrado, selo) e o bônus desta abertura: o avançado "Projeto de automação comercial com IA", incluso.
 
 [Botão] Quero praticar o método com a NID por R$ 980 por ano
-{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld0
+{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld0
 
 7 dias de garantia, reembolso sem pergunta. A turma começa na quinta-feira, {data_abertura_turma}, às 19h.
 
@@ -420,9 +420,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LD0w · Aberto (WhatsApp)
+### PN-LD0w · Aberto (WhatsApp)
 
-**Código**: LD0w
+**Código**: PN-LD0w
 **Dia e hora**: D0, terça-feira, 10h15
 **Canal**: WhatsApp (modelo de marketing aprovado)
 **Público**: elegíveis com telefone, sem `F2-optout-whatsapp`, sem conversa humana aberta
@@ -431,15 +431,15 @@ NID · Consultoria de Performance Comercial
 
 **Mensagem**
 
-Aqui é a NID. A matrícula da Plataforma NID está aberta até segunda-feira, {data_fechamento}, às 23h59. R$ 980 por ano, Pix ou em até 12 vezes no cartão, com o NIDflow incluso e 7 dias de garantia: {link_checkout_plataforma}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld0w
+Aqui é a NID. A matrícula da Plataforma NID está aberta até segunda-feira, {data_fechamento}, às 23h59. R$ 980 por ano, Pix ou em até 12 vezes no cartão, com o NIDflow incluso e 7 dias de garantia: {link_checkout_plataforma}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld0w
 
 **CTA único**: o link do checkout.
 
 ---
 
-### LD1 · O que está incluso, item por item
+### PN-LD1 · O que está incluso, item por item
 
-**Código**: LD1
+**Código**: PN-LD1
 **Dia e hora**: D+1, quarta-feira, 10h
 **Canal**: e-mail
 **Público**: elegíveis sem compra. Linha adicional para `F2-nidflow-leitura` ou `F2-nidflow-cancelado`
@@ -474,7 +474,7 @@ Para você ver o que acontece quando um projeto vai para a mesa, a Mesa de Proje
 Quem quiser levar o próprio projeto se inscreve até hoje, às 20h, pelo formulário: {link_formulario_mesa_aberta}. São três projetos por Mesa, e a NID escolhe entre os inscritos. O link do ao vivo chega amanhã de manhã.
 
 [Botão] Quero praticar o método com a NID por R$ 980 por ano
-{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld1
+{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld1
 
 Matrícula aberta até segunda-feira, {data_fechamento}, às 23h59.
 
@@ -486,9 +486,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LD2 · Hoje às 19h: três projetos na mesa, ao vivo
+### PN-LD2 · Hoje às 19h: três projetos na mesa, ao vivo
 
-**Código**: LD2
+**Código**: PN-LD2
 **Dia e hora**: D+2, quinta-feira, 10h
 **Canal**: e-mail
 **Público**: elegíveis sem compra
@@ -519,9 +519,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LD3 · A gravação da Mesa e as cinco perguntas mais feitas
+### PN-LD3 · A gravação da Mesa e as cinco perguntas mais feitas
 
-**Código**: LD3
+**Código**: PN-LD3
 **Dia e hora**: D+3, sexta-feira, 10h
 **Canal**: e-mail
 **Público**: elegíveis sem compra
@@ -558,7 +558,7 @@ Não. Não tem aula para assistir e sumir. Tem projeto real na mesa, resposta da
 Nos primeiros 7 dias, reembolso sem pergunta. Depois, a anuidade vale doze meses, renova automaticamente pelo mesmo valor, e a gente avisa com 60, 30 e 7 dias de antecedência. Cancelar a renovação é um clique em "Minha conta". Ninguém fica preso.
 
 [Botão] Quero praticar o método com a NID por R$ 980 por ano
-{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld3
+{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld3
 
 Matrícula aberta até segunda-feira, {data_fechamento}, às 23h59. A turma começa na quinta-feira, {data_abertura_turma}, às 19h.
 
@@ -570,9 +570,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LD5 · Para quem é (e para quem ainda não é)
+### PN-LD5 · Para quem é (e para quem ainda não é)
 
-**Código**: LD5
+**Código**: PN-LD5
 **Dia e hora**: D+5, domingo, 10h
 **Canal**: e-mail
 **Público**: elegíveis sem compra
@@ -607,7 +607,7 @@ Você é empresário ou diretor e quer contratar geração de demanda, automaç�
 Se é para você, o resto você já sabe: R$ 980 por ano, Pix à vista ou em até 12 vezes no cartão, NIDflow incluso, condição de fundador, o avançado de automação comercial com IA incluso nesta abertura e 7 dias de garantia.
 
 [Botão] Quero praticar o método com a NID por R$ 980 por ano
-{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld5
+{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld5
 
 A matrícula fecha amanhã, segunda-feira, {data_fechamento}, às 23h59.
 
@@ -619,9 +619,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LD5w · Fecha amanhã (WhatsApp)
+### PN-LD5w · Fecha amanhã (WhatsApp)
 
-**Código**: LD5w
+**Código**: PN-LD5w
 **Dia e hora**: D+5, domingo, 10h15
 **Canal**: WhatsApp (modelo de marketing aprovado)
 **Público**: elegíveis com telefone, sem `F2-optout-whatsapp`, sem compra, sem conversa humana aberta
@@ -630,15 +630,15 @@ NID · Consultoria de Performance Comercial
 
 **Mensagem**
 
-Aqui é a NID. A matrícula da Plataforma NID fecha amanhã, segunda-feira, às 23h59. Se a sua próxima proposta merece passar pela mesa antes de ir para o cliente, o link é este: {link_checkout_plataforma}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld5w
+Aqui é a NID. A matrícula da Plataforma NID fecha amanhã, segunda-feira, às 23h59. Se a sua próxima proposta merece passar pela mesa antes de ir para o cliente, o link é este: {link_checkout_plataforma}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld5w
 
 **CTA único**: o link do checkout.
 
 ---
 
-### LD6a · Fecha hoje às 23h59
+### PN-LD6a · Fecha hoje às 23h59
 
-**Código**: LD6a
+**Código**: PN-LD6a
 **Dia e hora**: D+6, segunda-feira, 9h
 **Canal**: e-mail
 **Público**: elegíveis sem compra
@@ -664,7 +664,7 @@ A matrícula da Plataforma NID fecha hoje, segunda-feira, às 23h59. A oferta, e
 10. A turma começa na quinta-feira, {data_abertura_turma}, às 19h. A próxima abertura é avisada com 30 dias de antecedência.
 
 [Botão] Quero praticar o método com a NID por R$ 980 por ano
-{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld6a
+{link_pagina_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld6a
 
 NID · Consultoria de Performance Comercial
 
@@ -674,9 +674,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LD6b · Seis horas
+### PN-LD6b · Seis horas
 
-**Código**: LD6b
+**Código**: PN-LD6b
 **Dia e hora**: D+6, segunda-feira, 18h
 **Canal**: e-mail
 **Público**: elegíveis sem compra
@@ -693,7 +693,7 @@ A matrícula da Plataforma NID fecha hoje às 23h59. Depois disso, a próxima ab
 Uma pergunta, só: qual proposta você quer levar para a primeira Mesa de Projetos, na quarta-feira, {data_primeira_mesa}?
 
 [Botão] Quero praticar o método com a NID por R$ 980 por ano
-{link_checkout_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld6b
+{link_checkout_plataforma}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld6b
 
 7 dias de garantia, reembolso sem pergunta.
 
@@ -705,9 +705,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LD6w · Última mensagem nesta matrícula (WhatsApp)
+### PN-LD6w · Última mensagem nesta matrícula (WhatsApp)
 
-**Código**: LD6w
+**Código**: PN-LD6w
 **Dia e hora**: D+6, segunda-feira, 20h
 **Canal**: WhatsApp (modelo de marketing aprovado)
 **Público**: elegíveis com telefone, sem `F2-optout-whatsapp`, sem compra, sem conversa humana aberta
@@ -716,7 +716,7 @@ NID · Consultoria de Performance Comercial
 
 **Mensagem**
 
-Aqui é a NID. Última mensagem sobre a Plataforma NID nesta matrícula: fecha hoje às 23h59. {link_checkout_plataforma}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=ld6w
+Aqui é a NID. Última mensagem sobre a Plataforma NID nesta matrícula: fecha hoje às 23h59. {link_checkout_plataforma}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-plataforma-lancamento-AAAAMM&utm_content=pn-ld6w
 
 **CTA único**: o link do checkout.
 
@@ -724,9 +724,9 @@ Aqui é a NID. Última mensagem sobre a Plataforma NID nesta matrícula: fecha h
 
 ## Parte 4 · Pós-matrícula (D+7)
 
-### LF1 · A matrícula fechou
+### PN-LF1 · A matrícula fechou
 
-**Código**: LF1
+**Código**: PN-LF1
 **Dia e hora**: D+7, terça-feira, 10h
 **Canal**: e-mail
 **Público**: elegíveis sem compra. Aplica `F2-plataforma-nao-comprou-j[n]`
@@ -760,9 +760,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### LT1 · A turma começa quinta às 19h
+### PN-LT1 · A turma começa quinta às 19h
 
-**Código**: LT1
+**Código**: PN-LT1
 **Dia e hora**: D+7, terça-feira, 10h
 **Canal**: e-mail
 **Público**: quem comprou durante a matrícula (`F2-plataforma-ativo`)

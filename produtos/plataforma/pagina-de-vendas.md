@@ -12,7 +12,7 @@
 | Status | Entregue ao coordenador. Passa pelo `estrategia` antes de ser dada como pronta |
 | Fonte | `docs/00-brief-mestre.md` (seções 3.2, 4, 5, 6.5, 10); `docs/01-parecer-estrategico.md` (2.5, 2.6, 4 linha 6.5, 6 itens 5 e 11); `produtos/plataforma/01-estrutura.md`, `02-catalogo.md`, `03-comunidade-e-encontros.md`, `04-lancamento-interno.md` (seções 3, 5 e 6.2), `05-retencao-e-renovacao.md` |
 
-Como ler este arquivo: cada seção traz o texto final da página, na ordem em que aparece na tela. Quando um bloco muda conforme o modo, ele está marcado com **[Modo A]**, **[Modo B]** ou **[Modo C]**; o que não está marcado vale nos três modos. Notas entre colchetes são instruções para quem implementa e não vão para a página. Datas nunca são escritas aqui: aparecem como variáveis (`{data_abertura}`, `{data_fechamento}`, `{data_abertura_turma}`, `{mes_proxima_abertura}`), preenchidas pelo `automacao` quando a data real existir. Toda promessa desta página existe nos arquivos `01` a `05` da Plataforma.
+Como ler este arquivo: cada seção traz o texto final da página, na ordem em que aparece na tela. Quando um bloco muda conforme o modo, ele está marcado com **[Modo A]**, **[Modo B]** ou **[Modo C]**; o que não está marcado vale nos três modos. Notas entre colchetes são instruções para quem implementa e não vão para a página. Datas nunca são escritas aqui: aparecem como variáveis (`{data_abertura}`, `{data_fechamento}`, `{data_abertura_turma}`, `{mes_proxima_abertura}`), preenchidas pelo `automacao` quando a data real existir. Toda promessa desta página existe nos arquivos `01` a `05` da Plataforma. As marcas **[com PDF]** e **[sem PDF]** são alternativas no mesmo bloco, ligadas à variável `nidflow_pdf_disponivel` (item B-07 do backlog do NIDflow): só a versão que corresponde à variável vai para a página.
 
 Regra da primeira abertura: a página descreve o catálogo como ele estará na primeira abertura (três minicursos publicados, quatro a publicar, um por trimestre; A-01 incluso como bônus; condição de fundador). Nas aberturas seguintes, o `plataforma` informa ao `copy` o que mudou (minicursos publicados, bônus da abertura) e as seções 6, 10 e 13 são atualizadas antes de a página voltar ao ar. Nada nesta página é escrito de um jeito que precise ficar verdadeiro para sempre.
 
@@ -113,7 +113,7 @@ Projeto revisado antes de apresentar. É assim que a NID trabalha, e é isso que
 **Texto**
 Na NID, nenhuma proposta vai para o cliente sem passar por outros olhos. Alguém lê a frase da dor e pergunta se o número é do cliente. Lê a frase de solução e pergunta se o cliente concordou. Percorre o desenho e pergunta onde está o primeiro resultado visível. Chega ao valor e confere se a régua é a mesma da dor. É uma revisão de vinte minutos que muda o que o cliente responde.
 
-A Plataforma NID é o lugar em que o seu projeto passa por essa revisão. Você coloca o projeto na mesa, descrito por segmento, com o template preenchido ou o PDF do NIDflow. Alguém da NID responde em até 2 dias úteis, apontando a etapa que precisa de trabalho e o que mudar. A cada quinze dias, quatro projetos são revisados ao vivo, página por página, por Henrique Leite, sócio da NID, na Mesa de Projetos. E para cada situação que o playbook não cobre, existe um minicurso com a resposta da NID e um entregável feito no seu projeto real.
+A Plataforma NID é o lugar em que o seu projeto passa por essa revisão. Você coloca o projeto na mesa, descrito por segmento, [com PDF] com o template preenchido ou o PDF do NIDflow [sem PDF] com o template preenchido. Alguém da NID responde em até 2 dias úteis, apontando a etapa que precisa de trabalho e o que mudar. A cada quinze dias, quatro projetos são revisados ao vivo, página por página, por Henrique Leite, sócio da NID, na Mesa de Projetos. E para cada situação que o playbook não cobre, existe um minicurso com a resposta da NID e um entregável feito no seu projeto real.
 
 Não é lugar de assistir aula e sumir. É lugar de levar o projeto que está na sua mesa e devolvê-lo melhor.
 
@@ -206,7 +206,7 @@ O que acontece quando o seu projeto vai para a mesa.
 **Passos (cinco, em sequência, com número)**
 
 **1. Você coloca o projeto na mesa.**
-Um formulário de cinco minutos: segmento do cliente (sem nome), etapa em que o projeto está, o que trava, e o anexo (o template preenchido ou o PDF do NIDflow). Se você acabou de terminar um minicurso, o botão "Levar para a Mesa de Projetos" já cria o post com o entregável.
+Um formulário de cinco minutos: segmento do cliente (sem nome), etapa em que o projeto está, o que trava, e o anexo ([com PDF] o template preenchido ou o PDF do NIDflow [sem PDF] o template preenchido). Se você acabou de terminar um minicurso, o botão "Levar para a Mesa de Projetos" já cria o post com o entregável.
 
 **2. Alguém da NID responde em até 2 dias úteis.**
 Por escrito, no seu post: a etapa que precisa de trabalho e o que mudar, no arco do método. Sem "ficou ótimo". Se a dor não tem número, a resposta diz isso e diz como conseguir. Outros assinantes comentam também.
@@ -253,7 +253,7 @@ Os cinco templates do método, o modelo de proposta em nove páginas, o roteiro 
 O que isso significa para você: quando aparecer um cliente de um segmento que você nunca vendeu, existe um projeto daquele segmento desenhado e revisado para você começar.
 
 **6. O NIDflow, incluso durante toda a anuidade**
-A ferramenta em que a NID desenha e apresenta os projetos dela, com os templates do método dentro, o modo de apresentação e a exportação em PDF. Mesmo login, um clique para ativar. Sozinho, o NIDflow custa R$ 29,90 por mês, ou R$ 358,80 por ano.
+A ferramenta em que a NID desenha e apresenta os projetos dela, com os templates do método dentro, [com PDF] o modo de apresentação e a exportação em PDF [sem PDF] o modo de apresentação. Mesmo login, um clique para ativar. Sozinho, o NIDflow custa R$ 29,90 por mês, ou R$ 358,80 por ano.
 O que isso significa para você: o projeto que vai para a mesa é o mesmo que vai para a tela do cliente. Se você já assina o NIDflow, a mensalidade encerra no ciclo seguinte, sem cobrança dupla.
 
 **7. Um único e-mail por semana e lembrete de encontro**
@@ -349,7 +349,7 @@ A Plataforma NID é para quem já aplica o método.
 - Você procura rede de contatos ou clientes entre os assinantes. Ninguém prospecta ninguém lá dentro, e a regra é cumprida.
 - Você é empresário ou diretor e quer contratar geração de demanda, automação comercial ou time de vendas para a sua empresa. Nesse caso, a NID desenha o seu projeto com você: fale com a gente pelo WhatsApp.
 
-[Nota: o primeiro item da segunda coluna leva à página do playbook. O último leva ao WhatsApp da NID com a origem `F2-pagina-plataforma-decisor`, para o humano da consultoria. São os dois únicos links da página que não vão para o checkout ou para a lista de aviso.]
+[Nota: o primeiro item da segunda coluna leva à página do playbook. O último leva ao WhatsApp da NID com o texto pré-preenchido "Quero falar sobre a minha empresa · PG03". `PG03` é o código de origem desta página; o agente o reconhece na linha de abertura (`automacoes/sequencias/06-agente-direct-whatsapp.md`, seção 4) e encaminha ao humano da consultoria. O clique não aplica etiqueta: etiqueta só nasce de resposta registrada. São os dois únicos links da página que não vão para o checkout ou para a lista de aviso.]
 
 ---
 
@@ -466,7 +466,7 @@ Você tem 7 dias para pedir reembolso, sem pergunta. Responda ao e-mail de acess
 Porque a Abertura de turma, a primeira Mesa e a resposta da NID ao primeiro projeto de cada pessoa exigem que a turma entre junta. É operação, não pressão: a matrícula abre por 7 dias, com data de abertura e de fechamento publicadas, e a próxima abertura é avisada com 30 dias de antecedência. Quem já foi assinante reativa a qualquer momento, porque já conhece o ambiente.
 
 **[Modo C, pergunta adicional] "Meus projetos do NIDflow ainda estão lá?"**
-Ficam guardados por 90 dias a partir do fim da anuidade, em modo leitura com exportação em PDF nos primeiros 30. Reativando dentro desse prazo, a conta volta com todos os projetos. Depois dos 90 dias, a conta é excluída e a reativação cria uma conta nova.
+Ficam guardados por 90 dias a partir do fim da anuidade, [com PDF] em modo leitura com exportação em PDF nos primeiros 30 [sem PDF] em modo leitura nos primeiros 30. Reativando dentro desse prazo, a conta volta com todos os projetos. Depois dos 90 dias, a conta é excluída e a reativação cria uma conta nova.
 
 ---
 

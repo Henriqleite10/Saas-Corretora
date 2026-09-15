@@ -177,10 +177,10 @@ Se a pessoa responder o WhatsApp R2, o agente assume (estado S1 com origem `sequ
 
 | Código | Quando | Horário | Canal | Conteúdo funcional | CTA único |
 |---|---|---|---|---|---|
-| P1 | 30 min após gerar, sem pagamento | 8h às 22h | WhatsApp (modelo, utilidade) | "Seu Pix do Playbook NID está gerado e vale por {prazo}. Se preferir pagar no cartão, o link é o mesmo: {link}. Assim que aprovar, o acesso chega em 2 minutos." | Link do checkout |
-| P2 | 24 h após gerar, sem pagamento (boleto: 48 h) | 8h às 21h | E-mail | Assunto "Seu acesso está esperando o pagamento". Repete o link e a garantia | "Concluir o pagamento" |
+| PX1 | 30 min após gerar, sem pagamento | 8h às 22h | WhatsApp (modelo, utilidade) | "Seu Pix do Playbook NID está gerado e vale por {prazo}. Se preferir pagar no cartão, o link é o mesmo: {link}. Assim que aprovar, o acesso chega em 2 minutos." | Link do checkout |
+| PX2 | 24 h após gerar, sem pagamento (boleto: 48 h) | 8h às 21h | E-mail | Assunto "Seu acesso está esperando o pagamento". Repete o link e a garantia | "Concluir o pagamento" |
 
-Pix expirado sem pagamento vira abandono de checkout (R2 e R3 seguem; R1 não, porque P1 já cumpriu esse papel).
+Pix expirado sem pagamento vira abandono de checkout (R2 e R3 seguem; R1 não, porque PX1 já cumpriu esse papel).
 
 ### 6.3 Pagamento recusado (`purchase_refused`; Kiwify: `compra_recusada`)
 
@@ -223,5 +223,5 @@ Depois de N2 sem compra: mesmo destino do abandono.
 - [ ] Abandono de teste: R1, R2 e R3 nos tempos certos; compra no meio cancela o restante.
 - [ ] Opt-out nos dois canais com efeito imediato.
 - [ ] Nenhum envio no domingo; nenhum envio de sequência fora das janelas.
-- [ ] Textos finais do `copy` em `automacoes/sequencias/` para todos os códigos (E0 a E6, W0 a W4, B1 a B4, R1 a R3, P1 e P2, N1 e N2).
+- [ ] Textos finais do `copy` em `automacoes/sequencias/` para todos os códigos (E0 a E6, W0 a W4, B1 a B4, R1 a R3, PX1 e PX2, N1 e N2).
 - [ ] [CONDICIONAL] Se o Henrique aprovar o upsell de um clique: página configurada na plataforma, teste de aceite e de recusa, evento `F2_upsell_aceito` gravado. Se não aprovar: redirecionamento direto do checkout para a página de obrigado testado.

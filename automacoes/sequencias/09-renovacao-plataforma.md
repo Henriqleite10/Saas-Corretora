@@ -2,20 +2,20 @@
 
 | Campo | Valor |
 |---|---|
-| Fluxo de origem | `produtos/plataforma/05-retencao-e-renovacao.md` (seções 4, 5 e 6.2). Códigos, momentos, canais e condições são os do plano; este arquivo traz só o texto final. Disparos, eventos, limites de frequência e o relatório pessoal de RN60 são do agente `automacao` |
-| Códigos neste arquivo | Renovação: RN60, RN60w, RN30, RN7 (variantes Pix e cartão), RN0. Cobrança recusada: RR0 (e-mail, WhatsApp e faixa no ambiente), RR3, RR6 (e-mail e WhatsApp). Cancelamento da renovação: RC0, RC-7. Modo leitura: RL1, RL15, RL28 e RLT (e-mail trimestral para ex-assinante, código proposto neste arquivo). Reengajamento: RE1 (e-mail e WhatsApp), RE2, RE2h (humano), RE3, RE4, RE5, RE6, RE7 (humano). As duas pesquisas de um clique na parte 6 |
-| Quem recebe | Contato com `F2-plataforma-ativo` (RN, RR, RE), `F2-plataforma-recusada` (RR), quem cancelou a renovação (RC), `F2-plataforma-expirada` (RL, RLT). Sem `F2-reembolso`, sem opt-out no canal do toque |
+| Fluxo de origem | `produtos/plataforma/05-retencao-e-renovacao.md` (seções 4, 5 e 6.2). Códigos, momentos, canais e condições são os do plano; este arquivo traz só o texto final. Disparos, eventos, limites de frequência e o relatório pessoal de PN-RN60 são do agente `automacao` |
+| Códigos neste arquivo | Renovação: PN-RN60, PN-RN60w, PN-RN30, PN-RN7 (variantes Pix e cartão), PN-RN0. Cobrança recusada: PN-RR0 (e-mail, WhatsApp e faixa no ambiente), PN-RR3, PN-RR6 (e-mail e WhatsApp). Cancelamento da renovação: PN-RC0, PN-RC-7. Modo leitura: PN-RL1, PN-RL15, PN-RL28 e PN-RLT (e-mail trimestral para ex-assinante, código proposto neste arquivo). Reengajamento: PN-RE1 (e-mail e WhatsApp), PN-RE2, PN-RE2h (humano), PN-RE3, PN-RE4, PN-RE5, PN-RE6, PN-RE7 (humano). As duas pesquisas de um clique na parte 6. Todos os códigos levam o prefixo `PN-` (convenção da revisão de coerência, seção 4.2: toda mensagem da Plataforma NID é `PN-`, o que desfaz a colisão dos antigos `RC0` e `RC-7` com o prefixo `RC-` da recuperação de checkout); o plano `05-retencao-e-renovacao.md` usa os códigos sem prefixo até o `plataforma` aplicar a mesma troca. `utm_content` fica em minúsculas com o mesmo prefixo (`pn-rl1`) |
+| Quem recebe | Contato com `F2-plataforma-ativo` (PN-RN, PN-RR, PN-RE), `F2-plataforma-recusada` (PN-RR), quem cancelou a renovação (PN-RC), `F2-plataforma-expirada` (PN-RL, PN-RLT). Sem `F2-reembolso`, sem opt-out no canal do toque |
 | O que nunca aparece | Desconto, "preço travado", "última chance", "sentimos sua falta", pedido de desculpa. Toque de reengajamento nunca menciona renovação nem vende avançado; toque de renovação nunca vende avançado |
-| Remetente | E-mail: "NID". WhatsApp: número oficial da NID. As duas mensagens humanas (RE2h e RE7) saem do WhatsApp da pessoa da moderação, assinadas pelo nome dela e "da NID" |
+| Remetente | E-mail: "NID". WhatsApp: número oficial da NID. As duas mensagens humanas (PN-RE2h e PN-RE7) saem do WhatsApp da pessoa da moderação, assinadas pelo nome dela e "da NID" |
 | Autor | Agente `copy` |
 | Status | Entregue ao coordenador. Passa pelo `estrategia` antes de ser dada como pronta |
 | Fonte | `docs/00-brief-mestre.md` (seções 5.2, 6.5, 10); `produtos/plataforma/01-estrutura.md` (seções 2.7, 4 e 5), `02-catalogo.md`, `03-comunidade-e-encontros.md` (seções 2, 5, 6 e 7), `05-retencao-e-renovacao.md`, `pagina-de-vendas.md` (Modo C); `produtos/nidflow/01-plano-de-assinatura.md` (seção 6, regime de leitura do NIDflow) |
 
-Regras aplicadas em todas as mensagens: a NID fala em primeira pessoa do plural; um único CTA por mensagem (links administrativos exigidos pelo aviso formal e blocos de pergunta de um clique não concorrem com o CTA); sem emoji em e-mail e nenhum emoji em WhatsApp nesta sequência; nunca travessão; "para" por extenso; preço só como `R$ 980`; nenhum termo interno (nada de "marco M2", "etiqueta", "evento", "régua"; os marcos aparecem com os nomes que o assinante vê em "Minha conta"); nenhuma data escrita, só variáveis; nenhum número de retenção ou renovação; Henrique só como "Henrique Leite, sócio da NID".
+Regras aplicadas em todas as mensagens: a NID fala em primeira pessoa do plural; um único CTA por mensagem (links administrativos exigidos pelo aviso formal e blocos de pergunta de um clique não concorrem com o CTA); sem emoji em e-mail e nenhum emoji em WhatsApp nesta sequência; nunca travessão; "para" por extenso; preço só como `R$ 980`; nenhum termo interno (nada de "marco M2", "etiqueta", "evento", "régua"; os marcos aparecem com os nomes que o assinante vê em "Minha conta"); nenhuma data escrita, só variáveis; nenhum número de retenção ou renovação; Henrique só como "Henrique Leite, sócio da NID". As marcas `[com PDF]` e `[sem PDF]` são alternativas no mesmo bloco, ligadas à variável `nidflow_pdf_disponivel` (item B-07 do backlog do NIDflow): só a versão que corresponde à variável sai na mensagem.
 
-Variáveis: `{primeiro_nome}`; datas: `{data_renovacao}`, `{data_renovacao_seguinte}`, `{data_limite_cancelamento}` (D-1), `{data_fim_anuidade}`, `{data_fim_leitura}` (D+30), `{data_exclusao_nidflow}` (D+90), `{data_modo_leitura}` (fim das retentativas), `{data_ultima_retentativa}`, `{data_proxima_mesa}`, `{data_encontro_metodo}`, `{data_proximo_encontro}`, `{dia_semana}`, `{tipo_encontro}`, `{data_ultimo_acesso}`, `{data_publicacao_minicurso}`, `{data_caso_nid}`, `{mes_votacao}`; pagamento: `{forma_pagamento}`, `{cartao_final}`, `{codigo_pix}`; conteúdo: `{minicurso_trimestre}`, `{promessa_minicurso}`, `{minicurso_situacao}`, `{entregavel_minicurso}`, `{situacao_trava}`, `{aula_parada}`, `{duracao_aula_1}`, `{avancado_semestre}`, `{minicurso_ano2_1}`, `{minicurso_ano2_2}`, `{caso_nid_trimestre}`, `{lista_novidades}`; relatório de RN60: `{data_m1}` a `{data_m6}`, `{n_minicursos_concluidos}`, `{n_minicursos_publicados}`, `{n_encontros_presenca}`, `{n_gravacoes_vistas}`, `{n_projetos_mesa}`, `{n_respostas_nid}`, `{n_propostas_apresentadas}`, `{n_propostas_aprovadas}`, `{n_mesas_t1}`, `{n_mesas_trimestre}`, `{n_projetos_biblioteca}`, `{placar_desenhados}`, `{placar_apresentados}`, `{placar_fechados}`; links: `{link_minha_conta}`, `{link_agenda}`, `{link_cancelar_renovacao}`, `{link_trocar_cartao}`, `{link_atualizar_pagamento}`, `{link_nota_fiscal}`, `{link_reservar_mesa}`, `{link_biblioteca}`, `{link_entrar_ambiente}` (link mágico renovado), `{link_projetos_mesa}` (formulário), `{link_continuar}` (aula em andamento), `{link_gravacao_ultima_mesa}`, `{link_inicio}`, `{link_reativar}` (página da Plataforma em Modo C, com parâmetro assinado), `{link_pr_...}` e `{link_pn_...}` (pesquisas, parte 6), `{link_re6_...}` (RE6), `{nome_moderacao}`, `{link_descadastro}`.
+Variáveis: `{primeiro_nome}`; datas: `{data_renovacao}`, `{data_renovacao_seguinte}`, `{data_limite_cancelamento}` (D-1), `{data_fim_anuidade}`, `{data_fim_leitura}` (D+30), `{data_exclusao_nidflow}` (D+90), `{data_modo_leitura}` (fim das retentativas), `{data_ultima_retentativa}`, `{data_proxima_mesa}`, `{data_encontro_metodo}`, `{data_proximo_encontro}`, `{dia_semana}`, `{tipo_encontro}`, `{data_ultimo_acesso}`, `{data_publicacao_minicurso}`, `{data_caso_nid}`, `{mes_votacao}`; pagamento: `{forma_pagamento}`, `{cartao_final}`, `{codigo_pix}`; conteúdo: `{minicurso_trimestre}`, `{promessa_minicurso}`, `{minicurso_situacao}`, `{entregavel_minicurso}`, `{situacao_trava}`, `{aula_parada}`, `{duracao_aula_1}`, `{avancado_semestre}`, `{minicurso_ano2_1}`, `{minicurso_ano2_2}`, `{caso_nid_trimestre}`, `{lista_novidades}`; relatório de PN-RN60: `{data_m1}` a `{data_m6}`, `{n_minicursos_concluidos}`, `{n_minicursos_publicados}`, `{n_encontros_presenca}`, `{n_gravacoes_vistas}`, `{n_projetos_mesa}`, `{n_respostas_nid}`, `{n_propostas_apresentadas}`, `{n_propostas_aprovadas}`, `{n_mesas_t1}`, `{n_mesas_trimestre}`, `{n_projetos_biblioteca}`, `{placar_desenhados}`, `{placar_apresentados}`, `{placar_fechados}`; links: `{link_minha_conta}`, `{link_agenda}`, `{link_cancelar_renovacao}`, `{link_trocar_cartao}`, `{link_atualizar_pagamento}`, `{link_nota_fiscal}`, `{link_reservar_mesa}`, `{link_biblioteca}`, `{link_entrar_ambiente}` (link mágico renovado), `{link_projetos_mesa}` (formulário), `{link_continuar}` (aula em andamento), `{link_gravacao_ultima_mesa}`, `{link_inicio}`, `{link_reativar}` (página da Plataforma em Modo C, com parâmetro assinado), `{link_pr_...}` e `{link_pn_...}` (pesquisas, parte 6), `{link_re6_...}` (PN-RE6), `{nome_moderacao}`, `{link_descadastro}`.
 
-UTM (decisão deste arquivo, para o `automacao` registrar): links para "Minha conta", Agenda, Biblioteca, aulas, formulários e link mágico são entrega e não levam UTM. Só os links de reativação (RL1, RL28, RLT) vão para a página em Modo C e levam `utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-reativacao&utm_content=` com o código em minúsculas (`rl1`, `rl28`, `rlt1` a `rlt4`).
+UTM (decisão deste arquivo, para o `automacao` registrar): links para "Minha conta", Agenda, Biblioteca, aulas, formulários e link mágico são entrega e não levam UTM. Só os links de reativação (PN-RL1, PN-RL28, PN-RLT) vão para a página em Modo C e levam `utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-reativacao&utm_content=` com o código em minúsculas e o prefixo (`pn-rl1`, `pn-rl28`, `pn-rlt1` a `pn-rlt4`).
 
 ---
 
@@ -23,38 +23,38 @@ UTM (decisão deste arquivo, para o `automacao` registrar): links para "Minha co
 
 | Código | Quando | Canal | Para quem | CTA único |
 |---|---|---|---|---|
-| RN60 | D-60, 10h | E-mail | Anuidade ativa, renovação não cancelada | "Ver o calendário do ano seguinte" |
-| RN60w | D-60, 10h15 | WhatsApp (utilidade) | Idem, com autorização | Link de "Minha conta" |
-| RN30 | D-30, 10h | E-mail | Idem | "Confirmar meus dados de renovação" |
-| RN7 | D-7, 10h | E-mail (Pix ou cartão) | Idem | "Ver minha renovação" |
-| RN0 | D0, até 10 minutos após a renovação | E-mail | Renovou | "Reservar meu lugar na próxima Mesa" |
-| RR0 | D0, cobrança recusada | E-mail, WhatsApp (utilidade), faixa | `F2-plataforma-recusada` | "Atualizar minha forma de pagamento" |
-| RR3 | D+3, ainda recusada | E-mail | Idem | Idem |
-| RR6 | D+6, ainda recusada | E-mail e WhatsApp (utilidade) | Idem | Idem |
-| RC0 | No ato do cancelamento | E-mail | Cancelou a renovação | "Ver o que continua até {data_renovacao}" |
-| RC-7 | D-7 | E-mail | Idem | "Reativar minha renovação" |
-| RL1 | D+1 após o fim | E-mail | `F2-plataforma-expirada` | "Reativar minha anuidade" |
-| RL15 | D+15 | E-mail | Idem | "Baixar meus materiais" |
-| RL28 | D+28 | E-mail | Idem | "Reativar minha anuidade" |
-| RLT | Uma vez por trimestre, até quatro | E-mail | Idem, depois de D+30 | "Reativar minha anuidade" |
-| RE1 | 48 horas após a compra sem primeiro acesso | E-mail e WhatsApp (utilidade) | Anuidade ativa | "Entrar no ambiente" |
-| RE2 | Dia 7 sem projeto na mesa | E-mail | Idem | "Colocar meu projeto na mesa" |
-| RE2h | Dia 14 sem projeto na mesa | WhatsApp, humano | Idem | Resposta livre |
-| RE3 | Dia 30 sem minicurso concluído | E-mail | Idem | "Continuar de onde parei" |
-| RE4 | Dia 45 sem presença ao vivo | E-mail | Idem | "Reservar meu lugar na próxima Mesa" |
-| RE5 | 21 dias sem login | E-mail | Idem | "Ver o que entrou" |
-| RE6 | 45 dias sem login | E-mail | Idem | Pergunta de um clique |
-| RE7 | 90 dias sem login | WhatsApp, humano | Idem | Resposta livre |
+| PN-RN60 | D-60, 10h | E-mail | Anuidade ativa, renovação não cancelada | "Ver o calendário do ano seguinte" |
+| PN-RN60w | D-60, 10h15 | WhatsApp (utilidade) | Idem, com autorização | Link de "Minha conta" |
+| PN-RN30 | D-30, 10h | E-mail | Idem | "Confirmar meus dados de renovação" |
+| PN-RN7 | D-7, 10h | E-mail (Pix ou cartão) | Idem | "Ver minha renovação" |
+| PN-RN0 | D0, até 10 minutos após a renovação | E-mail | Renovou | "Reservar meu lugar na próxima Mesa" |
+| PN-RR0 | D0, cobrança recusada | E-mail, WhatsApp (utilidade), faixa | `F2-plataforma-recusada` | "Atualizar minha forma de pagamento" |
+| PN-RR3 | D+3, ainda recusada | E-mail | Idem | Idem |
+| PN-RR6 | D+6, ainda recusada | E-mail e WhatsApp (utilidade) | Idem | Idem |
+| PN-RC0 | No ato do cancelamento | E-mail | Cancelou a renovação | "Ver o que continua até {data_renovacao}" |
+| PN-RC-7 | D-7 | E-mail | Idem | "Reativar minha renovação" |
+| PN-RL1 | D+1 após o fim | E-mail | `F2-plataforma-expirada` | "Reativar minha anuidade" |
+| PN-RL15 | D+15 | E-mail | Idem | "Baixar meus materiais" |
+| PN-RL28 | D+28 | E-mail | Idem | "Reativar minha anuidade" |
+| PN-RLT | Uma vez por trimestre, até quatro | E-mail | Idem, depois de D+30 | "Reativar minha anuidade" |
+| PN-RE1 | 48 horas após a compra sem primeiro acesso | E-mail e WhatsApp (utilidade) | Anuidade ativa | "Entrar no ambiente" |
+| PN-RE2 | Dia 7 sem projeto na mesa | E-mail | Idem | "Colocar meu projeto na mesa" |
+| PN-RE2h | Dia 14 sem projeto na mesa | WhatsApp, humano | Idem | Resposta livre |
+| PN-RE3 | Dia 30 sem minicurso concluído | E-mail | Idem | "Continuar de onde parei" |
+| PN-RE4 | Dia 45 sem presença ao vivo | E-mail | Idem | "Reservar meu lugar na próxima Mesa" |
+| PN-RE5 | 21 dias sem login | E-mail | Idem | "Ver o que entrou" |
+| PN-RE6 | 45 dias sem login | E-mail | Idem | Pergunta de um clique |
+| PN-RE7 | 90 dias sem login | WhatsApp, humano | Idem | Resposta livre |
 
-Renovou em qualquer ponto de RR0 a RR6: recebe RN0 e as tentativas param. Reativou em qualquer ponto de RL1 a RLT: sai da sequência e entra no onboarding. Atingiu o passo seguinte: sai do toque de reengajamento correspondente. No máximo um toque de reengajamento por semana por pessoa.
+Renovou em qualquer ponto de PN-RR0 a PN-RR6: recebe PN-RN0 e as tentativas param. Reativou em qualquer ponto de PN-RL1 a PN-RLT: sai da sequência e entra no onboarding. Atingiu o passo seguinte: sai do toque de reengajamento correspondente. No máximo um toque de reengajamento por semana por pessoa.
 
 ---
 
-## Parte 1 · Renovação (RN)
+## Parte 1 · Renovação (PN-RN)
 
-### RN60 · Seu ano no ambiente da NID
+### PN-RN60 · Seu ano no ambiente da NID
 
-**Código**: RN60
+**Código**: PN-RN60
 **Momento**: D-60, 10h (Brasília)
 **Canal**: e-mail
 **Condição**: anuidade ativa, renovação não cancelada
@@ -105,12 +105,12 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RN60w · Sua anuidade renova em {data_renovacao} (WhatsApp)
+### PN-RN60w · Sua anuidade renova em {data_renovacao} (WhatsApp)
 
-**Código**: RN60w
+**Código**: PN-RN60w
 **Momento**: D-60, 10h15
 **Canal**: WhatsApp (modelo de utilidade aprovado)
-**Condição**: idem RN60, com telefone e autorização
+**Condição**: idem PN-RN60, com telefone e autorização
 **Primeira linha**: Aqui é a NID. Sua anuidade na Plataforma NID renova em {data_renovacao}.
 
 **Mensagem**
@@ -121,9 +121,9 @@ Aqui é a NID. Sua anuidade na Plataforma NID renova em {data_renovacao}, por R$
 
 ---
 
-### RN30 · Sua renovação em {data_renovacao}: o que você precisa saber
+### PN-RN30 · Sua renovação em {data_renovacao}: o que você precisa saber
 
-**Código**: RN30
+**Código**: PN-RN30
 **Momento**: D-30, 10h
 **Canal**: e-mail
 **Condição**: anuidade ativa, renovação não cancelada. É o aviso formal exigido pelos termos de uso
@@ -166,9 +166,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RN7 · Renova em 7 dias
+### PN-RN7 · Renova em 7 dias
 
-**Código**: RN7
+**Código**: PN-RN7
 **Momento**: D-7, 10h
 **Canal**: e-mail, em duas variantes pela forma de pagamento
 **Condição**: anuidade ativa, renovação não cancelada
@@ -208,10 +208,10 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RN0 · Renovado: mais um ano no ambiente
+### PN-RN0 · Renovado: mais um ano no ambiente
 
-**Código**: RN0
-**Momento**: D0, até 10 minutos após a confirmação da renovação (em qualquer ponto de RN7 a RR6)
+**Código**: PN-RN0
+**Momento**: D0, até 10 minutos após a confirmação da renovação (em qualquer ponto de PN-RN7 a PN-RR6)
 **Canal**: e-mail
 **Condição**: renovou. Aplica `F2-plataforma-renovada`
 **Assunto**: Renovado: mais um ano no ambiente
@@ -249,11 +249,11 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-## Parte 2 · Cobrança recusada (RR)
+## Parte 2 · Cobrança recusada (PN-RR)
 
-### RR0 · Não conseguimos renovar sua anuidade
+### PN-RR0 · Não conseguimos renovar sua anuidade
 
-**Código**: RR0
+**Código**: PN-RR0
 **Momento**: D0, até 30 minutos após a recusa da cobrança
 **Canal**: e-mail; WhatsApp (modelo de utilidade aprovado) para quem autorizou; faixa no ambiente
 **Condição**: `F2-plataforma-recusada`. Acesso completo mantido durante as tentativas
@@ -281,7 +281,7 @@ Qualquer dúvida sobre a cobrança, responda a este e-mail. A gente resolve por 
 
 NID · Consultoria de Performance Comercial
 
-**Mensagem (WhatsApp, RR0w)**
+**Mensagem (WhatsApp, PN-RR0w)**
 
 Primeira linha: Aqui é a NID. A renovação da sua anuidade na Plataforma NID não foi aprovada no cartão.
 
@@ -295,9 +295,9 @@ Não conseguimos renovar sua anuidade. Seu acesso continua até {data_modo_leitu
 
 ---
 
-### RR3 · Ainda não conseguimos renovar
+### PN-RR3 · Ainda não conseguimos renovar
 
-**Código**: RR3
+**Código**: PN-RR3
 **Momento**: D+3, 10h, se a cobrança continua recusada
 **Canal**: e-mail
 **Condição**: `F2-plataforma-recusada`
@@ -323,9 +323,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RR6 · Amanhã o acesso passa para modo leitura
+### PN-RR6 · Amanhã o acesso passa para modo leitura
 
-**Código**: RR6
+**Código**: PN-RR6
 **Momento**: D+6, 10h, se a cobrança continua recusada
 **Canal**: e-mail; WhatsApp (modelo de utilidade aprovado) para quem autorizou
 **Condição**: `F2-plataforma-recusada`
@@ -338,7 +338,7 @@ Olá, {primeiro_nome}.
 
 Amanhã, {data_modo_leitura}, o seu acesso à Plataforma NID passa para modo leitura, porque a renovação de R$ 980 não foi aprovada no cartão final {cartao_final} nas tentativas dos últimos dias.
 
-O que o modo leitura permite, por 30 dias: ver a comunidade sem postar, assistir às gravações, baixar os materiais da Biblioteca e exportar os seus projetos do NIDflow em PDF. O que não permite: postar, entrar em encontros e assistir às aulas.
+O que o modo leitura permite, por 30 dias: ver a comunidade sem postar, assistir às gravações, baixar os materiais da Biblioteca [com PDF] e exportar os seus projetos do NIDflow em PDF [sem PDF] e ver os seus projetos do NIDflow, que ficam guardados por 90 dias para você reativar. O que não permite: postar, entrar em encontros e assistir às aulas.
 
 Para manter tudo como está, atualize o cartão ou pague por Pix ainda hoje:
 
@@ -349,7 +349,7 @@ Se a renovação for paga depois de amanhã, o acesso volta no ato, sem esperar 
 
 NID · Consultoria de Performance Comercial
 
-**Mensagem (WhatsApp, RR6w)**
+**Mensagem (WhatsApp, PN-RR6w)**
 
 Primeira linha: Aqui é a NID. Amanhã o seu acesso à Plataforma NID passa para modo leitura.
 
@@ -359,11 +359,11 @@ Aqui é a NID. Amanhã, {data_modo_leitura}, o seu acesso à Plataforma NID pass
 
 ---
 
-## Parte 3 · Cancelou a renovação antes da data (RC)
+## Parte 3 · Cancelou a renovação antes da data (PN-RC)
 
-### RC0 · Sua renovação está cancelada
+### PN-RC0 · Sua renovação está cancelada
 
-**Código**: RC0
+**Código**: PN-RC0
 **Momento**: até 5 minutos após o clique em "Não renovar" em "Minha conta"
 **Canal**: e-mail
 **Condição**: renovação cancelada antes de D0
@@ -382,7 +382,7 @@ O que acontece depois de {data_renovacao}:
 
 - Por 30 dias, modo leitura: você vê a comunidade sem postar, assiste às gravações e baixa os materiais.
 - Os minicursos avançados que você comprou continuam seus, sem prazo.
-- O NIDflow fica em leitura, com exportação em PDF, por 30 dias; os projetos ficam guardados por 90.
+- [com PDF] O NIDflow fica em leitura, com exportação em PDF, por 30 dias; os projetos ficam guardados por 90. [sem PDF] O NIDflow fica em leitura por 30 dias; os projetos ficam guardados por 90 dias para você reativar.
 - Reativar é um clique em "Minha conta", a qualquer momento, sem esperar período de matrícula. A conta volta com os projetos, se dentro dos 90 dias.
 
 [Botão] Ver o que continua até {data_renovacao}
@@ -407,9 +407,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RC-7 · Sua anuidade termina em 7 dias
+### PN-RC-7 · Sua anuidade termina em 7 dias
 
-**Código**: RC-7
+**Código**: PN-RC-7
 **Momento**: D-7, 10h
 **Canal**: e-mail
 **Condição**: renovação cancelada e não reativada
@@ -435,11 +435,11 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-## Parte 4 · Modo leitura e reativação (RL)
+## Parte 4 · Modo leitura e reativação (PN-RL)
 
-### RL1 · Seu acesso está em modo leitura
+### PN-RL1 · Seu acesso está em modo leitura
 
-**Código**: RL1
+**Código**: PN-RL1
 **Momento**: D+1 após o fim da anuidade, 10h
 **Canal**: e-mail
 **Condição**: `F2-plataforma-expirada` (por cancelamento ou por cobrança não aprovada)
@@ -457,7 +457,7 @@ O que dá para fazer nesses 30 dias:
 - Ver a comunidade, inclusive os seus posts e as respostas da NID, sem postar.
 - Assistir às gravações dos encontros, com índice.
 - Baixar os materiais da Biblioteca: templates, modelo de proposta, roteiro, checklist, banco de objeções, régua de follow-up e projetos por segmento.
-- Exportar os seus projetos do NIDflow em PDF.
+- [com PDF] Exportar os seus projetos do NIDflow em PDF. [sem PDF] Ver os seus projetos do NIDflow, que ficam guardados por 90 dias para você reativar.
 - Continuar nos minicursos avançados que você comprou, sem prazo.
 
 O que não dá: postar, entrar em encontros ao vivo e assistir às aulas dos minicursos inclusos.
@@ -465,9 +465,9 @@ O que não dá: postar, entrar em encontros ao vivo e assistir às aulas dos min
 Reativar é um clique, a qualquer momento, sem esperar período de matrícula: nova anuidade de R$ 980, Pix à vista ou em até 12 vezes no cartão, acesso completo no ato, projetos do NIDflow de volta (se dentro de 90 dias) e, se você foi fundador, o selo de volta.
 
 [Botão] Reativar minha anuidade
-{link_reativar}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-reativacao&utm_content=rl1
+{link_reativar}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-reativacao&utm_content=pn-rl1
 
-[Bloco só para quem não respondeu à pergunta em RC0:]
+[Bloco só para quem não respondeu à pergunta em PN-RC0:]
 
 Uma pergunta, opcional, em um clique. A resposta muda o que a NID faz no ambiente; não muda nada na sua conta.
 
@@ -488,14 +488,14 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RL15 · 15 dias para baixar o que é seu
+### PN-RL15 · 15 dias para baixar o que é seu
 
-**Código**: RL15
+**Código**: PN-RL15
 **Momento**: D+15, 10h
 **Canal**: e-mail
 **Condição**: `F2-plataforma-expirada`, sem reativação
 **Assunto**: 15 dias para baixar o que é seu
-**Pré-cabeçalho**: Materiais, gravações e os PDFs do NIDflow, até {data_fim_leitura}.
+**Pré-cabeçalho**: [com PDF] Materiais, gravações e os PDFs do NIDflow, até {data_fim_leitura}. [sem PDF] Materiais e gravações, até {data_fim_leitura}.
 
 **Corpo**
 
@@ -507,7 +507,7 @@ O que vale baixar antes:
 
 - Os materiais da Biblioteca, em PDF e texto.
 - As gravações que você quer rever; o índice por projeto está em cada uma.
-- Os seus projetos do NIDflow, exportados em PDF.
+- [com PDF] Os seus projetos do NIDflow, exportados em PDF. [sem PDF] Os seus projetos do NIDflow não precisam ser baixados: ficam guardados por 90 dias para você reativar.
 
 [Botão] Baixar meus materiais
 {link_biblioteca}
@@ -520,9 +520,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RL28 · O modo leitura termina em 2 dias
+### PN-RL28 · O modo leitura termina em 2 dias
 
-**Código**: RL28
+**Código**: PN-RL28
 **Momento**: D+28, 10h
 **Canal**: e-mail
 **Condição**: `F2-plataforma-expirada`, sem reativação
@@ -540,7 +540,7 @@ Seus projetos do NIDflow ficam guardados até {data_exclusao_nidflow}; reativand
 Reativar é um clique: nova anuidade de R$ 980, acesso completo no ato, sem esperar período de matrícula.
 
 [Botão] Reativar minha anuidade
-{link_reativar}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-reativacao&utm_content=rl28
+{link_reativar}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-reativacao&utm_content=pn-rl28
 
 NID · Consultoria de Performance Comercial
 
@@ -548,9 +548,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RLT · O que entrou no ambiente neste trimestre
+### PN-RLT · O que entrou no ambiente neste trimestre
 
-**Código**: RLT (proposto neste arquivo; o plano descreve a mensagem sem código)
+**Código**: PN-RLT (proposto neste arquivo; o plano descreve a mensagem sem código)
 **Momento**: uma vez por trimestre, na semana seguinte à publicação do minicurso incluso do trimestre, 10h; no máximo quatro envios por pessoa
 **Canal**: e-mail
 **Condição**: `F2-plataforma-expirada` há mais de 30 dias, sem reativação, sem opt-out. Depois do quarto envio, para. Ex-assinante não recebe as mensagens de matrícula da sequência 08
@@ -572,7 +572,7 @@ Uma vez por trimestre, a gente conta a quem já foi assinante o que entrou na Pl
 Se a sua próxima proposta merece passar pela mesa antes de ir para o cliente, reativar é um clique, a qualquer momento: nova anuidade de R$ 980, Pix à vista ou em até 12 vezes no cartão, acesso completo no ato.
 
 [Botão] Reativar minha anuidade
-{link_reativar}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-reativacao&utm_content=rlt{n}
+{link_reativar}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-plataforma-reativacao&utm_content=pn-rlt{n}
 
 Este e-mail chega no máximo quatro vezes, uma por trimestre. Depois disso, a gente para.
 
@@ -584,13 +584,13 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-## Parte 5 · Reengajamento durante o ano (RE)
+## Parte 5 · Reengajamento durante o ano (PN-RE)
 
 Regras do plano que valem aqui: um toque por sinal, nunca dois toques pelo mesmo sinal em 30 dias, no máximo um toque de reengajamento por semana por pessoa; quem atinge o passo seguinte sai do toque; nenhum toque menciona renovação, vende avançado ou pede desculpa.
 
-### RE1 · Seu acesso está esperando
+### PN-RE1 · Seu acesso está esperando
 
-**Código**: RE1
+**Código**: PN-RE1
 **Momento**: 48 horas após a compra, se não houve primeiro acesso ao ambiente
 **Canal**: e-mail; WhatsApp (modelo de utilidade aprovado) para quem autorizou
 **Condição**: anuidade ativa sem primeiro acesso
@@ -614,7 +614,7 @@ Se algo não funcionou no acesso, responda a este e-mail. A gente resolve por aq
 
 NID · Consultoria de Performance Comercial
 
-**Mensagem (WhatsApp, RE1w)**
+**Mensagem (WhatsApp, PN-RE1w)**
 
 Primeira linha: Aqui é a NID. Seu acesso à Plataforma NID está esperando.
 
@@ -624,9 +624,9 @@ Aqui é a NID. Seu acesso à Plataforma NID está esperando: {link_entrar_ambien
 
 ---
 
-### RE2 · Qual proposta você está montando esta semana?
+### PN-RE2 · Qual proposta você está montando esta semana?
 
-**Código**: RE2
+**Código**: PN-RE2
 **Momento**: dia 7 após a compra, 10h, se não há projeto na mesa
 **Canal**: e-mail
 **Condição**: anuidade ativa, primeiro acesso feito, sem post em "Projetos na mesa"
@@ -639,7 +639,7 @@ Olá, {primeiro_nome}.
 
 Uma semana no ambiente, e o seu projeto ainda não está na mesa. A pergunta é simples: qual proposta você está montando esta semana?
 
-É ela que vai para "Projetos na mesa". O formulário leva cinco minutos: o segmento do cliente (sem nome), a etapa em que o projeto está, o que trava e o anexo, que pode ser o template preenchido ou o PDF do NIDflow. Alguém da NID responde em até 2 dias úteis, apontando a etapa que precisa de trabalho e o que mudar.
+É ela que vai para "Projetos na mesa". O formulário leva cinco minutos: o segmento do cliente (sem nome), a etapa em que o projeto está, o que trava e o anexo, que pode ser [com PDF] o template preenchido ou o PDF do NIDflow [sem PDF] o template preenchido. Alguém da NID responde em até 2 dias úteis, apontando a etapa que precisa de trabalho e o que mudar.
 
 Se não tem proposta agora, o projeto de exemplo do NIDflow serve para a primeira revisão. O que importa é passar pela mesa uma vez, para saber como é antes de a proposta real aparecer.
 
@@ -652,9 +652,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RE2h · O que está travando? (WhatsApp, humano)
+### PN-RE2h · O que está travando? (WhatsApp, humano)
 
-**Código**: RE2h
+**Código**: PN-RE2h
 **Momento**: dia 14 após a compra, em horário comercial, se ainda não há projeto na mesa
 **Canal**: WhatsApp da pessoa da moderação, enviado por ela, pelo nome. Rascunho para envio humano; a pessoa ajusta ao contexto do assinante antes de enviar
 **Condição**: anuidade ativa, sem post em "Projetos na mesa"
@@ -668,9 +668,9 @@ Oi, {primeiro_nome}. Aqui é {nome_moderacao}, da NID. Vi que você entrou na Pl
 
 ---
 
-### RE3 · Quinze minutos por aula
+### PN-RE3 · Quinze minutos por aula
 
-**Código**: RE3
+**Código**: PN-RE3
 **Momento**: dia 30 após a compra, 10h, se nenhum minicurso foi concluído
 **Canal**: e-mail
 **Condição**: anuidade ativa, sem minicurso concluído. Variante A para quem declarou a situação que trava; variante B para quem não declarou
@@ -698,9 +698,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RE4 · A Mesa é o que mais muda a proposta
+### PN-RE4 · A Mesa é o que mais muda a proposta
 
-**Código**: RE4
+**Código**: PN-RE4
 **Momento**: dia 45 após a compra, 10h, se nunca esteve ao vivo em um encontro
 **Canal**: e-mail
 **Condição**: anuidade ativa, sem presença ao vivo
@@ -726,9 +726,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RE5 · O que entrou no ambiente desde a sua última visita
+### PN-RE5 · O que entrou no ambiente desde a sua última visita
 
-**Código**: RE5
+**Código**: PN-RE5
 **Momento**: 21 dias sem login, em qualquer momento do ano, 10h
 **Canal**: e-mail
 **Condição**: anuidade ativa, sem acesso há 21 dias
@@ -756,9 +756,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RE6 · Uma pergunta
+### PN-RE6 · Uma pergunta
 
-**Código**: RE6
+**Código**: PN-RE6
 **Momento**: 45 dias sem login, 10h
 **Canal**: e-mail
 **Condição**: anuidade ativa, sem acesso há 45 dias
@@ -793,9 +793,9 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-### RE7 · Tem alguma proposta na mesa? (WhatsApp, humano)
+### PN-RE7 · Tem alguma proposta na mesa? (WhatsApp, humano)
 
-**Código**: RE7
+**Código**: PN-RE7
 **Momento**: 90 dias sem login, em horário comercial
 **Canal**: WhatsApp da pessoa da moderação, enviado por ela, pelo nome. Rascunho para envio humano. Última tentativa de reengajamento; depois, só a régua de renovação
 **Condição**: anuidade ativa, sem acesso há 90 dias
@@ -815,7 +815,7 @@ Cada pesquisa é uma pergunta com respostas em links de um clique, que gravam a 
 
 ### Pesquisa 1 · Por que renovou
 
-**Onde**: RN0, abaixo do CTA
+**Onde**: PN-RN0, abaixo do CTA
 **Pergunta**: O que mais pesou para você continuar?
 **Respostas (um link cada)**: A Mesa de Projetos · A resposta da NID nos meus projetos · Os minicursos novos · O NIDflow incluso · A comunidade · Outro motivo
 **Grava**: `motivo_renovacao`
@@ -829,7 +829,7 @@ Para "Outro motivo", uma linha a mais: Se quiser contar em uma frase, responda a
 
 ### Pesquisa 2 · Por que não renovou
 
-**Onde**: RC0, abaixo do CTA; ou RL1, para quem expirou sem ter respondido em RC0
+**Onde**: PN-RC0, abaixo do CTA; ou PN-RL1, para quem expirou sem ter respondido em PN-RC0
 **Pergunta**: O que faria você continuar?
 **Respostas (um link cada)**: Não tenho propostas suficientes para usar · Não achei minicurso para a minha situação · Não consegui participar dos encontros · O preço · Mudei de função · Outro motivo
 **Grava**: `motivo_nao_renovacao`. "Não achei minicurso" alimenta a lista de espera do catálogo; "não consegui participar" alimenta a revisão de horário; "o preço" é registrado e não gera condição especial
@@ -845,10 +845,10 @@ Para "Não achei minicurso para a minha situação", uma linha a mais: Se quiser
 
 ## Checklist de coerência deste arquivo
 
-- [x] Todos os códigos das seções 4 e 5 do plano com texto final: RN60, RN60w, RN30, RN7, RN0, RR0, RR3, RR6, RC0, RC-7, RL1, RL15, RL28, RE1 a RE7 (com RE2h), mais o e-mail trimestral do ex-assinante (RLT) e as duas pesquisas
+- [x] Todos os códigos das seções 4 e 5 do plano com texto final: PN-RN60, PN-RN60w, PN-RN30, PN-RN7, PN-RN0, PN-RR0, PN-RR3, PN-RR6, PN-RC0, PN-RC-7, PN-RL1, PN-RL15, PN-RL28, PN-RE1 a PN-RE7 (com PN-RE2h), mais o e-mail trimestral do ex-assinante (PN-RLT) e as duas pesquisas
 - [x] Renovação automática pelo mesmo valor, avisada em D-60, D-30 e D-7, com cancelamento em um clique até D-1; nenhuma mensagem oferece desconto, preço travado ou ligação de retenção
 - [x] Toque de reengajamento nunca menciona renovação nem avançado; toque de renovação nunca vende avançado
-- [x] Modo leitura e reativação iguais aos da página (Modo C): 30 dias de leitura, NIDflow em leitura com PDF por 30 dias e guarda por 90, avançados comprados mantidos, selo de fundador de volta, reativação sem período de matrícula
+- [x] Modo leitura e reativação iguais aos da página (Modo C): 30 dias de leitura, NIDflow em leitura por 30 dias (exportação em PDF só `[com PDF]`, item B-07) e guarda por 90, avançados comprados mantidos, selo de fundador de volta, reativação sem período de matrícula
 - [x] Preço só como `R$ 980`; parcelamento só como "em até 12 vezes no cartão"; nenhuma data escrita; nenhum número de retenção
 - [x] Um CTA por mensagem; links administrativos do aviso formal e pesquisas de um clique em texto
 - [x] Sem emoji, sem travessão, sem "pra" ou "pro", sem termo interno; Henrique só como "Henrique Leite, sócio da NID"; mensagens humanas assinadas pelo nome da pessoa da moderação e "da NID"

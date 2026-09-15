@@ -4,13 +4,13 @@
 |---|---|
 | Fluxo de origem | `automacoes/02-entrega-pos-compra.md` (seções 2, 4 e 5). Códigos, momentos, canais e condições são os do fluxo; este arquivo traz só o texto final |
 | Códigos neste arquivo | E0 (variantes A, B e C), W0 (variantes A, B e C), W0b, E1, W2, B1, W3, B2, B3, B4 |
-| Códigos em outros arquivos | E3, W4, E5 e E6 (oferta do mini curso a R$ 147) em `02-oferta-mini-curso.md`; R1 a R3, P1, P2, N1 e N2 (não compra) em `07-reengajamento.md` |
+| Códigos em outros arquivos | E3, W4, E5 e E6 (oferta do mini curso a R$ 147) em `02-oferta-mini-curso.md`; R1 a R3, PX1, PX2, N1 e N2 (não compra) em `07-reengajamento.md` |
 | Remetente | E-mail: "NID". WhatsApp: número oficial da NID, nome exibido "NID" |
 | Autor | Agente `copy` |
 | Status | Entregue ao coordenador. Passa pelo `estrategia` antes de ser dada como pronta |
 | Fonte | `docs/00-brief-mestre.md` (seções 5, 6.1, 6.2, 8.1, 10), `produtos/playbook/01-playbook.md` (capítulos 1, 2, 3, 9 e 11), `produtos/mini-curso/00-grade.md`, `produtos/playbook/pagina-de-obrigado.md` |
 
-Regras aplicadas em todas as mensagens: a NID fala em primeira pessoa do plural; um único CTA por mensagem; sem emoji em e-mail e nenhum emoji em WhatsApp nesta sequência; nunca travessão; "para" por extenso; preços no formato `R$ 29,90` e `R$ 147`; nenhum termo interno; nenhuma promessa que não exista no produto; Henrique só como "Henrique Leite, sócio da NID".
+Regras aplicadas em todas as mensagens: a NID fala em primeira pessoa do plural; um único CTA por mensagem; sem emoji em e-mail e nenhum emoji em WhatsApp nesta sequência; nunca travessão; "para" por extenso; preços no formato `R$ 29,90` e `R$ 147`; nenhum termo interno; nenhuma promessa que não exista no produto; Henrique só como "Henrique Leite, sócio da NID". Linhas marcadas com `[nidflow_venda_liberada = sim]` e `[nidflow_venda_liberada = nao]` são alternativas dentro do mesmo bloco: só a versão que corresponde à variável sai na mensagem, e a marca não vai para o texto.
 
 Ramos: **A** comprou só o playbook; **B** comprou o playbook com as aulas do mini curso (na mesma compra); **C** já tinha o playbook e comprou as aulas depois (avulso). O ramo C recebe E0c e W0c no dia da compra e entra no ramo B a partir do dia seguinte (B1), sem repetir E1.
 
@@ -50,7 +50,8 @@ Se preferir baixar agora, sem entrar na área de membros: playbook em PDF ({link
 
 Como ler: com a próxima proposta na cabeça. Escolha um cliente real, o que está mais perto de pedir proposta, e leia pensando nele. Se a proposta é para esta semana, vá direto aos capítulos 2 a 6 e preencha o canvas de dor com o que você já sabe. O que ficar em branco é o que você pergunta na conversa de diagnóstico.
 
-Nos próximos dias a gente te mostra a ferramenta em que a NID desenha e apresenta os projetos dela, com os templates deste playbook já dentro. Até lá, o playbook é completo sem ela: os templates funcionam no papel, no Canva ou no PowerPoint.
+[nidflow_venda_liberada = sim] Nos próximos dias a gente te mostra a ferramenta em que a NID desenha e apresenta os projetos dela, com os templates deste playbook já dentro. Até lá, o playbook é completo sem ela: os templates funcionam no papel, no Canva ou no PowerPoint.
+[nidflow_venda_liberada = nao] A apresentação da ferramenta em que a NID desenha e apresenta os projetos dela, com os templates deste playbook já dentro, chega por e-mail e WhatsApp assim que a ferramenta estiver liberada para compradores do playbook. Até lá, o playbook é completo sem ela: os templates funcionam no papel, no Canva ou no PowerPoint.
 
 7 dias de garantia, reembolso sem pergunta. Para pedir, basta responder a este e-mail. Dúvida de acesso: responda aqui ou fale com a gente pelo WhatsApp da NID ({link_whatsapp_nid}).
 
@@ -90,7 +91,8 @@ Se preferir baixar agora: playbook em PDF ({link_pdf_playbook}) e templates ({li
 
 A ordem que funciona: leia os capítulos 2 a 6 do playbook, preencha o canvas de dor de um cliente real e só então abra a aula 1. As aulas partem da proposta desenhada com o método; assistir antes de desenhar é assistir sem a proposta na mão.
 
-Nos próximos dias a gente te mostra a ferramenta em que a NID desenha e apresenta os projetos dela, com os templates do playbook já dentro. Até lá, playbook e aulas são completos sem ela.
+[nidflow_venda_liberada = sim] Nos próximos dias a gente te mostra a ferramenta em que a NID desenha e apresenta os projetos dela, com os templates do playbook já dentro. Até lá, playbook e aulas são completos sem ela.
+[nidflow_venda_liberada = nao] A apresentação da ferramenta em que a NID desenha e apresenta os projetos dela, com os templates do playbook já dentro, chega por e-mail e WhatsApp assim que a ferramenta estiver liberada para compradores do playbook. Até lá, playbook e aulas são completos sem ela.
 
 7 dias de garantia, reembolso sem pergunta, para o playbook e para as aulas. Para pedir, basta responder a este e-mail. Dúvida de acesso: responda aqui ou fale com a gente pelo WhatsApp da NID ({link_whatsapp_nid}).
 
@@ -353,7 +355,7 @@ NID · Consultoria de Performance Comercial
 **Canal**: e-mail
 **Condição**: sempre (ramo B)
 **Assunto**: Antes da próxima reunião
-**Pré-cabeçalho**: Dois materiais para passar antes de entrar na sala. E, amanhã, a ferramenta.
+**Pré-cabeçalho**: [nidflow_venda_liberada = sim] Dois materiais para passar antes de entrar na sala. E, amanhã, a ferramenta. [nidflow_venda_liberada = nao] Dois materiais para passar antes de entrar na sala.
 
 **Corpo**
 
@@ -370,7 +372,8 @@ Passe pelos dois com a proposta aberta. Leva menos de meia hora e muda o que o c
 [Botão] Abrir o checklist de reunião
 {link_checklist_reuniao}
 
-Amanhã a gente te mostra a ferramenta em que a NID desenha e apresenta os projetos dela, em uso, no projeto do caso conduzido do playbook.
+[nidflow_venda_liberada = sim] Amanhã a gente te mostra a ferramenta em que a NID desenha e apresenta os projetos dela, em uso, no projeto do caso conduzido do playbook.
+[nidflow_venda_liberada = nao] A apresentação da ferramenta em que a NID desenha e apresenta os projetos dela, em uso no projeto do caso conduzido do playbook, chega assim que a ferramenta estiver liberada para compradores do playbook.
 
 NID · Consultoria de Performance Comercial
 

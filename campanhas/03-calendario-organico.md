@@ -47,7 +47,7 @@
 | 8 | 2 | Instagram carrossel + LinkedIn | Etapa 3 · Arquitetura, desenhe de trás para a frente | DESENHO |
 | 9 | 2 | Instagram Reel (C07, Henrique) | Etapa 4 · Valor, "quanto custa?" | PROJETO |
 | 10 | 2 | Instagram estático (novo) | O erro comum de cada etapa | TEMPLATE |
-| 11 | 3 | Instagram Reel (tela, novo) | O caso em 30 segundos | DESENHO |
+| 11 | 3 | Instagram Reel (rosto e artes estáticas, novo; versão de tela quando B-02, B-04 e B-06 estiverem aceitos) | O caso em 30 segundos | DESENHO |
 | 12 | 3 | Instagram carrossel + LinkedIn | As nove páginas da proposta | PROPOSTA |
 | 13 | 3 | Instagram Reel (C12, tela) | A reunião em que você não está | DESENHO |
 | 14 | 3 | Instagram carrossel + LinkedIn | Checklist: a proposta está pronta? | TEMPLATE |
@@ -55,7 +55,7 @@
 | 16 | 4 | Instagram carrossel + LinkedIn | Onde cada perfil trava | PROJETO |
 | 17 | 4 | Instagram Reel (C11, Henrique) | Se fosse eu, fechava | PROJETO |
 | 18 | 4 | Instagram Reel (C09, tela) | Lista de tarefas pede desconto | DESENHO |
-| 19 | 4 | Instagram Reel (tela, novo) | Desenhar e apresentar na mesma tela | DESENHO |
+| 19 | 4 | Instagram Reel (rosto e artes estáticas, novo; versão de tela quando B-02, B-04 e B-06 estiverem aceitos) | Desenhar e apresentar na mesma tela | DESENHO |
 | 20 | 4 | Instagram Reel (C13, Henrique) + estático C14 | Não é curso de vendas | PROJETO |
 
 ---
@@ -413,19 +413,19 @@ Na sexta, o frame 2 é substituído por uma caixa de perguntas: "Manda a sua dú
 
 ## 4. Semana 3 · O caso e a proposta
 
-### Dia 11 (segunda) · Instagram Reel · "O caso em 30 segundos" (roteiro novo, tela)
+### Dia 11 (segunda) · Instagram Reel · "O caso em 30 segundos" (roteiro novo, rosto e artes estáticas)
 
-- **Formato**: Reel de 30 s, tela do NIDflow, narração de quem opera. O caso do capítulo 7 (automação comercial para uma empresa de manutenção predial). Os números são a conta feita com o cliente do caso; texto na tela deixa isso claro.
+- **Formato**: Reel de 30 s, Henrique de frente para a câmera (sócio da NID) com os quatro quadros do caso como artes estáticas sobrepostas (Arial sobre `#373737`, títulos em `#F26522`), montadas a partir dos templates preenchidos do playbook. O caso do capítulo 7 (automação comercial para uma empresa de manutenção predial). Os números são a conta feita com o cliente do caso; texto na tela deixa isso claro. Sem tela do NIDflow (ver "Versão de tela" abaixo).
 - **Gancho**: "Um projeto inteiro, da primeira conversa à proposta, em 30 segundos."
 - **Roteiro integral**:
 
 | Tempo | Fala integral | Texto na tela | O que aparece |
 |---|---|---|---|
-| 0 a 3 s | "Um projeto inteiro, da primeira conversa à proposta, em 30 segundos." | DA CONVERSA À PROPOSTA EM 30 S | Tela do NIDflow, projeto vazio |
-| 3 a 10 s | "Empresa de manutenção predial. Os pedidos de orçamento chegam pelo WhatsApp e são respondidos quando a assistente consegue. Orçamento enviado ninguém cobra. A conta, feita com o dono: 25 visitas e 5 fechamentos por mês que não acontecem." | Dor: a conta feita com o cliente | Canvas de dor sendo preenchido; a frase de diagnóstico aparece inteira |
-| 10 a 16 s | "Solução, uma frase, sem entregável: um atendimento que responde na hora, qualifica e cobra todo orçamento, sem depender da assistente nem do dono. Ele concordou. Com uma ressalva: 'não quero uma coisa robótica'." | Solução: a tese que o cliente aprovou | Mapa de solução; a premissa "não fingir ser humano" aparece |
-| 16 a 24 s | "Arquitetura, de trás para a frente: cinco etapas. Mapa do atendimento, construção do agente, agenda e follow-up, operação assistida, operação e revisão mensal. Marco, responsável e semana em cada bloco. A ressalva dele virou componente do bloco 2." | Arquitetura: 5 etapas, marcos, responsáveis | Fluxo com os cinco blocos aparecendo e as setas ligando |
-| 24 a 28 s | "Valor: a régua da dor, e só então o investimento, setup e mensalidade ligados aos blocos. Próximo passo com data. Nove páginas." | Valor → Investimento → Próximo passo com data | Modo de apresentação passando pelas páginas 7, 8 e 9 |
+| 0 a 3 s | "Um projeto inteiro, da primeira conversa à proposta, em 30 segundos." | DA CONVERSA À PROPOSTA EM 30 S | Henrique de frente para a câmera; o gancho em arte |
+| 3 a 10 s | "Empresa de manutenção predial. Os pedidos de orçamento chegam pelo WhatsApp e são respondidos quando a assistente consegue. Orçamento enviado ninguém cobra. A conta, feita com o dono: 25 visitas e 5 fechamentos por mês que não acontecem." | Dor: a conta feita com o cliente | Arte estática 1: canvas de dor preenchido, com a frase de diagnóstico inteira |
+| 10 a 16 s | "Solução, uma frase, sem entregável: um atendimento que responde na hora, qualifica e cobra todo orçamento, sem depender da assistente nem do dono. Ele concordou. Com uma ressalva: 'não quero uma coisa robótica'." | Solução: a tese que o cliente aprovou | Arte estática 2: mapa de solução com a premissa "não fingir ser humano" |
+| 16 a 24 s | "Arquitetura, de trás para a frente: cinco etapas. Mapa do atendimento, construção do agente, agenda e follow-up, operação assistida, operação e revisão mensal. Marco, responsável e semana em cada bloco. A ressalva dele virou componente do bloco 2." | Arquitetura: 5 etapas, marcos, responsáveis | Arte estática 3: fluxo de arquitetura com os cinco blocos e as setas |
+| 24 a 28 s | "Valor: a régua da dor, e só então o investimento, setup e mensalidade ligados aos blocos. Próximo passo com data. Nove páginas." | Valor → Investimento → Próximo passo com data | Arte estática 4: as páginas 7, 8 e 9 da proposta em miniatura |
 | 28 a 30 s | "Está no playbook, do início ao fim. Comente DESENHO que a gente manda o link no seu direct." | Comente DESENHO · R$ 29,90 | Capa do playbook e logo NID |
 
 - **Legenda integral**:
@@ -444,6 +444,7 @@ Na sexta, o frame 2 é substituído por uma caixa de perguntas: "Manda a sua dú
 
 - **Palavra-chave**: DESENHO.
 - **Observação**: os números na tela são os do caso do playbook, apresentados como a conta do cliente, nunca como resultado. Se o Henrique preferir um projeto real, `[CASO REAL A CONFIRMAR COM HENRIQUE]`, por segmento e sem valor de contrato.
+- **Versão de tela**: só quando B-02, B-04 e B-06 do `produtos/nidflow/04-backlog-tecnico.md` estiverem aceitos (regra 0.4 de `02-criativos.md`). Mesma fala e mesmo texto na tela; as quatro artes estáticas dão lugar ao NIDflow (projeto vazio; canvas de dor sendo preenchido; mapa de solução; fluxo com os cinco blocos; modo de apresentação nas páginas 7, 8 e 9). Nenhuma gravação de tela antes disso, nem parcial.
 
 ### Dia 12 (terça) · Instagram carrossel (10 cards) + LinkedIn · "As nove páginas da proposta"
 
@@ -696,17 +697,17 @@ Na sexta, o frame 2 é substituído por uma caixa de perguntas: "Manda a sua dú
 
 - **Palavra-chave**: DESENHO.
 
-### Dia 19 (quinta) · Instagram Reel · "Desenhar e apresentar na mesma tela" (roteiro novo, tela)
+### Dia 19 (quinta) · Instagram Reel · "Desenhar e apresentar na mesma tela" (roteiro novo, rosto e artes estáticas)
 
-- **Formato**: Reel de 28 s, tela do NIDflow, narração de quem opera. Mostra o desenho virando apresentação. O destino continua sendo o playbook: o NIDflow é oferecido a compradores depois da compra, e a palavra-chave DESENHO faz o agente dizer isso.
+- **Formato**: Reel de 28 s, Henrique de frente para a câmera (sócio da NID) com artes estáticas sobrepostas (Arial sobre `#373737`, títulos em `#F26522`): as duas janelas desalinhadas, os cinco templates do playbook em sequência e a ordem dor → solução → arquitetura → valor → investimento. Mostra o desenho virando apresentação sem exibir a tela do NIDflow (ver "Versão de tela" abaixo). O destino continua sendo o playbook: o NIDflow é oferecido a compradores depois da compra, e a palavra-chave DESENHO faz o agente dizer isso.
 - **Gancho**: "O desenho fica em uma ferramenta. Os slides, em outra. E a apresentação não conversa com o desenho."
 - **Roteiro integral**:
 
 | Tempo | Fala integral | Texto na tela | O que aparece |
 |---|---|---|---|
-| 0 a 3 s | "O desenho fica em uma ferramenta. Os slides, em outra. E a apresentação não conversa com o desenho." | O DESENHO NUMA TELA, OS SLIDES EM OUTRA | Duas janelas lado a lado: um fluxo em um programa de desenho, uma apresentação em outro, desalinhados |
-| 3 a 10 s | "A gente desenha projeto todos os dias e percebeu isso cedo: no papel ou no slide, o desenho leva horas, sai diferente a cada vez e o fluxo não vira apresentação." | Leva horas. Sai diferente. Não vira apresentação. | As duas janelas fechando |
-| 10 a 21 s | "Por isso a NID desenha e apresenta na mesma tela. Os cinco templates do método já estão dentro, na ordem: canvas de dor, mapa de solução, fluxo de arquitetura, tabela de valor, roteiro de proposta. Preencheu, apertou apresentar, e a proposta sai na ordem do método. O investimento só aparece depois do valor." | 5 templates · mesma tela · apresenta na ordem do método | NIDflow: os cinco templates preenchidos com o caso; o botão de apresentação; o modo de apresentação passando dor → solução → arquitetura → valor → investimento |
+| 0 a 3 s | "O desenho fica em uma ferramenta. Os slides, em outra. E a apresentação não conversa com o desenho." | O DESENHO NUMA TELA, OS SLIDES EM OUTRA | Henrique de frente para a câmera; arte estática 1: duas janelas lado a lado, um fluxo em um programa de desenho e uma apresentação em outro, desalinhados |
+| 3 a 10 s | "A gente desenha projeto todos os dias e percebeu isso cedo: no papel ou no slide, o desenho leva horas, sai diferente a cada vez e o fluxo não vira apresentação." | Leva horas. Sai diferente. Não vira apresentação. | Arte estática 1 saindo de cena; Henrique em quadro |
+| 10 a 21 s | "Por isso a NID desenha e apresenta na mesma tela. Os cinco templates do método já estão dentro, na ordem: canvas de dor, mapa de solução, fluxo de arquitetura, tabela de valor, roteiro de proposta. Preencheu, apertou apresentar, e a proposta sai na ordem do método. O investimento só aparece depois do valor." | 5 templates · mesma tela · apresenta na ordem do método | Arte estática 2: os cinco templates do playbook em sequência; arte estática 3: a ordem dor → solução → arquitetura → valor → investimento |
 | 21 a 26 s | "Tudo começa pelo método, e o método está no playbook. R$ 29,90, 7 dias de garantia. Quem compra recebe a apresentação da ferramenta nos dias seguintes." | Playbook NID · R$ 29,90 · a ferramenta chega depois | Capa do playbook |
 | 26 a 28 s | "Comenta DESENHO que a gente manda o link no seu direct." | Comente DESENHO | Logo NID |
 
@@ -723,7 +724,8 @@ Na sexta, o frame 2 é substituído por uma caixa de perguntas: "Manda a sua dú
   #vendasb2b #propostacomercial #metodonid
 
 - **Palavra-chave**: DESENHO.
-- **Dependência**: gravação com a versão do NIDflow que tenha os cinco templates (item B-04 do backlog do `nidflow`). Sem B-04, este post é substituído pelo estático C02 com a legenda do Dia 1 até a ferramenta estar pronta.
+- **Versão de tela**: só quando B-02, B-04 e B-06 do `produtos/nidflow/04-backlog-tecnico.md` estiverem aceitos (regra 0.4 de `02-criativos.md`). Mesma fala e mesmo texto na tela; as artes estáticas dão lugar ao NIDflow (os cinco templates preenchidos com o caso; o botão de apresentação; o modo de apresentação passando dor → solução → arquitetura → valor → investimento). Nenhuma gravação de tela antes disso, nem parcial.
+- **Dependência da frase "Quem compra recebe a apresentação da ferramenta nos dias seguintes"** (fala de 21 a 26 s e legenda): só vai ao ar com `nidflow_venda_liberada = sim` (`automacoes/03-oferta-nidflow-d7.md`). Enquanto a flag estiver em `nao`, a versão sem tela usa "Quem compra recebe a apresentação da ferramenta assim que ela estiver liberada para compradores do playbook", na fala e na legenda. A versão de tela, quando existir, já encontra a flag ligada e mantém a frase original.
 
 ### Dia 20 (sexta) · Instagram Reel · C13 "Não é curso de vendas" (às 12h) + estático C14 (às 8h)
 

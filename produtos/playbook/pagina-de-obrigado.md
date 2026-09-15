@@ -67,7 +67,7 @@ Anotado. O playbook tem um capítulo para o seu perfil: comece pelo capítulo 10
 Anotado. O capítulo para consultores e donos de serviço mostra como vender projeto fechado em vez de hora. Comece por ele depois das quatro etapas.
 
 **Se respondeu "Para a minha própria empresa" e "Sim, eu decido"**
-Anotado. O método que você vai ler é o mesmo que a NID usa para desenhar o projeto comercial dos clientes dela: geração de demanda, automação comercial com IA e terceirização de BDR, SDR e closer. Quem desenha projeto para os clientes também pode ter o próprio projeto comercial desenhado pela NID. Nos próximos dias alguém da NID te escreve para propor uma sessão de arquitetura, sem custo. Enquanto isso, o seu playbook está logo abaixo.
+Anotado. O método que você vai ler é o mesmo que a NID usa para desenhar o projeto comercial dos clientes dela: geração de demanda, automação comercial com IA e terceirização de BDR, SDR e closer. Quem desenha projeto para os clientes também pode ter o próprio projeto comercial desenhado pela NID. Em até um dia útil, alguém da NID te escreve para propor uma sessão de arquitetura, sem custo. Enquanto isso, o seu playbook está logo abaixo.
 
 Nota de implementação: as respostas gravam `vende_para` e `decide_contratacao` com o id do pedido (evento `F2_qualificacao_respondida`). A combinação "própria" + "sim" aplica `F2-gatilho-A` e cria a tarefa humana de 24 horas. O texto de retorno aparece no lugar das perguntas, sem recarregar a página. Se a pessoa não responder, fica `nao_respondeu` e o `automacao` repete a pergunta 1 no e-mail de D+1.
 

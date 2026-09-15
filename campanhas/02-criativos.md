@@ -41,7 +41,8 @@
 
 ### 0.4 Dependências de gravação
 
-- Os V-tela precisam da versão do NIDflow com os cinco templates do método dentro (item B-04 do `produtos/nidflow/04-backlog-tecnico.md`). Enquanto B-04 não estiver no ar, gravar só o fluxo de arquitetura (que existe segundo o brief) e deixar o canvas de dor e a tabela de valor como quadros estáticos sobrepostos. Marcar no vídeo qual versão foi usada.
+- **Nenhuma gravação de tela do NIDflow antes de os itens B-02, B-04 e B-06 do `produtos/nidflow/04-backlog-tecnico.md` estarem aceitos.** B-02 remove dados internos e projetos de clientes da NID; B-04 coloca os cinco templates do método dentro da ferramenta; B-06 aplica a marca. Motivo: o HTML atual pode carregar projetos de clientes reais e não tem a identidade NID; gravar a tela hoje expõe dado de cliente e mostra uma ferramenta sem marca. Nenhuma gravação parcial (só o fluxo de arquitetura, quadros sobrepostos) substitui essa regra.
+- Os V-tela (C01, C04, C05, C09, C12) e os Reels de tela dos Dias 11 e 19 do `03-calendario-organico.md` só são gravados com B-02, B-04 e B-06 aceitos. Até lá, a rodada 1 sobe com C03 e C07 (rosto), C02, C06 e C08 (estáticos) e a variação B; C01 e C05 entram na rodada em que a tela estiver pronta (`04-plano-de-verba.md`, seção 3.4). Marcar no vídeo qual versão do NIDflow foi usada.
 - Os números do caso (150 pedidos por mês, 25 visitas perdidas, R$ 60 mil por mês) são os do capítulo 7 do playbook: a conta feita com o cliente do caso, simplificada para o exercício. Aparecem na tela como conta do cliente, nunca como resultado. Se o Henrique preferir um projeto real, `[CASO REAL A CONFIRMAR COM HENRIQUE]`, descrito por segmento e sem valor de contrato.
 
 ### 0.5 Correspondência entre o anúncio e a página de vendas
@@ -678,7 +679,7 @@ Regra de mensagem única: nenhum criativo promete coisa que não esteja nesta ta
 
   Isso não é curso de vendas.
 
-  A NID é uma consultoria de performance comercial. A gente vende para empresas geração de demanda, automação comercial com IA e terceirização de SDR e closer, sempre com setup e mensalidade. Toda venda nossa começa com um projeto desenhado. É o nosso trabalho há anos, em educação, saúde, indústria, varejo e serviços.
+  A NID é uma consultoria de performance comercial. A gente vende para empresas geração de demanda, automação comercial com IA e terceirização de BDR, SDR e closer, sempre com setup e mensalidade. Toda venda nossa começa com um projeto desenhado. É o nosso trabalho há anos, em educação, saúde, indústria, varejo e serviços.
 
   O Playbook NID · Desenhe para Vender é o jeito que a gente desenha esses projetos, colocado no papel: o Método NID de Desenho de Projetos em quatro etapas, com ordem fixa; cinco templates de fluxo; um caso conduzido do início ao fim; o checklist da proposta pronta. Não tem prospecção, não tem persuasão, não tem "mentalidade". Não promete resultado: exige desenhar e apresentar.
 

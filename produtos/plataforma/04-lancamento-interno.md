@@ -9,6 +9,7 @@
 | Mensagens | Todas as mensagens deste arquivo são **rascunho funcional**: argumento, ordem e CTA. A versão final é do agente `copy`; os disparos, etiquetas e condições são do agente `automacao`; os posts orgânicos da janela são do agente `trafego` |
 | Fonte da verdade | `docs/00-brief-mestre.md` (seções 5.2, 6.5, 8.1, 10.2, 10.3); `docs/01-parecer-estrategico.md` (seções 2.5, 2.6, 3.3 item 3, 5 decisão 3, 6 itens 5 e 11); `produtos/nidflow/01-plano-de-assinatura.md` (seção 8); `automacoes/05-integracoes.md` (seções 4, 7 e 8); `01-estrutura.md`; `02-catalogo.md`; `03-comunidade-e-encontros.md` |
 | Regras do coordenador aplicadas | Primeira abertura só com base de pelo menos 1.500 compradores; opção B de janelas trimestrais com critério de escolha; parcelamento definido aqui, coerente com a Cakto; escassez só verdadeira; metas como hipótese |
+| Códigos de mensagem | Todos os códigos de mensagem deste arquivo levam o prefixo `PN-` (Plataforma NID), conforme a convenção de `automacoes/05-integracoes.md`, seção 8.4: nenhum código repete o de outro fluxo (`RC-` é recuperação de checkout, `LA` a `LT` sem prefixo não existem). É o mesmo código que o plano de verba reserva para a Plataforma (`F2-PN`). O `utm_content` é o código em minúsculas (por exemplo `pn-ld0`) |
 
 Como ler este arquivo: a seção 2 diz quando a primeira janela pode abrir; a seção 3 define a oferta; a seção 4 é a linha do tempo; a seção 5 lista as mensagens por dia e canal; as seções 6 a 9 tratam dos segmentos da base, das metas, de quem não compra e das reaberturas.
 
@@ -137,9 +138,9 @@ Três semanas, um tema por semana, no arco do método. Nenhuma peça vende; toda
 
 | Semana | Tema | Peças | Saída |
 |---|---|---|---|
-| D-21 a D-15 | **Dor**: "o que trava você depois do playbook". E-mail com as cinco situações que mais aparecem quando alguém aplica o método sozinho (cliente sem número, tese recusada, projeto grande, comitê, renovação) e uma pergunta de um clique: "qual destas é a sua?" | E-mail LA1; 3 posts orgânicos (um por dia útil alternado) com uma situação cada e CTA "responde nos comentários qual é a sua"; agente de IA registra a resposta | Campo `situacao_trava` na base; `F2-interesse-plataforma` para quem responde que quer saber quando abre |
-| D-14 a D-8 | **Solução**: "o que a NID faz quando isso acontece". E-mail com a revisão por escrito de um projeto real (por segmento, com autorização) no formato "Projeto da semana", mostrando como a NID devolve um projeto melhor | E-mail LA2; 3 posts orgânicos com um trecho da revisão cada; um vídeo curto do Henrique como sócio da NID revisando uma página no NIDflow | Mais respostas de interesse; base entende o formato "projeto na mesa" |
-| D-7 (fim do aquecimento) | Transição para a pré-abertura | LA3 é substituído por LP1 (abaixo) | |
+| D-21 a D-15 | **Dor**: "o que trava você depois do playbook". E-mail com as cinco situações que mais aparecem quando alguém aplica o método sozinho (cliente sem número, tese recusada, projeto grande, comitê, renovação) e uma pergunta de um clique: "qual destas é a sua?" | E-mail PN-LA1; 3 posts orgânicos (um por dia útil alternado) com uma situação cada e CTA "responde nos comentários qual é a sua"; agente de IA registra a resposta | Campo `situacao_trava` na base; `F2-interesse-plataforma` para quem responde que quer saber quando abre |
+| D-14 a D-8 | **Solução**: "o que a NID faz quando isso acontece". E-mail com a revisão por escrito de um projeto real (por segmento, com autorização) no formato "Projeto da semana", mostrando como a NID devolve um projeto melhor | E-mail PN-LA2; 3 posts orgânicos com um trecho da revisão cada; um vídeo curto do Henrique como sócio da NID revisando uma página no NIDflow | Mais respostas de interesse; base entende o formato "projeto na mesa" |
+| D-7 (fim do aquecimento) | Transição para a pré-abertura | PN-LA3 é substituído por PN-LP1 (abaixo) | |
 
 Quem não comprou o playbook (`F2-lead-direct`, `F2-lead-whatsapp`, `F2-checkout-abandonado`) recebe só o orgânico e o agente. O caminho para esse contato começa pelo playbook, e o agente responde exatamente isso quando perguntado sobre a Plataforma. Decisão deste arquivo (o brief fala em "compradores e leads"; a sequência por e-mail e WhatsApp vai a compradores).
 
@@ -148,7 +149,7 @@ Quem não comprou o playbook (`F2-lead-direct`, `F2-lead-whatsapp`, `F2-checkout
 Gravado dentro do ambiente, com a tela do ambiente e do NIDflow, sem estúdio. O `copy` finaliza o texto; a estrutura é esta:
 
 1. **Apresentação (15 segundos)**: "Sou o Henrique, sócio da NID. Este é o ambiente em que a gente pratica o método com quem já leu o playbook."
-2. **Dor (45 segundos)**: as cinco situações do aquecimento, em uma frase cada, nas palavras da base (usar as respostas reais de LA1, sem nome).
+2. **Dor (45 segundos)**: as cinco situações do aquecimento, em uma frase cada, nas palavras da base (usar as respostas reais de PN-LA1, sem nome).
 3. **Solução (30 segundos)**: "o que faltava não é mais método; é praticar com revisão. Aqui todo projeto passa pela mesa antes de ir para o cliente."
 4. **Arquitetura (3 minutos, tela)**: navegar pelo ambiente na ordem do menu: Início (comece por aqui), Trilhas (os três inclusos publicados e o que vem por trimestre), Comunidade (um post real de "Projetos na mesa" com a resposta da NID), Agenda (o calendário do trimestre com as datas), Biblioteca, NIDflow (o mesmo login). Uma frase por área. Mostrar a vitrine do A-01 e dizer que está incluso nesta janela.
 5. **Valor (1 minuto)**: "R$ 980 por ano, Pix ou em até 12 vezes no cartão. Dentro disso estão o NIDflow, que sozinho é R$ 358,80 por ano, as aulas do mini curso e sete minicursos. Um projeto perdido por proposta mal desenhada custa mais do que isso. 7 dias de garantia."
@@ -160,31 +161,31 @@ O vídeo não usa a imagem do Henrique como argumento ("aprenda comigo"). Ele mo
 
 | Dia | O que acontece |
 |---|---|
-| D-7 (terça) | E-mail LP1 com a data de abertura e de fechamento, o vídeo da oferta e a página no ar em modo "abre dia [data]" (com a oferta completa visível e o botão "Avise-me quando abrir", que aplica `F2-interesse-plataforma`). Vitrine na área de membros de quem tem playbook ou mini curso |
-| D-5 (quinta) | E-mail LP2: o catálogo e o calendário (o que está publicado, o que vem por trimestre, as datas reais do primeiro trimestre). Post orgânico com a agenda |
+| D-7 (terça) | E-mail PN-LP1 com a data de abertura e de fechamento, o vídeo da oferta e a página no ar em modo "abre dia [data]" (com a oferta completa visível e o botão "Avise-me quando abrir", que aplica `F2-interesse-plataforma`). Vitrine na área de membros de quem tem playbook ou mini curso |
+| D-5 (quinta) | E-mail PN-LP2: o catálogo e o calendário (o que está publicado, o que vem por trimestre, as datas reais do primeiro trimestre). Post orgânico com a agenda |
 | D-3 (sábado) | Sem e-mail. Post orgânico: uma pergunta de "Dúvidas do método" respondida pela NID |
-| D-1 (segunda) | E-mail LP3: "amanhã às 10h". O que é a condição de fundador, o bônus da janela e a regra de fechamento. WhatsApp LP3w para quem autorizou: uma linha com a hora e o link da página |
+| D-1 (segunda) | E-mail PN-LP3: "amanhã às 10h". O que é a condição de fundador, o bônus da janela e a regra de fechamento. WhatsApp PN-LP3w para quem autorizou: uma linha com a hora e o link da página |
 | D-1, 18h | Agente de IA recebe a base de respostas da Plataforma (seção 6.3); pessoa da moderação de prontidão |
 
 ### 4.5 Abertura (D0 a D+6)
 
 | Dia | O que acontece |
 |---|---|
-| D0 (terça), 9h | Link do checkout enviado uma hora antes para quem tem `F2-interesse-plataforma` (e-mail LD0i). É um acesso antecipado real: o checkout já está aberto |
-| D0, 10h | E-mail LD0 para toda a base elegível; WhatsApp LD0w às 10h15; página em modo "aberto"; vitrine na área de membros troca para "aberto até [data]"; evento `F2_plataforma_janela_aberta` |
-| D+1 (quarta) | E-mail LD1: a arquitetura completa (o que está incluso, item por item, com o que cada item significa para quem vende) e a conta do valor |
-| D+2 (quinta), 19h | **Mesa aberta**: uma Mesa de Projetos ao vivo, aberta a toda a base, com 3 projetos de compradores que se inscreveram pelo formulário (enviado em LD1). Henrique conduz como sócio da NID. Nos últimos 5 minutos, a única menção de venda: a janela fecha segunda às 23h59, o link está na página. Gravação disponível por 48 horas para a base (até D+4, 23h59), depois só dentro do ambiente. E-mail LD2 pela manhã com o lembrete e o link |
-| D+3 (sexta) | E-mail LD3: a gravação da Mesa aberta (48 horas) e as perguntas mais feitas ao agente e no direct nos três primeiros dias, respondidas (as objeções da seção 6.2) |
+| D0 (terça), 9h | Link do checkout enviado uma hora antes para quem tem `F2-interesse-plataforma` (e-mail PN-LD0i). É um acesso antecipado real: o checkout já está aberto |
+| D0, 10h | E-mail PN-LD0 para toda a base elegível; WhatsApp PN-LD0w às 10h15; página em modo "aberto"; vitrine na área de membros troca para "aberto até [data]"; evento `F2_plataforma_janela_aberta` |
+| D+1 (quarta) | E-mail PN-LD1: a arquitetura completa (o que está incluso, item por item, com o que cada item significa para quem vende) e a conta do valor |
+| D+2 (quinta), 19h | **Mesa aberta**: uma Mesa de Projetos ao vivo, aberta a toda a base, com 3 projetos de compradores que se inscreveram pelo formulário (enviado em PN-LD1). Henrique conduz como sócio da NID. Nos últimos 5 minutos, a única menção de venda: a janela fecha segunda às 23h59, o link está na página. Gravação disponível por 48 horas para a base (até D+4, 23h59), depois só dentro do ambiente. E-mail PN-LD2 pela manhã com o lembrete e o link |
+| D+3 (sexta) | E-mail PN-LD3: a gravação da Mesa aberta (48 horas) e as perguntas mais feitas ao agente e no direct nos três primeiros dias, respondidas (as objeções da seção 6.2) |
 | D+4 (sábado) | Sem e-mail. Post orgânico com um trecho da Mesa aberta |
-| D+5 (domingo) | E-mail LD5, 10h: "para quem é e para quem não é" (os quatro perfis do ICP e o que cada um faz no ambiente; quem não deve entrar: quem ainda não aplicou o playbook em uma proposta real). Fecha com "a janela fecha amanhã às 23h59". WhatsApp LD5w, 10h15, uma linha com o fato |
-| D+6 (segunda) | E-mail LD6a, 9h: "hoje é o último dia": resumo da oferta em dez linhas, o bônus, a condição de fundador, a garantia, a hora do fechamento. E-mail LD6b, 18h: "fecha às 23h59": só o fato, o link e uma pergunta ("qual proposta você quer levar para a primeira Mesa?"). WhatsApp LD6w, 20h, uma linha. Contagem regressiva na página ligada desde D+5 |
+| D+5 (domingo) | E-mail PN-LD5, 10h: "para quem é e para quem não é" (os quatro perfis do ICP e o que cada um faz no ambiente; quem não deve entrar: quem ainda não aplicou o playbook em uma proposta real). Fecha com "a janela fecha amanhã às 23h59". WhatsApp PN-LD5w, 10h15, uma linha com o fato |
+| D+6 (segunda) | E-mail PN-LD6a, 9h: "hoje é o último dia": resumo da oferta em dez linhas, o bônus, a condição de fundador, a garantia, a hora do fechamento. E-mail PN-LD6b, 18h: "fecha às 23h59": só o fato, o link e uma pergunta ("qual proposta você quer levar para a primeira Mesa?"). WhatsApp PN-LD6w, 20h, uma linha. Contagem regressiva na página ligada desde D+5 |
 | D+6, 23h59 | Checkout fechado pelo `automacao` (link desligado, página em modo "fechado"); Pix gerado antes de 23h59 tem até 1 hora para ser pago (regra da plataforma de checkout, a confirmar); evento `F2_plataforma_janela_fechada` |
 
 ### 4.6 Pós-janela (D+7 a D+21)
 
 | Dia | Quem comprou | Quem não comprou |
 |---|---|---|
-| D+7 (terça) | Já está no onboarding de `01-estrutura.md`, seção 5 (o acesso é imediato desde a compra). E-mail da NID: "a turma começa quinta" com o link da Abertura de turma e a instrução de colocar o projeto na mesa antes | E-mail LF1: "a janela fechou", a próxima abertura (mês, se decidido; senão, "avisada com 30 dias de antecedência"), o que continua disponível (o playbook, o mini curso, o NIDflow mensal), sem pedir desculpa e sem "última chance". Etiqueta `F2-plataforma-nao-comprou-j1` |
+| D+7 (terça) | Já está no onboarding de `01-estrutura.md`, seção 5 (o acesso é imediato desde a compra). E-mail da NID: "a turma começa quinta" com o link da Abertura de turma e a instrução de colocar o projeto na mesa antes | E-mail PN-LF1: "a janela fechou", a próxima abertura (mês, se decidido; senão, "avisada com 30 dias de antecedência"), o que continua disponível (o playbook, o mini curso, o NIDflow mensal), sem pedir desculpa e sem "última chance". Etiqueta `F2-plataforma-nao-comprou-j1` |
 | D+9 (quinta), 19h | Abertura de turma (`03-comunidade-e-encontros.md`, seção 6.5) | Nada |
 | D+14 | Primeira Mesa de Projetos com a turma nova | Volta ao conteúdo contínuo. Quem não assina o NIDflow e já passou pela sequência D+7 recebe, no conteúdo contínuo, no máximo uma menção mensal ao NIDflow (regra de `automacoes/03-oferta-nidflow-d7.md`, seção 1.2) |
 | D+21 | Marco M2 e M3 acompanhados (`05-retencao-e-renovacao.md`) | Nada |
@@ -196,7 +197,7 @@ O vídeo não usa a imagem do Henrique como argumento ("aprenda comigo"). Ele mo
 Regras que valem para todas:
 
 - Remetente "NID". Henrique aparece só no vídeo e na Mesa aberta, como sócio da NID.
-- Um e-mail por dia no máximo; WhatsApp em quatro momentos (LP3w, LD0w, LD5w, LD6w), só para quem autorizou e sem `F2-optout-whatsapp`.
+- Um e-mail por dia no máximo; WhatsApp em quatro momentos (PN-LP3w, PN-LD0w, PN-LD5w, PN-LD6w), só para quem autorizou e sem `F2-optout-whatsapp`.
 - Um único link e um único CTA por mensagem. CTA oficial da Plataforma: **"Quero praticar o método com a NID por R$ 980 por ano"** (proposta deste arquivo; o `copy` pode ajustar mantendo o padrão "o que acontece depois do clique"). Nos toques de aquecimento o CTA é a pergunta ou "Quero ser avisado da abertura".
 - UTMs: `utm_source=email|whatsapp`, `utm_medium=sequencia`, `utm_campaign=F2-plataforma-lancamento-AAAAMM`, `utm_content=` código da mensagem em minúsculas.
 - Nenhuma mensagem usa "vagas", "última chance", "promoção", "desconto", "mentoria", "curso", "comunidade do Henrique". "Plataforma NID" e "o ambiente da NID" sempre.
@@ -204,27 +205,27 @@ Regras que valem para todas:
 
 | Código | Dia e hora (Brasília) | Canal | Para quem | Objetivo | Conteúdo funcional | CTA |
 |---|---|---|---|---|---|---|
-| LA1 | D-21, terça, 10h | E-mail | Base elegível (seção 6.1) | Nomear a dor | Assunto "O que trava você depois do playbook?". Abre com a frase da base ("cada proposta nova traz uma situação que o playbook não cobre"). As cinco situações, uma linha cada. Pergunta de um clique: qual é a sua. Sem menção à Plataforma | Cinco botões de resposta |
-| LA2 | D-14, terça, 10h | E-mail | Base elegível | Mostrar o formato "projeto na mesa" | Assunto "Um projeto na mesa, página por página". A revisão por escrito de um projeto real por segmento: a dor (o que faltava), a solução (o que mudou), o desenho (o bloco que não tinha marco), o valor (a régua errada). Fecha: "é assim que a NID revisa os projetos dela e é assim que vai revisar o seu". Botão "Quero ser avisado quando o ambiente abrir" (aplica `F2-interesse-plataforma`) | "Quero ser avisado da abertura" |
-| LP1 | D-7, terça, 10h | E-mail | Base elegível | Anunciar a janela | Assunto "A Plataforma NID abre dia [data]". Vídeo da oferta (imagem com link). As datas de abertura e de fechamento por extenso. O que está incluso em sete linhas. R$ 980 por ano, Pix ou até 12 vezes. Condição de fundador em uma frase. Link para a página em modo "abre dia [data]" | "Ver o ambiente e a oferta" |
-| LP2 | D-5, quinta, 10h | E-mail | Base elegível | Arquitetura: catálogo e calendário | Assunto "O que tem dentro e quando acontece". Os três inclusos publicados (nome e promessa), os quatro que vêm por trimestre, o A-01 incluso nesta janela, o calendário do primeiro trimestre com as datas reais, os cinco espaços da comunidade e a regra das 2 dias úteis | "Ver o calendário do trimestre" |
-| LP3 | D-1, segunda, 10h | E-mail | Base elegível | Regras da janela | Assunto "Amanhã às 10h". A janela abre terça às 10h e fecha segunda às 23h59. Condição de fundador (as três coisas). Bônus da janela. Turma começa quinta, dia [data]. Garantia de 7 dias. Quem tem `F2-interesse-plataforma` recebe o link às 9h | "Quero ser avisado da abertura" (para quem ainda não está na lista) |
-| LP3w | D-1, segunda, 10h15 | WhatsApp (modelo, marketing) | Base elegível com autorização | Lembrete | "Aqui é a NID. Amanhã às 10h abre a Plataforma NID, o ambiente em que a gente pratica o método com quem já leu o playbook. Fecha segunda, dia [data], às 23h59. A página com tudo: {link}." | Link da página |
-| LD0i | D0, terça, 9h | E-mail | `F2-interesse-plataforma` | Acesso antecipado real | Assunto "Seu link, uma hora antes". Uma frase de agradecimento pela resposta, o link do checkout, o resumo em cinco linhas | CTA oficial |
-| LD0 | D0, terça, 10h | E-mail | Base elegível | Abrir | Assunto "Aberto: a Plataforma NID". Arco completo em versão curta: dor (a frase da base), solução (o ambiente), arquitetura (sete itens, um por linha, com o que cada um significa para quem vende), valor (R$ 980 por ano, a conta com o NIDflow e o mini curso dentro, um projeto perdido custa mais), janela (fecha segunda às 23h59), fundador, bônus, garantia. Variante para assinante do NIDflow: parágrafo "sua mensal encerra no ciclo seguinte, sem cobrança dupla" | CTA oficial |
-| LD0w | D0, terça, 10h15 | WhatsApp (modelo, marketing) | Base elegível com autorização | Abrir | "Aqui é a NID. A Plataforma NID está aberta até segunda, dia [data], às 23h59. R$ 980 por ano, Pix ou em até 12 vezes, com o NIDflow incluso e 7 dias de garantia: {link}." | Link do checkout |
-| LD1 | D+1, quarta, 10h | E-mail | Base elegível sem compra | Arquitetura e valor em detalhe | Assunto "O que está incluso, item por item". Os sete itens da seção 3.1 com "o que isso significa para você" em cada um. A conta: NIDflow R$ 358,80 + mini curso R$ 147 já dentro, mais sete minicursos, 40 encontros, comunidade. Convite para a Mesa aberta de quinta às 19h com o formulário de inscrição de projeto (3 vagas de apresentação, o que é verdade: 3 projetos por Mesa aberta) | CTA oficial; link secundário do formulário da Mesa aberta |
-| LD2 | D+2, quinta, 10h | E-mail | Base elegível sem compra | Lembrete da Mesa aberta | Assunto "Hoje às 19h: três projetos na mesa, ao vivo". O que vai acontecer (Henrique, sócio da NID, revisa três projetos de compradores do playbook, página por página). Link do ao vivo. Uma linha: a janela fecha segunda | "Reservar meu lugar na Mesa aberta" |
-| LD3 | D+3, sexta, 10h | E-mail | Base elegível sem compra | Objeções | Assunto "A gravação da Mesa e as cinco perguntas mais feitas". Link da gravação (disponível até domingo às 23h59). As cinco objeções da seção 6.2 respondidas em um parágrafo cada | CTA oficial |
-| LD5 | D+5, domingo, 10h | E-mail | Base elegível sem compra | Para quem é e para quem não é | Assunto "Para quem é (e para quem ainda não é)". Os quatro perfis do ICP e o que cada um faz no ambiente no primeiro mês. Para quem ainda não é: quem não aplicou o playbook em uma proposta real (sugestão: aplicar primeiro; a próxima abertura vem). Fecha com o fato: amanhã às 23h59 | CTA oficial |
-| LD5w | D+5, domingo, 10h15 | WhatsApp (modelo, marketing) | Base elegível com autorização, sem compra | Fato do prazo | "Aqui é a NID. A Plataforma NID fecha amanhã, segunda, às 23h59. Se a sua próxima proposta merece passar pela mesa antes de ir para o cliente, o link é este: {link}." | Link do checkout |
-| LD6a | D+6, segunda, 9h | E-mail | Base elegível sem compra | Último dia | Assunto "Fecha hoje às 23h59". A oferta em dez linhas: incluso, NIDflow, bônus, fundador, R$ 980, Pix ou 12 vezes, garantia, turma quinta, próxima abertura. Nada além do fato | CTA oficial |
-| LD6b | D+6, segunda, 18h | E-mail | Base elegível sem compra | Fechamento | Assunto "Seis horas". Três linhas: o link, a hora, a pergunta "qual proposta você quer levar para a primeira Mesa, dia [data]?" | CTA oficial |
-| LD6w | D+6, segunda, 20h | WhatsApp (modelo, marketing) | Base elegível com autorização, sem compra | Fechamento | "Aqui é a NID. Última mensagem sobre a Plataforma NID nesta janela: fecha hoje às 23h59. {link}." | Link do checkout |
-| LF1 | D+7, terça, 10h | E-mail | Base elegível sem compra | Encerrar sem pressão | Assunto "A janela fechou". Fechou às 23h59 de ontem. Próxima abertura em [mês] ou "avisada com 30 dias de antecedência". O que continua: o playbook, as aulas, o NIDflow mensal (uma linha, sem oferta). Botão "Quero ser avisado da próxima abertura". Aplica `F2-plataforma-nao-comprou-j1` | "Quero ser avisado da próxima abertura" |
-| LT1 | D+7, terça, 10h | E-mail | Quem comprou | Turma | Assunto "A turma começa quinta às 19h". Link da Abertura de turma. Os três passos de "Comece por aqui" (o NIDflow ativo, o projeto na mesa, a primeira aula). Instrução: coloque o projeto na mesa antes de quinta | "Reservar meu lugar na Abertura de turma" |
+| PN-LA1 | D-21, terça, 10h | E-mail | Base elegível (seção 6.1) | Nomear a dor | Assunto "O que trava você depois do playbook?". Abre com a frase da base ("cada proposta nova traz uma situação que o playbook não cobre"). As cinco situações, uma linha cada. Pergunta de um clique: qual é a sua. Sem menção à Plataforma | Cinco botões de resposta |
+| PN-LA2 | D-14, terça, 10h | E-mail | Base elegível | Mostrar o formato "projeto na mesa" | Assunto "Um projeto na mesa, página por página". A revisão por escrito de um projeto real por segmento: a dor (o que faltava), a solução (o que mudou), o desenho (o bloco que não tinha marco), o valor (a régua errada). Fecha: "é assim que a NID revisa os projetos dela e é assim que vai revisar o seu". Botão "Quero ser avisado quando o ambiente abrir" (aplica `F2-interesse-plataforma`) | "Quero ser avisado da abertura" |
+| PN-LP1 | D-7, terça, 10h | E-mail | Base elegível | Anunciar a janela | Assunto "A Plataforma NID abre dia [data]". Vídeo da oferta (imagem com link). As datas de abertura e de fechamento por extenso. O que está incluso em sete linhas. R$ 980 por ano, Pix ou até 12 vezes. Condição de fundador em uma frase. Link para a página em modo "abre dia [data]" | "Ver o ambiente e a oferta" |
+| PN-LP2 | D-5, quinta, 10h | E-mail | Base elegível | Arquitetura: catálogo e calendário | Assunto "O que tem dentro e quando acontece". Os três inclusos publicados (nome e promessa), os quatro que vêm por trimestre, o A-01 incluso nesta janela, o calendário do primeiro trimestre com as datas reais, os cinco espaços da comunidade e a regra das 2 dias úteis | "Ver o calendário do trimestre" |
+| PN-LP3 | D-1, segunda, 10h | E-mail | Base elegível | Regras da janela | Assunto "Amanhã às 10h". A janela abre terça às 10h e fecha segunda às 23h59. Condição de fundador (as três coisas). Bônus da janela. Turma começa quinta, dia [data]. Garantia de 7 dias. Quem tem `F2-interesse-plataforma` recebe o link às 9h | "Quero ser avisado da abertura" (para quem ainda não está na lista) |
+| PN-LP3w | D-1, segunda, 10h15 | WhatsApp (modelo, marketing) | Base elegível com autorização | Lembrete | "Aqui é a NID. Amanhã às 10h abre a Plataforma NID, o ambiente em que a gente pratica o método com quem já leu o playbook. Fecha segunda, dia [data], às 23h59. A página com tudo: {link}." | Link da página |
+| PN-LD0i | D0, terça, 9h | E-mail | `F2-interesse-plataforma` | Acesso antecipado real | Assunto "Seu link, uma hora antes". Uma frase de agradecimento pela resposta, o link do checkout, o resumo em cinco linhas | CTA oficial |
+| PN-LD0 | D0, terça, 10h | E-mail | Base elegível | Abrir | Assunto "Aberto: a Plataforma NID". Arco completo em versão curta: dor (a frase da base), solução (o ambiente), arquitetura (sete itens, um por linha, com o que cada um significa para quem vende), valor (R$ 980 por ano, a conta com o NIDflow e o mini curso dentro, um projeto perdido custa mais), janela (fecha segunda às 23h59), fundador, bônus, garantia. Variante para assinante do NIDflow: parágrafo "sua mensal encerra no ciclo seguinte, sem cobrança dupla" | CTA oficial |
+| PN-LD0w | D0, terça, 10h15 | WhatsApp (modelo, marketing) | Base elegível com autorização | Abrir | "Aqui é a NID. A Plataforma NID está aberta até segunda, dia [data], às 23h59. R$ 980 por ano, Pix ou em até 12 vezes, com o NIDflow incluso e 7 dias de garantia: {link}." | Link do checkout |
+| PN-LD1 | D+1, quarta, 10h | E-mail | Base elegível sem compra | Arquitetura e valor em detalhe | Assunto "O que está incluso, item por item". Os sete itens da seção 3.1 com "o que isso significa para você" em cada um. A conta: NIDflow R$ 358,80 + mini curso R$ 147 já dentro, mais sete minicursos, 40 encontros, comunidade. Convite para a Mesa aberta de quinta às 19h com o formulário de inscrição de projeto (3 vagas de apresentação, o que é verdade: 3 projetos por Mesa aberta) | CTA oficial; link secundário do formulário da Mesa aberta |
+| PN-LD2 | D+2, quinta, 10h | E-mail | Base elegível sem compra | Lembrete da Mesa aberta | Assunto "Hoje às 19h: três projetos na mesa, ao vivo". O que vai acontecer (Henrique, sócio da NID, revisa três projetos de compradores do playbook, página por página). Link do ao vivo. Uma linha: a janela fecha segunda | "Reservar meu lugar na Mesa aberta" |
+| PN-LD3 | D+3, sexta, 10h | E-mail | Base elegível sem compra | Objeções | Assunto "A gravação da Mesa e as cinco perguntas mais feitas". Link da gravação (disponível até domingo às 23h59). As cinco objeções da seção 6.2 respondidas em um parágrafo cada | CTA oficial |
+| PN-LD5 | D+5, domingo, 10h | E-mail | Base elegível sem compra | Para quem é e para quem não é | Assunto "Para quem é (e para quem ainda não é)". Os quatro perfis do ICP e o que cada um faz no ambiente no primeiro mês. Para quem ainda não é: quem não aplicou o playbook em uma proposta real (sugestão: aplicar primeiro; a próxima abertura vem). Fecha com o fato: amanhã às 23h59 | CTA oficial |
+| PN-LD5w | D+5, domingo, 10h15 | WhatsApp (modelo, marketing) | Base elegível com autorização, sem compra | Fato do prazo | "Aqui é a NID. A Plataforma NID fecha amanhã, segunda, às 23h59. Se a sua próxima proposta merece passar pela mesa antes de ir para o cliente, o link é este: {link}." | Link do checkout |
+| PN-LD6a | D+6, segunda, 9h | E-mail | Base elegível sem compra | Último dia | Assunto "Fecha hoje às 23h59". A oferta em dez linhas: incluso, NIDflow, bônus, fundador, R$ 980, Pix ou 12 vezes, garantia, turma quinta, próxima abertura. Nada além do fato | CTA oficial |
+| PN-LD6b | D+6, segunda, 18h | E-mail | Base elegível sem compra | Fechamento | Assunto "Seis horas". Três linhas: o link, a hora, a pergunta "qual proposta você quer levar para a primeira Mesa, dia [data]?" | CTA oficial |
+| PN-LD6w | D+6, segunda, 20h | WhatsApp (modelo, marketing) | Base elegível com autorização, sem compra | Fechamento | "Aqui é a NID. Última mensagem sobre a Plataforma NID nesta janela: fecha hoje às 23h59. {link}." | Link do checkout |
+| PN-LF1 | D+7, terça, 10h | E-mail | Base elegível sem compra | Encerrar sem pressão | Assunto "A janela fechou". Fechou às 23h59 de ontem. Próxima abertura em [mês] ou "avisada com 30 dias de antecedência". O que continua: o playbook, as aulas, o NIDflow mensal (uma linha, sem oferta). Botão "Quero ser avisado da próxima abertura". Aplica `F2-plataforma-nao-comprou-j1` | "Quero ser avisado da próxima abertura" |
+| PN-LT1 | D+7, terça, 10h | E-mail | Quem comprou | Turma | Assunto "A turma começa quinta às 19h". Link da Abertura de turma. Os três passos de "Comece por aqui" (o NIDflow ativo, o projeto na mesa, a primeira aula). Instrução: coloque o projeto na mesa antes de quinta | "Reservar meu lugar na Abertura de turma" |
 
-Posts orgânicos da janela (D-21 a D+6): calendário e criativos são do `trafego`, dentro do plano de conteúdo de `campanhas/`, com CTA "comente [palavra-chave]" que aciona o agente. Palavra-chave sugerida: `F2-kw-mesa`. O agente responde com a página e faz as perguntas de qualificação (Gatilho A continua valendo durante a janela).
+Posts orgânicos da janela (D-21 a D+6): calendário e criativos são do `trafego`, dentro do plano de conteúdo de `campanhas/`, com CTA "comente [palavra-chave]" que aciona o agente. Palavra-chave: `MESA` (`utm_term=F2-kw-mesa`), entregue ao `automacao` e registrada na seção 3.1 de `automacoes/01-agente-direct-whatsapp.md`; só ativa no Sprint 6, e nenhum post a usa antes disso. O agente responde com a página e faz as perguntas de qualificação (Gatilho A continua valendo durante a janela).
 
 ---
 
@@ -235,17 +236,17 @@ Posts orgânicos da janela (D-21 a D+6): calendário e criativos são do `trafeg
 | Segmento | Etiquetas | Recebe | Variação |
 |---|---|---|---|
 | Comprador do playbook ou do mini curso, sem Plataforma | `F2-comprador-playbook` ou `F2-minicurso`; sem `F2-plataforma-ativo`, sem `F2-reembolso` | Tudo | Padrão |
-| Assinante do NIDflow mensal | mais `F2-nidflow-ativo` | Tudo | Parágrafo "sem cobrança dupla" em LD0 e na página; a conta do valor cita "o NIDflow que você já usa está dentro" |
-| Ex-assinante do NIDflow (leitura ou cancelado) | `F2-nidflow-leitura` ou `F2-nidflow-cancelado` | Tudo | LD1 cita que a conta do NIDflow reativa com os projetos (se dentro de 90 dias) |
-| Interessado antes da janela | `F2-interesse-plataforma` | Tudo, mais LD0i às 9h | Acesso antecipado de uma hora |
+| Assinante do NIDflow mensal | mais `F2-nidflow-ativo` | Tudo | Parágrafo "sem cobrança dupla" em PN-LD0 e na página; a conta do valor cita "o NIDflow que você já usa está dentro" |
+| Ex-assinante do NIDflow (leitura ou cancelado) | `F2-nidflow-leitura` ou `F2-nidflow-cancelado` | Tudo | PN-LD1 cita que a conta do NIDflow reativa com os projetos (se dentro de 90 dias) |
+| Interessado antes da janela | `F2-interesse-plataforma` | Tudo, mais PN-LD0i às 9h | Acesso antecipado de uma hora |
 | Decisor (Gatilho A) | `F2-gatilho-A` | Tudo | Nenhuma variação automática; o humano do Funil 1 vê no contexto que a pessoa está na janela e não sobrepõe o convite nos 7 dias (regra "uma mensagem humana por dia por contato") |
 | Cliente do Funil 1 | `F2-funil1-cliente` | Nada automático | O humano do Funil 1 decide se convida (decisão deste arquivo: cliente da consultoria não recebe lançamento automático) |
 | Conversa humana aberta | `F2-humano` | E-mails sim; WhatsApp não | Regra geral do orquestrador |
 | Opt-out | `F2-optout-email` ou `F2-optout-whatsapp` | Só o canal permitido | |
 | Lead sem compra | `F2-lead-direct`, `F2-lead-whatsapp`, `F2-checkout-abandonado` | Nada por e-mail ou WhatsApp | Orgânico e agente; o caminho começa pelo playbook |
-| Comprou durante a janela | `F2-plataforma-ativo` | Sai da sequência no ato; recebe LT1 | |
+| Comprou durante a janela | `F2-plataforma-ativo` | Sai da sequência no ato; recebe PN-LT1 | |
 
-### 6.2 As cinco objeções (base para LD3, para a página e para o agente)
+### 6.2 As cinco objeções (base para PN-LD3, para a página e para o agente)
 
 | Objeção (nas palavras da base) | Resposta funcional (arco) |
 |---|---|
@@ -275,8 +276,8 @@ Tudo abaixo é hipótese até a primeira janela produzir dados. Nenhuma peça ci
 
 | Indicador | Pessimista | Base | Otimista | Como medir |
 |---|---|---|---|---|
-| Abertura de LA1 | 30% | 40% | 50% | E-mail |
-| Respostas à pergunta de LA1 | 5% da base | 10% | 15% | Campo `situacao_trava` |
+| Abertura de PN-LA1 | 30% | 40% | 50% | E-mail |
+| Respostas à pergunta de PN-LA1 | 5% da base | 10% | 15% | Campo `situacao_trava` |
 | `F2-interesse-plataforma` antes de D0 | 6% da base (90) | 12% (180) | 20% (300) | Etiqueta |
 | Visitas à página durante a janela | 20% da base | 30% | 40% | Página |
 | Conversão da janela (compras sobre a base elegível) | 1,5% (23) | 3% (45) | 5% (75) | `F2_plataforma_compra` |
@@ -294,8 +295,8 @@ Critérios de revisão depois da janela 1 (para o coordenador): se a conversão 
 
 ## 8. Quem não compra
 
-1. Recebe LF1 em D+7, sem pressão, com o botão de aviso da próxima abertura.
-2. Recebe a etiqueta `F2-plataforma-nao-comprou-j[n]` (com o número da janela). Serve para medir quantas janelas uma pessoa vê antes de comprar e para não repetir o aquecimento inteiro a quem já viu (na janela seguinte, LA1 é substituída por uma versão curta).
+1. Recebe PN-LF1 em D+7, sem pressão, com o botão de aviso da próxima abertura.
+2. Recebe a etiqueta `F2-plataforma-nao-comprou-j[n]` (com o número da janela). Serve para medir quantas janelas uma pessoa vê antes de comprar e para não repetir o aquecimento inteiro a quem já viu (na janela seguinte, PN-LA1 é substituída por uma versão curta).
 3. Continua na esteira: conteúdo contínuo, NIDflow mensal (uma menção por mês no máximo se não assina), Gatilho A e Gatilho B normalmente.
 4. Não recebe nenhuma mensagem sobre a Plataforma até D-21 da janela seguinte. A única exceção: quem clicar em "Quero ser avisado da próxima abertura" recebe o aviso da data assim que ela existir.
 5. Se perguntar ao agente, recebe a data da próxima abertura (se decidida) e o convite para a lista.
@@ -338,7 +339,7 @@ Os quatro critérios precisam apontar para B para a opção B ser adotada. Caso 
 6. Ex-assinante (`F2-plataforma-expirada`) reativa a qualquer momento por "Minha conta", sem esperar janela. Motivo: a janela existe para receber quem não conhece o ambiente; quem já foi assinante não precisa de Abertura de turma. Renovação de assinante ativo também independe de janela.
 7. Nenhuma reabertura extraordinária ("por pedido", "24 horas a mais"). Se um problema técnico impedir compras durante a janela, a única correção permitida é estender o fechamento pelo mesmo número de horas do problema, avisando a base do motivo.
 8. Cada janela tem o próprio `utm_campaign` (`F2-plataforma-lancamento-AAAAMM`) e a própria etiqueta de não compra (`F2-plataforma-nao-comprou-j[n]`).
-9. Quem já viu uma janela recebe o aquecimento curto (LA2 e a pré-abertura), não o completo.
+9. Quem já viu uma janela recebe o aquecimento curto (PN-LA2 e a pré-abertura), não o completo.
 
 ---
 
@@ -376,6 +377,6 @@ Os quatro critérios precisam apontar para B para a opção B ser adotada. Caso 
 - [ ] Dezenove mensagens com código, dia, canal, público, objetivo, conteúdo funcional e CTA, entregues ao `copy`.
 - [ ] Checkout abre e fecha na hora publicada, com teste feito pelo `automacao`.
 - [ ] Metas registradas como hipótese e ausentes de toda peça.
-- [ ] Quem não compra recebe LF1 e a etiqueta da janela, e nada mais até a próxima.
+- [ ] Quem não compra recebe PN-LF1 e a etiqueta da janela, e nada mais até a próxima.
 - [ ] Critério de escolha entre opção A e B aplicado 30 dias após a janela 1 e registrado.
 - [ ] Nenhuma ocorrência do léxico proibido; nenhum travessão; preços como `R$ 980`.

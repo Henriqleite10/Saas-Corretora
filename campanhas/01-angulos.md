@@ -19,7 +19,7 @@ Regras que valem para todos os ângulos:
 
 1. A promessa é sempre o método: desenhar e apresentar projetos que o cliente entende, valoriza e aprova. Nunca renda, nunca percentual de conversão, nunca "vire closer em 7 dias".
 2. O mecanismo é sempre o Método NID de Desenho de Projetos, no arco Dor, Solução, Arquitetura, Valor, e a regra que o público reconhece na hora: o preço nunca aparece antes do valor.
-3. A prova permitida é a prática da NID: a consultoria vende projetos com setup e mensalidade para empresas de educação, saúde, indústria, varejo, serviços, telecomunicações e associações setoriais. Depoimentos e números de compradores entram só quando existirem, nos placeholders `[DEPOIMENTO REAL]` e `[NÚMERO REAL]`.
+3. A prova permitida é a prática da NID: a consultoria vende projetos com setup e mensalidade para empresas de educação, saúde, indústria, varejo e serviços (os cinco segmentos do brief, seção 10.6; outros só com autorização do Henrique). Depoimentos e números de compradores entram só quando existirem, nos placeholders `[DEPOIMENTO REAL]` e `[NÚMERO REAL]`.
 4. Os números do caso conduzido do playbook (capítulo 7, manutenção predial) podem aparecer na tela como a conta feita com o cliente do caso. Nunca como resultado obtido ou prometido. Se o Henrique preferir um projeto real da NID no lugar do caso, o criativo é regravado com o segmento do cliente e sem valores de contrato (`[CASO REAL A CONFIRMAR COM HENRIQUE]`).
 5. O inimigo comum é sempre um dos três do brief: a proposta-orçamento, o pitch de funcionalidade e o "vou pensar". Nunca um concorrente, um curso ou uma ferramenta.
 6. Henrique aparece como "Henrique Leite, sócio da NID", mostrando como a NID desenha projeto. Nunca "aprenda comigo".

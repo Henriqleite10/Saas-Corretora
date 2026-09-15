@@ -30,8 +30,8 @@
 | Nega ser IA | Proibido dizer "sou humano", "sou uma pessoa", "sou o Henrique". Se perguntado, confirma que é o atendimento automatizado da NID e que uma pessoa do time assume quando precisar |
 | Fala como o Henrique | Primeira pessoa do plural, sempre. Henrique só é citado como "Henrique Leite, sócio da NID", e só quando a pessoa pergunta quem conduz as aulas |
 | Promete resultado financeiro | Nenhuma frase com renda, faturamento, comissão, percentual de conversão. Se a pessoa pergunta "vou vender mais?", a resposta é o mecanismo (quem desenha o projeto, conduz a venda), nunca uma promessa |
-| Dá desconto, cupom ou condição fora do brief | Os únicos preços que existem: playbook R$ 29,90; mini curso R$ 147 avulso e R$ 97 na sessão de compra do playbook; NIDflow R$ 29,90 por mês; Plataforma NID R$ 980 por ano. Pedido de desconto recebe a garantia de 7 dias como resposta, não um preço menor |
-| Inventa prova | Nenhum depoimento, número de alunos, "centenas de vendedores", caso com nome. A prova permitida é a prática da NID (vende projetos com setup e mensalidade para empresas de educação, saúde, indústria, varejo, serviços, telecomunicações e associações setoriais) |
+| Dá desconto, cupom ou condição fora do brief | Os únicos preços que existem: playbook R$ 29,90; mini curso R$ 147 avulso e R$ 97 no checkout do playbook (order bump) e, se aprovada, na página seguinte ao pagamento; NIDflow R$ 29,90 por mês; Plataforma NID R$ 980 por ano. Pedido de desconto recebe a garantia de 7 dias como resposta, não um preço menor |
+| Inventa prova | Nenhum depoimento, número de alunos, "centenas de vendedores", caso com nome. A prova permitida é a prática da NID (vende projetos com setup e mensalidade para empresas de educação, saúde, indústria, varejo e serviços) |
 | Fala mal de concorrente, curso ou ferramenta | Compara só com o inimigo comum do brief: a proposta-orçamento, o pitch de funcionalidade e o "vou pensar" |
 | Diz "teste grátis", "7 dias grátis" | O que existe é "7 dias de garantia, reembolso sem pergunta" e, no NIDflow, "cancela quando quiser" |
 | Usa o léxico proibido | Seção 10.4 do brief. Verificação determinística antes do envio (seção 7 deste arquivo) |
@@ -57,7 +57,7 @@
 | WhatsApp (link do post, anúncio clique para WhatsApp, botão da página do playbook, botão "Ajuda" do NIDflow, pós-compra) | Pessoa manda a primeira mensagem (o link traz texto pré-preenchido com a origem, por exemplo "Quero o playbook · PB01") | 24 h para mensagem livre (categoria serviço, sem custo por mensagem) | Depois de 24 h, só com **modelo aprovado** (categoria utilidade ou marketing, com custo por mensagem) | Número oficial da NID na API do WhatsApp Business (Cloud API). Mesmo número do suporte do NIDflow |
 | WhatsApp (mensagem automática de sequência que a pessoa responde) | A sequência do `02`, `03` ou `04` disparou um modelo e a pessoa respondeu | 24 h a partir da resposta | Idem | O agente recebe o contexto da sequência que gerou a resposta |
 
-O texto pré-preenchido do link do WhatsApp carrega um código de origem (`PB01` post, `AD01` anúncio, `PG01` página do playbook, `NF01` NIDflow) que o orquestrador lê e apaga da conversa visível. É assim que o agente sabe de onde a pessoa veio sem perguntar.
+O texto pré-preenchido do link do WhatsApp carrega um código de origem (`PB01` post, `AD01` anúncio, `PG01` página do playbook, `PG02` link de decisor da página do playbook, `PG03` link de decisor da página da Plataforma NID, `NF01` NIDflow) que o orquestrador lê e apaga da conversa visível. É assim que o agente sabe de onde a pessoa veio sem perguntar. Com `PG02` ou `PG03`, o agente abre em S7 (Gatilho A); origem não é etiqueta: `F2-gatilho-A` só nasce de resposta registrada (`05-integracoes.md`, seção 7).
 
 ---
 
@@ -73,6 +73,7 @@ Este é o fluxo que o `trafego` usa como CTA padrão em todo post e reel do Funi
 | `DESENHO` | Posts sobre o fluxo de arquitetura e sobre o NIDflow em uso | Link do checkout do playbook, com uma frase sobre o NIDflow chegar depois da compra | `F2-kw-desenho` |
 | `PROPOSTA` | Posts sobre proposta-orçamento e "vou pensar" | Link do checkout do playbook | `F2-kw-proposta` |
 | `TEMPLATE` | Posts que mostram um dos cinco templates | Link do checkout do playbook, citando o template mostrado | `F2-kw-template` |
+| `MESA` | Posts da janela de lançamento da Plataforma NID (`produtos/plataforma/04-lancamento-interno.md`, seção 5). **Só ativa no Sprint 6**; até lá, comentário com `MESA` não dispara nada | Link da página da Plataforma NID, com as perguntas de qualificação (Gatilho A continua valendo) | `F2-kw-mesa` |
 
 Regras: a palavra-chave é única por post (o `trafego` escolhe uma); o orquestrador aceita variações de caixa e acento ("projeto", "PROJETO", "Projeto") e a palavra dentro de frase ("quero o PROJETO"). Comentário sem a palavra-chave não dispara nada. O `trafego` não cria palavra-chave nova sem registrar aqui.
 
@@ -188,7 +189,7 @@ O agente só afirma o que está aqui. O orquestrador injeta esta base no prompt 
 ### 6.1 Sobre a NID
 
 - Consultoria de Performance Comercial. Vende para empresas geração de demanda (tráfego pago), automação comercial com IA e terceirização de BDR, SDR e closer. Cada venda é um projeto com setup e mensalidade.
-- Segmentos citáveis: educação, saúde, indústria, varejo, serviços, telecomunicações, associações setoriais. Sem nome de cliente, sem valor.
+- Segmentos citáveis: educação, saúde, indústria, varejo e serviços (os cinco do brief, seção 10.6; outros só com autorização do Henrique). Sem nome de cliente, sem valor.
 - Henrique Leite, sócio da NID, conduz as aulas do mini curso e os encontros da Plataforma NID.
 - Slogan: "Enquanto o mercado vende IA de prateleira, a gente constrói a sua." (Pode ser citado quando a pessoa pergunta se o atendimento é automatizado: o agente que está respondendo é o mesmo tipo de agente que a NID constrói para clientes.)
 - Razão social para nota fiscal e termos: NID - Núcleo de Inteligência Digital LTDA, CNPJ 11.698.721/0001-33, São Bernardo do Campo, SP. Nunca dado bancário.
@@ -199,10 +200,10 @@ O agente só afirma o que está aqui. O orquestrador injeta esta base no prompt 
 - Acesso imediato após o pagamento por e-mail e WhatsApp. 7 dias de garantia, reembolso sem pergunta. Pix e cartão.
 - Para quem: quem vende algo que precisa ser explicado e precisa desenhar e apresentar um projeto. Não é para varejo transacional nem para quem procura curso de persuasão.
 
-### 6.3 Mini curso NID · Apresente para Fechar (R$ 147 avulso; R$ 97 na sessão de compra do playbook)
+### 6.3 Mini curso NID · Apresente para Fechar (R$ 147 avulso; R$ 97 no checkout do playbook)
 
 - Vídeo-aulas gravadas por Henrique Leite, sócio da NID, mostrando como a NID apresenta e vende o projeto desenhado: a reunião, a sequência dos slides, as objeções e o fechamento. Inclui slides de cada aula, roteiro de apresentação de projeto, checklist de reunião e modelo de proposta.
-- Grade (número e duração das aulas): `[A CONFIRMAR COM O AGENTE ROTEIRO, produtos/mini-curso/00-grade.md]`. Até lá, o agente diz "poucas aulas, gravadas, para assistir no seu ritmo" e não cita quantidade.
+- Grade (`produtos/mini-curso/00-grade.md`): oito vídeo-aulas gravadas, cerca de 108 minutos, de 10 a 18 minutos cada, para assistir no ritmo do aluno, com slides de cada aula, roteiro de apresentação de projeto, checklist de reunião, modelo de proposta, banco de objeções e régua de follow-up pós-reunião.
 - R$ 97 só na mesma compra do playbook (order bump no checkout e, se aprovado, na página seguinte ao pagamento). Fora disso, R$ 147. 7 dias de garantia.
 
 ### 6.4 NIDflow (R$ 29,90 por mês)
@@ -210,7 +211,7 @@ O agente só afirma o que está aqui. O orquestrador injeta esta base no prompt 
 - A ferramenta que a NID usa para desenhar e apresentar projetos, com os cinco templates do método já dentro; o projeto novo já abre na ordem do método; o mesmo desenho vira a apresentação (o investimento só aparece depois do valor); projetos salvos na conta, abrem em qualquer computador; onboarding até o primeiro projeto em menos de 15 minutos; projetos ilimitados; uma conta por pessoa.
 - Exportação em PDF: citar só quando o item B-07 do backlog estiver no ar (o orquestrador liga a flag `nidflow_pdf_disponivel`).
 - R$ 29,90 por mês, cancela quando quiser, 7 dias de garantia. Sem período grátis. Sem plano anual avulso (o NIDflow está incluso na Plataforma NID).
-- Oferecido 7 dias após a compra do playbook ou do mini curso. Se um lead sem compra pergunta, o agente explica o que é e aponta para o playbook (a oferta chega depois). Se um comprador pergunta antes de D+7, o agente entrega o link da oferta (a página existe desde o lançamento).
+- Oferecido 7 dias após a compra do playbook ou do mini curso. Se um lead sem compra pergunta, o agente explica o que é e aponta para o playbook (a oferta chega depois). Se um comprador pergunta antes de D+7, o agente entrega o link da oferta (a página existe desde o lançamento). Com `nidflow_venda_liberada = nao` (contexto do bloco 3), o agente diz que o NIDflow abre para compradores do playbook em breve, que a pessoa será avisada por e-mail, e não envia link (a URL da oferta mostra a página de espera do `03`, seção 2).
 - Não existe: link público de apresentação, colaboração, IA dentro da ferramenta, aplicativo, integração com CRM ou slides. O agente diz "hoje não" sem prometer data.
 - Suporte: dias úteis, 9h às 18h, resposta em até 1 dia útil. O agente resolve acesso e uso; cobrança, reembolso e nota fiscal vão para humano.
 
@@ -287,7 +288,7 @@ TOM
 O QUE VOCÊ NUNCA FAZ
 1. Nunca promete resultado financeiro: nada de renda, faturamento, comissão, "vai vender mais", percentual de conversão. Quando perguntarem "vou vender mais?", responda com o mecanismo: quem desenha o projeto, conduz a venda; o cliente compra o que consegue ver. O método exige desenhar e apresentar.
 2. Nunca dá desconto, cupom, condição especial ou parcelamento fora do que está na base de conhecimento. Os únicos preços que existem são os da base. Pedido de desconto recebe a garantia de 7 dias como resposta.
-3. Nunca inventa prova: nenhum depoimento, número de compradores, caso com nome de cliente, resultado de aluno. A prova permitida é a prática da NID (vende projetos com setup e mensalidade para empresas de educação, saúde, indústria, varejo, serviços, telecomunicações e associações setoriais).
+3. Nunca inventa prova: nenhum depoimento, número de compradores, caso com nome de cliente, resultado de aluno. A prova permitida é a prática da NID (vende projetos com setup e mensalidade para empresas de educação, saúde, indústria, varejo e serviços).
 4. Nunca usa: agência, software house, escola, infoproduto, infoprodutor, mentoria, mentor, guru, coach, influenciador, renda extra, fature, faturamento, 6 em 7, liberdade, mude de vida, segredo, hack, fórmula, últimas vagas, vagas limitadas, só hoje, otimizar, potencializar, alavancar, robusto, intuitivo, escalável, inovador, disruptivo, de ponta, facilitar, viabilizar, proporcionar, ecossistema, teste grátis, grátis, gratuito (exceto "sessão de arquitetura gratuita"), promoção. Nunca chama o NIDflow de software, app, plataforma ou sistema: é "a ferramenta". Nunca chama o mini curso de "curso de vendas": são "as aulas" em que a NID mostra como apresenta o projeto desenhado.
 5. Nunca fala de preço, prazo ou escopo de projeto da NID para empresas (Funil 1). Isso é assunto de pessoa do time.
 6. Nunca pede dado além de nome e e-mail (para localizar uma compra). Nunca pede CPF, cartão, senha, endereço.
@@ -314,7 +315,7 @@ Você sempre responde no formato estruturado pedido, preenchendo todos os campos
 
 ### Bloco 2 · Base de conhecimento (estável, com `cache_control`)
 
-Conteúdo integral da seção 6 deste arquivo, no formato de texto corrido, mais a tabela de objeções da seção 5. O orquestrador monta este bloco a partir de um arquivo versionado (`base-conhecimento-agente@1.0.0`) e grava a versão em cada interação. Qualquer mudança de preço, produto ou regra gera versão nova.
+Conteúdo integral da seção 6 deste arquivo, no formato de texto corrido, mais a tabela de objeções da seção 5. O orquestrador monta este bloco a partir de um arquivo versionado (`base-conhecimento-agente@1.1.0`; a 1.1.0 traz a grade real do mini curso, os cinco segmentos do brief e a regra de `nidflow_venda_liberada`) e grava a versão em cada interação. Qualquer mudança de preço, produto ou regra gera versão nova.
 
 ### Bloco 3 · Contexto da conversa (variável, vai na mensagem do usuário)
 
@@ -323,7 +324,7 @@ Enviado a cada chamada como primeiro conteúdo da mensagem do usuário, antes do
 ```
 <contexto>
 canal: whatsapp | instagram
-origem: comentario_kw:PROJETO | link:PB01 | anuncio:AD01 | pagina:PG01 | nidflow:NF01 | sequencia:D7_nidflow | espontaneo
+origem: comentario_kw:PROJETO | link:PB01 | anuncio:AD01 | pagina:PG01 | pagina:PG02 | pagina:PG03 | nidflow:NF01 | sequencia:D7_nidflow | espontaneo
 estado_atual: S1
 comprador: sim | nao
 produtos_comprados: playbook, minicurso (ou vazio)
@@ -332,6 +333,7 @@ qualificacao_ja_respondida: vende_para=propria; decide_contratacao=nao_respondeu
 link_checkout: <url com utm>
 link_oferta_nidflow: <url> (só para comprador)
 nidflow_pdf_disponivel: sim | nao
+nidflow_venda_liberada: sim | nao
 janela_fecha_em: 2026-09-11T18:40:00-03:00
 horario_atual: 2026-09-11T10:12:00-03:00
 retomada_unica: nao | sim (quando o orquestrador pede M2 ou M3)
@@ -489,7 +491,7 @@ Regras da integração:
 | Timeout | 30 segundos por chamada; uma repetição; depois, fallback e tarefa humana |
 | Refusal | Se `stop_reason` for `refusal` ou `parsed_output` for nulo, o orquestrador não envia nada gerado; envia o fallback e cria tarefa humana |
 | Histórico | Últimas 20 mensagens. Conversas mais longas não são resumidas por IA; cortam-se as mais antigas |
-| Versão | `BASE_VERSAO` (por exemplo `base-conhecimento-agente@1.0.0`) e a versão do bloco 1 (`agente-f2-sistema@1.0.0`) gravadas em toda interação, no mesmo padrão dos prompts versionados do radar-corretoras |
+| Versão | `BASE_VERSAO` (por exemplo `base-conhecimento-agente@1.1.0`) e a versão do bloco 1 (`agente-f2-sistema@1.0.0`) gravadas em toda interação, no mesmo padrão dos prompts versionados do radar-corretoras |
 | Segurança | Chave da API, tokens da Meta e chaves de webhook só em variáveis de ambiente. Nada no repositório |
 
 ---

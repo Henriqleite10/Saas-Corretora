@@ -2,8 +2,8 @@
 
 | Campo | Valor |
 |---|---|
-| Fluxos de origem | `automacoes/02-entrega-pos-compra.md`, seção 6 (R1, R2, R3, P1, P2, N1, N2) e `docs/00-brief-mestre.md`, seção 8.1 (conteúdo contínuo a partir de D+15). Códigos, momentos, canais e condições são os do fluxo |
-| Códigos neste arquivo | R1, R2, R3 (abandono de checkout); P1 e P2 (Pix ou boleto gerado e não pago; não confundir com as perguntas P1 e P2 de qualificação, que estão em `04-gatilho-a.md`); N1 e N2 (pagamento recusado); CC1 a CC4 (conteúdo contínuo, D+15 em diante) |
+| Fluxos de origem | `automacoes/02-entrega-pos-compra.md`, seção 6 (R1, R2, R3, P1, P2, N1, N2; os códigos P1 e P2 do fluxo aparecem aqui como PX1 e PX2) e `docs/00-brief-mestre.md`, seção 8.1 (conteúdo contínuo a partir de D+15). Códigos, momentos, canais e condições são os do fluxo |
+| Códigos neste arquivo | R1, R2, R3 (abandono de checkout); PX1 e PX2 (Pix ou boleto gerado e não pago; renomeados de P1 e P2 porque P1, P2 e P3 ficam reservados às perguntas de qualificação de `04-gatilho-a.md`; o fluxo `02-entrega-pos-compra.md`, seção 6, precisa da mesma troca); N1 e N2 (pagamento recusado); CC1 a CC4 (conteúdo contínuo, D+15 em diante) |
 | Quem recebe R1 a N2 | Quem preencheu e-mail ou telefone no checkout e não concluiu. A primeira compra encerra tudo. No máximo 3 toques por situação |
 | Quem recebe CC1 a CC4 | Toda a base do Funil 2 com e-mail e sem opt-out (compradores depois do D+14 e leads de checkout abandonado depois de R3), pela ferramenta de conteúdo contínuo, com o rodapé de descadastro. Compradores que já viraram `F2-funil1-cliente` recebem só o conteúdo (as variantes sem oferta) |
 | Remetente | E-mail: "NID". WhatsApp: número oficial da NID |
@@ -111,11 +111,11 @@ NID · Consultoria de Performance Comercial
 
 ---
 
-## Parte 2 · Pix ou boleto gerado e não pago (P1, P2)
+## Parte 2 · Pix ou boleto gerado e não pago (PX1, PX2)
 
-### P1 · WhatsApp (30 minutos)
+### PX1 · WhatsApp (30 minutos)
 
-**Código**: P1 (Pix)
+**Código**: PX1 (Pix)
 **Momento**: 30 minutos após gerar o Pix ou o boleto, sem pagamento, entre 8h e 22h
 **Canal**: WhatsApp (modelo de utilidade aprovado)
 **Condição**: telefone preenchido; `pix_gerado` ou `boleto_gerado` sem `purchase_approved`
@@ -123,19 +123,19 @@ NID · Consultoria de Performance Comercial
 
 **Mensagem (Pix)**
 
-Aqui é a NID. Seu Pix do Playbook NID · Desenhe para Vender está gerado e vale por {prazo_pix}. Se preferir pagar no cartão, o link é o mesmo: {link_checkout}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-playbook&utm_content=p1. Assim que o pagamento for aprovado, o acesso chega em até 2 minutos.
+Aqui é a NID. Seu Pix do Playbook NID · Desenhe para Vender está gerado e vale por {prazo_pix}. Se preferir pagar no cartão, o link é o mesmo: {link_checkout}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-playbook&utm_content=px1. Assim que o pagamento for aprovado, o acesso chega em até 2 minutos.
 
 **Mensagem (boleto)**
 
-Aqui é a NID. Seu boleto do Playbook NID · Desenhe para Vender está gerado. A compensação leva até 2 dias úteis; se a proposta é para esta semana, pague por Pix ou cartão pelo mesmo link e receba o acesso em até 2 minutos: {link_checkout}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-playbook&utm_content=p1
+Aqui é a NID. Seu boleto do Playbook NID · Desenhe para Vender está gerado. A compensação leva até 2 dias úteis; se a proposta é para esta semana, pague por Pix ou cartão pelo mesmo link e receba o acesso em até 2 minutos: {link_checkout}?utm_source=whatsapp&utm_medium=sequencia&utm_campaign=F2-playbook&utm_content=px1
 
 **CTA único**: o link do checkout
 
 ---
 
-### P2 · Seu acesso está esperando o pagamento
+### PX2 · Seu acesso está esperando o pagamento
 
-**Código**: P2 (Pix)
+**Código**: PX2 (Pix)
 **Momento**: 24 horas após gerar o Pix (48 horas para boleto), sem pagamento, entre 8h e 21h
 **Canal**: e-mail
 **Condição**: e-mail preenchido; sem `purchase_approved`
@@ -151,7 +151,7 @@ O pagamento do seu Playbook NID · Desenhe para Vender ainda não foi confirmado
 Se o código Pix venceu, gere um novo pelo mesmo link; o valor é o mesmo, R$ 29,90. Se preferir, pague no cartão e receba o acesso na hora. Nos dois casos, o playbook, os templates e o checklist chegam no seu e-mail e no seu WhatsApp em até 2 minutos, com 7 dias de garantia.
 
 [Botão] Concluir o pagamento
-{link_checkout}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-playbook&utm_content=p2
+{link_checkout}?utm_source=email&utm_medium=sequencia&utm_campaign=F2-playbook&utm_content=px2
 
 7 dias de garantia, reembolso sem pergunta.
 
@@ -159,7 +159,7 @@ NID · Consultoria de Performance Comercial
 
 {link_descadastro}
 
-**CTA único**: "Concluir o pagamento". Pix expirado sem pagamento vira abandono de checkout: seguem R2 e R3 (R1 não, porque P1 já cumpriu esse papel).
+**CTA único**: "Concluir o pagamento". Pix expirado sem pagamento vira abandono de checkout: seguem R2 e R3 (R1 não, porque PX1 já cumpriu esse papel).
 
 ---
 

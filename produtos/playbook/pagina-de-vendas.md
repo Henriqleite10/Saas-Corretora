@@ -135,7 +135,7 @@ O que chega no seu e-mail em até dois minutos.
 **Itens (cada um com título, descrição e o que significa para você)**
 
 **1. O playbook em PDF**
-Onze capítulos: o problema, a tese, as quatro etapas do método com a mesma estrutura cada uma, o caso conduzido, o roteiro de proposta, o checklist e um capítulo de adaptação para cada perfil de quem vende.
+Onze capítulos: o problema, a tese, as quatro etapas do método com a mesma estrutura cada uma, o caso conduzido, o roteiro de proposta, o checklist e um capítulo de adaptações com uma seção para cada perfil de quem vende.
 O que isso significa para você: em uma leitura, você sai com um método que se repete. A proposta de segunda passa a sair igual à de quinta, e você consegue melhorar o que consegue repetir.
 
 **2. Um caso conduzido do início ao fim**
@@ -194,7 +194,7 @@ Este playbook é para quem vende algo que precisa ser explicado.
 - Você procura técnica de persuasão, "mentalidade" ou um jeito de vender sem apresentar. O método exige desenhar e apresentar.
 - Você é empresário ou diretor e quer contratar geração de demanda, automação comercial ou time de vendas para a sua empresa. Nesse caso, a NID desenha o seu projeto com você: fale com a gente pelo WhatsApp.
 
-[Nota: o último item da segunda coluna leva ao WhatsApp da NID com a etiqueta de origem `F2-pagina-playbook-decisor`, para o agente encaminhar ao humano do Funil 1. É o único link da página que não vai para o checkout.]
+[Nota: o último item da segunda coluna leva ao WhatsApp da NID com o texto pré-preenchido "Quero falar sobre a minha empresa · PG02". `PG02` é o código de origem desta página; o agente o reconhece na linha de abertura (`automacoes/sequencias/06-agente-direct-whatsapp.md`, seção 4) e encaminha ao humano do Funil 1. O clique não aplica etiqueta: etiqueta só nasce de resposta registrada. É o único link da página que não vai para o checkout.]
 
 ---
 
@@ -263,7 +263,7 @@ O método não ensina a vender. Ele muda o que fica na mesa do cliente depois qu
 O playbook não é sobre deixar a proposta bonita. É sobre preencher cinco templates na ordem certa. O que você gasta é o tempo da conversa de diagnóstico, que você já faz, e o de preencher os campos. Se a proposta é para esta semana, leia os capítulos 2 a 6 e vá direto para os templates.
 
 **"Isso é coisa de gerente, não de SDR."**
-É coisa de quem quer conduzir contas. O capítulo de adaptação para SDR e BDR mostra como desenhar o projeto das oportunidades que você já qualifica e entregar o desenho junto com a passagem. Em um mês você tem um portfólio de projetos desenhados, e o gerente tem um motivo concreto para te dar uma conta.
+É coisa de quem quer conduzir contas. A seção de adaptação para SDR e BDR, no capítulo 10, mostra como desenhar o projeto das oportunidades que você já qualifica e entregar o desenho junto com a passagem. Em um mês você tem um portfólio de projetos desenhados, e o gerente tem um motivo concreto para te dar uma conta.
 
 **"Já tenho meu jeito de apresentar."**
 Mantenha o seu jeito na condução. Use o método no documento. O que muda é o que o comitê recebe quando você não está lá: em vez de um PowerPoint institucional, um projeto desenhado que ele consegue percorrer sozinho. Teste em uma conta e compare com a anterior.

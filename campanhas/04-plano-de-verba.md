@@ -19,10 +19,10 @@
 | 2 | Checkout do playbook no ar com o order bump do mini curso a R$ 97 (e, se aprovado, a página de um clique a R$ 97 depois do pagamento) | `automacao` + `copy` | Compra de teste com bump aceito e recusado; `F2-bump` aplicada na base |
 | 3 | Página do playbook no ar (`produtos/playbook/pagina-de-vendas.md` implementada), com pixel e API de Conversões instalados e testados | `copy` + `automacao` | Eventos da seção 5 aparecendo no Gerenciador de Eventos com deduplicação confirmada |
 | 4 | Página de obrigado com as duas perguntas do Gatilho A | `copy` + `automacao` | Resposta de teste grava `F2-gatilho-A` e cria a tarefa humana |
-| 5 | Entrega pós-compra (e-mail e WhatsApp) e oferta do NIDflow em D+7 funcionando | `automacao` | Compra de teste recebe E0 e W0 em menos de 2 minutos |
+| 5 | Entrega pós-compra (E0, W0) funcionando **e** oferta do NIDflow em D+7 com `nidflow_venda_liberada = sim` (B-00 a B-09 do backlog do `nidflow` aceitos). Nenhuma mídia paga com a flag em `nao` ou com N7 sem teste: sem a receita do NIDflow, a mídia só gera base, e o D+7 é o que sustenta o teto de R$ 32 | `automacao` | Compra de teste recebe E0 e W0 em menos de 2 minutos e N7 em D+7 |
 | 6 | Agente no direct e no WhatsApp ligado, com as quatro palavras-chave e o código `AD01` cadastrados | `automacao` | Teste de comentário e de clique no anúncio |
 | 7 | Conta de anúncios, pixel, domínio e nomenclatura `F2` criados conforme a seção 1 | `trafego` | Checklist da seção 1.3 |
-| 8 | Criativos C01, C03, C05 e C07 gravados, legendados e aprovados pelo `estrategia`; conferidos contra a headline final da página | Henrique (gravação) + `trafego` | Checklist da seção 4 de `02-criativos.md` |
+| 8 | Criativos da rodada 1 gravados, legendados e aprovados pelo `estrategia`; conferidos contra a headline final da página. Composição conforme a seção 3.4: sem a tela do NIDflow (B-02, B-04 e B-06 não aceitos), C03, C07, C02, C06 ou C08; com a tela aceita, C01, C03, C05 e C07 | Henrique (gravação) + `trafego` | Checklist da seção 4 de `02-criativos.md` |
 | 9 | Verba de teste de R$ 9.000 aprovada pelo Henrique, à parte da verba do Funil 1 | Henrique | Registro no relatório do coordenador |
 | 10 | Pelo menos duas semanas de calendário orgânico publicadas (o perfil precisa ter conteúdo quando o anúncio trouxer gente) | `trafego` | Dias 1 a 10 de `03-calendario-organico.md` no ar |
 
@@ -128,11 +128,13 @@ Públicos semelhantes (`F2-LAL-compradores-1pct`) só entram com 300 compradores
 
 | Rodada | Dias | Criativos em cada conjunto | O que se decide no fim |
 |---|---|---|---|
-| 1 | 1 a 10 | C01-A, C03-A, C05-A, C07-A (os quatro ângulos da semana 1) | Pausa criativo e conjunto que estourou o teto (seção 4). Escolhe os 2 ganchos com melhor CPA |
+| 1 | 1 a 10 | **Sem tela do NIDflow** (B-02, B-04 e B-06 do backlog não aceitos; regra 0.4 de `02-criativos.md`): C03-A, C07-A (rosto), C02-A, C06-A ou C08-A (estáticos). **Com a tela aceita**: C01-A, C03-A, C05-A, C07-A (os quatro ângulos da semana 1) | Pausa criativo e conjunto que estourou o teto (seção 4). Escolhe os 2 ganchos com melhor CPA |
 | 2 | 11 a 20 | Vencedores da rodada 1 + C09-A, C11-A, C12-A, C02-A + variação de gancho B dos vencedores | Idem. Lê o aceite do bump com os primeiros 150 a 200 checkouts |
 | 3 | 21 a 30 | Vencedores acumulados + C13-A, C14-A, C04-A, C06-A, C08-A, C10-A | Fecha o relatório de 30 dias (seção 4.4) |
 
 Máximo de 6 anúncios ativos por conjunto. Cada anúncio precisa de pelo menos R$ 200 (fatura) gastos antes de qualquer decisão.
+
+Regra de tela: nenhum V-tela (C01, C04, C05, C09, C12) entra em rodada alguma antes de B-02, B-04 e B-06 estarem aceitos. Se a rodada 1 subiu sem tela, C01 e C05 entram na primeira rodada em que a tela estiver pronta; C04, C09 e C12 seguem a mesma regra nas rodadas 2 e 3.
 
 ### 3.5 `F2-PB-ESCALA` (a partir da validação)
 
@@ -376,4 +378,4 @@ Não entram nos R$ 9.000 de mídia e precisam de previsão à parte:
 | Taxa da plataforma de checkout | Já descontada na receita líquida (valores unitários do parecer 3.1) | Nenhuma previsão à parte |
 | Plano de e-mail transacional (Resend Pro, `05-integracoes.md`) | Custo fixo mensal do `automacao`, fora deste plano | US$ 20 por mês |
 | Legendagem e edição dos vídeos | Custo fixo de produção, fora deste plano | Uma ferramenta de legenda automática e a edição dos 8 vídeos da rodada 1 e das variações |
-| Tempo de gravação do Henrique | Não é caixa; é agenda | Rodada 1: quatro vídeos de rosto (C03, C07, C11, C13) e a narração de quatro vídeos de tela (C01, C04, C05, C09), uma manhã; os Reels novos do calendário (Dias 5, 7, 11 e 19) na mesma sessão |
+| Tempo de gravação do Henrique | Não é caixa; é agenda | Rodada 1: quatro vídeos de rosto (C03, C07, C11, C13), uma manhã; os Reels novos do calendário (Dias 5, 7, 11 e 19, versões de rosto) na mesma sessão. A narração dos vídeos de tela (C01, C04, C05, C09) e as versões de tela dos Dias 11 e 19 só quando B-02, B-04 e B-06 estiverem aceitos, em sessão própria |

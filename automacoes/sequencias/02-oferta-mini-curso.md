@@ -14,7 +14,7 @@
 | Status | Entregue ao coordenador. Passa pelo `estrategia` antes de ser dada como pronta |
 | Fonte | `docs/00-brief-mestre.md` (seções 4.2, 6.2, 6.3, 10), `produtos/mini-curso/00-grade.md`, `produtos/mini-curso/pagina-de-vendas.md`, `produtos/playbook/01-playbook.md` (capítulos 8 e 11) |
 
-Regras aplicadas: a NID fala em primeira pessoa do plural; um único CTA por mensagem; sem emoji em e-mail e nenhum emoji em WhatsApp nesta sequência; nunca travessão; "para" por extenso; preço só como `R$ 147`; sem urgência falsa (o preço não muda e o link continua valendo); toda promessa existe na grade do mini curso (oito aulas, cerca de 108 minutos, seis materiais); Henrique só como "Henrique Leite, sócio da NID".
+Regras aplicadas: a NID fala em primeira pessoa do plural; um único CTA por mensagem; sem emoji em e-mail e nenhum emoji em WhatsApp nesta sequência; nunca travessão; "para" por extenso; preço só como `R$ 147`; sem urgência falsa (o preço não muda e o link continua valendo); toda promessa existe na grade do mini curso (oito aulas, cerca de 108 minutos, seis materiais); Henrique só como "Henrique Leite, sócio da NID". Linhas marcadas com `[nidflow_venda_liberada = sim]` e `[nidflow_venda_liberada = nao]` são alternativas dentro do mesmo bloco: só a versão que corresponde à variável sai na mensagem, e a marca não vai para o texto.
 
 Variáveis: `{primeiro_nome}`, `{link_pagina_minicurso}`, `{link_p1_propria}`, `{link_p1_terceiro}` (links de um clique da pergunta 1; texto das páginas em `04-gatilho-a.md`), `{link_descadastro}`.
 
@@ -127,7 +127,7 @@ NID · Consultoria de Performance Comercial
 **Momento**: D+6, entre 8h e 10h
 **Canal**: e-mail
 **Condição**: contato sem `F2-minicurso`
-**Assunto**: Amanhã a gente te mostra a ferramenta
+**Assunto**: [nidflow_venda_liberada = sim] Amanhã a gente te mostra a ferramenta [nidflow_venda_liberada = nao] Última mensagem sobre as aulas
 **Pré-cabeçalho**: Última mensagem sobre as aulas nesta sequência. O preço é o mesmo; o link continua valendo.
 
 **Corpo**
@@ -143,7 +143,8 @@ O que fica: o playbook leva você até a proposta pronta. As aulas começam com 
 
 7 dias de garantia, reembolso sem pergunta.
 
-Amanhã a gente te mostra uma coisa diferente: a ferramenta em que a NID desenha e apresenta os projetos dela, em uso, no projeto do caso conduzido do playbook. Sem link hoje. Só o aviso.
+[nidflow_venda_liberada = sim] Amanhã a gente te mostra uma coisa diferente: a ferramenta em que a NID desenha e apresenta os projetos dela, em uso, no projeto do caso conduzido do playbook. Sem link hoje. Só o aviso.
+[nidflow_venda_liberada = nao] Uma coisa diferente fica para depois: a apresentação da ferramenta em que a NID desenha e apresenta os projetos dela, em uso no projeto do caso conduzido do playbook, chega assim que a ferramenta estiver liberada para compradores do playbook. Sem link hoje. Só o aviso.
 
 NID · Consultoria de Performance Comercial
 

@@ -23,7 +23,7 @@
 
 ## 1. Aquisição paga (Meta Ads)
 
-| Métrica | Definição | Fórmula | Fonte | Meta inicial (hipótese) |
+| Métrica | Definição | Cálculo | Fonte | Meta inicial (hipótese) |
 |---|---|---|---|---|
 | Verba F2 | O que a NID paga à Meta, com impostos | Gasto do Gerenciador × 1,1215 | Fatura da Meta; Gerenciador | R$ 9.000 nos 30 dias de teste |
 | CPM | Custo por mil impressões | Verba ÷ impressões × 1.000 | Gerenciador | Leitura, sem meta. Referência de mercado para produto digital de entrada no Brasil em 2026 não confiável; registra-se o observado |
@@ -44,7 +44,7 @@
 
 ## 2. Checkout e receita do front-end
 
-| Métrica | Definição | Fórmula | Fonte | Meta inicial (hipótese) |
+| Métrica | Definição | Cálculo | Fonte | Meta inicial (hipótese) |
 |---|---|---|---|---|
 | Compras do playbook | Pedidos aprovados do playbook, com ou sem bump | Contagem de `purchase_approved` do playbook | Base (`F2-comprador-playbook`) | 250 a 300 nos 30 dias de teste (cenário base) |
 | **Aceite do order bump** | Compradores que levaram o mini curso a R$ 97 no checkout | `F2-bump` ÷ `F2-comprador-playbook` | Base | 8% a 15%; **10% é o mínimo** (abaixo disso após 300 checkouts, teste de formato, parecer 6.8). Cenários: 8% / 15% / 25% |
@@ -62,7 +62,7 @@
 
 ## 3. Esteira (NIDflow e Plataforma NID)
 
-| Métrica | Definição | Fórmula | Fonte | Meta inicial (hipótese) |
+| Métrica | Definição | Cálculo | Fonte | Meta inicial (hipótese) |
 |---|---|---|---|---|
 | Conversão da oferta do NIDflow em D+7 | Compradores que assinaram até D+14 | `F2-nidflow-ativo` ÷ compradores da coorte, em D+14 | Base | 3% / 6% / 10%. Abaixo de 3% após 30 dias, o coordenador reavalia o período gratuito (decisão 4 do brief) |
 | Churn mensal do NIDflow | Assinaturas encerradas no mês ÷ assinaturas ativas no início do mês | | Base (`F2-nidflow-cancelado`, `F2-nidflow-leitura`) | 12% / 8% / 5% |
@@ -76,7 +76,7 @@
 
 ## 4. Orgânico e agente de IA (mecânica ATA: Atrair e Atender)
 
-| Métrica | Definição | Fórmula | Fonte | Meta inicial (hipótese) |
+| Métrica | Definição | Cálculo | Fonte | Meta inicial (hipótese) |
 |---|---|---|---|---|
 | Posts publicados por semana | Feed do Instagram | Contagem | Calendário | 5 (um por dia útil), mais 3 frames de Stories por dia e 2 posts no LinkedIn |
 | Comentários com palavra-chave por post | Comentários que dispararam M1 | Contagem por id do post | Orquestrador | Leitura; ranking mensal decide o reposte (regra 8 do calendário) |
@@ -94,7 +94,7 @@
 
 ## 5. Gatilhos A e B (o que devolve ao Funil 1 e à terceirização)
 
-| Métrica | Definição | Fórmula | Fonte | Meta inicial (hipótese) |
+| Métrica | Definição | Cálculo | Fonte | Meta inicial (hipótese) |
 |---|---|---|---|---|
 | **Percentual de compradores etiquetados `F2-gatilho-A`** | Compradores que responderam "própria" e "sim" (página de obrigado, agente, onboarding) | `F2-gatilho-A` ÷ compradores | Base | **5% no mínimo** (parecer 3.5); cenários 4% / 7% / 10%. Abaixo de 5%, o problema é a pergunta, não o público |
 | Tempo até o primeiro contato humano | Da etiqueta à primeira mensagem do humano | Mediana | ClickUp (tarefas `F2 · Gatilho A`) | Abaixo de 24 h em 90% dos casos |

@@ -40,6 +40,8 @@
 
 Página de destino única para todos os toques: página da oferta do NIDflow (`copy` escreve; `nid-pages` implementa), com o vídeo de 60 a 90 segundos da ferramenta em uso, o preço "R$ 29,90 por mês, cancela quando quiser, 7 dias de garantia" e o CTA oficial "Quero desenhar meu próximo projeto no NIDflow" apontando para o checkout de assinatura. UTMs: `utm_source=email|whatsapp`, `utm_medium=sequencia`, `utm_campaign=F2-nidflow-d7`, `utm_content=d7|d10|d14`.
 
+**Página de espera (enquanto `nidflow_venda_liberada = nao`).** A mesma URL da oferta serve uma página de espera, sem preço, sem vídeo e sem checkout, com o texto: "O NIDflow abre para compradores do playbook em breve. Você será avisado por e-mail." Quando a flag liga, a URL passa a servir a página da oferta, sem troca de link: os CTAs do playbook, das aulas e do agente já apontam para ela. Regra de coerência: com a flag em `nao`, o agente explica isso e não envia link (`01`, seção 6.4); com a flag em `sim`, entrega o link normalmente.
+
 | Código | Quando | Horário (Brasília) | Canal | Objetivo | Conteúdo funcional (argumento do `rascunho-oferta-d7.md`) | CTA único | Se não responder |
 |---|---|---|---|---|---|---|---|
 | N7 | D+7 | 10h | E-mail | Apresentar a ferramenta em uso, no arco completo | Assunto "Você já desenha o projeto. Agora desenhe e apresente na mesma tela". Dor: o desenho no papel virou lista no slide; cada proposta começa do zero; o cliente pediu para ver a arquitetura de novo. Solução: o lugar onde o projeto é desenhado e apresentado ao mesmo tempo; a ferramenta que a NID usa. Arquitetura: os seis itens da seção 2 do rascunho (templates prontos, preencher, apresentar, salvo na conta, primeiro projeto em 15 minutos, projetos ilimitados), em linguagem de uso. Vídeo (imagem com link). Valor: uma proposta perdida custa mais do que um ano de NIDflow; menos que um almoço por mês; R$ 29,90 por mês, cancela quando quiser, 7 dias de garantia. Objeção "mais uma ferramenta" respondida em uma frase | "Quero desenhar meu próximo projeto no NIDflow" | Nada além do próximo toque. A abertura de e-mail não muda a sequência |
@@ -137,5 +139,6 @@ Métricas do brief (9.2) que saem daqui: conversão da oferta em D+7 (assinatura
 - [ ] Conta em modo leitura abre, exporta e não salva; regularizar o pagamento devolve a edição em menos de 1 minuto.
 - [ ] R6 (D0, D+3, D+6), R6c, R7, R7b, R8 e R9 disparam nos tempos certos; cancelamento encerra toda sequência de ativação no mesmo dia.
 - [ ] Flag `nidflow_venda_liberada` desligada segura a fila; ligada, libera na ordem.
+- [ ] Com `nidflow_venda_liberada = nao`, a URL da oferta mostra a página de espera ("O NIDflow abre para compradores do playbook em breve. Você será avisado por e-mail."); com `sim`, a página da oferta, na mesma URL.
 - [ ] Textos finais do `copy` para N7, N7w, N10, N14, N14e, N16, R6c, R7b, R8 e R9 em `automacoes/sequencias/`.
 - [ ] Nenhum toque cita PDF com `nidflow_pdf_disponivel = nao`.

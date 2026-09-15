@@ -190,7 +190,7 @@ Texto: O capítulo para consultores e donos de serviço mostra como vender proje
 
 **Clique em "Sim, eu decido"**
 Título: Anotado. Obrigado.
-Texto: O método que você está lendo é o mesmo que a NID usa para desenhar o projeto comercial dos clientes dela: geração de demanda, automação comercial com IA e terceirização de BDR, SDR e closer. Quem desenha projeto para os clientes também pode ter o próprio projeto comercial desenhado pela NID. Nos próximos dias alguém da NID te escreve para propor uma sessão de arquitetura, sem custo. Sua área de membros está aqui: {link_area_membros}
+Texto: O método que você está lendo é o mesmo que a NID usa para desenhar o projeto comercial dos clientes dela: geração de demanda, automação comercial com IA e terceirização de BDR, SDR e closer. Quem desenha projeto para os clientes também pode ter o próprio projeto comercial desenhado pela NID. Em até um dia útil, alguém da NID te escreve para propor uma sessão de arquitetura, sem custo. Sua área de membros está aqui: {link_area_membros}
 
 [Nota de implementação: as páginas seguem a página de obrigado (`pagina-de-obrigado.md`, bloco 4): uma coluna, sem menu, um único link. Os links de um clique valem por 30 dias e gravam `vende_para` e `decide_contratacao` com a fonte `email_e1` ou `email_e5`. "Sim, eu decido" aplica `F2-gatilho-A` e cria a tarefa humana na hora.]
 
@@ -214,7 +214,7 @@ Aparece abaixo dos botões "Exportar em PDF" e "Voltar ao projeto", só para que
 [Serviço] [Software] [Projeto sob medida] [Consultoria] [Outro]
 
 **Retorno após qualquer resposta** (no lugar da pergunta respondida): Anotado.
-**Retorno após "Sim, eu decido"**: Anotado. Nos próximos dias alguém da NID te escreve para propor uma sessão de arquitetura do seu projeto comercial, sem custo.
+**Retorno após "Sim, eu decido"**: Anotado. Em até um dia útil, alguém da NID te escreve para propor uma sessão de arquitetura do seu projeto comercial, sem custo.
 **Link discreto sob o bloco**: Prefiro não responder agora
 
 [Nota: as respostas vão para a base pelo evento `perfil_respondido` (fonte `nidflow_onboarding`). Implementação pelo agente `nidflow`, `02-onboarding.md`, passo 7.]
