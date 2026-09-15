@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Aula 1 · Antes de entrar na sala · Mini curso NID · Apresente para Fechar</title>
+<style>
+  :root{
+    --laranja:#F26522;
+    --laranja2:#FF8A4C;
+    --escuro:#373737;
+    --escuro2:#2A2A2A;
+    --cinza:#6B6B6B;
+    --off:#F5F4F2;
+    --branco:#FFFFFF;
+    --linha:#E4E2DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{font-family:'Liberation Sans',Arial,sans-serif;color:var(--escuro);-webkit-font-smoothing:antialiased;}
+  @page{size:1280px 720px;margin:0;}
+  .slide{
+    position:relative;width:1280px;height:720px;overflow:hidden;
+    page-break-after:always;background:var(--branco);
+  }
+  .slide:last-child{page-break-after:auto;}
+
+  /* ---------- componentes comuns ---------- */
+  .pad{position:absolute;top:0;left:0;width:100%;height:100%;padding:74px 90px;}
+  .kicker{
+    display:inline-block;font-size:15px;font-weight:700;letter-spacing:3px;
+    text-transform:uppercase;color:var(--laranja);margin-bottom:22px;
+  }
+  .kicker.light{color:var(--laranja2);}
+  .foot{
+    position:absolute;left:90px;bottom:40px;right:90px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:13px;letter-spacing:.5px;color:var(--cinza);
+  }
+  .foot .brand{font-weight:700;color:var(--escuro);}
+  .foot.onDark .brand{color:#fff;}
+  .foot.onDark{color:#A8A8A8;}
+  .pageno{font-weight:700;}
+  .barTop{position:absolute;top:0;left:0;height:10px;width:100%;
+    background:linear-gradient(90deg,var(--laranja),var(--laranja2));}
+
+  h1{font-size:60px;line-height:1.05;font-weight:800;letter-spacing:-1.5px;}
+  h2{font-size:46px;line-height:1.08;font-weight:800;letter-spacing:-1px;}
+  .lead{font-size:21px;line-height:1.55;color:var(--cinza);font-weight:400;}
+
+  /* logo NID */
+  .logo{display:flex;align-items:center;gap:13px;}
+  .logo .mark{width:46px;height:46px;border-radius:11px;
+    background:linear-gradient(135deg,var(--laranja),var(--laranja2));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:800;font-size:21px;letter-spacing:-1px;
+    box-shadow:0 6px 18px rgba(242,101,34,.35);}
+  .logo .txt{font-weight:800;font-size:20px;letter-spacing:.5px;color:inherit;}
+  .logo .txt small{display:block;font-weight:600;font-size:10.5px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--cinza);margin-top:2px;}
+
+  /* ====================================================== SLIDE 1 capa */
+  .cover{background:var(--escuro);color:#fff;}
+  .cover .glow{position:absolute;border-radius:50%;filter:blur(10px);}
+  .cover .c1{width:520px;height:520px;right:-150px;top:-160px;
+    background:radial-gradient(circle,rgba(242,101,34,.55),transparent 65%);}
+  .cover .c2{width:420px;height:420px;left:-130px;bottom:-160px;
+    background:radial-gradient(circle,rgba(242,101,34,.30),transparent 65%);}
+  .cover .grid-dots{position:absolute;right:120px;bottom:90px;opacity:.5;}
+  .cover .label{font-size:15px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+    color:var(--laranja2);margin-bottom:26px;}
+  .cover h1{font-size:66px;max-width:760px;}
+  .cover h1 .or{color:var(--laranja2);}
+  .cover .sub{margin-top:26px;font-size:22px;color:#C9C9C9;max-width:620px;line-height:1.5;}
+  .cover .forwho{position:absolute;left:90px;bottom:120px;display:flex;align-items:center;gap:18px;}
+  .cover .forwho .ln{width:54px;height:3px;background:var(--laranja);}
+  .cover .forwho .who small{display:block;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#9C9C9C;margin-bottom:4px;}
+  .cover .forwho .who b{font-size:24px;font-weight:800;color:#fff;}
+  .cover .forwho .who span{font-size:16px;color:#BdBdBd;}
+
+  /* ====================================================== conteudo claro */
+  .two{display:flex;gap:60px;height:100%;align-items:center;}
+  .col{flex:1;}
+  .blocks{display:flex;flex-direction:column;gap:18px;margin-top:34px;}
+  .blk{display:flex;gap:18px;align-items:flex-start;}
+  .blk .ic{flex:0 0 52px;height:52px;border-radius:13px;background:var(--off);
+    display:flex;align-items:center;justify-content:center;border:1px solid var(--linha);}
+  .blk .bt{font-size:20px;font-weight:700;color:var(--escuro);margin-bottom:3px;}
+  .blk .bd{font-size:16px;color:var(--cinza);line-height:1.45;}
+
+  /* stat row */
+  .stats{display:flex;gap:26px;margin-top:38px;}
+  .stat{flex:1;background:var(--off);border:1px solid var(--linha);border-radius:18px;padding:28px 26px;}
+  .stat .n{font-size:42px;font-weight:800;color:var(--laranja);letter-spacing:-1.5px;}
+  .stat .l{font-size:15px;color:var(--cinza);margin-top:6px;line-height:1.4;}
+
+  /* ====================================================== slide escuro (dores) */
+  .dark{background:var(--escuro);color:#fff;}
+  .dark .lead{color:#BDBDBD;}
+  .dark .kicker{color:var(--laranja2);}
+  .pain{display:flex;flex-direction:column;gap:20px;margin-top:36px;max-width:880px;}
+  .painItem{display:flex;gap:20px;align-items:center;background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:24px 28px;}
+  .painItem .x{flex:0 0 44px;height:44px;border-radius:50%;background:rgba(242,101,34,.18);
+    display:flex;align-items:center;justify-content:center;}
+  .painItem .pt{font-size:19px;font-weight:600;line-height:1.4;color:#EDEDED;}
+
+  /* ====================================================== como funciona */
+  .steps{display:flex;gap:22px;margin-top:46px;}
+  .step{flex:1;position:relative;background:var(--off);border:1px solid var(--linha);
+    border-radius:20px;padding:30px 24px 28px;}
+  .step .num{position:absolute;top:-18px;left:24px;width:46px;height:46px;border-radius:12px;
+    background:linear-gradient(135deg,var(--laranja),var(--laranja2));color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;
+    box-shadow:0 6px 16px rgba(242,101,34,.35);}
+  .step .si{margin:16px 0 14px;}
+  .step .st{font-size:18px;font-weight:700;margin-bottom:8px;}
+  .step .sd{font-size:14.5px;color:var(--cinza);line-height:1.45;}
+  .step .arrow{position:absolute;right:-17px;top:50%;transform:translateY(-50%);z-index:2;color:var(--laranja);}
+  .step:last-child .arrow{display:none;}
+
+  /* ====================================================== entregaveis grid */
+  .deliv{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px;}
+  .dcard{display:flex;gap:18px;align-items:center;background:var(--branco);
+    border:1px solid var(--linha);border-radius:16px;padding:22px 24px;box-shadow:0 2px 10px rgba(0,0,0,.03);}
+  .dcard .di{flex:0 0 50px;height:50px;border-radius:13px;
+    background:linear-gradient(135deg,rgba(242,101,34,.12),rgba(255,138,76,.12));
+    display:flex;align-items:center;justify-content:center;}
+  .dcard .dt{font-size:18px;font-weight:700;}
+  .dcard .dd{font-size:14px;color:var(--cinza);margin-top:2px;line-height:1.4;}
+
+  /* ====================================================== tudo incluso (laranja) */
+  .orange{background:linear-gradient(135deg,var(--laranja),#E2571A);color:#fff;}
+  .orange .kicker{color:#fff;opacity:.85;}
+  .incl{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px;max-width:980px;}
+  .iItem{display:flex;gap:18px;align-items:center;background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:24px 26px;}
+  .iItem .ck{flex:0 0 40px;height:40px;border-radius:50%;background:#fff;
+    display:flex;align-items:center;justify-content:center;}
+  .iItem .it{font-size:18px;font-weight:600;line-height:1.4;}
+  .orange .ribbon{position:absolute;right:-60px;top:46px;background:#fff;color:var(--laranja);
+    font-weight:800;font-size:15px;letter-spacing:1px;padding:12px 80px;transform:rotate(45deg);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);}
+
+  /* ====================================================== investimento */
+  .invest{background:var(--escuro);color:#fff;}
+  .invest .kicker{color:var(--laranja2);}
+  .priceWrap{display:flex;gap:54px;align-items:center;height:100%;}
+  .priceCard{flex:0 0 460px;background:linear-gradient(150deg,#fff,#FbF3Ee);color:var(--escuro);
+    border-radius:26px;padding:46px 44px;box-shadow:0 24px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;}
+  .priceCard .tag{position:absolute;top:0;right:0;background:var(--laranja);color:#fff;
+    font-size:13px;font-weight:700;letter-spacing:1px;padding:8px 20px;border-bottom-left-radius:14px;}
+  .priceCard .pl{font-size:16px;color:var(--cinza);font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+  .priceCard .pv{font-size:74px;font-weight:800;letter-spacing:-3px;margin:6px 0 2px;color:var(--escuro);}
+  .priceCard .pv small{font-size:26px;font-weight:700;color:var(--cinza);}
+  .priceCard .per{font-size:17px;color:var(--cinza);margin-bottom:24px;}
+  .priceCard .divd{height:1px;background:var(--linha);margin:22px 0;}
+  .priceCard .pi{display:flex;align-items:center;gap:12px;font-size:16.5px;margin:13px 0;color:var(--escuro);}
+  .priceCard .pi b{color:var(--laranja);}
+  .invest .right{flex:1;}
+  .invest .right h2{margin-bottom:22px;}
+  .invest .hl{background:rgba(242,101,34,.16);border:1px solid rgba(242,101,34,.4);
+    border-radius:16px;padding:24px 28px;margin-top:14px;}
+  .invest .hl .hn{font-size:32px;font-weight:800;color:var(--laranja2);letter-spacing:-1px;}
+  .invest .hl .hd{font-size:16px;color:#CFCFCF;margin-top:4px;line-height:1.4;}
+
+  /* ====================================================== CTA */
+  .cta{background:var(--escuro);color:#fff;}
+  .cta .c1{position:absolute;width:560px;height:560px;right:-180px;top:-180px;border-radius:50%;
+    background:radial-gradient(circle,rgba(242,101,34,.45),transparent 65%);filter:blur(8px);}
+  .ctaSteps{display:flex;gap:20px;margin-top:44px;}
+  .ctaStep{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;padding:28px 24px;}
+  .ctaStep .cn{width:40px;height:40px;border-radius:11px;background:var(--laranja);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:16px;}
+  .ctaStep .ct{font-size:18px;font-weight:700;margin-bottom:7px;}
+  .ctaStep .cd{font-size:14.5px;color:#BdBdBd;line-height:1.45;}
+  .cta .end{position:absolute;left:90px;bottom:118px;}
+  .cta .end .big{font-size:34px;font-weight:800;letter-spacing:-1px;}
+  .cta .end .big .or{color:var(--laranja2);}
+
+  .logoImg{height:56px;width:auto;display:block;}
+  .logoDiv{width:1px;height:42px;background:rgba(255,255,255,.22);margin:0 4px;}
+  .txt2{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9C9C9C;line-height:1.45;}
+
+  /* ---- extensões para as aulas do mini curso (mesma paleta e tipografia) ---- */
+  .cover .forwho .who span{display:block;margin-top:2px;}
+  .blocks{gap:22px;margin-top:36px;}
+  .blk .bt{font-size:22px;}
+  .blk .bd{font-size:17.5px;}
+  .blk .ic{flex:0 0 54px;height:54px;}
+  .steps .st{font-size:19px;}
+  .steps .sd{font-size:15.5px;}
+  .dcard .dt{font-size:19.5px;}
+  .dcard .dd{font-size:15.5px;}
+  .deliv{gap:22px;margin-top:36px;}
+  .dcard{padding:26px 26px;}
+  .pain .painItem .pt{font-size:20px;}
+  .cta .lead{color:#C9C9C9;}
+  .statement h1{font-size:56px;max-width:1040px;color:#fff;}
+  .statement h1 .or{color:var(--laranja2);}
+  .statement .sub{margin-top:28px;font-size:22px;color:#C9C9C9;max-width:900px;line-height:1.5;}
+  .blk .ic.num{font-weight:800;font-size:20px;color:var(--laranja);}
+  .blocks.tight{gap:14px;margin-top:26px;}
+  .blocks.tight .bt{font-size:19px;}
+  .blocks.tight .bd{font-size:15.5px;}
+  .steps.five{gap:16px;}
+  .steps.five .step{padding:28px 18px 24px;}
+  .steps.five .st{font-size:16.5px;}
+  .steps.five .sd{font-size:13.5px;}
+  .steps.five .step .arrow{right:-14px;}
+  .quoteCard{margin-top:34px;background:var(--off);border:1px solid var(--linha);border-left:8px solid var(--laranja);
+    border-radius:18px;padding:36px 44px;max-width:1040px;}
+  .quoteCard .q{font-size:27px;line-height:1.45;font-weight:600;color:var(--escuro);}
+  .quoteCard .q .or{color:var(--laranja);}
+  .quoteNote{margin-top:24px;font-size:18px;color:var(--cinza);max-width:1000px;line-height:1.5;}
+  .dark .quoteCard{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.10);border-left-color:var(--laranja2);}
+  .dark .quoteCard .q{color:#EDEDED;}
+  .dark .quoteNote{color:#BDBDBD;}
+  .deliv.three{grid-template-columns:1fr 1fr 1fr;}
+  .dcard .di.num{font-weight:800;font-size:19px;color:var(--laranja);}
+  .dcard .di.no{background:rgba(55,55,55,.08);color:var(--escuro);font-weight:800;font-size:19px;}
+  .tbl{width:100%;border-collapse:collapse;margin-top:30px;font-size:17px;}
+  .tbl th{text-align:left;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--laranja);
+    padding:0 14px 12px 14px;border-bottom:2px solid var(--linha);}
+  .tbl td{padding:20px 14px;vertical-align:top;border-bottom:1px solid var(--linha);line-height:1.42;color:var(--escuro);}
+  .tbl td.o{font-weight:700;width:210px;}
+  .tbl td.p{color:var(--cinza);}
+  .agenda{display:flex;gap:6px;margin-top:44px;}
+  .agenda .seg{background:var(--off);border:1px solid var(--linha);border-radius:14px;padding:26px 16px 22px;position:relative;}
+  .agenda .seg .m{font-size:38px;font-weight:800;color:var(--laranja);letter-spacing:-1px;}
+  .agenda .seg .t{font-size:17px;font-weight:700;margin-top:4px;}
+  .agenda .seg .d{font-size:14px;color:var(--cinza);margin-top:4px;line-height:1.35;}
+  .agenda .seg.big{background:linear-gradient(135deg,rgba(242,101,34,.12),rgba(255,138,76,.12));border-color:rgba(242,101,34,.35);}
+  .agendaNote{margin-top:34px;background:var(--off);border:1px solid var(--linha);border-radius:14px;padding:18px 24px;font-size:17.5px;color:var(--cinza);max-width:1040px;line-height:1.5;}
+  .agendaNote b{color:var(--escuro);}
+  .task .items{display:flex;flex-direction:column;gap:14px;margin-top:30px;max-width:900px;}
+  .task .item{display:flex;gap:16px;align-items:flex-start;}
+  .task .item .n{flex:0 0 36px;height:36px;border-radius:10px;background:var(--laranja);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;}
+  .task .item .t{font-size:20px;line-height:1.4;color:#EDEDED;padding-top:5px;}
+  .task .next{position:absolute;left:90px;right:90px;bottom:96px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px 26px;display:flex;gap:18px;align-items:center;}
+  .task .next .k{font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--laranja2);font-weight:700;flex:0 0 150px;}
+  .task .next .v{font-size:18px;color:#EDEDED;line-height:1.4;}
+  .ctaLine{margin-top:26px;font-size:24px;font-weight:800;color:#fff;letter-spacing:-.5px;}
+  .ctaLine .or{color:var(--laranja2);}
+  .twoText .lead{margin-top:20px;}
+  .twoText .col.card{flex:0 0 470px;background:var(--off);border:1px solid var(--linha);border-radius:20px;padding:34px 36px;}
+  .twoText .col.card .k{font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--laranja);font-weight:700;margin-bottom:14px;}
+  .twoText .col.card .li{display:flex;gap:12px;align-items:flex-start;font-size:17px;line-height:1.45;margin:11px 0;color:var(--escuro);}
+  .twoText .col.card .li b{color:var(--laranja);flex:0 0 22px;}
+</style>
+</head>
+<body>
+<section class="slide cover">
+  <div class="glow c1"></div><div class="glow c2"></div>
+  <div class="pad">
+    <div class="logo"><img class="logoImg" src="data:image/png;base64,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McqyxKWXXopDhw6Zer2OLMuQpimKogDQGbzod7MVYNARUQ9J7SyKIjSbTdx///3mr3/9q/ngBz8IYwziOEaSJHbqSbUp208cjKCRsXAu1aDnsCmloLXG22+/baampmw/knydc+pWVxQFNmzYgIsvvhjbt2+3o6rLvXbST9eLEddqv59SCu12G1EUYXJykkFHVDUxMYENGzbY/iVan6IouubPGWNQliU8z+v/yOqCPr8oigAAs7OzDDoiUZZlV8DJpFf5vJ/zvFxRvRtCXr/q1/pJao3Vc6W1Zo2OqGphkBljWKtbhzzPEQQBlFI25Ab9+imlbG0S6NTyTpw4oRh0ROfkeW6bWEopW0PQWjP01qAaMNXXD+g0aftds1t4h0We5wjDkDU6oqrqG1VIzaTftyi5QPrG5MLg+769OAyi+SqDRnKegiDA1NQU2u02g45ISKjJh1IKvu/bj0GvpjJuJNSqNV95zQY1Yr3wbos33ngDZVky6IjEwuYWMD9AsdT/UbeyLG1NbhivlYzuAp2ALYoCr732GgDOoyNaEZura7fUazXIwPN9H1mWIY5ju2DAwYMHVRiGvDOCiNygtUYcx5idnYXv+3jnnXdw/PjxziDTsA+OiKgXpNnaaDSgtcazzz5rB0gYdETkjDRNAXRqdz//+c8RBEFnpZQhHxcRUU9orZEkCfI8x9tvv40333xTyS1pDDoickoYhvjud79rV0RhHx0ROcPzPOR5jt///vf45S9/qYD5SeAMOiJyRhiG+MY3vmE34JH7bxl0RDQWpClalmXX5wDsisXPPfcc3nrrLZWmKTzPQxiGKIqCQUdE40EmJMsdEHJfqyzh/u9//xt33HGHnaGstUae552dx4Z21ERE69But5GmKaIosktBScjNzMzgpptuwtTUFCYmJgDM98+lacpbwIhoPMiKwVmWwRiDJElsLe+mm27CX/7yF1Wv1/H+++/D933bnOUtYEQ0NiS44ji2oQcAd955J1599VXVbDbRarUAdN/gD3DUlYjGhKxpJwukZlmGr371q/jZz36mAGBmZgZJkmDDhg2Lns+mKxGNlTAMcerUKXzuc5/D0aNH1dzcHIDOPLo0TZGmKZrNJmZmZuzXGXRENDbyPMc777yDL3zhC+of//hH12KocgN/GIY25MIw7NTo2u22Hart99pRZVkiCAL7u2Tp4ziOkWVZX3/3/we+76PdbkMp1bVGv6yd30tKKaRpCqUU4jju6c+V1X2rq9MWRcG14cZcNV8W7vWqtbY5JH1rcs6rz/vVr36FAwcOqPfeew9BECDP80X5kef5os8DScGyLHv+ZlgoCAK7/r7W2oae/EH93q3bdUVRYPPmzUY27pWLmATEhS4FLhvE5HmOPM9Rr9cBAO+++669cl6IhT9DjlfKCo23argt3CVMKj3VAQQ5561WC8eOHcNDDz2EF198UU1NTQGAnUeX53nXhXEpwSALkPyhC2sADLjeyfPcVuGDIOgqOBdaY6/ufh6GoS1YzWbTjohdCAk5uYrLz5SrNrnD87yuYJIWXlEU0FrbUdWjR4/isccew2OPPabk/+v1OlqtFpIkgTEGWZbZC/tyAin8/a7NyR9T/V1FUdit5Rh2F87zPMzMzKgkSUy16VoURU/2PCjLElEUoSxLG0Zpmva07FRDTt4IcRwvaurQ+Fl4/qq1O2nVBUGA2dlZvPjii/jhD3+IZ599VmVZZjcWD4LANlMl5IDVl7wPjDGYnZ1Fo9How5/WTW7JOHv27KJmympVT1qd1hqNRsMAsF0BEkq96N+Sq7AU0KIo7M3TvTh3QRB01QxrtZrdnGYQXSvUX9Ud1qSCA8znwo9//GM888wzeP7551Wr1bKbUUtWGGNshSiKIhtyUsNbibr++uvNjTfe2JWU/RJFEYqiwPHjx/HEE08omQsDMOh6Qarv1c7Zer2OoihWrNav9+fL5zKcD8B2JF+IatD5vo/LL78cd9xxh5EFFWUaAY0n3/fRarUwNTWFyclJTE5O4tSpU+rkyZOYnp7uyoDlmqISkHEco9VqrdpkFf8HhNjt86IE8QAAAAAASUVORK5CYII="><div class="logoDiv"></div><div class="txt2">Núcleo de Inteligência<br>Digital</div></div>
+    <div style="position:absolute;top:210px;left:90px;">
+      <div class="label">Mini curso NID · Apresente para Fechar</div>
+      <h1>Aula 1<br><span class="or">Antes de entrar na sala</span></h1>
+      <div class="sub">Como a NID prepara a reunião de apresentação: quem decide, formato, agenda em quatro partes e ensaio.</div>
+    </div>
+    <div class="forwho"><div class="ln"></div><div class="who"><small>Quem apresenta</small><b>Henrique Leite</b><span>Sócio da NID</span></div></div>
+  </div>
+  <div class="foot onDark"><span class="brand">NID · Consultoria de Performance Comercial</span><span class="pageno">01</span></div>
+</section>
+<section class="slide dark statement">
+  <div class="pad">
+    <span class="kicker">A ideia</span>
+    <h1 style="margin-top:40px">A reunião de apresentação é o momento da <span class="or">decisão</span>. Não é uma entrega.</h1>
+    
+  </div>
+  <div class="foot onDark"><span class="brand">NID · Consultoria de Performance Comercial</span><span class="pageno">02</span></div>
+</section>
+<section class="slide dark">
+  <div class="pad">
+    <span class="kicker">Onde a reunião se perde</span>
+    <h2 style="color:#fff">Como a reunião se perde antes de começar</h2>
+    <div class="pain"><div class="painItem"><div class="x"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="pt">A proposta vai por e-mail antes da reunião. O cliente pula para o preço.</div></div><div class="painItem"><div class="x"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="pt">Ninguém sabe quem decide. O projeto chega no decisor sem você na sala.</div></div><div class="painItem"><div class="x"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="pt">O apresentador entra para "mostrar a proposta", sem data na cabeça. Termina em "vou pensar".</div></div></div>
+  </div>
+  <div class="foot onDark"><span class="brand">NID · Consultoria de Performance Comercial</span><span class="pageno">03</span></div>
+</section>
+<section class="slide">
+  <div class="barTop"></div>
+  <div class="pad">
+    <span class="kicker">O jeito NID</span>
+    <h2>Cinco verificações antes de toda apresentação</h2>
+    <div class="blocks tight" style="max-width:1040px"><div class="blk"><div class="ic num">1</div><div><div class="bt">Quem decide e quem vai estar na sala</div><div class="bd">Perguntado na hora de marcar. O decisor na reunião, ou você já sabe que não vem.</div></div></div><div class="blk"><div class="ic num">2</div><div><div class="bt">A proposta passou pelo checklist do playbook</div><div class="bd">Dor nas palavras do cliente, tese sem entregável, desenho em uma página, preço só depois do valor, data na última página.</div></div></div><div class="blk"><div class="ic num">3</div><div><div class="bt">Formato e tela</div><div class="bd">Online: você compartilha a tela, sempre. Presencial: o desenho impresso em uma página.</div></div></div><div class="blk"><div class="ic num">4</div><div><div class="bt">O próximo passo já tem data</div><div class="bd">O que ele aprova, quando começa, o que você precisa dele na semana 1. Uma data e uma alternativa.</div></div></div><div class="blk"><div class="ic num">5</div><div><div class="bt">Ensaio cronometrado</div><div class="bd">Ler a proposta em voz alta, do começo ao fim, com relógio. Uma vez.</div></div></div></div>
+  </div>
+  <div class="foot"><span class="brand">NID · Consultoria de Performance Comercial</span><span class="pageno">04</span></div>
+</section>
+<section class="slide">
+  <div class="barTop"></div>
+  <div class="pad">
+    <span class="kicker">Os 45 minutos</span>
+    <h2>O tempo segue a ordem do método</h2>
+    <div class="agenda"><div class="seg" style="flex:5"><div class="m">5</div><div class="t">Abertura</div><div class="d">Contrato de reunião</div></div><div class="seg" style="flex:5"><div class="m">5</div><div class="t">Dor</div><div class="d">"Continua sendo isso?"</div></div><div class="seg" style="flex:5"><div class="m">5</div><div class="t">Solução</div><div class="d">"Faz sentido?"</div></div><div class="seg big" style="flex:15"><div class="m">15</div><div class="t">Arquitetura</div><div class="d">O desenho, bloco a bloco</div></div><div class="seg" style="flex:10"><div class="m">10</div><div class="t">Valor e investimento</div><div class="d">A régua e o número</div></div><div class="seg" style="flex:5"><div class="m">5</div><div class="t">Próximo passo</div><div class="d">A data</div></div></div>
+    <div class="agendaNote">A arquitetura leva um terço do tempo. É o desenho que vende; ele precisa do tempo dele. Se a reunião encolhe, a proporção fica e a ordem não muda.</div>
+  </div>
+  <div class="foot"><span class="brand">NID · Consultoria de Performance Comercial</span><span class="pageno">05</span></div>
+</section>
+<section class="slide">
+  <div class="barTop"></div>
+  <div class="pad">
+    <span class="kicker">Na hora de marcar</span>
+    <h2>A frase que traz o decisor</h2>
+    <div class="quoteCard"><div class="q">"Na próxima reunião eu te mostro o projeto desenhado, com o investimento. <span class="or">Quem mais precisa estar na sala para a gente conseguir decidir?</span>"</div></div>
+    <div class="quoteNote">Avisa que o preço vem na reunião e coloca a palavra "decidir" na mesa antes de a reunião existir. A resposta é o nome do decisor.</div>
+  </div>
+  <div class="foot"><span class="brand">NID · Consultoria de Performance Comercial</span><span class="pageno">06</span></div>
+</section>
+<section class="slide">
+  <div class="barTop"></div>
+  <div class="pad">
+    <span class="kicker">Antes da reunião</span>
+    <h2>O que vai e o que não vai</h2>
+    <div class="deliv"><div class="dcard"><div class="di"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="dt">Vai: o convite com a agenda em quatro partes</div><div class="dd">"O problema como você me contou, o que precisa mudar, como funciona na ordem, o que vale perto do que custa."</div></div></div><div class="dcard"><div class="di"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="dt">Vai: a confirmação de quem participa</div><div class="dd">Um dia antes. Se o decisor caiu, você descobre com tempo.</div></div></div><div class="dcard"><div class="di no">×</div><div><div class="dt">Não vai: o PDF da proposta</div><div class="dd">"Você recebe o documento completo no mesmo dia, logo depois da nossa conversa."</div></div></div><div class="dcard"><div class="di no">×</div><div><div class="dt">Não vai: o preço</div><div class="dd">Nem número, nem faixa, nem "a partir de".</div></div></div></div>
+  </div>
+  <div class="foot"><span class="brand">NID · Consultoria de Performance Comercial</span><span class="pageno">07</span></div>
+</section>
+<section class="slide cta task">
+  <div class="c1"></div>
+  <div class="pad">
+    <span class="kicker">Entregável desta aula</span>
+    <h2 style="color:#fff">Checklist de reunião preenchido para a sua proposta</h2>
+    <div class="items"><div class="item"><div class="n">1</div><div class="t">Quem decide e quem vai estar na sala</div></div><div class="item"><div class="n">2</div><div class="t">A proposta passou pelo checklist do playbook</div></div><div class="item"><div class="n">3</div><div class="t">Formato e quem controla a tela</div></div><div class="item"><div class="n">4</div><div class="t">A data que você vai propor, com alternativa</div></div><div class="item"><div class="n">5</div><div class="t">A hora do ensaio, marcada na agenda</div></div></div>
+    <div class="next"><div class="k">Próxima aula</div><div class="v">Os primeiros cinco minutos: o contrato de reunião que faz o cliente seguir a ordem do método.</div></div>
+  </div>
+  <div class="foot onDark"><span class="brand">NID · Consultoria de Performance Comercial</span><span class="pageno">08</span></div>
+</section>
+</body>
+</html>
