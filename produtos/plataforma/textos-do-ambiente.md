@@ -17,7 +17,7 @@ Regras aplicadas: a NID fala em primeira pessoa do plural; Henrique fala em prim
 
 **Onde aparece**: abaixo do hero da página da Plataforma no Modo B (matrícula aberta) e no Modo A (fechada, com a faixa "Próxima abertura"); no e-mail LP1 como imagem com link; na vitrine da Plataforma dentro da área de membros de quem tem o playbook ou o mini curso. Não aparece no Modo C.
 
-**Como gravar**: Henrique dentro do ambiente, com a tela do ambiente e do NIDflow, sem estúdio. Câmera no rosto na abertura e no fechamento; tela nas partes marcadas. Legenda fixa no canto: "Henrique Leite, sócio da NID". Capa do player: Henrique com a tela de "Projetos na mesa" ao fundo. Duração-alvo: 75 segundos; o texto tem cerca de 220 palavras, para ler em ritmo de conversa. Nenhuma data é dita no vídeo: as datas estão na página, e o vídeo vale para toda abertura.
+**Como gravar**: Henrique dentro do ambiente, com a tela do ambiente e do NIDflow, sem estúdio. Câmera no rosto na abertura e no fechamento; tela nas partes marcadas. Legenda fixa no canto: "Henrique Leite, sócio da NID". Capa do player: Henrique com a tela de "Projetos na mesa" ao fundo. Duração-alvo: 80 segundos; o texto tem cerca de 230 palavras, para ler em ritmo de conversa, sem pressa. Nenhuma data é dita no vídeo: as datas estão na página, e o vídeo vale para toda abertura.
 
 **Fala integral**
 
