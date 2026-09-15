@@ -264,7 +264,7 @@ Regra de venda: só assinante com anuidade ativa compra (`01-estrutura.md`, seç
 |---|---|
 | Código | A-01 (etiqueta `F2-plataforma-avancado-a01`) |
 | Etapa do método | As quatro, aplicadas ao tipo de projeto |
-| Para quem | Consultores, agências pequenas, freelancers de automação, vendedores de software e SDRs que vendem ou querem vender automação comercial com IA |
+| Para quem | Consultores, pequenos estúdios de automação, freelancers de automação, vendedores de software e SDRs que vendem ou querem vender automação comercial com IA |
 | Promessa | Você desenha e apresenta um projeto de automação comercial com IA do jeito que a NID desenha os dela: da dor operacional do cliente à arquitetura de agentes, com valor ancorado e investimento em setup e mensalidade |
 | Preço sugerido | R$ 197 |
 | Motivo de ser bloqueado | Só serve a quem vende esse tipo de projeto; usa telas e componentes reais da operação da NID; gravado com o responsável pela frente de automação, o que custa mais horas da NID |
@@ -289,7 +289,7 @@ Entregável: projeto de automação comercial com IA desenhado no NIDflow para u
 |---|---|
 | Código | A-02 (etiqueta `F2-plataforma-avancado-a02`) |
 | Etapa do método | As quatro, aplicadas ao tipo de projeto |
-| Para quem | Consultores e prestadores de marketing, gestores de tráfego, agências pequenas e vendedores de mídia que vendem geração de demanda e hoje vendem "gestão de tráfego" por pacote |
+| Para quem | Consultores e prestadores de marketing, gestores de tráfego, pequenos estúdios de marketing e vendedores de mídia que vendem geração de demanda e hoje vendem "gestão de tráfego" por pacote |
 | Promessa | Você deixa de vender pacote de tráfego e passa a vender um projeto de geração de demanda desenhado: dor em oportunidades perdidas, tese de canal, arquitetura de campanha e valor em oportunidades qualificadas, não em cliques |
 | Preço sugerido | R$ 197 |
 | Motivo de ser bloqueado | Específico de quem vende demanda; gravado com quem opera tráfego na NID; usa a estrutura de campanha e de relatório que a NID entrega aos clientes |

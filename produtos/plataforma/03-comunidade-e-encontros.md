@@ -236,7 +236,7 @@ Recesso: sem Mesa na última semana de dezembro e na primeira de janeiro; o cale
 | Total do Henrique (ou sócio) | | 71 a 74 |
 | Moderação e posts da NID | 3 h por semana | 150 |
 
-O número de horas do Henrique passa um pouco das 60 a 70 estimadas na estrutura porque inclui a preparação. É o custo real da Plataforma e é o que a base de 1.500 compradores precisa pagar.
+As horas do Henrique incluem a preparação e batem com a estimativa de `01-estrutura.md`, seção 7.2. É o custo real da Plataforma e é o que a base de 1.500 compradores precisa pagar.
 
 ---
 

@@ -233,7 +233,7 @@ Todos os valores abaixo são hipóteses de planejamento até a contratação. N�
 |---|---|---|---|
 | Configuração do ambiente (áreas, trilhas, comunidade, agenda, identidade) | `automacao` com o coordenador | R$ 0 (Cakto Members sem mensalidade) | 3 a 5 dias úteis |
 | Gravação dos três primeiros minicursos inclusos (mínimo para abrir, `02-catalogo.md`, seção 5) | Henrique grava; roteiro do agente `roteiro`; edição terceirizada ou interna | Edição: R$ 150 a R$ 300 por aula editada (hipótese de mercado; 15 aulas: R$ 2.250 a R$ 4.500) | Henrique: 2 dias de gravação por minicurso (6 dias) |
-| Gravação do primeiro minicurso avançado | Idem | 5 aulas: R$ 750 a R$ 1.500 | 2 dias de gravação |
+| Gravação do primeiro minicurso avançado (A-01, 6 aulas) | Henrique grava a abertura e o fechamento; o responsável pela automação na NID grava o miolo; roteiro do `roteiro` | 6 aulas: R$ 900 a R$ 1.800 | 2 dias de gravação |
 | Vídeo de boas-vindas e vídeo da oferta de lançamento | Henrique grava | Edição: R$ 300 a R$ 600 | Meio dia |
 | Biblioteca (PDFs já existentes reunidos, projetos por segmento com autorização) | `plataforma` com `metodo` | R$ 0 | 1 dia |
 | Página da Plataforma (`pagina-de-vendas.md`, do `copy`) e implementação | `copy` + implementação pela skill `nid-pages` | Hospedagem já existente | 3 dias |
@@ -245,7 +245,7 @@ Todos os valores abaixo são hipóteses de planejamento até a contratação. N�
 |---|---|---|
 | Área de membros e comunidade (Cakto Members) | R$ 0 de mensalidade | Só taxa por venda: R$ 51,39 por anuidade no cartão, R$ 2,49 no Pix (seção 4.3 do `automacoes/05-integracoes.md`, a confirmar) |
 | Transmissão ao vivo | R$ 0 se nativa; se precisar de Zoom ou similar, cerca de R$ 90 a R$ 100 por mês (hipótese: plano básico em dólar) | Decidido no teste da seção 6.4 |
-| Encontros (24 Mesas de Projetos, 12 Encontros de Método, 4 Casos NID, aberturas de turma) | Tempo do Henrique e de um sócio ou alguém da NID: cerca de 60 a 70 horas por ano | É o custo real da Plataforma. Detalhe em `03-comunidade-e-encontros.md`, seção 6 |
+| Encontros (24 Mesas de Projetos, 12 Encontros de Método, 4 Casos NID, aberturas de turma) | Tempo do Henrique e de um sócio ou alguém da NID: cerca de 70 a 75 horas por ano, já com a preparação | É o custo real da Plataforma. Detalhe em `03-comunidade-e-encontros.md`, seção 6.7 |
 | Moderação e resposta na comunidade | Uma pessoa da NID, cerca de 3 horas por semana (150 horas por ano) | Pode ser a mesma pessoa que atende o suporte do Funil 2 |
 | Produção de conteúdo novo (um minicurso incluso por trimestre, um avançado por semestre) | Edição: R$ 4.500 a R$ 9.000 por ano | Henrique: cerca de 12 dias de gravação por ano |
 | Nota fiscal (integrador) | Conforme o emissor escolhido com o contador; hipótese de R$ 50 a R$ 100 por mês | Já necessário para os outros produtos |
