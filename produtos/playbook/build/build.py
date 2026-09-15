@@ -37,11 +37,49 @@ def logo_b64():
 LOGO = logo_b64()
 
 # ----------------------------------------------------------------------------
+# CTA do NIDflow: os CTAs "Quero desenhar meu próximo projeto no NIDflow" viram links
+# (playbook, capítulos 3 a 6 e 8; e os cinco templates de fluxo)
+# ----------------------------------------------------------------------------
+
+# Confirmar domínio, pendência P-04: a URL final da oferta do NIDflow ainda não existe.
+# Esta constante é a única fonte da URL base; os .md carregam a mesma URL por extenso.
+URL_OFERTA_NIDFLOW = "https://nidflow.nid.com.br/oferta"
+
+# Slugs dos templates, exatamente como em produtos/nidflow/02-onboarding.md, seção 1.1.
+SLUG_NIDFLOW = {
+    "1": "canvas-de-dor",
+    "2": "mapa-de-solucao",
+    "3": "fluxo-de-arquitetura",
+    "4": "tabela-de-valor",
+    "5": "roteiro-de-proposta",
+}
+
+# CTAs dentro do playbook, por capítulo: (utm_content, template pré-selecionado ou None).
+# O capítulo 8 entra sem parâmetro de template (revisão de coerência, correção 1).
+CTA_PLAYBOOK = {
+    "3": ("cap3", SLUG_NIDFLOW["1"]),
+    "4": ("cap4", SLUG_NIDFLOW["2"]),
+    "5": ("cap5", SLUG_NIDFLOW["3"]),
+    "6": ("cap6", SLUG_NIDFLOW["4"]),
+    "8": ("cap8", None),
+}
+
+
+def url_cta_nidflow(content, template=None):
+    """URL do CTA: ?template=<slug>&utm_source=playbook&utm_medium=cta-produto&utm_campaign=F2-nidflow-cta&utm_content=<content>."""
+    params = []
+    if template:
+        params.append("template=" + template)
+    params += ["utm_source=playbook", "utm_medium=cta-produto", "utm_campaign=F2-nidflow-cta", "utm_content=" + content]
+    return URL_OFERTA_NIDFLOW + "?" + "&".join(params)
+
+# ----------------------------------------------------------------------------
 # Conversor de Markdown (subconjunto usado nos arquivos do playbook)
 # ----------------------------------------------------------------------------
 
 def inline(text):
     text = html.escape(text, quote=False)
+    text = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2">\1</a>', text)
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"`(.+?)`", r"<code>\1</code>", text)
     return text
@@ -238,7 +276,7 @@ p,li{orphans:3;widows:3;}
 .ctaFlow{border:1px solid var(--linha);border-left:2.5mm solid var(--laranja);background:var(--off);border-radius:3mm;padding:4.5mm 6mm 4.5mm;margin:4mm 0 5mm;page-break-inside:avoid;}
 .ctaFlow .lab{display:block;font-size:8pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--laranja);margin-bottom:1.5mm;}
 .ctaFlow p{margin-bottom:3mm;}
-.ctaFlow .btn{display:inline-block;background:var(--laranja);color:#fff;font-weight:700;font-size:9.5pt;padding:2.6mm 5mm;border-radius:2mm;}
+.ctaFlow .btn{display:inline-block;background:var(--laranja);color:#fff;font-weight:700;font-size:9.5pt;padding:2.6mm 5mm;border-radius:2mm;text-decoration:none;}
 .callout .lab{display:block;font-size:8pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:2mm;}
 .callout p:last-child{margin-bottom:0;}
 .guide{background:linear-gradient(135deg,var(--laranja),#E2571A);color:#fff;}
@@ -307,7 +345,7 @@ def chapter_meta(title):
     return "", title
 
 
-def render_sections(blocks, chapter_title=""):
+def render_sections(blocks, chapter_title="", cta_url=None):
     """Renderiza os blocos de um capítulo, agrupando seções h2 especiais em callouts."""
     out = []
     i = 0
@@ -322,7 +360,7 @@ def render_sections(blocks, chapter_title=""):
                 content.append(blocks[i])
                 i += 1
             out.append('<div class="callout %s"><span class="lab">%s</span>%s</div>' % (
-                cls, inline(b[1]), render_sections(content)))
+                cls, inline(b[1]), render_sections(content, cta_url=cta_url)))
             continue
         if b[0] == "h2" and b[1].startswith("Template: "):
             i += 1
@@ -331,12 +369,21 @@ def render_sections(blocks, chapter_title=""):
                 content.append(blocks[i])
                 i += 1
             out.append('<div class="tpl"><span class="lab">Template de fluxo</span><h3 style="margin-top:0">%s</h3>%s</div>' % (
-                inline(b[1][len("Template: "):]).capitalize(), render_sections(content)))
+                inline(b[1][len("Template: "):]).capitalize(), render_sections(content, cta_url=cta_url)))
             continue
         if b[0] == "p" and b[1].startswith("**Preencha este template no NIDflow.**"):
             btn = ""
-            if i + 1 < n and blocks[i + 1][0] == "p" and blocks[i + 1][1].startswith("**Quero desenhar"):
-                btn = '<span class="btn">%s</span>' % inline(blocks[i + 1][1].strip("*"))
+            if i + 1 < n and blocks[i + 1][0] == "p" and re.match(r"^\*\*\[?Quero desenhar", blocks[i + 1][1]):
+                raw = blocks[i + 1][1].strip("*")
+                m = re.match(r"^\[([^\]]+)\]\(([^)\s]+)\)$", raw)
+                label = m.group(1) if m else raw
+                url = cta_url or (m.group(2) if m else None)
+                if m and cta_url and m.group(2) != cta_url:
+                    print("AVISO: link do CTA no .md difere do gerado pelo build:\n  md:    %s\n  build: %s" % (m.group(2), cta_url), file=sys.stderr)
+                if url:
+                    btn = '<a class="btn" href="%s">%s</a>' % (html.escape(url, quote=True), inline(label))
+                else:
+                    btn = '<span class="btn">%s</span>' % inline(label)
                 i += 1
             out.append('<div class="ctaFlow"><span class="lab">NIDflow</span>%s%s</div>' % (render_block(b), btn))
             i += 1
@@ -421,12 +468,16 @@ def build_playbook(toc_pages=None):
         m = re.match(r"Capítulo (\d+)", kick)
         if m:
             num = m.group(1)
+        # link do CTA do NIDflow deste capítulo (se houver)
+        cta_url = None
+        if num in CTA_PLAYBOOK:
+            cta_url = url_cta_nidflow(*CTA_PLAYBOOK[num])
         # marcador invisível para localizar a página do capítulo no PDF
         marker = "NIDCAP%02d" % idx
         ch_html.append(f'''
 <section class="chapter">
   <div class="chapHead"><div class="bar"></div><span class="kick">{inline(kick)}</span><h1>{inline(title)}</h1><div class="num">{num}</div><span style="position:absolute;left:0;top:0;font-size:1pt;color:rgba(55,55,55,0.01)">{marker}</span></div>
-  {render_sections(blocks_ch, ch["title"])}
+  {render_sections(blocks_ch, ch["title"], cta_url=cta_url)}
 </section>''')
 
     # contracapa
@@ -574,10 +625,11 @@ def build_template(tpl, intro_note):
     num = re.match(r"Template (\d)", title).group(1)
     name = title.split(" · ")[1]
     secs, order = sections_of(tpl["blocks"])
-    serve = render_sections(secs.get("Para que serve", []))
-    instr = render_sections(secs.get("Instruções de preenchimento", []))
+    cta_url = url_cta_nidflow(SLUG_NIDFLOW[num], SLUG_NIDFLOW[num])
+    serve = render_sections(secs.get("Para que serve", []), cta_url=cta_url)
+    instr = render_sections(secs.get("Instruções de preenchimento", []), cta_url=cta_url)
     exemplo_key = next(k for k in order if k.startswith("Exemplo preenchido"))
-    exemplo = render_sections(secs[exemplo_key])
+    exemplo = render_sections(secs[exemplo_key], cta_url=cta_url)
     landscape = num == "3"
 
     meta = '''<div class="meta">

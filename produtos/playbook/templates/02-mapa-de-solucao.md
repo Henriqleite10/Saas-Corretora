@@ -42,7 +42,7 @@ Registrar a etapa 2 do método: a tese, o que precisa existir para a dor parar, 
 
 **Preencha este template no NIDflow.** O mapa de solução já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
 
-**Quero desenhar meu próximo projeto no NIDflow**
+**[Quero desenhar meu próximo projeto no NIDflow](https://nidflow.nid.com.br/oferta?template=mapa-de-solucao&utm_source=playbook&utm_medium=cta-produto&utm_campaign=F2-nidflow-cta&utm_content=mapa-de-solucao)**
 
 ---
 

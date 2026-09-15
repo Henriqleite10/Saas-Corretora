@@ -106,7 +106,7 @@ A segunda: desenhe o próximo projeto no NIDflow. Você viu na aula quatro como 
 
 O NIDflow custa vinte e nove reais e noventa centavos por mês. Cancela quando quiser, sem multa, e nos primeiros sete dias o reembolso é sem pergunta. Menos que um almoço por mês, e menos do que uma única proposta que morre no "vou pensar". O link está abaixo desta aula. O botão diz o que acontece depois do clique: "Quero desenhar meu próximo projeto no NIDflow".
 
-A terceira parte: continuidade. Quem aplica o método sozinho estagna, porque cada projeto novo traz uma situação nova e não tem com quem discutir. A NID está montando a Plataforma NID, o ambiente para praticar o método com continuidade: minicursos, comunidade e encontros conduzidos pela NID, por novecentos e oitenta reais por ano. Ela abre para quem já comprou o playbook e o mini curso em datas definidas, e você vai saber por e-mail quando abrir. Por enquanto, não é oferta; é só para você saber que existe um degrau seguinte.
+A terceira parte: continuidade. Quem aplica o método sozinho estagna, porque cada projeto novo traz uma situação nova e não tem com quem discutir. A NID está montando a Plataforma NID, o ambiente para praticar o método com continuidade: minicursos, comunidade e encontros conduzidos pela NID. Ela abre em datas definidas, e você vai saber por e-mail, com o valor, quando abrir. Por enquanto, não é oferta; é só para você saber que existe um degrau seguinte.
 
 E uma última coisa, para quem tem empresa própria com time comercial ou decide contratações de marketing e vendas onde trabalha: o método que você acabou de ver é o mesmo que a NID usa para desenhar o projeto comercial dos clientes dela. Quem desenha projeto para os clientes também pode ter o próprio projeto comercial desenhado pela NID. É só responder ao e-mail de entrega deste mini curso, e a gente conversa.
 
@@ -121,3 +121,9 @@ Seu entregável, o último: escreva o e-mail do mesmo dia da sua proposta, com a
 Quem desenha o projeto, conduz a venda. Você desenhou. Agora vai lá e apresenta.
 
 Sou o Henrique, sócio da NID. Obrigado por chegar até aqui.
+
+---
+
+## Texto abaixo da aula (nota de apoio, não é fala)
+
+Próximos passos, na ordem: 1) apresente a proposta que passou pelas oito aulas, com o roteiro e o checklist dos materiais; 2) desenhe o próximo projeto no NIDflow, R$ 29,90 por mês, cancele quando quiser, 7 dias de garantia (Quero desenhar meu próximo projeto no NIDflow); 3) continuidade: a Plataforma NID, o ambiente da NID para praticar o método com continuidade (minicursos, comunidade e encontros conduzidos pela NID), R$ 980 por ano, abre em datas definidas e você será avisado por e-mail. Tem empresa própria com time comercial ou decide contratações de marketing e vendas onde trabalha? Responda ao e-mail de entrega deste mini curso e a NID conversa com você sobre uma sessão de arquitetura, sem custo.

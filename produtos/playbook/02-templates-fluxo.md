@@ -49,7 +49,7 @@ Registrar a etapa 1 do método: o problema do cliente, nas palavras dele, com cu
 
 **Preencha este template no NIDflow.** O canvas de dor já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
 
-**Quero desenhar meu próximo projeto no NIDflow**
+**[Quero desenhar meu próximo projeto no NIDflow](https://nidflow.nid.com.br/oferta?template=canvas-de-dor&utm_source=playbook&utm_medium=cta-produto&utm_campaign=F2-nidflow-cta&utm_content=canvas-de-dor)**
 
 ---
 
@@ -95,7 +95,7 @@ Registrar a etapa 2 do método: a tese, o que precisa existir para a dor parar, 
 
 **Preencha este template no NIDflow.** O mapa de solução já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
 
-**Quero desenhar meu próximo projeto no NIDflow**
+**[Quero desenhar meu próximo projeto no NIDflow](https://nidflow.nid.com.br/oferta?template=mapa-de-solucao&utm_source=playbook&utm_medium=cta-produto&utm_campaign=F2-nidflow-cta&utm_content=mapa-de-solucao)**
 
 ---
 
@@ -155,7 +155,7 @@ Registrar a etapa 3 do método: o projeto desenhado, com etapas em sequência, o
 
 **Preencha este template no NIDflow.** O fluxo de arquitetura já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
 
-**Quero desenhar meu próximo projeto no NIDflow**
+**[Quero desenhar meu próximo projeto no NIDflow](https://nidflow.nid.com.br/oferta?template=fluxo-de-arquitetura&utm_source=playbook&utm_medium=cta-produto&utm_campaign=F2-nidflow-cta&utm_content=fluxo-de-arquitetura)**
 
 ---
 
@@ -208,7 +208,7 @@ Registrar a etapa 4 do método: o que o cliente ganha, na régua da dor, e só e
 
 **Preencha este template no NIDflow.** A tabela de valor já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
 
-**Quero desenhar meu próximo projeto no NIDflow**
+**[Quero desenhar meu próximo projeto no NIDflow](https://nidflow.nid.com.br/oferta?template=tabela-de-valor&utm_source=playbook&utm_medium=cta-produto&utm_campaign=F2-nidflow-cta&utm_content=tabela-de-valor)**
 
 ---
 
@@ -266,4 +266,4 @@ Transformar as quatro saídas do método em um documento na ordem que conduz a d
 
 **Preencha este template no NIDflow.** O roteiro de proposta já está dentro do NIDflow, a ferramenta da NID para desenhar e apresentar projetos na mesma tela, com os templates do método prontos para preencher. R$ 29,90 por mês, cancele quando quiser.
 
-**Quero desenhar meu próximo projeto no NIDflow**
+**[Quero desenhar meu próximo projeto no NIDflow](https://nidflow.nid.com.br/oferta?template=roteiro-de-proposta&utm_source=playbook&utm_medium=cta-produto&utm_campaign=F2-nidflow-cta&utm_content=roteiro-de-proposta)**

@@ -308,7 +308,7 @@ AULAS[8] = {"titulo": "Depois da reunião", "slides": [
     {"tipo": "list", "kicker": "O que você faz agora", "titulo": "Três partes", "itens": [
         ("Apresente", "A proposta que passou pelas oito aulas está pronta. Marque com a frase da aula 1, use o roteiro e o checklist, e apresente."),
         ("Desenhe o próximo projeto no NIDflow", "Os cinco templates dentro, o fluxo na tela, o modo de apresentação na ordem do método. Primeiro projeto em menos de 15 minutos."),
-        ("Continuidade", "A Plataforma NID, o ambiente da NID para praticar o método com continuidade, R$ 980 por ano, abre para a base em datas definidas. Você vai saber por e-mail.")]},
+        ("Continuidade", "A Plataforma NID, o ambiente da NID para praticar o método com continuidade, abre em datas definidas. Você vai saber por e-mail, com o valor, quando abrir.")]},
     {"tipo": "nidflow", "kicker": "A ferramenta da NID", "titulo": "Desenhe e apresente o projeto na mesma tela",
      "itens": ["Os cinco templates do método já dentro", "O fluxo de arquitetura desenhado na tela", "Modo de apresentação na ordem do método", "Primeiro projeto em menos de 15 minutos"],
      "destaque": "Menos que um almoço por mês", "destaqueSub": "E menos do que uma única proposta que morre no \"vou pensar\".",

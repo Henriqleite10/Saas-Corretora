@@ -6,7 +6,7 @@
 | Versão | 1.1 (Sprint 4, com os ajustes do coordenador a partir do `docs/01-parecer-estrategico.md`) |
 | Status | Entregue ao coordenador |
 | Seção 5 (mensagens) | **Rascunho funcional** para o agente `copy` finalizar. As demais seções são especificação de produto |
-| Dependências | Itens B-01, B-03, B-04, B-05, B-07 e B-08 do `04-backlog-tecnico.md`; templates finais do agente `metodo` em `produtos/playbook/02-templates-fluxo.md` (ainda não publicado; este documento usa a definição canônica da seção 7 do brief) |
+| Dependências | Itens B-01, B-03, B-04, B-05, B-07 e B-08 do `04-backlog-tecnico.md`; templates finais do agente `metodo` em `produtos/playbook/02-templates-fluxo.md` (textos copiados de lá palavra por palavra) |
 
 Princípio: o onboarding não é um tour de funcionalidades. É o primeiro projeto. Cada tela pede uma decisão do assinante sobre o projeto dele, nunca "veja o que a ferramenta faz".
 
@@ -20,7 +20,7 @@ Todo assinante do NIDflow vem do playbook ou do mini curso (oferta em D+7). Logo
 - Já viu os cinco templates no papel: canvas de dor, mapa de solução, fluxo de arquitetura, tabela de valor e roteiro de proposta.
 - Provavelmente tem uma proposta em andamento (é o que a sequência D0 a D+6 pede: "preencha o primeiro template").
 
-O onboarding aproveita isso: em vez de ensinar o método, pede o projeto real que a pessoa está tentando vender agora. E, por decisão do coordenador (parecer estratégico, seção 6, item 4), o playbook terá um CTA para o NIDflow ao fim de cada template. Logo, boa parte dos assinantes chega sabendo qual template quer preencher. O primeiro passo depois do login é, por isso, "escolha o template", com o template do CTA já selecionado quando a pessoa veio por ele.
+O onboarding aproveita isso: em vez de ensinar o método, pede o projeto real que a pessoa está tentando vender agora. E, por decisão do coordenador (parecer estratégico, seção 6, item 4), o playbook terá um CTA para o NIDflow ao fim de cada template. Logo, boa parte dos assinantes chega sabendo qual template quer preencher. O primeiro passo depois do login é, por isso, "por onde começar", com o template do CTA já selecionado quando a pessoa veio por ele.
 
 ### 1.1 Entrada pelo CTA do playbook
 
@@ -44,7 +44,7 @@ Regras:
 
 ## 2. Os cinco templates dentro do NIDflow
 
-Estrutura de cada template como requisito da ferramenta (B-04). Os campos abaixo são os que o agente `metodo` publicou em `produtos/playbook/01-playbook.md` (capítulos 3 a 6 e 8). As instruções de preenchimento e os exemplos preenchidos virão do `02-templates-fluxo.md`, ainda não publicado; quando sair, os textos da ferramenta são copiados de lá palavra por palavra.
+Estrutura de cada template como requisito da ferramenta (B-04). Os campos abaixo são os que o agente `metodo` publicou em `produtos/playbook/01-playbook.md` (capítulos 3 a 6 e 8). As instruções de preenchimento e os exemplos preenchidos são textos copiados de `produtos/playbook/02-templates-fluxo.md` palavra por palavra.
 
 | Template | Etapa do método | Campos na tela (iguais aos do playbook) | Saída que o assinante vê |
 |---|---|---|---|
@@ -56,7 +56,7 @@ Estrutura de cada template como requisito da ferramenta (B-04). Os campos abaixo
 
 Regras de produto para os templates:
 
-1. Um projeto novo nasce com os cinco templates já dentro, na ordem do método. O assinante não "escolhe template": ele abre o projeto e preenche.
+1. Um projeto novo nasce com os cinco templates já dentro, na ordem do método. Quem chega pelo CTA do playbook já entra com o template do link pré-selecionado; os demais escolhem, no passo 2 do onboarding ("Por onde começar"), apenas por qual template começam. Os outros quatro já estão no projeto.
 2. Os campos que se repetem (diagnóstico em uma frase, dor em número) são copiados automaticamente do template de origem e continuam editáveis.
 3. A ordem é fixa na navegação (regra 1 do método). Pode pular uma etapa, mas a etapa pulada aparece marcada como vazia na apresentação.
 4. O modo de apresentação segue o roteiro de proposta: o investimento (página 8) nunca aparece antes do valor (página 7). Sem exceção, nem por configuração.
@@ -73,7 +73,7 @@ Tempo-alvo total: 14 minutos (soma dos passos 1 a 7). Cada passo tem o tempo pre
 |---|---|---|---|---|
 | 0. E-mail de acesso | 0 min (chega em até 2 min após o pagamento) | Assinante recebe o e-mail "Seu acesso ao NIDflow" com link mágico. WhatsApp de boas-vindas em paralelo | Fora da ferramenta | `acesso_enviado` |
 | 1. Entrar | 1 min | Clica no link, entra sem senha. Tela pede: defina uma senha (opcional, pode pular) | Tela única, um campo | `primeiro_login` |
-| 2. Escolha o template | 1 min | Tela única com os cinco templates na ordem do método, canvas de dor pré-selecionado. Se a pessoa veio pelo CTA do playbook, o template do link já está selecionado e a tela só confirma. Na mesma tela, dois campos: cliente e interlocutor (ou "ainda não sei") e o que você vai vender para ele em uma linha (o primeiro já preenche o campo "cliente e interlocutor" do canvas de dor). Botão: "Desenhar este projeto". Alternativa discreta abaixo: "Prefiro ver o projeto de exemplo primeiro" | Tela única | `template_escolhido` (com o slug), `projeto_criado` |
+| 2. Por onde começar | 1 min | Tela única com os cinco templates na ordem do método, canvas de dor pré-selecionado. Se a pessoa veio pelo CTA do playbook, o template do link já está selecionado e a tela só confirma. Na mesma tela, dois campos: cliente e interlocutor (ou "ainda não sei") e o que você vai vender para ele em uma linha (o primeiro já preenche o campo "cliente e interlocutor" do canvas de dor). Botão: "Desenhar este projeto". Alternativa discreta abaixo: "Prefiro ver o projeto de exemplo primeiro" | Tela única | `template_escolhido` (com o slug), `projeto_criado` |
 | 3. Canvas de dor | 3 min | Caminho padrão (quem veio por outro template começa nele e o guia segue a partir dali). O projeto abre na etapa 1 com os seis campos do canvas; no primeiro projeto, situação, custo, consequência e diagnóstico são os obrigatórios. Cada campo tem a pergunta-guia e um exemplo em cinza (do caso do playbook). O campo de custo tem a conta guiada (frequência × perda por ocorrência × valor unitário). Ao preencher os obrigatórios, o diagnóstico em uma frase aparece montado. Botão: "Seguir para a Solução" | Etapa 1 de 4, indicador no topo | `etapa_preenchida` (dor) |
 | 4. Mapa de solução | 2 min | A dor já vem copiada do canvas. Campo principal: a frase de solução no formato do playbook. Abaixo, as premissas (3 a 5, uma por linha). Causa, concordância e "o que a tese não é" ficam visíveis e opcionais. Botão: "Seguir para a Arquitetura" | Etapa 2 de 4 | `etapa_preenchida` (solucao) |
 | 5. Fluxo de arquitetura | 4 min | O desenho. A tela abre pedindo o resultado final em uma linha (campo geral do fluxo, escrito antes de tudo) e mostra três blocos vazios já ligados em sequência (1, 2, 3). O assinante preenche nome, objetivo e marco de cada bloco; entra, componentes, responsável e prazo ficam disponíveis no bloco, opcionais no primeiro projeto. Adiciona ou remove blocos. Dica única na tela, que some ao primeiro clique: "Nomeie o primeiro bloco. Comece pelo primeiro dia do projeto". Botão: "Seguir para o Valor" (habilita com 3 blocos com nome e marco) | Etapa 3 de 4, canvas visual | `etapa_preenchida` (arquitetura), `arquitetura_min_3_etapas` |
